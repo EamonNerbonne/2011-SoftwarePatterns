@@ -1,0 +1,4 @@
+To try mercurial, everyone should add some content to this file.
+
+Eamon says hi!
+
