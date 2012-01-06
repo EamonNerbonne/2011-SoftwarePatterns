@@ -1,0 +1,13 @@
+.titlepage {
+    page-break-after:always;
+}
+.subtitles, h1 {
+    font-weight: bold;
+    font-size:24pt;
+    font-family: Cambria, Georgia, Serif;
+    text-align: center;
+}
+
+h1 { font-size: 30pt; color: #258;}
+
+.authorsbox {text-align:right;}
