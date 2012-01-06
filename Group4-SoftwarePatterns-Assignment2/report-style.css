@@ -22,3 +22,31 @@ table.stakeholders {
 table.stakeholders tr {
     border-top: 1px solid #333;
 }
+
+
+
+
+
+/* page layout styling */
+/* TODO: print style sheet */
+body { padding:0; margin:0; background:#ddd; }
+
+.margincontainer
+{
+    max-width: 21cm;
+    background:white;
+    margin:0 auto;
+    box-shadow:0 0 1.5cm rgba(0,0,0,0.5);
+}
+.textcontainer
+{
+    padding-top:4cm;
+    text-align: justify;
+    max-width: 12.42cm;
+    margin:0 auto;
+            
+    text-align: justify;
+    font-family:  CMU, "Palatino Linotype" ,Constantia, "Minion Pro" , "Hoefler Text" ,Gentium, "Gentium Basic", Georgia, serif;
+    font-size: 10pt;
+}
+
