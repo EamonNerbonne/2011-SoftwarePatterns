@@ -12,8 +12,10 @@ h1 {
     font-size: 30pt;
     color: #258;
 }
+.rightbox {float:right;}
 
 .authorsbox {
+    margin:2cm 0.5cm;
     text-align: right;
 }
 
@@ -24,15 +26,19 @@ h1 {
     text-align:center;
 }
 
-table.stakeholders {
+
+/* Nice table border styling */
+
+table.bookstyleborders {
     border-collapse: collapse;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
 }
-table.stakeholders tr {
+table.bookstyleborders tr {
     border-top: 1px solid #333;
 }
 
+/* Basic Table layouts */
 table {
     hyphens: manual;
     -moz-hyphens: manual;
@@ -42,9 +48,19 @@ table {
 th {
     padding:0.1em 0.5em;
 }
-dt {font-weight:bold; float:left; clear:left; padding-right:1em;}
 
-.rightbox {float:right;}
+
+/* Definition lists */
+dt {font-weight:bold; float:left; clear:left;}
+dd {margin-left:1em;}
+dd:before {content:'\A0'; padding-left:0.2em;}
+td > dl {margin:0;}
+
+/* Basic Paragraph styling */
+p { margin: 0.5em 0; clear: left; }
+h1 { clear:left; }
+p + p { text-indent: 1.5em; }
+
 
 /* page layout styling */
 /* TODO: print style sheet */
@@ -67,7 +83,7 @@ body {
     max-width: 12.42cm;
     margin: 0 auto;
     text-align: justify;
-    font-family: "Palatino Linotype" ,Constantia, "Minion Pro" , "Hoefler Text" ,Gentium, "Gentium Basic" , Georgia, serif;
+    font-family:    "Gentium Book Basic", Gentium, "Gentium Basic", "Palatino Linotype", "Hoefler Text", Constantia,"Minion Pro",  Georgia, serif;
     font-size: 10pt;
     hyphens: auto;
     -moz-hyphens: auto;
