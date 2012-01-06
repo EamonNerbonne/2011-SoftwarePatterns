@@ -1,3 +1,12 @@
+body {
+    text-align: justify;
+    font-family: "Gentium Book Basic" , Gentium, "Gentium Basic" , "Palatino Linotype" , "Hoefler Text" , Constantia, "Minion Pro" , Georgia, serif;
+    font-size: 10pt;
+    hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+}
+
 .titlepage {
     page-break-after: always;
 }
@@ -8,14 +17,61 @@
     text-align: center;
 }
 
-h1 {
-    font-size: 30pt;
-    color: #258;
+article {
+    counter-reset: section;
 }
-.rightbox {float:right;}
+
+h1 {
+    color: #258;
+    font-size: 30pt;
+    margin: 1em 0 0.6em;
+}
+
+section h1, aside h1 {
+    color: Black;
+    text-align: left;
+    font-size: 18pt;
+}
+section h1 {
+    counter-increment: section;
+    counter-reset: subsection;
+}
+section h1:before {
+    content: counter(section) ". ";
+}
+aside h1 {
+    counter-increment: appendix;
+}
+aside h1:before {
+    content: "Appendix " counter(appendix, upper-latin) ". ";
+}
+
+
+section section h1 {
+    font-size: 14pt;
+    counter-increment: subsection;
+    counter-reset: subsubsection;
+}
+section section h1:before {
+    content: counter(section) "." counter(subsection) " ";
+}
+
+section section section h1 {
+    font-size: 12pt;
+    counter-increment: subsubsection;
+    counter-reset: work-around-chrome-bug;
+}
+section section section h1:before {
+    content: counter(section) "." counter(subsection) "." counter(subsubsection) " ";
+}
+
+
+.rightbox {
+    float: right;
+}
 
 .authorsbox {
-    margin:2cm 0.5cm;
+    margin: 2cm 0.5cm;
     text-align: right;
 }
 
@@ -23,7 +79,7 @@ h1 {
     background-color: #ffff00;
 }
 .centered {
-    text-align:center;
+    text-align: center;
 }
 
 
@@ -37,33 +93,57 @@ table.bookstyleborders {
 table.bookstyleborders tr {
     border-top: 1px solid #333;
 }
+table.bookstyleborders td {
+    padding: 0.6em 0.5em;
+}
+
 
 /* Basic Table layouts */
 table {
     hyphens: manual;
     -moz-hyphens: manual;
     -webkit-hyphens: manual;
-    text-align:left;
+    text-align: left;
 }
 th {
-    padding:0.1em 0.5em;
+    padding: 0.1em 0.5em;
 }
 
 
 /* Definition lists */
-dt {font-weight:bold; float:left; clear:left;}
-dd {margin-left:1em;}
-dd:before {content:'\A0'; padding-left:0.2em;}
-td > dl {margin:0;}
+dt {
+    font-weight: bold;
+    float: left;
+    clear: left;
+}
+dd {
+    margin-left: 1em;
+}
+dd:before {
+    content: '\A0';
+    padding-left: 0.2em;
+}
+td > dl {
+    margin: 0;
+}
 
 /* Basic Paragraph styling */
-p { margin: 0.5em 0; clear: left; }
-h1 { clear:left; }
-p + p { text-indent: 1.5em; }
+p {
+    margin: 0.5em 0;
+    clear: left;
+}
+h1 {
+    clear: left;
+}
+p + p {
+    text-indent: 1.5em;
+}
 
 
 /* page layout styling */
 /* TODO: print style sheet */
+
+
 body {
     padding: 0;
     margin: 0;
@@ -79,14 +159,15 @@ body {
 .textcontainer {
     padding-top: 4cm;
     padding-bottom: 1cm;
-    text-align: justify;
     max-width: 12.42cm;
     margin: 0 auto;
-    text-align: justify;
-    font-family:    "Gentium Book Basic", Gentium, "Gentium Basic", "Palatino Linotype", "Hoefler Text", Constantia,"Minion Pro",  Georgia, serif;
-    font-size: 10pt;
-    hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
 }
 
+@media print {
+    body {
+        background: white;
+    }
+    .margincontainer {
+        box-shadow: none;
+    }
+}
