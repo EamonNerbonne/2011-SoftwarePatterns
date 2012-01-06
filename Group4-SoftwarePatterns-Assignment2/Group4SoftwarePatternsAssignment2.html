@@ -1,370 +1,348 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
-    <link rel="stylesheet" type="text/css" href="gdocs-orig-style.css" />
     <link rel="stylesheet" type="text/css" href="report-style.css" />
 </head>
 <body>
     <div class="margincontainer">
-    <div class="textcontainer">
+        <div class="textcontainer">
+            <div class="titlepage">
+                <h1>
+                    Mercurial</h1>
+                <div class="subtitles">
+                    <div>
+                        Software Patterns</div>
+                    <div>
+                        Assignment 2</div>
+                    <div>
+                        Group 4</div>
+                    <div>
+                        Version 1</div>
+                </div>
+                <div class="authorsbox">
+                    <div>
+                        Divya Avalur</div>
+                    <div>
+                        Assel Bekbatyrova</div>
+                    <div>
+                        Eamon Nerbonne</div>
+                    <div>
+                        Sunna Björg Sigurjónsdóttir</div>
+                    <div>
+                        Edy Suharto</div>
+                </div>
+            </div>
+            <!-- Revision history page -->
+            <h2>
+                <a name="h.22p1ho8igge7"></a>Revision history</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Version
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            19/12/2011
+                        </td>
+                        <td class="centered">
+                            1
+                        </td>
+                        <td>
+                            <dl>
+                                <dt>Assel</dt><dd>Stakeholder concerns, key drivers, patterns</dd>
+                                <dt>Divya</dt><dd>Introduction of the system and overview of contents</dd>
+                                <dt>Eamon</dt><dd>System context text, SR diagram</dd>
+                                <dt>Edy</dt><dd>System context diagram</dd>
+                                <dt>Sunna</dt><dd>Document creation, stakeholders and concerns, patterns</dd>
+                            </dl>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Chapter 1 - Introduction -->
+            <h2>
+                <a name="h.y2a51wuxwu57"></a><span>1 Introduction</span></h2>
+            <p>
+                <span>The document presents the pattern-based recovery and evaluation of the architecture
+                    of an open-source system, Mercurial. It is a distributed version control system.
+                    This document gives an overview of the patterns that represent the core of the Mercurial
+                    system. We use the IDAPO for identifying the architectural patterns in Open source
+                    software. We also discuss about the specific variants of the patterns which we chose.
+                    Furthermore we need to evaluate the found patterns using Pattern-Based Architectural
+                    Review method. the evaluation of the consequences of patterns is based on the system’s
+                    quality attributes. </span>
+            </p>
+            <p>
+                <span>The structure of the document is as follows: </span>
+            </p>
+            <p>
+                <span>Chapter 2 describes the system context of Mercurial version control system. Chapter
+                    3 deals with identifying the stakeholders and their concerns as well as the key
+                    drivers which should drive the development of the system. </span>
+            </p>
+            <p>
+                <span>Chapter 4 describes the various architectural views for the system and also the
+                    architectural patterns identified for the Mercurial system using IDAPO. It also
+                    discusses how the various patterns are related with each other and the impact of
+                    each pattern on the system architecture and also discusses about the variants used
+                    . It also includes the decomposition of the patterns, responsibilities of each component
+                    in the patterns and also about the interfaces.</span>
+            </p>
+            <p>
+                <span>Chapter 5 is mainly focused on the architectural evaluation of the Mercurial system
+                    using PBAR approach. It also shows how each quality attribute identified are addressed.
+                </span>
+            </p>
+            <!-- Chapter 2 - System context -->
+            <h2>
+                <a name="h.gnk96a6xebvr"></a>2 System context <span class="rightbox">(5%)</span></h2>
+            <p>
+                <span>Mercurial </span><sup><a href="#cmnt1" name="cmnt_ref1">[a]</a></sup> <span>is
+                    a distributed revision control system. It aims to help developers manage changes
+                    (revisions) made to projects. Managing multiple versions of even a single document
+                    by hand is an error-prone, time-consuming task. Mercurial allows a team of developers
+                    to manage large numbers of documents with many versions. Although mercurial can
+                    maintain a version history for arbitrary files and directories, it is designed in
+                    particular to deal well with large numbers of complex text documents such as source
+                    code. There are several ways in which mercurial helps address the problems arising
+                    from collaborating on such code.</span>
+            </p>
+            <h3>
+                <a name="h.iiz1il7msuhf"></a><span>2.1 Mercurial’s functionality</span></h3>
+            <p>
+                <span class="highlight"><b>TODO: </b><i>relevant to explain source control in more detail
+                    than this?</i></span>
+            </p>
+            <p>
+                <span>Firstly, Mercurial maintains a log:</span> <span>an annotated history of changes</span>
+                <span>. In addition to keeping track of the documents themselves, mercurial allows developers
+                    to keep track of which lines were changed, the date the changes were made, the identity
+                    of the author, and, importantly, the motivation for these changes. This is achieved
+                    by splitting changes into cohesive chunks call </span><span>changesets. When a developer
+                        commits a changeset, he adds it to Mercurial’s repository of changesets, and includes
+                        a commit message describing what was changed and why. Changesets with commit messages
+                        are common in revision control systems; they allow developers to maintain systems
+                        that are too large or too old by reducing the need to grasp the entirety of the
+                        system at once.</span>
+            </p>
+            <p>
+                <span>Mercurial assists collaboration by allowing concurrent edits. When several people
+                    simultaneously change a set of files, their changes need to be merged into a final
+                    version. Revision control systems such as mercurial assist the user by largely automating
+                    this process: if only one author changes a file, his version simply replaces the
+                    old one. When multiple authors change a file in a format mercurial understand (such
+                    as plain text), changes to non-overlapping regions are automatically merged. Finally,
+                    where changes do conflict, they are reported, and the user can systematically compare
+                    the changes to resolve the conflict. Automatic merging and conflict detection helps
+                    allow multiple developers work on the same project by avoiding the friction of each
+                    developer keeping abreast of all changes.</span></p>
+            <p>
+                <span>Mercurial allows distributed development teams by allowing any developer to pull
+                    others’ changes or push his own to an external repository. Crucially, there is no
+                    technical need for a central repository nor for &ldquo;one true&rdquo; history,
+                    allowing for truly distributed development. In particular, each committed changeset
+                    is uniquely identifiable, allowing mercurial to avoid applying changes it has already
+                    seen, even if those changes depend on each other in non-trivial ways. Mercurial’s
+                    logged history is conceptually a directed acyclic graph. Thus when two versions
+                    are merged that (partially) share the same history, the shared part of the history
+                    is not duplicated.</span></p>
+            <p>
+                <span>These three features enable many useful scenarios. For instance, in a large system,
+                    development mistakes are made. Since it maintains a history of changes and the details
+                    of each changes, mercurial can revert a particular change e.g. to correct a mistake.
+                    Unlike a strictly linear process, such a reverted change does not require the user
+                    to redo all subsequent changes; instead, the reverted change is itself a new changeset
+                    that can be merged anywhere into the version history.</span>
+            </p>
+            <p>
+                <img height="230" src="images/image00.png" width="302" alt="Mercurial communication dataflow" /></p>
+            <p>
+                <span>Business model: System context, Architectural relevant business parameters.</span></p>
+            <p>
+                <span>Show system context and OSS community.</span></p>
+            <!-- Chapter 3 - Stakeholders and concerns -->
+            <h2>
+                <a name="h.qjh2p25pcmtr"></a>3 Stakeholders and concerns <span class="rightbox">(10%)</span></h2>
+            <h3>
+                <a name="h.qqxhese4rr1e"></a><span>3.1 Stakeholders and concerns</span></h3>
+            <p>
+                <b>End user - </b><span>The end user (software developer) can be a large team of people
+                    as well as one person.</span>
+            </p>
+            <p>
+                <b>Mercurial management - </b>
+            </p>
+            <p>
+                <b>Mercurial software developer - </b><span>There is currently one full-time developer
+                    working on Mercurial</span>
+            </p>
+            <p>
+                <b>Patch/extension developer - </b><span>Mercurial welcomes patches and extensions from
+                    any software developer.</span>
+            </p>
+            <table class="stakeholders">
+                <tbody>
+                    <tr>
+                        <th>
+                            Stakeholder
+                        </th>
+                        <th>
+                            Concerns
+                        </th>
+                        <th>
+                            Concern priority
+                        </th>
+                        <th>
+                            Stakeholder priority
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            End user
+                        </td>
+                        <td>
+                            <p>
+                                <b>Reliability:</b> <span>The system should be stable and reliable to use for projects</span></p>
+                            <p>
+                                <b>Adaptability:</b> <span>The system should adapt to a users needs in terms of extensions
+                                    needed</span></p>
+                            <p>
+                                <b>Dependability:</b> <span>Revisions should be accurate and easily exchanged</span></p>
+                            <p>
+                                <b>-ablity:</b><span>Data should not be lost in case of a breakdown in the system</span></p>
+                            <p>
+                                <b>Scalability:</b> <span>They system should be able to handle large amounts of new
+                                    data being submitted to the system at a particular time</span></p>
+                            <p>
+                                <b>Usability:</b> <span>The system should be easy to use</span></p>
+                            <p>
+                                <b>Learnability:</b> <span>The system should be easy to learn, not take more than a
+                                    couple of days of using to get well accustom to it</span></p>
+                            <p>
+                                <b>Supportablity:</b> <span>The system should come with user support</span></p>
+                            <p>
+                                <b>-ability:</b> <span>The system should be perfectly suitable for large projects,
+                                for that it has to work really fast.</p>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>
+                                <span>Mercurial management</span></p>
+                        </td>
+                        <td>
+                            <p>
+                                <b>Changeability: </b><span>The application server should be easy changeable to adapt
+                                    to the specific needs for the application which is run on top of it.</span></p>
+                            <p>
+                                <b>Adaptability:</b> <span>The system should easily integrate in various environments</span></p>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>
+                                <span>Mercurial software developer</span></p>
+                        </td>
+                        <td>
+                            <p>
+                                <b>Usability:</b> <span>The code should be well documented</span></p>
+                            <p>
+                                <b>Efficiency</b> <span class=" c27">:</span><span> For effective work of the system
+                                    WAN bandwidth and disk seek rate should be optimized for the system. </span>
+                            </p>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>
+                                <span>Patch/ extension developers</span></p>
+                        </td>
+                        <td>
+                            <p>
+                                <b>Usability:</b> <span>The code should be well documented</span></p>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>
+                <a name="h.vl37tjltoc1"></a><span>3.2 Key drivers</span></h3>
+            <p>
+                <b>Usability: </b>The whole system should be as simple as possible to get start
+                to work on it</p>
+            <p>
+                <b>Scalability/Extensibility: </b>The system repository should be extensible to
+                store entire data</p>
+            <p>
+                <b>Changeability: </b>The application server should be easy changeable to adapt
+                to the specific needs for the application which is run on top of it.
+            </p>
 
-    <div class="titlepage">
-        <h1>
-            Mercurial</h1>
-        <div class="subtitles">
-            <div>
-                Software Patterns</div>
-            <div>
-                Assignment 2</div>
-            <div>
-                Group 4</div>
-            <div>
-                Version 1</div>
-        </div>
-        <div class="authorsbox">
-            <div>
-                Divya Avalur</div>
-            <div>
-                Assel Bekbatyrova</div>
-            <div>
-                Eamon Nerbonne</div>
-            <div>
-                Sunna Björg Sigurjónsdóttir</div>
-            <div>
-                Edy Suharto</div>
+            <h2>
+                <a name="h.malaemb4pn9g"></a>4 Architecture<span class="rightbox">(30%)</span></h2>
+            <p>
+                Show the individual patterns, their variants and how they integrate in the entire
+                architecture; show at most 2 views.</p>
+            <h3>
+                <a name="h.fen3coaqu5pf"></a>4.1 Architectural views</h3>
+            <h3>
+                <a name="h.lp6j3uwaomp5"></a>4.2 Architectural patterns</h3>
+            <h4>
+                <a name="h.jqknav8ruqdm"></a>4.2.1 Peer-to-peer</h4>
+            <h4>
+                <a name="h.rinqs16kvpkf"></a>4.2.2 Shared repository</h4>
+            <p>
+                <img height="200" src="images/image01.png" width="571" alt="Mecurial repository storage format" /></p>
+            <h4>
+                <a name="h.c65rnjokzp4j"></a><span>4.2.3 Pipes and filters</span></h4>
+            <h4>
+                <a name="h.cdcmefdxm46z"></a>4.2.4 Client server</h4>
+            <h4>
+                <a name="h.dtdyc3yxqcdh"></a>4.2.5 Broker</h4>
+            <h3>
+                <a name="h.efa1ocu57i4x"></a>4.3 Decomposition, component responsibilities &amp;
+                interfaces</h3>
+            <h2>
+                <a name="h.vqpyxuxpouct"></a>5 Evaluation &amp; recommendations <span class="rightbox">
+                    (35%)</span></h2>
+            <p>
+                <span>Follow PBAR to evaluate the quality attributes based on the patterns.</span></p>
+            <p>
+                <span>Emphasize on recommendations on how to improve the system.</span></p>
+            <h2>
+                Useful links</h2>
+            <ul>
+                <li><a href="http://hgbook.red-bean.com/read/how-did-we-get-here.html">Mercurial book,
+                    motivation</a> </li>
+                <li><a href="http://hginit.com/">HgInit</a>&mdash;a mercurial tutorial</li>
+                <li><a href="http://mercurial.selenic.com/guide/">The Mercurial User's Guide</a></li>
+                <li><a href="http://mercurial.selenic.com/wiki/">The Mercurial Wiki</a></li>
+            </ul>
         </div>
     </div>
-    <!-- Revision history page -->
-    <h2>
-        <a name="h.22p1ho8igge7"></a>Revision history</h2>
-    <table class="c25">
-        <tbody>
-            <tr>
-                <th>
-                    Date
-                </th>
-                <th>
-                    Version
-                </th>
-                <th>
-                    Description
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    19/12/2011
-                </td>
-                <td>
-                    1
-                </td>
-                <td>
-                    <p>
-                        Assel: Stakeholder concerns, key drivers, patterns</p>
-                    <p>
-                        Divya: Introduction of the system and overview of contents</p>
-                    <p>
-                        Eamon: &#160;System context text, SR diagram</p>
-                    <p>
-                        Edy: System context diagram</p>
-                    <p>
-                        Sunna: Document creation, stakeholders and concerns, patterns</p>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <!-- Chapter 1 - Introduction -->
-    <h2>
-        <a name="h.y2a51wuxwu57"></a><span>1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Introduction</span></h2>
-    <p class="c24">
-        <span>The document presents the pattern-based recovery and evaluation of the architecture
-            of an open-source system, Mercurial. It is a distributed version control system.
-            This document gives an overview of the patterns that represent the core of the Mercurial
-            system. We use the IDAPO for identifying the architectural patterns in Open source
-            software. We also discuss about the specific variants of the patterns which we chose.
-            Furthermore we need to evaluate the found patterns using Pattern-Based Architectural
-            Review method. the evaluation of the consequences of patterns is based on the system’s
-            quality attributes. </span>
-    </p>
-    <p class=" c24">
-        <span>The structure of the document is as follows: </span>
-    </p>
-    <p class="c24">
-        <span>Chapter 2 describes the system context of Mercurial version control system. Chapter
-            3 deals with identifying the stakeholders and their concerns as well as the key
-            drivers which should drive the development of the system. </span>
-    </p>
-    <p class="c24">
-        <span>Chapter 4 describes the various architectural views for the system and also the
-            architectural patterns identified for the Mercurial system using IDAPO. It also
-            discusses how the various patterns are related with each other and the impact of
-            each pattern on the system architecture and also &#160;discusses about the variants
-            used . It also includes the decomposition of the patterns, responsibilities of each
-            component in the patterns and also about the interfaces.</span>
-    </p>
-    <p class="c24">
-        <span>Chapter 5 is mainly focused on the architectural evaluation of the Mercurial system
-            using PBAR approach. It also shows how each quality attribute identified are addressed.
-            &#160; </span>
-    </p>
-    <!-- Chapter 2 - System context -->
-    <h2>
-        <a name="h.gnk96a6xebvr"></a><span>2&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-            System context&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(5%)</span></h2>
-    <p class="c24">
-        <span>Mercurial </span><sup><a href="#cmnt1" name="cmnt_ref1">[a]</a></sup> <span>is
-            a distributed revision control system. It aims to help developers manage changes
-            (revisions) made to projects. &#160;Managing multiple versions of even a single
-            document by hand is an error-prone, time-consuming task. &#160;Mercurial allows
-            a team of developers to manage large numbers of documents with many versions. &#160;Although
-            mercurial can maintain a version history for arbitrary files and directories, it
-            is designed in particular to deal well with large numbers of complex text documents
-            such as source code. &#160;There are several ways in which mercurial helps address
-            the problems arising from collaborating on such code.</span>
-    </p>
-    <h3>
-        <a name="h.iiz1il7msuhf"></a><span>2.1 Mercurial’s functionality</span></h3>
-    <p>
-        <span class="c4  highlight">TODO: <i>relevant to explain source control in more detail
-            than this?</i></span>
-    </p>
-    <p class="c24">
-        <span>Firstly, Mercurial maintains a log:</span> <span>&#160;an annotated history of
-            changes</span> <span>. &#160;In addition to keeping track of the documents themselves,
-                mercurial allows developers to keep track of which lines were changed, the date
-                the changes were made, the identity of the author, and, importantly, the motivation
-                for these changes. &#160;This is achieved by splitting changes into cohesive chunks
-                call </span><span>changesets. When a developer commits a changeset, he adds it to Mercurial’s
-                    repository of changesets, and includes a commit message describing what was changed
-                    and why. &#160;Changesets with commit messages are common in revision control systems;
-                    they allow developers to maintain systems that are too large or too old by reducing
-                    the need to grasp the entirety of the system at once.</span>
-    </p>
-    <p class="c24">
-        <span>Mercurial assists collaboration by allowing concurrent edits. &#160;When several
-            people simultaneously change a set of files, their changes need to be merged into
-            a final version. &#160;Revision control systems such as mercurial assist the user
-            by largely automating this process: if only one author changes a file, his version
-            simply replaces the old one. &#160;When multiple authors change a file in a format
-            mercurial understand (such as plain text), changes to non-overlapping regions are
-            automatically merged. &#160;Finally, where changes do conflict, they are reported,
-            and the user can systematically compare the changes to resolve the conflict. &#160;Automatic
-            merging and conflict detection helps allow multiple developers work on the same
-            project by avoiding the friction of each developer keeping abreast of all changes.</span></p>
-    <p class="c24">
-        <span>Mercurial allows distributed development teams by allowing any developer to pull
-            others’ changes or push his own to an external repository. &#160;Crucially, there
-            is no technical need for a central repository nor for &ldquo;one true&rdquo; history,
-            allowing for truly distributed development. &#160;In particular, each committed
-            changeset is uniquely identifiable, allowing mercurial to avoid applying changes
-            it has already seen, even if those changes depend on each other in non-trivial ways.
-            &#160;Mercurial’s logged history is conceptually a directed acyclic graph. &#160;Thus
-            when two versions are merged that (partially) share the same history, the shared
-            part of the history is not duplicated.</span></p>
-    <p class="c24">
-        <span>These three features enable many useful scenarios. &#160;For instance, in a large
-            system, development mistakes are made. &#160; &#160;Since it maintains a history
-            of changes and the details of each changes, mercurial can revert a particular change
-            e.g. to correct a mistake. &#160;Unlike a strictly linear process, such a reverted
-            change does not require the user to redo all subsequent changes; instead, the reverted
-            change is itself a new changeset that can be merged anywhere into the version history.</span>
-    </p>
-    <p>
-        <img height="230" src="images/image00.png" width="302" alt="Mercurial communication dataflow" /></p>
-    <p>
-        <span>Business model: System context, Architectural relevant business parameters.</span></p>
-    <p>
-        <span>Show system context and OSS community.</span></p>
-    <!-- Chapter 3 - Stakeholders and concerns -->
-    <h2>
-        <a name="h.qjh2p25pcmtr"></a><span>3&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Stakeholders
-            and concerns (10%)</span></h2>
-    <h3>
-        <a name="h.qqxhese4rr1e"></a><span>3.1 Stakeholders and concerns</span></h3>
-    <p>
-        <b>End user - </b><span>The end user (software developer) can be a large team of people
-            as well as one person.</span>
-    </p>
-    <p>
-        <b>Mercurial management - </b>
-    </p>
-    <p>
-        <b>Mercurial software developer - </b><span>There is currently one full-time developer
-            working on Mercurial</span>
-    </p>
-    <p>
-        <b>Patch/extension developer - </b><span>Mercurial welcomes patches and extensions from
-            any software developer.</span>
-    </p>
-    <table class="stakeholders">
-        <tbody>
-            <tr>
-                <th>
-                    Stakeholder
-                </th>
-                <th>
-                    Concerns
-                </th>
-                <th>
-                    Concern priority
-                </th>
-                <th>
-                    Stakeholder priority
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    End user
-                </td>
-                <td>
-                    <p>
-                        <b>Reliability:</b> <span>&#160;The system should be stable and reliable to use for
-                            projects</span></p>
-                    <p>
-                        <b>Adaptability:</b> <span>&#160;The system should adapt to a users needs in terms of
-                            extensions needed</span></p>
-                    <p>
-                        <b>Dependability:</b> <span>&#160;Revisions should be accurate and easily exchanged</span></p>
-                    <p>
-                        <b>-ablity:</b><span>Data should not be lost in case of a breakdown in the system</span></p>
-                    <p>
-                        <b>Scalability:</b> <span>&#160;They system should be able to handle large amounts of
-                            new data being submitted to the system at a particular time</span></p>
-                    <p>
-                        <b>Usability:</b> <span>&#160;The system should be easy to use</span></p>
-                    <p>
-                        <b>Learnability:</b> <span>&#160;The system should be easy to learn, not take more than
-                            a couple of days of using to get well accustom to it</span></p>
-                    <p>
-                        <b>Supportablity:</b> <span>&#160;The system should come with user support</span></p>
-                    <p>
-                        <b>-ability:</b> <span>&#160;The system should be </span><span class="c27">perfectly
-                            suitable for large projects, for that it has to work really fast.</span></p>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>
-                        <span>Mercurial management</span></p>
-                </td>
-                <td>
-                    <p>
-                        <b>Changeability: </b><span>The application server should be easy changeable to adapt
-                            to the specific needs for the application which is run on top of it.</span></p>
-                    <p>
-                        <b>Adaptability:</b> <span>&#160;The system should easily integrate in various environments</span></p>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>
-                        <span>Mercurial software developer</span></p>
-                </td>
-                <td>
-                    <p>
-                        <b>Usability:</b> <span>&#160;The code should be well documented</span></p>
-                    <p>
-                        <b>Efficiency</b> <span class=" c27">:</span><span>&#160;For effective work of the system
-                            WAN bandwidth and disk seek rate &#160;should be optimized for the system. </span>
-                    </p>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>
-                        <span>Patch/ extension developers</span></p>
-                </td>
-                <td>
-                    <p>
-                        <b>Usability:</b> <span>&#160;The code should be well documented</span></p>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <h3>
-        <a name="h.vl37tjltoc1"></a><span>3.2 Key drivers</span></h3>
-    <p>
-        <b>Usability: </b>The whole system should be as simple as possible to get start
-        to work on it</p>
-    <p>
-        <b>Scalability/Extensibility: </b>&#160;The system repository should &#160;be extensible
-        to store entire data</p>
-    <p>
-        <b>Changeability: </b>The application server should be easy changeable to adapt
-        to the specific needs for the application which is run on top of it.
-    </p>
-    <!-- Chapter 4 - Architecture -->
-    <h2 class=" c21">
-        <a name="h.4b1mnj23unk2"></a>
-    </h2>
-    <h2>
-        <a name="h.malaemb4pn9g"></a><span>4&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-            Architecture&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(30%)</span></h2>
-    <p>
-        <span>Show the individual patterns, their variants and how they integrate in the entire
-            architecture; show at most 2 views.</span></p>
-    <h3>
-        <a name="h.fen3coaqu5pf"></a><span>4.1 Architectural views</span></h3>
-    <h3>
-        <a name="h.lp6j3uwaomp5"></a><span>4.2 Architectural patterns</span></h3>
-    <h4>
-        <a name="h.jqknav8ruqdm"></a><span>4.2.1 Peer-to-peer</span></h4>
-    <h4>
-        <a name="h.rinqs16kvpkf"></a><span>4.2.2 Shared repository</span></h4>
-    <p>
-        <img height="200" src="images/image01.png" width="571" alt="Mecurial repository storage format" /></p>
-    <h4>
-        <a name="h.c65rnjokzp4j"></a><span>4.2.3 Pipes and filters</span></h4>
-    <h4>
-        <a name="h.cdcmefdxm46z"></a><span class="c4 c26">4.2.</span><span>4</span><span
-            class="c4 c26">&#160;Client server</span></h4>
-    <h4>
-        <a name="h.dtdyc3yxqcdh"></a><span class="c4 c26">4.2.5 Broker</span></h4>
-    <h3>
-        <a name="h.efa1ocu57i4x"></a><span>4.3 Decomposition, component responsibilities &amp;
-            interfaces</span></h3>
-    <h2>
-        <a name="h.vqpyxuxpouct"></a><span>5&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Evaluation
-            &amp; recommendations&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(35%)</span></h2>
-    <p>
-        <span>Follow PBAR to evaluate the quality attributes based on the patterns.</span></p>
-    <p>
-        <span>Emphasize on recommendations on how to improve the system.</span></p>
-    <div class="c23">
-        <p>
-            <a href="#cmnt_ref1" name="cmnt1">[a]</a><span>eamon.nerbonne:</span></p>
-        <p>
-            <span>http://hgbook.red-bean.com/read/how-did-we-get-here.html</span></p>
-        <p>
-            <span>eamon.nerbonne:</span></p>
-        <p>
-            <span>http://hginit.com/</span></p>
-        <p>
-            <span>eamon.nerbonne:</span></p>
-        <p>
-            <span>http://mercurial.selenic.com/guide/</span></p>
-        <p>
-            <span>eamon.nerbonne:</span></p>
-        <p>
-            <span>http://mercurial.selenic.com/wiki/</span></p>
-    </div>
-</div>
-</div>
 </body>
 </html>
