@@ -11,3 +11,14 @@
 h1 { font-size: 30pt; color: #258;}
 
 .authorsbox {text-align:right;}
+
+.highlight {background-color:#ffff00}
+
+table.stakeholders {
+    border-collapse:collapse;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+table.stakeholders tr {
+    border-top: 1px solid #333;
+}
