@@ -62,6 +62,7 @@ body {
 }
 .textcontainer {
     padding-top: 4cm;
+    padding-bottom: 1cm;
     text-align: justify;
     max-width: 12.42cm;
     margin: 0 auto;
