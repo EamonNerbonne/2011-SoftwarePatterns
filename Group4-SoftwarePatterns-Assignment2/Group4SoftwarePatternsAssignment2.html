@@ -18,7 +18,7 @@
                     <div>
                         Group 4</div>
                     <div>
-                        Version 1</div>
+                        Version 2</div>
                 </div>
                 <div class="authorsbox">
                     <div>
@@ -66,11 +66,25 @@
                             </dl>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            9/1/2012
+                        </td>
+                        <td class="centered">
+                            2
+                        </td>
+                        <td>
+                            <dl>
+                                <dt>Sunna, Eamon</dt><dd>Conversion from google docs into HTML on mercurial; minor updates.</dd>
+                            </dl>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <section>
                 <!-- Chapter 1 - Introduction -->
-                <h1>Introduction</h1>
+                <h1>
+                    Introduction</h1>
                 <p>
                     The document presents the pattern-based recovery and evaluation of the architecture
                     of an open-source system, Mercurial. It is a distributed version control system.
@@ -118,11 +132,8 @@
                     on such code.
                 </p>
                 <section>
-                    <h1>Mercurial’s functionality</h1>
-                    <p>
-                        <span class="highlight"><b>TODO: </b><i>relevant to explain source control in more detail
-                            than this?</i></span>
-                    </p>
+                    <h1>
+                        Mercurial’s functionality</h1>
                     <p>
                         Firstly, Mercurial maintains a log: an annotated history of changes. In addition
                         to keeping track of the documents themselves, mercurial allows developers to keep
@@ -140,7 +151,7 @@
                         simultaneously change a set of files, their changes need to be merged into a final
                         version. Revision control systems such as mercurial assist the user by largely automating
                         this process: if only one author changes a file, his version simply replaces the
-                        old one. When multiple authors change a file in a format mercurial understand (such
+                        old one. When multiple authors change a file in a format mercurial understands (such
                         as plain text), changes to non-overlapping regions are automatically merged. Finally,
                         where changes do conflict, they are reported, and the user can systematically compare
                         the changes to resolve the conflict. Automatic merging and conflict detection helps
@@ -163,18 +174,24 @@
                         to redo all subsequent changes; instead, the reverted change is itself a new changeset
                         that can be merged anywhere into the version history.
                     </p>
+                    <img height="230" src="images/image00.png" width="302" alt="Mercurial communication dataflow" />
                     <p>
-                        <img height="230" src="images/image00.png" width="302" alt="Mercurial communication dataflow" /></p>
+                        <span class="highlight"><b>TODO: </b><i>This diagram doesn't seem to pertain to the
+                            above directly; remove?</i></span>
+                    </p>
                     <p>
                         Business model: System context, Architectural relevant business parameters.</p>
                     <p>
                         Show system context and OSS community.</p>
                 </section>
             </section>
-            <section>    <!-- Chapter 3 - Stakeholders and concerns -->
-                <h1> Stakeholders and concerns <span class="rightbox">(10%)</span></h1>
+            <section>
+                <!-- Chapter 3 - Stakeholders and concerns -->
+                <h1>
+                    Stakeholders and concerns <span class="rightbox">(10%)</span></h1>
                 <section>
-                    <h1>Stakeholders and concerns</h1>
+                    <h1>
+                        Stakeholders and concerns</h1>
                     <dl>
                         <dt>End user</dt><dd>The end user (software developer) can be a large team of people
                             as well as one person.</dd>
@@ -293,7 +310,8 @@
                     </table>
                 </section>
                 <section>
-                    <h1>Key drivers</h1>
+                    <h1>
+                        Key drivers</h1>
                     <dl>
                         <dt>Usability:</dt><dd>The whole system should be as simple as possible to get start
                             to work on it</dd>
@@ -305,56 +323,66 @@
                     </dl>
                 </section>
             </section>
-            
-            <section> <!-- Chapter 4 Architecture -->
-                <h1>Architecture<span class="rightbox">(30%)</span></h1>
+            <section>
+                <!-- Chapter 4 Architecture -->
+                <h1>
+                    Architecture<span class="rightbox">(30%)</span></h1>
                 <p>
                     Show the individual patterns, their variants and how they integrate in the entire
                     architecture; show at most 2 views.</p>
                 <section>
-                    <h1>Architectural views</h1>
+                    <h1>
+                        Architectural views</h1>
                 </section>
                 <section>
-                    <h1>Architectural patterns</h1>
+                    <h1>
+                        Architectural patterns</h1>
                     <section>
-                        <h1>Peer-to-peer</h1>
+                        <h1>
+                            Peer-to-peer</h1>
                     </section>
                     <section>
-                        <h1>Shared repository</h1>
+                        <h1>
+                            Shared repository</h1>
                         <p>
                             <img height="200" src="images/image01.png" width="571" alt="Mecurial repository storage format" /></p>
                     </section>
                     <section>
-                        <h1>Pipes and filters</h1>
+                        <h1>
+                            Pipes and filters</h1>
                     </section>
                     <section>
-                        <h1>Client server</h1>
+                        <h1>
+                            Client server</h1>
                     </section>
                     <section>
-                        <h1>Broker</h1>
+                        <h1>
+                            Broker</h1>
                     </section>
                 </section>
                 <section>
-                    <h1>Decomposition, component responsibilities &amp; interfaces</h1>
+                    <h1>
+                        Decomposition, component responsibilities &amp; interfaces</h1>
                 </section>
             </section>
             <section>
-                <h1>Evaluation &amp; recommendations <span class="rightbox">(35%)</span></h1>
+                <h1>
+                    Evaluation &amp; recommendations <span class="rightbox">(35%)</span></h1>
                 <p>
                     Follow PBAR to evaluate the quality attributes based on the patterns.</p>
                 <p>
                     Emphasize on recommendations on how to improve the system.</p>
             </section>
             <aside>
-            <h1 id="merc_links">
-                Useful links</h1>
-            <ul>
-                <li><a href="http://hgbook.red-bean.com/read/how-did-we-get-here.html">Mercurial book,
-                    motivation</a> </li>
-                <li><a href="http://hginit.com/">HgInit</a>—a mercurial tutorial</li>
-                <li><a href="http://mercurial.selenic.com/guide/">The Mercurial User's Guide</a></li>
-                <li><a href="http://mercurial.selenic.com/wiki/">The Mercurial Wiki</a></li>
-            </ul>
+                <h1 id="merc_links">
+                    Useful links</h1>
+                <ul>
+                    <li><a href="http://hgbook.red-bean.com/read/how-did-we-get-here.html">Mercurial book,
+                        motivation</a> </li>
+                    <li><a href="http://hginit.com/">HgInit</a>—a mercurial tutorial</li>
+                    <li><a href="http://mercurial.selenic.com/guide/">The Mercurial User's Guide</a></li>
+                    <li><a href="http://mercurial.selenic.com/wiki/">The Mercurial Wiki</a></li>
+                </ul>
             </aside>
         </article>
     </div>
