@@ -1,0 +1,49 @@
+IDAPO:
+
+The first step is to (1) identify the type of software and its domain. Knowledge of the type and domain of the software may provide hints about the use of certain patterns. For instance, an instant messenger product is likely to use the client-server pattern.
+
+ 
+
+Step two is to (2) identify technologies used for implementation. If, for instance, CORBA (Common Object Request Broker Architecture) was used, it may be useful to look for the broker pattern.
+
+ 
+
+If the process user has insufficient knowledge of technologies, it is advisable to (3) study those technologies, which may help in understanding how the system under scrutiny was implemented.
+
+ 
+
+Based on the information gathered in previous steps, (4) candidate patterns may be identified (i.e., potentially present patterns) and listed.
+
+ 
+
+After identifying candidate patterns, (5) the patterns literature (e.g. [2]) can be studied to learn more details about those patterns, which will help in recognizing and asserting that the patterns are, in fact, present.
+
+ 
+
+The next step is to (6) study project documentation, from which insights into the system’s architecture, components and connectors may be gathered (note that the documentation could also be consulted in previous steps).
+
+ 
+
+After identifying candidate patterns and studying project documentation, the next step is to (7) study the source code and crosscheck with the findings of the documentation.
+
+ 
+
+It is important to gain insight into the various (8) components and connectors in the system under investigation, since this will help to identify which patterns have been used in the system.
+
+ 
+
+Once sufficient information is gathered through studying documentation, source code and components and connectors, the actual (9) pattern matching and identification activity starts. This involves comparing the structure and behavior of the pattern to the product’s structure.
+
+ 
+
+After identification, it is important to (10) validate the identified patterns to make sure they have been correctly identified. One way to do this is through peer-review by others (e.g., colleagues). Findings may also be presented to the community for feedback.
+
+ 
+
+While the (11) community may be contacted earlier to ask for information, our experience has shown that providing some input is more likely to result in a reply.
+
+ 
+
+Once identified patterns have been confirmed, the (12) patterns should be registered in a patterns repository for later use by others. A few researchers have proposed such repositories for patterns [20] or architectures in general [21]. Over time, the patterns repository will be populated with information of many systems, which we envisage to be a valuable tool for others in understanding the architecture of OSS products.
+
+ 
