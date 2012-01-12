@@ -3,23 +3,101 @@
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
     <link rel="stylesheet" type="text/css" href="report-style.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        function getSectionScope(jqElement) {
+            return jqElement.parents().filter("html, article, section").first();
+        }
+
+        function getSectionHeading(jqSection) {
+            return jqSection.find("h1").filter(function () {
+                return $(this).parents().filter("html, article, section").first()[0] === jqSection[0];
+            }).first();
+        }
+
+        function createSectionToc(arrChildren) {
+            var tableEl = document.createElement("table");
+            for (var i = 0; i < arrChildren.length; ++i) {
+                var jqSection = arrChildren[i];
+                var sectionData = jqSection.data();
+                var sectionHeading = getSectionHeading(jqSection);
+                var sectionNumber = sectionData.fullpath;
+                var headingString = sectionHeading[0].textContent;
+
+                var numEl = document.createElement("td");
+                numEl.appendChild(document.createTextNode(sectionNumber));
+
+                var linkEl = document.createElement("a");
+                linkEl.setAttribute("href", "#" + jqSection.attr("id"));
+                linkEl.appendChild(document.createTextNode(headingString));
+                var contentEl = document.createElement("td");
+                contentEl.appendChild(linkEl);
+
+
+
+                if (sectionData.childSections && sectionData.childSections.length > 0)
+                    contentEl.appendChild(createSectionToc(sectionData.childSections));
+                var rowEl = document.createElement("tr");
+                rowEl.appendChild(numEl);
+                rowEl.appendChild(contentEl);
+                tableEl.appendChild(rowEl);
+            }
+
+            return tableEl;
+        }
+
+        $(function () {
+
+            $("section").each(function (index) {
+                var thisSection = $(this);
+                var thisSectionData = thisSection.data();
+                if (thisSection.attr("id") === undefined) thisSection.attr("id", "autoSecNum" + index);
+
+                var parentSection = getSectionScope(thisSection);
+                var parentSectionData = parentSection.data();
+                if (parentSectionData.childSections === undefined) parentSectionData.childSections = [];
+
+                parentSectionData.childSections.push(thisSection);
+                thisSectionData.sectionNumber = parentSectionData.childSections.length;
+                thisSectionData.parentSection = parent;
+
+                thisSectionData.fullpath = (parentSectionData.fullpath ? parentSectionData.fullpath + "." : "") + thisSectionData.sectionNumber;
+                var sectionHeader = getSectionHeading(thisSection);
+
+                sectionHeader.attr("data-fullpath", thisSectionData.fullpath);
+            });
+
+            $("div.generateTableOfContents").each(function () {
+                var scope = getSectionScope($(this));
+
+                var scopeData = scope.data();
+                var arrChildren = scopeData.childSections;
+                if (arrChildren && arrChildren.length > 0) {
+                    $(this).append(createSectionToc(arrChildren));
+                }
+            });
+
+        });
+      
+    </script>
 </head>
 <body>
     <div class="margincontainer">
-        <article class="textcontainer">
-            <div class="titlepage">
-                <h1>
-                    Mercurial</h1>
-                <div class="subtitles">
-                    <div>
-                        Software Patterns</div>
-                    <div>
-                        Assignment 2</div>
-                    <div>
-                        Group 4</div>
-                    <div>
-                        Version 2</div>
-                </div>
+        <article class="textcontainer" id="outer_root">
+            <header class="titlepage">
+                <hgroup>
+                    <h1>
+                        Mercurial</h1>
+                    <h2>
+                        Software Patterns</h2>
+                    <h2>
+                        Assignment 2</h2>
+                    <h2>
+                        Group 4</h2>
+                    <h2>
+                        Version 2</h2>
+                </hgroup>
                 <div class="authorsbox">
                     <div>
                         Divya Avalur</div>
@@ -32,56 +110,64 @@
                     <div>
                         Edy Suharto</div>
                 </div>
-            </div>
+            </header>
             <!-- Revision history page -->
-            <h2>
-                Revision history</h2>
-            <table class="bookstyleborders">
-                <tbody>
-                    <tr>
-                        <th>
-                            Date
-                        </th>
-                        <th>
-                            Version
-                        </th>
-                        <th>
-                            Description
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            19/12/2011
-                        </td>
-                        <td class="centered">
-                            1
-                        </td>
-                        <td>
-                            <dl>
-                                <dt>Assel</dt><dd>Stakeholder concerns, key drivers, patterns</dd>
-                                <dt>Divya</dt><dd>Introduction of the system and overview of contents</dd>
-                                <dt>Eamon</dt><dd>System context text, SR diagram</dd>
-                                <dt>Edy</dt><dd>System context diagram</dd>
-                                <dt>Sunna</dt><dd>Document creation, stakeholders and concerns, patterns</dd>
-                            </dl>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            9/1/2012
-                        </td>
-                        <td class="centered">
-                            2
-                        </td>
-                        <td>
-                            <dl>
-                                <dt>Sunna, Eamon</dt><dd>Conversion from google docs into HTML on mercurial; minor updates.</dd>
-                            </dl>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <section>
+            <nav>
+                <h1>
+                    Contents</h1>
+                <div class="generateTableOfContents">
+                </div>
+            </nav>
+            <aside>
+                <h1>
+                    Revision history</h1>
+                <table class="bookstyleborders">
+                    <tbody>
+                        <tr>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Version
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                19/12/2011
+                            </td>
+                            <td class="centered">
+                                1
+                            </td>
+                            <td>
+                                <dl>
+                                    <dt>Assel</dt><dd>Stakeholder concerns, key drivers, patterns</dd>
+                                    <dt>Divya</dt><dd>Introduction of the system and overview of contents</dd>
+                                    <dt>Eamon</dt><dd>System context text, SR diagram</dd>
+                                    <dt>Edy</dt><dd>System context diagram</dd>
+                                    <dt>Sunna</dt><dd>Document creation, stakeholders and concerns, patterns</dd>
+                                </dl>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                9/1/2012
+                            </td>
+                            <td class="centered">
+                                2
+                            </td>
+                            <td>
+                                <dl>
+                                    <dt>Sunna, Eamon</dt><dd>Conversion from google docs into HTML on mercurial; minor updates.</dd>
+                                </dl>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </aside>
+            <section id="section1">
                 <!-- Chapter 1 - Introduction -->
                 <h1>
                     Introduction</h1>
@@ -280,9 +366,8 @@
                                     <dl>
                                         <dt>Usability:</dt><dd>
                                             The code should be well documented</dd>
-                                        <dt>Efficiency</dt><dd>
-                                            <span class=" c27">:</span> For effective work of the system WAN bandwidth and disk
-                                            seek rate should be optimized for the system.
+                                        <dt>Efficiency:</dt><dd>For effective work of the system WAN bandwidth and disk seek
+                                            rate should be optimized for the system.
                                         </dd>
                                     </dl>
                                 </td>
@@ -326,7 +411,7 @@
             <section>
                 <!-- Chapter 4 Architecture -->
                 <h1>
-                    Architecture<span class="rightbox">(30%)</span></h1>
+                    Architecture <span class="rightbox">(30%)</span></h1>
                 <p>
                     Show the individual patterns, their variants and how they integrate in the entire
                     architecture; show at most 2 views.</p>
