@@ -143,7 +143,11 @@ body {
 .bibliography li { -moz-border-radius: 0.7em; padding:0.1em 0.5em;}
 @media screen {
     
-  li:target { background: rgba(255,255,0,0.5); box-shadow: 0 0 0.2em rgba(255,255,0,1.0);  -moz-transition: all 0.8s 0.2s ease-in; }  
+  li:target { background: rgba(255,255,0,0.5); box-shadow: 0 0 0.2em rgba(255,255,0,1.0); 
+   -webkit-transition: all 0.8s 0.2s ease-in; 
+   -moz-transition: all 0.8s 0.2s ease-in; 
+   transition: all 0.8s 0.2s ease-in; 
+   }  
 }
 
 @media print {
