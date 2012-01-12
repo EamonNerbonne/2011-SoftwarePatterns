@@ -3,84 +3,6 @@
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
     <link rel="stylesheet" type="text/css" href="report-style.css" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript">
-
-        function getSectionScope(jqElement) {
-            return jqElement.parents().filter("html, article, section").first();
-        }
-
-        function getSectionHeading(jqSection) {
-            return jqSection.find("h1").filter(function () {
-                return $(this).parents().filter("html, article, section").first()[0] === jqSection[0];
-            }).first();
-        }
-
-        function createSectionToc(arrChildren) {
-            var tableEl = document.createElement("table");
-            for (var i = 0; i < arrChildren.length; ++i) {
-                var jqSection = arrChildren[i];
-                var sectionData = jqSection.data();
-                var sectionHeading = getSectionHeading(jqSection);
-                var sectionNumber = sectionData.fullpath;
-                var headingString = sectionHeading[0].textContent;
-
-                var numEl = document.createElement("td");
-                numEl.appendChild(document.createTextNode(sectionNumber));
-
-                var linkEl = document.createElement("a");
-                linkEl.setAttribute("href", "#" + jqSection.attr("id"));
-                linkEl.appendChild(document.createTextNode(headingString));
-                var contentEl = document.createElement("td");
-                contentEl.appendChild(linkEl);
-
-
-
-                if (sectionData.childSections && sectionData.childSections.length > 0)
-                    contentEl.appendChild(createSectionToc(sectionData.childSections));
-                var rowEl = document.createElement("tr");
-                rowEl.appendChild(numEl);
-                rowEl.appendChild(contentEl);
-                tableEl.appendChild(rowEl);
-            }
-
-            return tableEl;
-        }
-
-        $(function () {
-
-            $("section").each(function (index) {
-                var thisSection = $(this);
-                var thisSectionData = thisSection.data();
-                if (thisSection.attr("id") === undefined) thisSection.attr("id", "autoSecNum" + index);
-
-                var parentSection = getSectionScope(thisSection);
-                var parentSectionData = parentSection.data();
-                if (parentSectionData.childSections === undefined) parentSectionData.childSections = [];
-
-                parentSectionData.childSections.push(thisSection);
-                thisSectionData.sectionNumber = parentSectionData.childSections.length;
-                thisSectionData.parentSection = parent;
-
-                thisSectionData.fullpath = (parentSectionData.fullpath ? parentSectionData.fullpath + "." : "") + thisSectionData.sectionNumber;
-                var sectionHeader = getSectionHeading(thisSection);
-
-                sectionHeader.attr("data-fullpath", thisSectionData.fullpath);
-            });
-
-            $("div.generateTableOfContents").each(function () {
-                var scope = getSectionScope($(this));
-
-                var scopeData = scope.data();
-                var arrChildren = scopeData.childSections;
-                if (arrChildren && arrChildren.length > 0) {
-                    $(this).append(createSectionToc(arrChildren));
-                }
-            });
-
-        });
-      
-    </script>
 </head>
 <body>
     <div class="margincontainer">
@@ -167,7 +89,7 @@
                     </tbody>
                 </table>
             </aside>
-            <section id="section1">
+            <section id="section-introduction">
                 <!-- Chapter 1 - Introduction -->
                 <h1>
                     Introduction</h1>
@@ -185,24 +107,24 @@
                     The structure of the document is as follows:
                 </p>
                 <p>
-                    Chapter 2 describes the system context of Mercurial version control system. Chapter
-                    3 deals with identifying the stakeholders and their concerns as well as the key
-                    drivers which should drive the development of the system.
+                    <a href="#section-context" class="ref">Section [2]</a> describes the system context of Mercurial
+                    version control system. <a href="#section-stakeholders" class="ref">Section [3]</a> deals with identifying the stakeholders and their
+                    concerns as well as the key drivers which should drive the development of the system.
                 </p>
                 <p>
-                    Chapter 4 describes the various architectural views for the system and also the
+                    <a href="#section-architecture" class="ref">Section [4]</a> describes the various architectural views for the system and also the
                     architectural patterns identified for the Mercurial system using IDAPO. It also
                     discusses how the various patterns are related with each other and the impact of
-                    each pattern on the system architecture and also discusses about the variants used
-                    . It also includes the decomposition of the patterns, responsibilities of each component
+                    each pattern on the system architecture and also discusses about the variants used.
+                    It also includes the decomposition of the patterns, responsibilities of each component
                     in the patterns and also about the interfaces.
                 </p>
                 <p>
-                    Chapter 5 is mainly focused on the architectural evaluation of the Mercurial system
+                    <a href="#section-evaluation" class="ref">Section [5]</a> is mainly focused on the architectural evaluation of the Mercurial system
                     using PBAR approach. It also shows how each quality attribute identified are addressed.
                 </p>
             </section>
-            <section>
+            <section id="section-context">
                 <!-- Chapter 2 - System context -->
                 <h1>
                     System context <span class="rightbox">(5%)</span></h1>
@@ -271,7 +193,7 @@
                         Show system context and OSS community.</p>
                 </section>
             </section>
-            <section>
+            <section id="section-stakeholders">
                 <!-- Chapter 3 - Stakeholders and concerns -->
                 <h1>
                     Stakeholders and concerns <span class="rightbox">(10%)</span></h1>
@@ -408,7 +330,7 @@
                     </dl>
                 </section>
             </section>
-            <section>
+            <section id="section-architecture">
                 <!-- Chapter 4 Architecture -->
                 <h1>
                     Architecture <span class="rightbox">(30%)</span></h1>
@@ -450,7 +372,7 @@
                         Decomposition, component responsibilities &amp; interfaces</h1>
                 </section>
             </section>
-            <section>
+            <section id="section-evaluation">
                 <h1>
                     Evaluation &amp; recommendations <span class="rightbox">(35%)</span></h1>
                 <p>
@@ -472,4 +394,6 @@
         </article>
     </div>
 </body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="generateTOC.js"></script>
 </html>
