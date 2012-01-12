@@ -10,61 +10,38 @@ body {
 .titlepage {
     page-break-after: always;
 }
-.subtitles, h1 {
-    font-weight: bold;
-    font-size: 24pt;
+
+h1, h2 {
+    margin: 1em 0 0.6em;
     font-family: Cambria, Georgia, Serif;
+}
+
+header h1 {
+    font-weight: bold;
+    font-size: 30pt;
+    color: #258;
     text-align: center;
 }
 
-article {
-    counter-reset: section;
+header h2 {
+    font-weight: bold;
+    font-size: 24pt;
+    text-align: center;
+    margin: 0;
 }
 
-h1 {
-    color: #258;
-    font-size: 30pt;
-    margin: 1em 0 0.6em;
-}
-
-section h1, aside h1 {
+section h1, aside h1, nav h1 {
     color: Black;
     text-align: left;
     font-size: 18pt;
 }
-section h1 {
-    counter-increment: section;
-    counter-reset: subsection;
-}
-section h1:before {
-    content: counter(section) ". ";
-}
-aside h1 {
-    counter-increment: appendix;
-}
-aside h1:before {
-    content: "Appendix " counter(appendix, upper-latin) ". ";
-}
 
+section h1:before { content: attr(data-fullpath) " "; padding-right:1em; }
+section section h1 { font-size: 14pt; }
+section section section h1 { font-size: 12pt; }
 
-section section h1 {
-    font-size: 14pt;
-    counter-increment: subsection;
-    counter-reset: subsubsection;
-}
-section section h1:before {
-    content: counter(section) "." counter(subsection) " ";
-}
-
-section section section h1 {
-    font-size: 12pt;
-    counter-increment: subsubsection;
-    counter-reset: work-around-chrome-bug;
-}
-section section section h1:before {
-    content: counter(section) "." counter(subsection) "." counter(subsubsection) " ";
-}
-
+.generateTableOfContents td { vertical-align:top; }
+.generateTableOfContents td:first-child { padding-right: 1em; }
 
 .rightbox {
     float: right;
