@@ -55,10 +55,30 @@ href="http://mercurial.selenic.com/wiki/MercurialApi#The_high_level_interface">H
               is a list of changes.&nbsp; it includes the actual
               changes, the nodeid of its manifest, the list of changed
               files, log info such as author+message+date, and the
-              branch name.<br>
-            </li>
+              branch name.</li>
+            <li>remote repositories <a
+                href="http://mercurial.selenic.com/wiki/WhatGoesWhere#Repository_layer">are
+                represented by proxy</a> objects.</li>
+            <li>The <a href="http://mercurial.selenic.com/wiki/Design">Design
+              </a>wiki page describes how the data structures interact
+              (changesets, manifests and file revlogs)</li>
+            <li><a href="http://www.aosabook.org/en/mercurial.html">Neat
+                article on mercurial's architecture</a>.</li>
           </ul>
-          <br>
+          <p>Patterns I see:<br>
+            Layers: see for instance <a
+              href="http://mercurial.selenic.com/wiki/WhatGoesWhere">What
+              Goes Where</a><br>
+            <span style="font-weight: bold;">IDAPO:</span><br>
+          </p>
+          <ol>
+            <li>Software type is DVCS; domain VCS<br>
+            </li>
+            <li>Technologies used: Python, C, SSH, HTTP</li>
+            <li>study technologies</li>
+            <li>candidates: client server?<br>
+            </li>
+          </ol>
         </section>
       </article>
     </div>
