@@ -1,0 +1,46 @@
+<html>
+<body>
+<h1>Architectural Views</h1>
+<h2>Logical view</h2>
+<p>The logical view for the Mercurial describes the functionality of the Mercurial system to the end-users. 
+Mercurial is a modern distributed version control system(VCS) which is written in Python. 
+The main advantage of distributed VCS is that it allows developers to push around and intergrate changes as the project
+requires at each point of time. The logical view of the Mercurial can be briefly discussed as follows:
+The Mercurial architecture consists of a large number of modules.Each module has its own repository.
+The user can clone the repository to code the module. The end user can use several clones.
+Modules have their own unit tests. So code tests have to pass (i.e. yield only successes) before the user repositories to be pushed into the files. 
+A build server then tests again each push, because problems may appear (e.g. platform-compatibility, or missing files).
+When a module is ready, it is pushed into the testing repository. In this repository, the QA tests the modules. 
+Developers may code in this repository (mainly to fix bugs), but they should not add new features to the code.
+If the test is successful then the user releases it by pushing it into the stable repository.</p>
+
+<h2>Development view</h2>
+<p>The development view for the Mercurail deals mainly with the software development and management.
+We can also find few bits in C because they are critical to the performance of the system. 
+A Python module correspoonds to a single file of code. Modules are the basic organizers for the source code. 
+Mercurial contains a package known as _init_.py which exposes all modules and packages to the Python importer.
+It also has two default packages called the 'mercurial' and 'hgext'. 
+The 'mercurial'package contains the core code required to run Mercurial whereas 'hgext' contains a lrage number of extensions.
+Mercurial can be basically categorized as a Command-line application.
+One of the powerful features of Mercurial is the ability to write the extensions.
+It is quite simple and easy to extend Mercurial beacuse of Python. 
+other feature of Mercurial is 'Hooks'which provide a way to the VCS events to interact with the outside world.
+There are two variants of hooks one is the traditional hook which invokes scripts in the shell. 
+The other one is the Python hook which invokes Python module and a function name to call from that module.
+In Mercurial, hooks are divided into four types:
+1) pre-command
+2) post-command
+3) controlling
+4) miscellaneous
+
+
+<a ref="http://www.aosabook.org/"></a>
+<a ref="http://en.wikipedia.org/"></a>
+
+ 
+ 
+
+
+</body>
+</html>
+  
