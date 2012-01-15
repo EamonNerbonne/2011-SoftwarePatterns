@@ -15,16 +15,47 @@
               input &amp; <span style="font-style: italic;">repository
                 object</span> representing a repository (local or
               remote): <a
-href="http://mercurial.selenic.com/wiki/MercurialApi#Setting_up_repository_and_UI_objects">wiki</a></li>
+href="http://mercurial.selenic.com/wiki/MercurialApi#Setting_up_repository_and_UI_objects">wiki<br>
+              </a></li>
             <li><span style="font-style: italic;">change context</span>
               containing info about one changeset e.g. log message,
               diffs, parents etc.</li>
             <li><span style="font-style: italic;">file context</span>
               containing info about a file version e.g. which change
               context its "from", its path, size, data, type etc.</li>
+            <li><a
+href="http://mercurial.selenic.com/wiki/MercurialApi#The_high_level_interface">High
+                level interface</a>: UI commands (e.g. <span
+                style="font-style: italic;">hg commit</span>) have a
+              corresponding command in namespace mercurial.commands
+              (e.g. mercurial.commands.commit), but programmers are
+              recommended to not use this interface as it mixes UI with
+              functionality and instead use some internal command that
+              can be extracted from the source of the relevant standard
+              interface.</li>
             <li><a href="http://mercurial.selenic.com/wiki/RevlogNG"><span
                   style="font-style: italic;">Revlogs</span></a> data
-              structure storing repository with all its history.<br>
+              structure storing the repository with all its history: an
+              append-only sequence of content with its nodeid, its
+              parents' nodeids, and some other metadata. revlogs have an
+              append only index listing where in the revlog a particular
+              version is stored.<br>
+            </li>
+            <li><a href="http://mercurial.selenic.com/wiki/Nodeid"><span
+                  style="font-style: italic;">Nodeids</span></a>
+              uniquely identify a file and its history and are computed
+              using the SHA1 of the parent nodeids and the file
+              contents.</li>
+            <li><a style="font-style: italic;"
+                href="http://mercurial.selenic.com/wiki/Manifest">Manifests</a>
+              list which versions (nodeids + revision number) of which
+              files are present in the repos at a particular changeset,
+              and are themselves stored in revlogs.</li>
+            <li>A c<a href="http://mercurial.selenic.com/wiki/ChangeSet">hangeset</a>
+              is a list of changes.&nbsp; it includes the actual
+              changes, the nodeid of its manifest, the list of changed
+              files, log info such as author+message+date, and the
+              branch name.<br>
             </li>
           </ul>
           <br>
