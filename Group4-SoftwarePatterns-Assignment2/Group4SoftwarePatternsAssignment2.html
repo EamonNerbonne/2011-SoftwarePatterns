@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
@@ -99,7 +99,7 @@
                                     <dt>Divya</dt><dd></dd>
                                     <dt>Eamon</dt><dd></dd>
                                     <dt>Edy</dt><dd></dd>
-                                    <dt>Sunna</dt><dd></dd>
+                                    <dt>Sunna</dt><dd>Chapter 3</dd>
                                 </dl>
                             </td>
                         </tr>
@@ -212,18 +212,17 @@
             </section>
             <section id="section-stakeholders">
                 <!-- Chapter 3 - Stakeholders and concerns -->
-                <h1>
-                    Stakeholders and concerns <span class="rightbox">(10%)</span></h1>
+                <h1>Stakeholders and concerns <span class="rightbox">(10%)</span></h1>
                 <section>
-                    <h1>
-                        Stakeholders and concerns</h1>
+                    <h1>Stakeholders and concerns</h1>
                     <dl>
                         <dt>End user</dt><dd>The end user (software developer) can be a large team of people
                             as well as one person.</dd>
-                        <dt>Mercurial management</dt><dd>
+                        <dt>Mercurial project leader</dt><dd>
                         </dd>
                         <dt>Mercurial software developer</dt><dd>There is currently one full-time developer
-                            working on Mercurial
+                            working on Mercurial and several additional developers who are actively in charge
+                            of different sections and/or submit code regularly
                         </dd>
                         <dt>Patch/extension developer</dt><dd>Mercurial welcomes patches and extensions from
                             any software developer.
@@ -252,12 +251,13 @@
                                 <td>
                                     <dl>
                                         <dt>Reliability:</dt><dd>
-                                            The system should be stable and reliable to use for projects</dd>
+                                            The system should be stable and reliable to use for projects, independent of
+                                            network access or a central server</dd>
                                         <dt>Adaptability:</dt><dd>
                                             The system should adapt to a users needs in terms of extensions needed</dd>
                                         <dt>Dependability:</dt><dd>
                                             Revisions should be accurate and easily exchanged</dd>
-                                        <dt>-ablity:</dt><dd>Data should not be lost in case of a breakdown in the system</dd>
+                                        <dt>Durablity:</dt><dd>Data should not be lost in case of a breakdown in the system</dd>
                                         <dt>Scalability:</dt><dd>
                                             They system should be able to handle large amounts of new data being submitted to
                                             the system at a particular time</dd>
@@ -268,7 +268,7 @@
                                             to get well accustom to it</dd>
                                         <dt>Supportablity:</dt><dd>
                                             The system should come with user support</dd>
-                                        <dt>?-ability:</dt><dd>
+                                        <dt>Performance:</dt><dd>
                                             The system should be perfectly suitable for large projects, for that it has to work
                                             really fast.</dd>
                                     </dl>
@@ -280,7 +280,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Mercurial management
+                                    Mercurial project leader
                                 </td>
                                 <td>
                                     <dl>
@@ -334,16 +334,25 @@
                     </table>
                 </section>
                 <section>
-                    <h1>
-                        Key drivers</h1>
+                    <h1>Key drivers</h1>
+					<p>
+						The key drivers are identified from Mercurial documentation. These key drivers are talked
+						about extensively in several Mercurial sources.  http://mercurial.selenic.com/about/
+					</p>
                     <dl>
-                        <dt>Usability:</dt><dd>The whole system should be as simple as possible to get start
-                            to work on it</dd>
-                        <dt>Scalability/Extensibility:</dt><dd>The system repository should be extensible to
-                            store entire data</dd>
-                        <dt>Portability:</dt><dd>  </dd>
-                        <dt>Performance:</dt><dd>  </dd>
-                        <dt>Reliability:</dt><dd>  </dd>
+                        <dt>Usability:</dt><dd> The basic interface of Mercurial is easy to use, easy to learn and hard
+			    			to break. Mercurial sports a consistent command set and potentially dangerous actions are
+			    			available via extensions which need to be enabled.</dd>
+                        <dt>Scalability/Extensibility:</dt><dd> The functionality of Mercurial can be increased with
+			    			extensions, either by activating the official ones which are shipped with Mercurial or
+			    			downloading some from the wiki or by writing our own.</dd>
+                        <dt>Portability:</dt><dd> Mercurial is written with platform independence in mind. Binary
+			    			releases are available on all major platforms. </dd>
+                        <dt>Performance:</dt><dd> Mercurial is designed to be fast. One can generate diffs between
+			    			revisions, or jump back in time within seconds. </dd>
+                        <dt>Reliability:</dt><dd> Mercurial is truly a distributed system, which gives each
+			    			developer a local copy of the entire development history. This way it works independent
+			    			of network access or a central server. </dd>
                     </dl>
                 </section>
             </section>
@@ -387,7 +396,7 @@
                                 Category
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -395,7 +404,7 @@
                                 Context
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -403,7 +412,7 @@
                                 Variants
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -411,7 +420,7 @@
                                 Solution
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -419,7 +428,7 @@
                                 Rationale
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -427,7 +436,7 @@
                                 Consequences
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -435,7 +444,7 @@
                                 Related patterns
                             </td>
                             <td>
-                               Shared repository 
+                               Shared repository
                             </td>
                         </tr>
                     </tbody>
@@ -470,7 +479,7 @@
                                 Category
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -478,7 +487,7 @@
                                 Context
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -486,7 +495,7 @@
                                 Variants
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -494,7 +503,7 @@
                                 Solution
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -502,7 +511,7 @@
                                 Rationale
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -510,7 +519,7 @@
                                 Consequences
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -518,7 +527,7 @@
                                 Related patterns
                             </td>
                             <td>
-                              Peer-to-peer  
+                              Peer-to-peer
                             </td>
                         </tr>
                         <tr>
@@ -535,7 +544,7 @@
                     <section>
                         <h1>
                             Pipes and filters</h1>
-                    
+
 <table class="bookstyleborders">
                     <tbody>
                         <tr>
@@ -561,7 +570,7 @@
                             <td>
                                 The design of the system-especially the interconnection of process-ing steps-has to consider the following
                                 forces:
-                                <li>Future system enhancements should be possible by exchangingprocessing steps or by recombination of steps, 
+                                <li>Future system enhancements should be possible by exchangingprocessing steps or by recombination of steps,
                                 even by users;</li>
                                 <li>Multi-processing the steps, forexample running them in parallel or quasi-parallel.</li>
                                 <li>Explicit storage of intermediate results for further processing infiles clutters directories and is error-
@@ -573,7 +582,7 @@
                                 Category
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -589,12 +598,12 @@
                                 Variants
                             </td>
                             <td>
-                               Tee and join pipeline systems.The single-input slngle-output filterspecification of the Pipes and Filters 
-                               pattern can be varied to allowfilters wlth more than one input and/or more than one output. Pro-cessing can 
-                               then be set up as a directed graph that can even contalnfeedback loops. The deslgn of such a system, especially 
-                               one wlthfeedback loops, requires a solid foundation to explain andunderstand the complete calculation-a rigorous 
-                               theoretical analyslsand specification using formal methods are appropriate, to prove thatthe system terminates 
-                               and produces the desired result  
+                               Tee and join pipeline systems.The single-input slngle-output filterspecification of the Pipes and Filters
+                               pattern can be varied to allowfilters wlth more than one input and/or more than one output. Pro-cessing can
+                               then be set up as a directed graph that can even contalnfeedback loops. The deslgn of such a system, especially
+                               one wlthfeedback loops, requires a solid foundation to explain andunderstand the complete calculation-a rigorous
+                               theoretical analyslsand specification using formal methods are appropriate, to prove thatthe system terminates
+                               and produces the desired result
                             </td>
                         </tr>
                         <tr>
@@ -602,11 +611,11 @@
                                 Solution
                             </td>
                             <td>
-                                The Pipes and Filters architectural pattern divides the task of asystem into several sequential processing 
-                                steps. These steps areconnected by the data flow through the system-the output data of astep is the input to 
-                                the subsequent step. Each processing step isimplemented by a filter component.A filter consumes and deliversdata 
-                                incrementally-in contrast to consuming all its input beforeproducing any output-to achieve low latency and enable 
-                                real parallelprocessing. 
+                                The Pipes and Filters architectural pattern divides the task of asystem into several sequential processing
+                                steps. These steps areconnected by the data flow through the system-the output data of astep is the input to
+                                the subsequent step. Each processing step isimplemented by a filter component.A filter consumes and deliversdata
+                                incrementally-in contrast to consuming all its input beforeproducing any output-to achieve low latency and enable
+                                real parallelprocessing.
                             </td>
                         </tr>
                         <tr>
@@ -614,7 +623,7 @@
                                 Rationale
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -622,22 +631,22 @@
                                 Consequences
                             </td>
                             <td>
-                               Computing resultsusing separate programs is possible without pipes, by storingintermediate results in files. This 
-                               approach clutters directories, andis error-prone if you have to set up your processing stages every timeyou run your 
+                               Computing resultsusing separate programs is possible without pipes, by storingintermediate results in files. This
+                               approach clutters directories, andis error-prone if you have to set up your processing stages every timeyou run your
                                system. In addition, it rules out incremental andparallel computation of results.
 
-                               Filters have a simple interface thatallows their easy exchange within a processing pipeline. Even if filtercomponents 
-                               call each other directly in a push or pull fashion,exchanging a filter component is still straightforward.  
+                               Filters have a simple interface thatallows their easy exchange within a processing pipeline. Even if filtercomponents
+                               call each other directly in a push or pull fashion,exchanging a filter component is still straightforward.
 
-                               It is possible to start active filtercomponents in parallel in a multiprocessor system or a network. Ifeach filter in 
+                               It is possible to start active filtercomponents in parallel in a multiprocessor system or a network. Ifeach filter in
                                a pipeline consumes and produces data incrementallythey can perform their functions in parallel.
 
-                               Using a single data type for all filterinput and output to achieve highest flexibility results in dataconversion overheads. 
-                               Consider a system that performs numericcalculations and uses UNIX pipes. Such a system must convert ASCIIcharacters to real 
-                               numbers, and vice-versa, within each filter. Asimple filter, such as one that adds two numbers, will spend most ofits 
+                               Using a single data type for all filterinput and output to achieve highest flexibility results in dataconversion overheads.
+                               Consider a system that performs numericcalculations and uses UNIX pipes. Such a system must convert ASCIIcharacters to real
+                               numbers, and vice-versa, within each filter. Asimple filter, such as one that adds two numbers, will spend most ofits
                                processing time doing format conversion.
 
-                               
+
                             </td>
                         </tr>
                         <tr>
@@ -694,7 +703,7 @@
                                 Category
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -702,7 +711,7 @@
                                 Context
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -710,7 +719,7 @@
                                 Variants
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -718,7 +727,7 @@
                                 Solution
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -726,7 +735,7 @@
                                 Rationale
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -734,7 +743,7 @@
                                 Consequences
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -774,7 +783,7 @@
                                 Problem
                             </td>
                             <td>
-                               Mercurial system becomes dependent on the communication mechanism used, clientsneed to know the location of servers, 
+                               Mercurial system becomes dependent on the communication mechanism used, clientsneed to know the location of servers,
                                and uses only one programming language(Python).
                                Use the Broker architecture to balance the following forces:
                                <li>Components should be able to access services provided by othersthrough remote, location-transparent service invocations</li>
@@ -786,7 +795,7 @@
                                 Category
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -795,7 +804,7 @@
                             </td>
                             <td>
                                 Server identication should be performed in a manner which allows for remoting servers to be easily
-                                identied and called upon. Communication details regarding transport protocols, data (un)marshalling 
+                                identied and called upon. Communication details regarding transport protocols, data (un)marshalling
                                 and serialisation should be hidden from the user.
                             </td>
                         </tr>
@@ -804,12 +813,12 @@
                                 Variants
                             </td>
                             <td>
-                               <li>Callback Broker System. Instead of implementing an activecommunication model in which clients produce requests 
-                               and serversconsume them, you can also use a reactive model. The reactive model Is event-driven, and makes no 
-                               distinction between clients andservers. Whenever an event arrives, the broker invokes the callbackmethod of the  
+                               <li>Callback Broker System. Instead of implementing an activecommunication model in which clients produce requests
+                               and serversconsume them, you can also use a reactive model. The reactive model Is event-driven, and makes no
+                               distinction between clients andservers. Whenever an event arrives, the broker invokes the callbackmethod of the
                                component that is registered to react to the event.  </li>
-                               <li>Adapter Broker System. You can hide the interface of the brokercomponent to the servers using an additional layer, 
-                               to enhanceflexibility. This adapter layer is a part of the broker and is responsiblefor registering servers and interacting 
+                               <li>Adapter Broker System. You can hide the interface of the brokercomponent to the servers using an additional layer,
+                               to enhanceflexibility. This adapter layer is a part of the broker and is responsiblefor registering servers and interacting
                                with servers. By supplyingmore than one adapter, you can support different strategies for servergranularity and server location.</li>
                             </td>
                         </tr>
@@ -818,9 +827,9 @@
                                 Solution
                             </td>
                             <td>
-                                Introduce a broker component to achieve better decoupling of clientsand servers. Servers register themselves 
-                                with the broker, and maketheir services available to cllents through method interfaces. Clientsaccess the 
-                                functionality of servers by sending requests via the broker. A broker's tasks include locating the appropriate 
+                                Introduce a broker component to achieve better decoupling of clientsand servers. Servers register themselves
+                                with the broker, and maketheir services available to cllents through method interfaces. Clientsaccess the
+                                functionality of servers by sending requests via the broker. A broker's tasks include locating the appropriate
                                 server, forwardingthe request to the server and transmitting results and exceptionsback to the client.
                             </td>
                         </tr>
@@ -829,7 +838,7 @@
                                 Rationale
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -837,16 +846,16 @@
                                 Consequences
                             </td>
                             <td>
-                                Location Transparency. As the broker is responsible for locating aserver by using a unique identifier, clients do not need to know 
-                                whereservers are located. Similarly, servers do not care about the locationof calling clients, as they receive 
+                                Location Transparency. As the broker is responsible for locating aserver by using a unique identifier, clients do not need to know
+                                whereservers are located. Similarly, servers do not care about the locationof calling clients, as they receive
                                 all requests from the local brokercomponent.
-                                Changeability and extensibility of components. If servers change buttheir interfaces remain the same, it has no functional impact 
-                                onclients. Modifymg the internal implementation of the broker, but notthe APIs it provides, has no effect on clients and servers other 
+                                Changeability and extensibility of components. If servers change buttheir interfaces remain the same, it has no functional impact
+                                onclients. Modifymg the internal implementation of the broker, but notthe APIs it provides, has no effect on clients and servers other
                                 thanperformance changes.
-                                Portability of a Broker system. The Broker system hides operating sys-tem and network system details from clients and servers by 
-                                usingindirection layers such as APIs, proxies and bridges. When porting isrequired, it is therefore sufficient in most cases to port 
+                                Portability of a Broker system. The Broker system hides operating sys-tem and network system details from clients and servers by
+                                usingindirection layers such as APIs, proxies and bridges. When porting isrequired, it is therefore sufficient in most cases to port
                                 the brokercomponent and its APIs to a new platform and to recompile clientsand servers.
-                                Reusability. When building new client applications, you can oftenbase the functionality of your application on existing services. 
+                                Reusability. When building new client applications, you can oftenbase the functionality of your application on existing services.
                                 Suppose you are going to develop a new business application.
                             </td>
                         </tr>
