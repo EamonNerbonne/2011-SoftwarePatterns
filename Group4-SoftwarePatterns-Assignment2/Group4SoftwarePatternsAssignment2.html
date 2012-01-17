@@ -650,7 +650,9 @@
                                 Problem Context
                             </td>
                             <td>
-                               Two independent from each other components/peers need to communicate with each other, even running in different computers (Mercurial is distributed system). One of the peers initiate communication by sending request to other peers. It must be cope with multiple process at the same time.
+                               Two independent from each other components need to communicate with each other, even running in different computers (Mercurial is distributed system). One of the components initiate communication by sending request to other components. It must cope with multiple process at the same time. Also components which are using same service at one time should deal differently with results.
+
+
                             </td>
                         </tr>
                         <tr>
@@ -716,7 +718,7 @@ Backend tier stores the data .
                         Mercurial book, motivation</a>, <a href="http://hginit.com/">HgInit</a>—a mercurial
                         tutorial, <a href="http://mercurial.selenic.com/guide/">The Mercurial User's Guide</a>,
                         <a href="http://mercurial.selenic.com/wiki/">The Mercurial Wiki</a></li>
-                    <li>Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad.Pattern-Oriented
+                    <li>Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad. Pattern-Oriented
                         Software Architecture Volume 1: A System of Patterns. 1996.</li>
                     <li id="mercurial-book-4">Bryan O'Sullivan. <a href="http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004">
                         Mercurial: The Definitive Guide.</a> 2009</li>
