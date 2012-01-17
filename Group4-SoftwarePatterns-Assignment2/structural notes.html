@@ -78,17 +78,29 @@ href="http://mercurial.selenic.com/wiki/MercurialApi#The_high_level_interface">H
             <li>study technologies</li>
             <li>candidates: client server, proxy?</li>
           </ol>
-          <p>More pattern candidates: client-server (between peers);
-            proxy (for remote repositories); layers (levels of
-            abstraction); peer-to-peer (the various mercurial clients -
-            is this a real architectural pattern?); shared repository
+          <p>More pattern candidates:<br>
+            <span style="font-weight: bold;">client-server</span>
+            (between peers)<br>
+            <span style="font-weight: bold;">proxy</span> (for remote
+            repositories)<br>
+            <span style="font-weight: bold;">layers</span> (levels of
+            abstraction)<br>
+            <span style="font-weight: bold;">peer-to-peer</span> (the
+            various mercurial clients - is this a real architectural
+            pattern or just set up?)<br>
+            <span style="font-weight: bold;">shared repository</span>
             (not a software architecture pattern - the sharing is purely
-            conceptual; then again the disk repository is shared between
-            various).&nbsp; <br>
-            The revlog storage can be seen as an indirection layer over
+            conceptual; then again the disk revlogs are shared between
+            various other components).<br>
+            The revlog storage can be seen as an<span
+              style="font-weight: bold;"> indirection layer</span> over
             the filesystem: direct access is problematic due to
             performance, corruption and locking.<br>
-            <br>
+            <span style="font-weight: bold;">Active repository:</span>
+            the mercurial VCS itself can be seen as an active repository
+            in that it provides hooks that can actively notify others of
+            changes. Is this more like a feature than a pattern?&nbsp;
+            It's also not major.<br>
           </p>
         </section>
       </article>
