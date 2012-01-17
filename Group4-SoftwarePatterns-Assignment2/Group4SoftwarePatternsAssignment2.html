@@ -606,7 +606,7 @@ This inturn will increase the communication speed and also increases work produc
                             </tr>
                             <tr>
                                 <td>
-                                    Solution Variant
+                                    Solution Variant 
                                 </td>
                                 <td>
                                     Mercurial stores most of its data in <i>revlogs</i>.  Each mercurial repository has many such revlogs; most persistant data (whether
@@ -642,7 +642,6 @@ This inturn will increase the communication speed and also increases work produc
                             </tr>
                         </tbody>
                     </table>
-
                     </section>
                     <section>
                         <h1>
@@ -670,8 +669,9 @@ This inturn will increase the communication speed and also increases work produc
                                 Problem Context
                             </td>
                             <td>
-                               System based on clients connecting to the server is an inherent feature of Mercirial and is an essential
-                               need for all concerned stakeholders.
+                               Two independent from each other components need to communicate with each other, even running in different computers (Mercurial is distributed system). One of the components initiate communication by sending request to other components. It must cope with multiple process at the same time. Also components which are using same service at one time should deal differently with results.
+
+
                             </td>
                         </tr>
                         <tr>
@@ -679,6 +679,11 @@ This inturn will increase the communication speed and also increases work produc
                                 Solution Variant
                             </td>
                             <td>
+                                The CLIENT-SERVER pattern consists of  two kinds of components: clients and servers. Both of them implement collective tasks: transaction and system management. 
+The CLIENT-SERVER pattern builds complex system architectures by introducing
+multiple client-server relationships: a server can act itself as a client to other servers. The
+Client tier responsibles for the presentation of data, controlling users’ interface; It can be multiple users browsers. Whole data stores into backend tier
+Backend tier stores the data .
 
                             </td>
                         </tr>
@@ -695,7 +700,7 @@ This inturn will increase the communication speed and also increases work produc
                                 Consequences
                             </td>
                             <td>
-
+                                Since multiple clients can do same process at the same time reusability improves
                             </td>
                         </tr>
                         <tr>
@@ -732,7 +737,7 @@ This inturn will increase the communication speed and also increases work produc
                         Mercurial book, motivation</a>, <a href="http://hginit.com/">HgInit</a>—a mercurial
                         tutorial, <a href="http://mercurial.selenic.com/guide/">The Mercurial User's Guide</a>,
                         <a href="http://mercurial.selenic.com/wiki/">The Mercurial Wiki</a></li>
-                    <li>Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad. Pattern-Oriented
+                    <li>Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad.Pattern-Oriented
                         Software Architecture Volume 1: A System of Patterns. 1996.</li>
                     <li id="mercurial-book-4">Bryan O'Sullivan. <a href="http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004">
                         Mercurial: The Definitive Guide.</a> 2009</li>
