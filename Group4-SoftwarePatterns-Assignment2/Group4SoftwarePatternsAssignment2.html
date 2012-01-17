@@ -467,29 +467,28 @@
 
                     <!-- ############################ END From Views.html ########### -->
                 </section>
-                <section>
-                    <h1>
-                        Architectural patterns</h1>
                     <section>
                         <h1>
-                            Pattern Candidates</h1>
+                            Candidate Architectural Patterns</h1>
                         <dl>
-                            <dt>Proxy</dt><dd>For accessing remote repositories from a local client</dd>
-                            <dt>Layers</dt><dd>The levels of abstraction</dd>
+                            <dt>Proxy</dt><dd>For accessing remote repositories from a local client. <i>Accepted</i></dd>
+                            <dt>Layers</dt><dd>The levels of abstraction. <i>Present, but not important enough to be considered architectural</i></dd>
                             <dt>Peer-to-peer</dt><dd>Mercurial itself implements such a system between repositories
-                                - but is this a real architectural pattern or just the way its set up?</dd>
-                            <dt>Shared Repository</dt><dd>Again, mercurial itself, so not a software architecture
-                                pattern - the sharing is purely conceptual? However, the disk revlogs are shared
-                                between various other components and could be seen as a shared repository.</dd>
+                                - but is this a real architectural pattern or just the way its set up?  <i>Accepted</i></dd>
+                            <dt>Shared Datastore</dt><dd>aka Shared Repository; renamed to avoid confusion with the term repository to meaning a Mercurial SCM repository.  The disk revlogs are shared
+                                between various other components and could be seen as a shared repository. <i>Accepted</i></dd>
                             <dt>Indirection layer</dt><dd>
                                 The revlog storage can be seen as an indirection layer over the filesystem: direct
-                                access is problematic due to performance, corruption and locking.</dd>
+                                access is problematic due to performance, corruption and locking.  <i>Rejected, Shared datastore is a better match</i></dd>
                             <dt>Active repository</dt><dd>
                                 Active repository: the mercurial VCS itself can be seen as an active repository
                                 in that it provides hooks that can actively notify others of changes. Is this more
-                                like a feature than a pattern? It's also not major.</dd>
+                                like a feature than a pattern? It's also not major. <i>Accepted</i></dd>
                         </dl>
                     </section>
+                <section>
+                    <h1>
+                        Architectural patterns</h1>
                     <section>
                         <h1>
                             Peer-to-peer</h1>
