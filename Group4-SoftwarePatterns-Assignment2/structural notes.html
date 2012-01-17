@@ -76,9 +76,20 @@ href="http://mercurial.selenic.com/wiki/MercurialApi#The_high_level_interface">H
             </li>
             <li>Technologies used: Python, C, SSH, HTTP</li>
             <li>study technologies</li>
-            <li>candidates: client server?<br>
-            </li>
+            <li>candidates: client server, proxy?</li>
           </ol>
+          <p>More pattern candidates: client-server (between peers);
+            proxy (for remote repositories); layers (levels of
+            abstraction); peer-to-peer (the various mercurial clients -
+            is this a real architectural pattern?); shared repository
+            (not a software architecture pattern - the sharing is purely
+            conceptual; then again the disk repository is shared between
+            various).&nbsp; <br>
+            The revlog storage can be seen as an indirection layer over
+            the filesystem: direct access is problematic due to
+            performance, corruption and locking.<br>
+            <br>
+          </p>
         </section>
       </article>
     </div>
