@@ -520,7 +520,7 @@
                                 Problem Context
                             </td>
                             <td>
-
+                            <p>The Mercurial has been designed to enhance the communication speed between different components and eliminates dependency on a single physical machine.</p>
                             </td>
                         </tr>
                         <tr>
@@ -528,7 +528,9 @@
                                 Solution Variant
                             </td>
                             <td>
-
+                            <p>The pattern chosen is peer-to-peer as in Mercurial each componenent acts a both client and server. In Mercurial, each component for example revlogs 
+is a data structure which represents all the versions of a file.It is independent of other components like the dirstate which is also a data structure used to represent 
+what is in the working directory. In these cases, each componenent is treated as a peer and the tasks are equally distributed and have equal responsibilities.</p>
                             </td>
                         </tr>
                         <tr>
@@ -536,7 +538,7 @@
                                 Rationale
                             </td>
                             <td>
-
+                            <p> The advantages of choosing peer-to-peer pattern is it enhances scalability and performance which satisfies our quality attributes.</p>
                             </td>
                         </tr>
                         <tr>
@@ -544,6 +546,9 @@
                                 Consequences
                             </td>
                             <td>
+                            <p>This pattern eliminates the problem of SOP (Single Point of Failure). 
+As each componenent acts as a peer, time of request and time of response is reduced. 
+This inturn will increase the communication speed and also increases work productivity.</p>
 
                             </td>
                         </tr>
@@ -552,7 +557,7 @@
                                 Related patterns
                             </td>
                             <td>
-                               Shared repository
+                              <p>Explicit Invocation pattern</p>
                             </td>
                         </tr>
                     </tbody>
