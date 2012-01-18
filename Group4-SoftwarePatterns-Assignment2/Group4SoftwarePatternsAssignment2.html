@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
@@ -18,7 +18,7 @@
                     <h2>
                         Group 4</h2>
                     <h2>
-                        Version 2</h2>
+                        Version 3</h2>
                 </hgroup>
                 <div class="authorsbox">
                     <div>
@@ -95,11 +95,11 @@
                             </td>
                             <td>
                                 <dl>
-                                    <dt>Assel</dt><dd></dd>
-                                    <dt>Divya</dt><dd></dd>
-                                    <dt>Eamon</dt><dd></dd>
-                                    <dt>Edy</dt><dd></dd>
+                                    <dt>Assel</dt><dd>Pattern descriptions</dd>
+                                    <dt>Divya</dt><dd>Architectural View: logical, development </dd>
+                                    <dt>Edy</dt><dd>Architectural View: process, physical</dd>
                                     <dt>Sunna</dt><dd>Chapter 3</dd>
+                                    <dt>Eamon</dt><dd>Pattern candidates, merge document + doc outline</dd>
                                 </dl>
                             </td>
                         </tr>
@@ -198,11 +198,6 @@
                         Unlike a strictly linear process, such a reverted change does not require the user
                         to redo all subsequent changes; instead, the reverted change is itself a new changeset
                         that can be merged anywhere into the version history.
-                    </p>
-                    <img height="230" src="images/image00.png" width="302" alt="Mercurial communication dataflow" />
-                    <p>
-                        <span class="highlight"><b>TODO: </b><i>This diagram doesn't seem to pertain to the
-                            above directly; remove?</i></span>
                     </p>
                     <p>
                         Business model: System context, Architectural relevant business parameters.</p>
@@ -363,10 +358,34 @@
                 <p>
                     Show the individual patterns, their variants and how they integrate in the entire
                     architecture; show at most 2 views.</p>
+                <p>
+                    The general overview of Mercurial architecture is depicted below.</p>
+                <div>
+                    <img width="606" height="424" src="images/Mercurial-comp-diag.png"  alt="Mecurial component diagram" style="max-width: 100%; height:auto; " /></div>
                 <section>
                     <h1>
                         Architectural views</h1>
                 </section>
+                    <section>
+                        <h1>
+                            Candidate Architectural Patterns</h1>
+                        <dl>
+                            <dt>Proxy</dt><dd>For accessing remote repositories from a local client. <i>Accepted, Sunna</i></dd>
+                            <dt>Layers</dt><dd>The levels of abstraction. <i>Rejected, not important enough to be considered architectural</i></dd>
+                            <dt>Peer-to-peer</dt><dd>Mercurial itself implements such a system between repositories
+                                - but is this a real architectural pattern or just the way its set up?  <i>Accepted, Sunna</i></dd>
+                            <dt>Shared Datastore</dt><dd>aka Shared Repository; renamed to avoid confusion with the term repository to meaning a Mercurial SCM repository.
+                              The disk revlogs are shared between various other components and could be seen as a shared repository. <i>Accepted, Eamon</i></dd>
+                            <dt>Indirection layer</dt><dd>
+                                The revlog storage can be seen as an indirection layer over the filesystem: direct
+                                access is problematic due to performance, corruption and locking.  <i>Rejected, Shared datastore is a better match</i></dd>
+                            <dt>Active repository</dt><dd>
+                                Active repository: the mercurial VCS itself can be seen as an active repository
+                                in that it provides hooks that can actively notify others of changes. Is this more
+                                like a feature than a pattern? It's also not major. <i>Accepted, Divya</i></dd>
+                            <dt>Client-Server</dt><dd>A mercurial repository communicates via a client-server protocol when over the network e.g. when pushing or pulling. <i>Accepted, Assel</i></dd>
+                        </dl>
+                    </section>
                 <section>
                     <h1>
                         Architectural patterns</h1>
@@ -393,34 +412,20 @@
                         </tr>
                         <tr>
                             <td>
-                                Category
+                                Problem Context
                             </td>
                             <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Context
-                            </td>
-                            <td>
-
+                            <p>The Mercurial has been designed to enhance the communication speed between different components and eliminates dependency on a single physical machine.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                Variants
+                                Solution Variant
                             </td>
                             <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Solution
-                            </td>
-                            <td>
-
+                            <p>The pattern chosen is peer-to-peer as in Mercurial each componenent acts a both client and server. In Mercurial, each component for example revlogs 
+is a data structure which represents all the versions of a file.It is independent of other components like the dirstate which is also a data structure used to represent 
+what is in the working directory. In these cases, each componenent is treated as a peer and the tasks are equally distributed and have equal responsibilities.</p>
                             </td>
                         </tr>
                         <tr>
@@ -428,7 +433,7 @@
                                 Rationale
                             </td>
                             <td>
-
+                            <p> The advantages of choosing peer-to-peer pattern is it enhances scalability and performance which satisfies our quality attributes.</p>
                             </td>
                         </tr>
                         <tr>
@@ -436,7 +441,9 @@
                                 Consequences
                             </td>
                             <td>
-
+                            <p>This pattern eliminates the problem of SOP (Single Point of Failure). 
+As each componenent acts as a peer, time of request and time of response is reduced. 
+This inturn will increase the communication speed and also increases work productivity.</p>
                             </td>
                         </tr>
                         <tr>
@@ -444,7 +451,7 @@
                                 Related patterns
                             </td>
                             <td>
-                               Shared repository
+                              <p>Explicit Invocation pattern</p>
                             </td>
                         </tr>
                     </tbody>
@@ -453,220 +460,83 @@
                     </section>
                     <section>
                         <h1>
-                            Shared repository</h1>
+                            Shared Datastore</h1>
                         <p>
-                            <img height="200" src="images/image01.png" width="571" alt="Mecurial repository storage format" /></p>
-<table class="bookstyleborders">
-                    <tbody>
-                        <tr>
-                            <th>
-                                Pattern Section
-                            </th>
-                            <th>
-                                Comments
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                Name
-                            </td>
-                            <td>
-                                Shared repository
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Category
-                            </td>
-                            <td>
+                           <img height="200" src="images/image01.png" width="571" alt="Mecurial repository storage format" /></p>
+                        <p>The Shared Datastore pattern is usually called <i>Shared Repository</i>: to avoid confusion with the term &ldquo;repository&rdquo; which is used
+                         differently in the context of Mercurial the pattern is renamed here.</p>
+                        <table class="bookstyleborders"><thead>
+                            <tr>
+                                <th>
+                                    Pattern Section
+                                </th>
+                                <th>
+                                    Comments
+                                </th>
+                            </tr>
+                        </thead><tbody>
+                            <tr>
+                                <td>
+                                    Name
+                                </td>
+                                <td>
+                                    Shared datastore
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Problem Context
+                                </td>
+                                <td>
+                                    <p>Mercurial needs to store versioned data efficiently and robustly.  Versioned data includes not just user-data (e.g. source code), 
+                                        but also metadata (e.g. commit messages), and the repository tree structure.</p>
+                                    <p>All data stored in mercurial must be stored efficiently, i.e. with low space and time overhead.  Taking into account the
+                                     performance charactistics of hard drives and the typical data storage patterns to optimize access while avoiding data
+                                     corruption in the event of a crash or software bug is complex.  In particular, SCM systems generally add new data but rarely (if ever)
+                                     change existing data; stale data is read less frequently than the newest version; disk seeks are slow yet 
+                                     repositories may contain very many revisions with very many files so that the complexity of retrieving
+                                     historical data should not depend on the size of the repository.</p>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Solution Variant
+                                </td>
+                                <td>
+                                    Mercurial stores most of its data in <i>revlogs</i>.  Each mercurial repository has many such revlogs; most persistant data (whether
+                                    mercurial-internal or user data) is stored and managed centrally in these datastructures.  Each revlog consists of an append-only data file
+                                    and an index file with fixed-size entries (to enable O(1) seeking) storing where a particular version is to be found in the data file.  There are three
+                                    classes of revlogs. Firstly, user data is store in a per-file revlog.  Secondly, a directory listing with revision numbers of each file forming a 
+                                    particular version of the directory tree is stored in a manifest revlog.  Finally, changeset metadata such as commit messages and the corresponding manifest
+                                    revision number is stored in a changeset revlog.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Rationale
+                                </td>
+                                <td>
+                                    Performance, Reliability, Durability, Dependability.  <i class=highlight>TODO: see AOSA mercurial section and ???</i></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Consequences
+                                </td>
+                                <td>
+                                ?
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Related patterns
+                                </td>
+                                <td>
+                                  ?
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Context
-                            </td>
-                            <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Variants
-                            </td>
-                            <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Solution
-                            </td>
-                            <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Rationale
-                            </td>
-                            <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Consequences
-                            </td>
-                            <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Related patterns
-                            </td>
-                            <td>
-                              Peer-to-peer
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Key driver
-                            </td>
-                            <td>
-                                Scalability/Extensibility
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                    </section>
-                    <section>
-                        <h1>
-                            Pipes and filters</h1>
-
-<table class="bookstyleborders">
-                    <tbody>
-                        <tr>
-                            <th>
-                                Pattern Section
-                            </th>
-                            <th>
-                                Comments
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                Name
-                            </td>
-                            <td>
-                                Pipes and filters
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Problem
-                            </td>
-                            <td>
-                                The design of the system-especially the interconnection of process-ing steps-has to consider the following
-                                forces:
-                                <li>Future system enhancements should be possible by exchangingprocessing steps or by recombination of steps,
-                                even by users;</li>
-                                <li>Multi-processing the steps, forexample running them in parallel or quasi-parallel.</li>
-                                <li>Explicit storage of intermediate results for further processing infiles clutters directories and is error-
-                                prone, if done by users</li>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Category
-                            </td>
-                            <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Context
-                            </td>
-                            <td>
-                                Processing data streams
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Variants
-                            </td>
-                            <td>
-                               Tee and join pipeline systems.The single-input slngle-output filterspecification of the Pipes and Filters
-                               pattern can be varied to allowfilters wlth more than one input and/or more than one output. Pro-cessing can
-                               then be set up as a directed graph that can even contalnfeedback loops. The deslgn of such a system, especially
-                               one wlthfeedback loops, requires a solid foundation to explain andunderstand the complete calculation-a rigorous
-                               theoretical analyslsand specification using formal methods are appropriate, to prove thatthe system terminates
-                               and produces the desired result
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Solution
-                            </td>
-                            <td>
-                                The Pipes and Filters architectural pattern divides the task of asystem into several sequential processing
-                                steps. These steps areconnected by the data flow through the system-the output data of astep is the input to
-                                the subsequent step. Each processing step isimplemented by a filter component.A filter consumes and deliversdata
-                                incrementally-in contrast to consuming all its input beforeproducing any output-to achieve low latency and enable
-                                real parallelprocessing.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Rationale
-                            </td>
-                            <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Consequences
-                            </td>
-                            <td>
-                               Computing resultsusing separate programs is possible without pipes, by storingintermediate results in files. This
-                               approach clutters directories, andis error-prone if you have to set up your processing stages every timeyou run your
-                               system. In addition, it rules out incremental andparallel computation of results.
-
-                               Filters have a simple interface thatallows their easy exchange within a processing pipeline. Even if filtercomponents
-                               call each other directly in a push or pull fashion,exchanging a filter component is still straightforward.
-
-                               It is possible to start active filtercomponents in parallel in a multiprocessor system or a network. Ifeach filter in
-                               a pipeline consumes and produces data incrementallythey can perform their functions in parallel.
-
-                               Using a single data type for all filterinput and output to achieve highest flexibility results in dataconversion overheads.
-                               Consider a system that performs numericcalculations and uses UNIX pipes. Such a system must convert ASCIIcharacters to real
-                               numbers, and vice-versa, within each filter. Asimple filter, such as one that adds two numbers, will spend most ofits
-                               processing time doing format conversion.
-
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Related patterns
-                            </td>
-                            <td>
-                                Shared repository
-                            </td>
-                        </tr>
-                         <tr>
-                            <td>
-                                Key driver
-                            </td>
-                            <td>
-                                Portability
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
                     </section>
                     <section>
                         <h1>
@@ -691,42 +561,22 @@
                         </tr>
                         <tr>
                             <td>
-                                Problem
+                                Problem Context
                             </td>
                             <td>
-                               System based on clients connecting to the server is an inherent feature of Mercirial and is an essential
-                               need for all concerned stakeholders.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Category
-                            </td>
-                            <td>
-
+                               Two independent from each other components need to communicate with each other, even running in different computers (Mercurial is distributed system). One of the components initiate communication by sending request to other components. It must be cope with multiple process at the same time. Also components which are using same service at one time should deal differently with results.
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                Context
+                                Solution Variant
                             </td>
                             <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Variants
-                            </td>
-                            <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Solution
-                            </td>
-                            <td>
+                               The CLIENT-SERVER pattern consists of  two kinds of components: clients and servers. Both of them implement collective tasks: transaction and system management. 
+The CLIENT-SERVER pattern builds complex system architectures by introducing
+multiple client-server relationships: a server can act itself as a client to other servers. The
+Client tier responsibles for the presentation of data, controlling users’ interface; It can be multiple users browsers. Whole data stores into backend tier
+Backend tier stores the data .
 
                             </td>
                         </tr>
@@ -735,7 +585,7 @@
                                 Rationale
                             </td>
                             <td>
-
+                               reusability
                             </td>
                         </tr>
                         <tr>
@@ -743,7 +593,7 @@
                                 Consequences
                             </td>
                             <td>
-
+                                 Since multiple clients can do same process at the same time reusability improves
                             </td>
                         </tr>
                         <tr>
@@ -757,120 +607,6 @@
                         </tbody>
                 </table>
                     </section>
-                    <section>
-                        <h1>
-                            Broker</h1>
-                <table class="bookstyleborders">
-                    <tbody>
-                        <tr>
-                            <th>
-                                Pattern Section
-                            </th>
-                            <th>
-                                Comments
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                Name
-                            </td>
-                            <td>
-                                Broker
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Problem
-                            </td>
-                            <td>
-                               Mercurial system becomes dependent on the communication mechanism used, clientsneed to know the location of servers,
-                               and uses only one programming language(Python).
-                               Use the Broker architecture to balance the following forces:
-                               <li>Components should be able to access services provided by othersthrough remote, location-transparent service invocations</li>
-                               <li>The architecture should hide system- and implementation-specificdetails from the users of components and services.</li>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Category
-                            </td>
-                            <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Context
-                            </td>
-                            <td>
-                                Server identication should be performed in a manner which allows for remoting servers to be easily
-                                identied and called upon. Communication details regarding transport protocols, data (un)marshalling
-                                and serialisation should be hidden from the user.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Variants
-                            </td>
-                            <td>
-                               <li>Callback Broker System. Instead of implementing an activecommunication model in which clients produce requests
-                               and serversconsume them, you can also use a reactive model. The reactive model Is event-driven, and makes no
-                               distinction between clients andservers. Whenever an event arrives, the broker invokes the callbackmethod of the
-                               component that is registered to react to the event.  </li>
-                               <li>Adapter Broker System. You can hide the interface of the brokercomponent to the servers using an additional layer,
-                               to enhanceflexibility. This adapter layer is a part of the broker and is responsiblefor registering servers and interacting
-                               with servers. By supplyingmore than one adapter, you can support different strategies for servergranularity and server location.</li>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Solution
-                            </td>
-                            <td>
-                                Introduce a broker component to achieve better decoupling of clientsand servers. Servers register themselves
-                                with the broker, and maketheir services available to cllents through method interfaces. Clientsaccess the
-                                functionality of servers by sending requests via the broker. A broker's tasks include locating the appropriate
-                                server, forwardingthe request to the server and transmitting results and exceptionsback to the client.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Rationale
-                            </td>
-                            <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Consequences
-                            </td>
-                            <td>
-                                Location Transparency. As the broker is responsible for locating aserver by using a unique identifier, clients do not need to know
-                                whereservers are located. Similarly, servers do not care about the locationof calling clients, as they receive
-                                all requests from the local brokercomponent.
-                                Changeability and extensibility of components. If servers change buttheir interfaces remain the same, it has no functional impact
-                                onclients. Modifymg the internal implementation of the broker, but notthe APIs it provides, has no effect on clients and servers other
-                                thanperformance changes.
-                                Portability of a Broker system. The Broker system hides operating sys-tem and network system details from clients and servers by
-                                usingindirection layers such as APIs, proxies and bridges. When porting isrequired, it is therefore sufficient in most cases to port
-                                the brokercomponent and its APIs to a new platform and to recompile clientsand servers.
-                                Reusability. When building new client applications, you can oftenbase the functionality of your application on existing services.
-                                Suppose you are going to develop a new business application.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Related patterns
-                            </td>
-                            <td>
-                                Client server
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                    </section>
-                </section>
                 <section>
                     <h1>
                         Decomposition, component responsibilities &amp; interfaces</h1>
@@ -888,11 +624,21 @@
                 <h1>
                     References</h1>
                 <ul>
-                    <li id="bib-mercurial">Mackall et al.  <a href="http://mercurial.selenic.com/">Mercurial SCM</a> 2011.</li>
-                    <li id="merc_links"><a href="http://hgbook.red-bean.com/read/how-did-we-get-here.html">Mercurial book,
-                        motivation</a>, <a href="http://hginit.com/">HgInit</a>—a mercurial tutorial, <a href="http://mercurial.selenic.com/guide/">The Mercurial User's Guide</a>, <a href="http://mercurial.selenic.com/wiki/">The Mercurial Wiki</a></li>
-                    <li> Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad.Pattern-Oriented Software Architecture Volume 1: A System of Patterns. 1996.</li>
-                    <li> Mercurial: The Definitive Guide by Bryan O'Sullivan </li>
+                    <li id="bib-mercurial">Mackall et al. <a href="http://mercurial.selenic.com/">Mercurial
+                        SCM</a> 2011.</li>
+                    <li id="merc_links"><a href="http://hgbook.red-bean.com/read/how-did-we-get-here.html">
+                        Mercurial book, motivation</a>, <a href="http://hginit.com/">HgInit</a>—a mercurial
+                        tutorial, <a href="http://mercurial.selenic.com/guide/">The Mercurial User's Guide</a>,
+                        <a href="http://mercurial.selenic.com/wiki/">The Mercurial Wiki</a></li>
+                    <li>Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad. Pattern-Oriented
+                        Software Architecture Volume 1: A System of Patterns. 1996.</li>
+                    <li id="mercurial-book-4">Bryan O'Sullivan. <a href="http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004">
+                        Mercurial: The Definitive Guide.</a> 2009</li>
+                    <li id="aosabook">Amy Brown and Greg Wilson.<a href="http://www.aosabook.org/"> 
+                        The Architecture of Open Source Applications.</a> 2011</li>
+                    <li><a href="http://en.wikipedia.org/">Wikipedia</a></li>
+                    <li id="mercurial-arch"><a href="http://mercurial.selenic.com/wiki/WhatGoesWhere">Mercurial Project Architecture</a>
+                    </li>
                 </ul>
             </aside>
         </article>
