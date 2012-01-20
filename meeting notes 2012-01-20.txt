@@ -1,3 +1,4 @@
 Sunna - Eval+IRC
 Everyone patterns
-Eamon 3.1
+Eamon 3.1 cleanup; add supportability
+Everyone cite where something comes from & why it is in HG specifically
