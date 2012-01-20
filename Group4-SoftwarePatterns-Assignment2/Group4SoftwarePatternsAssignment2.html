@@ -103,6 +103,23 @@
                                 </dl>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                23/01/2012
+                            </td>
+                            <td class="centered">
+                                3
+                            </td>
+                            <td>
+                                <dl>
+                                    <dt>Assel</dt><dd></dd>
+                                    <dt>Divya</dt><dd> </dd>
+                                    <dt>Edy</dt><dd></dd>
+                                    <dt>Sunna</dt><dd></dd>
+                                    <dt>Eamon</dt><dd></dd>
+                                </dl>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </aside>
@@ -525,9 +542,9 @@
                                 Solution Variant
                             </td>
                             <td>
-                            <p>The pattern chosen is peer-to-peer as in Mercurial each componenent acts a both client and server. In Mercurial, each component for example revlogs 
-is a data structure which represents all the versions of a file.It is independent of other components like the dirstate which is also a data structure used to represent 
-what is in the working directory. In these cases, each componenent is treated as a peer and the tasks are equally distributed and have equal responsibilities.</p>
+                            <p>The pattern chosen is peer-to-peer as in Mercurial each componenent acts a both client and server. In Mercurial, each component for example revlogs
+								is a data structure which represents all the versions of a file.It is independent of other components like the dirstate which is also a data structure used to represent
+								what is in the working directory. In these cases, each componenent is treated as a peer and the tasks are equally distributed and have equal responsibilities.</p>
                             </td>
                         </tr>
                         <tr>
@@ -543,9 +560,9 @@ what is in the working directory. In these cases, each componenent is treated as
                                 Consequences
                             </td>
                             <td>
-                            <p>This pattern eliminates the problem of SOP (Single Point of Failure). 
-As each componenent acts as a peer, time of request and time of response is reduced. 
-This inturn will increase the communication speed and also increases work productivity.</p>
+                            <p>This pattern eliminates the problem of SOP (Single Point of Failure).
+								As each componenent acts as a peer, time of request and time of response is reduced.
+								This inturn will increase the communication speed and also increases work productivity.</p>
 
                             </td>
                         </tr>
@@ -591,12 +608,12 @@ This inturn will increase the communication speed and also increases work produc
                                     Problem Context
                                 </td>
                                 <td>
-                                    <p>Mercurial needs to store versioned data efficiently and robustly.  Versioned data includes not just user-data (e.g. source code), 
+                                    <p>Mercurial needs to store versioned data efficiently and robustly.  Versioned data includes not just user-data (e.g. source code),
                                         but also metadata (e.g. commit messages), and the repository tree structure.</p>
                                     <p>All data stored in mercurial must be stored efficiently, i.e. with low space and time overhead.  Taking into account the
                                      performance charactistics of hard drives and the typical data storage patterns to optimize access while avoiding data
                                      corruption in the event of a crash or software bug is complex.  In particular, SCM systems generally add new data but rarely (if ever)
-                                     change existing data; stale data is read less frequently than the newest version; disk seeks are slow yet 
+                                     change existing data; stale data is read less frequently than the newest version; disk seeks are slow yet
                                      repositories may contain very many revisions with very many files so that the complexity of retrieving
                                      historical data should not depend on the size of the repository.</p>
                                  </td>
@@ -609,7 +626,7 @@ This inturn will increase the communication speed and also increases work produc
                                     Mercurial stores most of its data in <i>revlogs</i>.  Each mercurial repository has many such revlogs; most persistant data (whether
                                     mercurial-internal or user data) is stored and managed centrally in these datastructures.  Each revlog consists of an append-only data file
                                     and an index file with fixed-size entries (to enable O(1) seeking) storing where a particular version is to be found in the data file.  There are three
-                                    classes of revlogs. Firstly, user data is store in a per-file revlog.  Secondly, a directory listing with revision numbers of each file forming a 
+                                    classes of revlogs. Firstly, user data is store in a per-file revlog.  Secondly, a directory listing with revision numbers of each file forming a
                                     particular version of the directory tree is stored in a manifest revlog.  Finally, changeset metadata such as commit messages and the corresponding manifest
                                     revision number is stored in a changeset revlog.
                                 </td>
@@ -639,7 +656,6 @@ This inturn will increase the communication speed and also increases work produc
                             </tr>
                         </tbody>
                     </table>
-
                     </section>
                     <section>
                         <h1>
@@ -667,7 +683,10 @@ This inturn will increase the communication speed and also increases work produc
                                 Problem Context
                             </td>
                             <td>
-                               Two independent from each other components need to communicate with each other, even running in different computers (Mercurial is distributed system). One of the components initiate communication by sending request to other components. It must be cope with multiple process at the same time. Also components which are using same service at one time should deal differently with results.
+                               Two independent from each other components need to communicate with each other, even running in different
+                               computers (Mercurial is distributed system). One of the components initiate communication by sending request
+                               to other components. It must cope with multiple process at the same time. Also components which are using
+                               same service at one time should deal differently with results.
                             </td>
                         </tr>
                         <tr>
@@ -675,11 +694,11 @@ This inturn will increase the communication speed and also increases work produc
                                 Solution Variant
                             </td>
                             <td>
-                               The CLIENT-SERVER pattern consists of  two kinds of components: clients and servers. Both of them implement collective tasks: transaction and system management. 
-The CLIENT-SERVER pattern builds complex system architectures by introducing
-multiple client-server relationships: a server can act itself as a client to other servers. The
-Client tier responsibles for the presentation of data, controlling users’ interface; It can be multiple users browsers. Whole data stores into backend tier
-Backend tier stores the data .
+                               The CLIENT-SERVER pattern consists of  two kinds of components: clients and servers. Both of them implement collective tasks: transaction and system management.
+								The CLIENT-SERVER pattern builds complex system architectures by introducing
+								multiple client-server relationships: a server can act itself as a client to other servers. The
+								Client tier responsibles for the presentation of data, controlling users’ interface; It can be multiple users browsers. Whole data stores into backend tier
+								Backend tier stores the data .
 
                             </td>
                         </tr>
@@ -696,7 +715,7 @@ Backend tier stores the data .
                                 Consequences
                             </td>
                             <td>
-                                 Since multiple clients can do same process at the same time reusability improves
+                                Since multiple clients can do same process at the same time reusability improves
                             </td>
                         </tr>
                         <tr>
@@ -799,7 +818,7 @@ Backend tier stores the data .
                         Mercurial book, motivation</a>, <a href="http://hginit.com/">HgInit</a>—a mercurial
                         tutorial, <a href="http://mercurial.selenic.com/guide/">The Mercurial User's Guide</a>,
                         <a href="http://mercurial.selenic.com/wiki/">The Mercurial Wiki</a></li>
-                    <li>Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad. Pattern-Oriented
+                    <li>Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad.Pattern-Oriented
                         Software Architecture Volume 1: A System of Patterns. 1996.</li>
                     <li id="mercurial-book-4">Bryan O'Sullivan. <a href="http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004">
                         Mercurial: The Definitive Guide.</a> 2009</li>
