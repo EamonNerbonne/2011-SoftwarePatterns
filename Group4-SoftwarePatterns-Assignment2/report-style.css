@@ -77,6 +77,19 @@ table.bookstyleborders td {
     padding: 0.6em 0.5em;
 }
 
+table.simpleborders {
+    border-style: solid;
+    border-spacing: 0;
+    border-width: 0px 0px 1px 1px;
+}
+
+table.simpleborders td {
+    border-style: solid;
+    border-width: 1px 1px 0px 0px;
+    margin: 0;
+    padding: 4px;
+    font-weight: bold;
+}
 
 /* Basic Table layouts */
 table {
