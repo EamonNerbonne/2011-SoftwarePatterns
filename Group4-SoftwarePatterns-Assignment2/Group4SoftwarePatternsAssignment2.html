@@ -782,7 +782,10 @@
 					                Problem 	
 					       	    </td>
 					       	    <td>
-					       	    
+					       	    In a mercurial developers have no direct access to the database. Unrestricted and direct access to the database could be inefficient. So there is needed representative control  mechanism, which would solve following forces:
+					       	    <li>It should be easy to user to access database;</li>
+                                 <li>Accessing the component should be run-time-efficient and cost-effective.</li>
+
 					       	    </td>
 					       	</tr>
 					        <tr>
@@ -790,7 +793,9 @@
 					                 Solution Variant
 					            </td>
 					            <td>
-					                	Mercurial uses proxy objects for remote repositories.
+					                The stated problem can be solved using a variant of the Remote Proxy pattern. A remote proxy provides a local representative for an object that resides in a different address space.
+
+The client communicates  via representative called proxy, which offers copy of original database
 
 					            </td>
 					        </tr>
@@ -864,7 +869,7 @@
 						</tr>
 						<tr>
 							<td>Proxy</td>
-							<td></td>
+							<td><center>+</center></td>
 							<td></td>
 							<td></td>
 							<td></td>
