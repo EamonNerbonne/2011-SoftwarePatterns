@@ -3,6 +3,7 @@
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
     <link rel="stylesheet" type="text/css" href="report-style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
     <div class="margincontainer">
@@ -11,6 +12,10 @@
                 <hgroup>
                     <h1>
                         Mercurial</h1>
+                        <center><img center width="400" height="200" src="images/droplets.png"
+                        style="max-width: 50%; height:auto; " /></center>
+                        <p></p>
+                        <p></p>
                     <h2>
                         Software Patterns</h2>
                     <h2>
@@ -108,13 +113,17 @@
                                 23/01/2012
                             </td>
                             <td class="centered">
-                                3
+
+                                4
+
                             </td>
                             <td>
                                 <dl>
+
                                     <dt>Assel</dt><dd></dd>
-                                    <dt>Divya</dt><dd> </dd>
-                                    <dt>Edy</dt><dd></dd>
+                                    <dt>Divya</dt><dd></dd>
+
+                                    <dt>Edy</dt><dd>Add architectural diagram, refine views and reference</dd>
                                     <dt>Sunna</dt><dd></dd>
                                     <dt>Eamon</dt><dd></dd>
                                 </dl>
@@ -352,7 +361,7 @@
                         <dt>Usability:</dt><dd> The basic interface of Mercurial is easy to use, easy to learn and hard
 			    			to break. Mercurial sports a consistent command set and potentially dangerous actions are
 			    			available via extensions which need to be enabled.</dd>
-                        <dt>Scalability/Extensibility:</dt><dd> The functionality of Mercurial can be increased with
+                        <dt>Extensibility:</dt><dd> The functionality of Mercurial can be increased with
 			    			extensions, either by activating the official ones which are shipped with Mercurial or
 			    			downloading some from the wiki or by writing our own.</dd>
                         <dt>Portability:</dt><dd> Mercurial is written with platform independence in mind. Binary
@@ -385,7 +394,7 @@
                             Logical view</h1>
                         <p>
                             The logical view for the Mercurial describes the functionality of the Mercurial
-                            system to the end-users. Mercurial is a modern distributed version control system(VCS)
+                            system to the end-users. Mercurial is a modern distributed version control system (DVCS)
                             which is written in Python. The main advantage of distributed VCS is that it allows
                             developers to push around and intergrate changes as the project requires at each
                             point of time. The logical view of the Mercurial can be briefly discussed as follows:
@@ -398,7 +407,7 @@
                             into the testing repository. In this repository, the QA tests the modules. Developers
                             may code in this repository (mainly to fix bugs), but they should not add new features
                             to the code. If the test is successful then the user releases it by pushing it into
-                            the stable repository.</p>
+                            the stable repository. [<a href="#aosabook">AOSA Book</a>]</p>
                     </section>
                     <section>
                         <h1><!--Divya-->
@@ -455,7 +464,7 @@
                             Mercurial looks up the appropriate revision of the manifest to find out which files
                             it was tracking at the time that changeset was committed, and which revision of
                             each file was then current. It then recreates a copy of each of those files, with
-                            the same contents it had when the changeset was committed.</p>
+                            the same contents it had when the changeset was committed. [<a href="#mercurial-book-4">Mercurial Book</a>]</p>
                     </section>
                     <section>
                         <h1><!--Edy-->
@@ -479,7 +488,7 @@
                             one, Storage layer contains the basis for version storage, revlog. The fourth one,
                             UI layer provides generic methods for communicating with the user and managing configuration
                             info. The fifth layer, Utility layer includes generic functionality and platform
-                            abstraction.
+                            abstraction. [<a href="#mercurial-arch">Project Architecture</a>]
                         </p>
                     </section>
 
@@ -582,9 +591,11 @@
                         <h1>
                             Shared Datastore</h1>
                         <p>
+
                            <img height="200" src="images/image01.png" width="571" alt="Mecurial repository storage format" /></p>
                         <p>The Shared Datastore pattern is usually called <i>Shared Repository</i>: to avoid confusion with the term &ldquo;repository&rdquo; which is used
                          differently in the context of Mercurial the pattern is renamed here.</p>
+
                         <table class="bookstyleborders"><thead>
                             <tr>
                                 <th>
@@ -723,13 +734,15 @@
                                 Related patterns
                             </td>
                             <td>
-                                Broker
+                                Remote Proxy pattern
                             </td>
                         </tr>
                         </tbody>
                 </table>
                     </section>
                     <section>
+
+
                     <h1>
 					     Proxy pattern</h1>
 					                 <table class="bookstyleborders">
@@ -747,23 +760,35 @@
 					                                Name
 					                            </td>
 					                            <td>
-					                                Proxy pattern	(http://mercurial.selenic.com/wiki/WhatGoesWhere)
+					                 Remote Proxy pattern	
 					                            </td>
 					                        </tr>
 					                        <tr>
 					                            <td>
-					                                Problem Context
+					                 Context
 					                            </td>
 					                            <td>
+					            Client applications should be able to make remote invocations in a transparent manner.
+					        	</td>
+					        </tr>
+					        <td>
+					                Problem 	
+					       	    </td>
+					       	    <td>
+					       	    In a mercurial developers have no direct access to the database. Unrestricted and direct access to the database could be inefficient. So there is needed representative control  mechanism, which would solve following forces:
+					       	    <li>It should be easy to user to access database;</li>
+                                 <li>Accessing the component should be run-time-efficient and cost-effective.</li>
 
-					                            </td>
-					                        </tr>
+					       	    </td>
+					       	</tr>
 					                        <tr>
 					                            <td>
 					                                Solution Variant
 					                            </td>
 					                            <td>
-					                            	Mercurial uses proxy objects for remote repositories.
+					                The stated problem can be solved using a variant of the Remote Proxy pattern. A remote proxy provides a local representative for an object that resides in a different address space.
+
+The client communicates  via representative called proxy, which offers copy of original database
 
 					                            </td>
 					                        </tr>
@@ -780,7 +805,7 @@
 					                                Consequences
 					                            </td>
 					                            <td>
-
+                                     Since the developer can call on proxy objects directly, usability improves.
 					                            </td>
 					                        </tr>
 					                        <tr>
@@ -788,7 +813,7 @@
 					                                Related patterns
 					                            </td>
 					                            <td>
-
+                                     Client-server, peer-to-peer
 					                            </td>
 					                        </tr>
 					                    </tbody>
@@ -818,16 +843,16 @@
 						</tr>
 						<tr>
 							<td>Peer-to-peer</td>
+							<td><center>+</center></td>
 							<td></td>
 							<td></td>
-							<td></td>
-							<td></td>
+							<td><center>+</center></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td>Shared Datastore</td>
-							<td></td>
-							<td></td>
+							<td><center>+</center></td>
+							<td><center>+</center></td>
 							<td></td>
 							<td></td>
 							<td></td>
@@ -842,7 +867,7 @@
 						</tr>
 						<tr>
 							<td>Proxy</td>
-							<td></td>
+							<td><center>+</center></td>
 							<td></td>
 							<td></td>
 							<td></td>
@@ -882,12 +907,11 @@
                         <a href="http://mercurial.selenic.com/wiki/">The Mercurial Wiki</a></li>
                     <li>Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad.Pattern-Oriented
                         Software Architecture Volume 1: A System of Patterns. 1996.</li>
-                    <li id="mercurial-book-4">Bryan O'Sullivan. <a href="http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004">
-                        Mercurial: The Definitive Guide.</a> 2009</li>
-                    <li id="aosabook">Amy Brown and Greg Wilson.<a href="http://www.aosabook.org/">
-                        The Architecture of Open Source Applications.</a> 2011</li>
+                    <li id="mercurial-book-4">Bryan O'Sullivan. Mercurial: The Definitive Guide. 2009. <a href="http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004">http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004
+                        </a></li>
+                    <li id="aosabook">Amy Brown and Greg Wilson. The Architecture of Open Source Applications. 2011. <a href="http://www.aosabook.org/">http://www.aosabook.org/</a> </li>
                     <li><a href="http://en.wikipedia.org/">Wikipedia</a></li>
-                    <li id="mercurial-arch"><a href="http://mercurial.selenic.com/wiki/WhatGoesWhere">Mercurial Project Architecture</a>
+                    <li id="mercurial-arch" align="left">Mercurial Project Architecture. <a href="http://mercurial.selenic.com/wiki/WhatGoesWhere"> http://mercurial.selenic.com/wiki/WhatGoesWhere</a>
                     </li>
                 </ul>
             </aside>

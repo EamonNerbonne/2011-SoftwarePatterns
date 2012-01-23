@@ -1,7 +1,10 @@
 body {
-    text-align: justify;
     font-family: "Gentium Book Basic" , Gentium, "Gentium Basic" , "Palatino Linotype" , "Hoefler Text" , Constantia, "Minion Pro" , Georgia, serif;
     font-size: 10pt;
+}
+
+body, p {
+    text-align: justify;
     hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
