@@ -122,10 +122,10 @@
                             <td>
                                 <dl>
 
-                                    <dt>Assel</dt><dd>/dd>
+                                    <dt>Assel</dt><dd></dd>
                                     <dt>Divya</dt><dd></dd>
 
-                                    <dt>Edy</dt><dd></dd>
+                                    <dt>Edy</dt><dd>Add architectural diagram, refine views and reference</dd>
                                     <dt>Sunna</dt><dd></dd>
                                     <dt>Eamon</dt><dd></dd>
                                 </dl>
@@ -397,7 +397,7 @@
                             Logical view</h1>
                         <p>
                             The logical view for the Mercurial describes the functionality of the Mercurial
-                            system to the end-users. Mercurial is a modern distributed version control system(VCS)
+                            system to the end-users. Mercurial is a modern distributed version control system (DVCS)
                             which is written in Python. The main advantage of distributed VCS is that it allows
                             developers to push around and intergrate changes as the project requires at each
                             point of time. The logical view of the Mercurial can be briefly discussed as follows:
@@ -410,7 +410,7 @@
                             into the testing repository. In this repository, the QA tests the modules. Developers
                             may code in this repository (mainly to fix bugs), but they should not add new features
                             to the code. If the test is successful then the user releases it by pushing it into
-                            the stable repository.</p>
+                            the stable repository. [<a href="#aosabook">AOSA Book</a>]</p>
                     </section>
                     <section>
                         <h1><!--Divya-->
@@ -467,7 +467,7 @@
                             Mercurial looks up the appropriate revision of the manifest to find out which files
                             it was tracking at the time that changeset was committed, and which revision of
                             each file was then current. It then recreates a copy of each of those files, with
-                            the same contents it had when the changeset was committed.</p>
+                            the same contents it had when the changeset was committed. [<a href="#mercurial-book-4">Mercurial Book</a>]</p>
                     </section>
                     <section>
                         <h1><!--Edy-->
@@ -491,7 +491,7 @@
                             one, Storage layer contains the basis for version storage, revlog. The fourth one,
                             UI layer provides generic methods for communicating with the user and managing configuration
                             info. The fifth layer, Utility layer includes generic functionality and platform
-                            abstraction.
+                            abstraction. [<a href="#mercurial-arch">Project Architecture</a>]
                         </p>
                     </section>
 
@@ -845,16 +845,16 @@ The client communicates  via representative called proxy, which offers copy of o
 						</tr>
 						<tr>
 							<td>Peer-to-peer</td>
+							<td><center>+</center></td>
 							<td></td>
 							<td></td>
-							<td></td>
-							<td></td>
+							<td><center>+</center></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td>Shared Datastore</td>
-							<td></td>
-							<td></td>
+							<td><center>+</center></td>
+							<td><center>+</center></td>
 							<td></td>
 							<td></td>
 							<td></td>
@@ -909,12 +909,11 @@ The client communicates  via representative called proxy, which offers copy of o
                         <a href="http://mercurial.selenic.com/wiki/">The Mercurial Wiki</a></li>
                     <li>Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad.Pattern-Oriented
                         Software Architecture Volume 1: A System of Patterns. 1996.</li>
-                    <li id="mercurial-book-4">Bryan O'Sullivan. <a href="http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004">
-                        Mercurial: The Definitive Guide.</a> 2009</li>
-                    <li id="aosabook">Amy Brown and Greg Wilson.<a href="http://www.aosabook.org/">
-                        The Architecture of Open Source Applications.</a> 2011</li>
+                    <li id="mercurial-book-4">Bryan O'Sullivan. Mercurial: The Definitive Guide. 2009. <a href="http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004">http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004
+                        </a></li>
+                    <li id="aosabook">Amy Brown and Greg Wilson. The Architecture of Open Source Applications. 2011. <a href="http://www.aosabook.org/">http://www.aosabook.org/</a> </li>
                     <li><a href="http://en.wikipedia.org/">Wikipedia</a></li>
-                    <li id="mercurial-arch"><a href="http://mercurial.selenic.com/wiki/WhatGoesWhere">Mercurial Project Architecture</a>
+                    <li id="mercurial-arch" align="left">Mercurial Project Architecture. <a href="http://mercurial.selenic.com/wiki/WhatGoesWhere"> http://mercurial.selenic.com/wiki/WhatGoesWhere</a>
                     </li>
                 </ul>
             </aside>
