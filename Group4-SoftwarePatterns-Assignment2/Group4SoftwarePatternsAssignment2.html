@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
     <link rel="stylesheet" type="text/css" href="report-style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
     <div class="margincontainer">
@@ -11,6 +12,9 @@
                 <hgroup>
                     <h1>
                         Mercurial</h1>
+                        <h2>
+                        <img class="center" width="400" height="200" src="images/droplets.png"
+                        style="max-width: 50%; height:auto; " alt="Mercurial SCM Icon"/></h2>
                     <h2>
                         Software Patterns</h2>
                     <h2>
@@ -28,7 +32,7 @@
                     <div>
                         Eamon Nerbonne</div>
                     <div>
-                        Sunna Bjorg Sigurjonsdottir</div>
+                        Sunna Björg Sigurjónsdóttir</div>
                     <div>
                         Edy Suharto</div>
                 </div>
@@ -108,13 +112,17 @@
                                 23/01/2012
                             </td>
                             <td class="centered">
-                                3
+
+                                4
+
                             </td>
                             <td>
                                 <dl>
+
                                     <dt>Assel</dt><dd></dd>
-                                    <dt>Divya</dt><dd> </dd>
-                                    <dt>Edy</dt><dd></dd>
+                                    <dt>Divya</dt><dd></dd>
+
+                                    <dt>Edy</dt><dd>Add architectural diagram, refine views and reference</dd>
                                     <dt>Sunna</dt><dd></dd>
                                     <dt>Eamon</dt><dd></dd>
                                 </dl>
@@ -282,10 +290,6 @@
                                             really fast.</dd>
                                     </dl>
                                 </td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -301,10 +305,6 @@
                                             The system should easily integrate in various environments</dd>
                                     </dl>
                                 </td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -319,10 +319,6 @@
                                         </dd>
                                     </dl>
                                 </td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -333,10 +329,6 @@
                                         <dt>Usability:</dt><dd>
                                             The code should be well documented</dd>
                                     </dl>
-                                </td>
-                                <td>
-                                </td>
-                                <td>
                                 </td>
                             </tr>
                         </tbody>
@@ -352,7 +344,7 @@
                         <dt>Usability:</dt><dd> The basic interface of Mercurial is easy to use, easy to learn and hard
 			    			to break. Mercurial sports a consistent command set and potentially dangerous actions are
 			    			available via extensions which need to be enabled.</dd>
-                        <dt>Scalability/Extensibility:</dt><dd> The functionality of Mercurial can be increased with
+                        <dt>Extensibility:</dt><dd> The functionality of Mercurial can be increased with
 			    			extensions, either by activating the official ones which are shipped with Mercurial or
 			    			downloading some from the wiki or by writing our own.</dd>
                         <dt>Portability:</dt><dd> Mercurial is written with platform independence in mind. Binary
@@ -375,8 +367,7 @@
                 <p>
                     The general overview of Mercurial architecture is depicted below.</p>
                 <div>
-                    <img width="606" height="424" src="images/Mercurial-comp-diag.png"
-                    alt="Mecurial component diagram" style="max-width: 100%; height:auto; " /></div>
+                    <img width="606" height="424" src="images/Mercurial-comp-diag.png"  alt="Mecurial component diagram" style="max-width: 100%; height:auto; " /></div>
                 <section>
                 <!--################################### From Views.html ###############-->
                     <h1>
@@ -386,7 +377,7 @@
                             Logical view</h1>
                         <p>
                             The logical view for the Mercurial describes the functionality of the Mercurial
-                            system to the end-users. Mercurial is a modern distributed version control system(VCS)
+                            system to the end-users. Mercurial is a modern distributed version control system (DVCS)
                             which is written in Python. The main advantage of distributed VCS is that it allows
                             developers to push around and intergrate changes as the project requires at each
                             point of time. The logical view of the Mercurial can be briefly discussed as follows:
@@ -399,7 +390,7 @@
                             into the testing repository. In this repository, the QA tests the modules. Developers
                             may code in this repository (mainly to fix bugs), but they should not add new features
                             to the code. If the test is successful then the user releases it by pushing it into
-                            the stable repository.</p>
+                            the stable repository. [<a href="#aosabook">AOSA Book</a>]</p>
                     </section>
                     <section>
                         <h1><!--Divya-->
@@ -456,7 +447,7 @@
                             Mercurial looks up the appropriate revision of the manifest to find out which files
                             it was tracking at the time that changeset was committed, and which revision of
                             each file was then current. It then recreates a copy of each of those files, with
-                            the same contents it had when the changeset was committed.</p>
+                            the same contents it had when the changeset was committed. [<a href="#mercurial-book-4">Mercurial Book</a>]</p>
                     </section>
                     <section>
                         <h1><!--Edy-->
@@ -480,7 +471,7 @@
                             one, Storage layer contains the basis for version storage, revlog. The fourth one,
                             UI layer provides generic methods for communicating with the user and managing configuration
                             info. The fifth layer, Utility layer includes generic functionality and platform
-                            abstraction.
+                            abstraction. [<a href="#mercurial-arch">Project Architecture</a>]
                         </p>
                     </section>
 
@@ -493,9 +484,8 @@
                             <dt>Proxy</dt><dd>For accessing remote repositories from a local client. <i>Accepted, Sunna</i></dd>
                             <dt>Layers</dt><dd>The levels of abstraction. <i>Rejected, not important enough to be considered architectural</i></dd>
                             <dt>Peer-to-peer</dt><dd>Mercurial itself implements such a system between repositories
-                                - but is this a real architectural pattern or just the way its set up?  <i>Accepted, Divya</i></dd>
-                            <dt>Shared Datastore</dt><dd>aka Shared Repository; renamed to avoid confusion with the term repository to meaning a Mercurial
-                            	SCM repository.
+                                - but is this a real architectural pattern or just the way its set up?  <i>Accepted, Sunna</i></dd>
+                            <dt>Shared Datastore</dt><dd>aka Shared Repository; renamed to avoid confusion with the term repository to meaning a Mercurial SCM repository.
                               The disk revlogs are shared between various other components and could be seen as a shared repository. <i>Accepted, Eamon</i></dd>
                             <dt>Indirection layer</dt><dd>
                                 The revlog storage can be seen as an indirection layer over the filesystem: direct
@@ -504,8 +494,7 @@
                                 Active repository: the mercurial VCS itself can be seen as an active repository
                                 in that it provides hooks that can actively notify others of changes. Is this more
                                 like a feature than a pattern? It's also not major. <i>Accepted, Divya</i></dd>
-                            <dt>Client-Server</dt><dd>A mercurial repository communicates via a client-server protocol when over the network e.g. when pushing
-                            	or pulling. <i>Accepted, Assel</i></dd>
+                            <dt>Client-Server</dt><dd>A mercurial repository communicates via a client-server protocol when over the network e.g. when pushing or pulling. <i>Accepted, Assel</i></dd>
                         </dl>
                     </section>
                 <section>
@@ -537,8 +526,7 @@
                                 Problem Context
                             </td>
                             <td>
-                            <p>The Mercurial has been designed to enhance the communication speed between different components and eliminates dependency on a
-                            	single physical machine.</p>
+                            <p>The Mercurial has been designed to enhance the communication speed between different components and eliminates dependency on a single physical machine.</p>
                             </td>
                         </tr>
                         <tr>
@@ -546,10 +534,9 @@
                                 Solution Variant
                             </td>
                             <td>
-                            <p>The pattern chosen is peer-to-peer as in Mercurial each componenent acts a both client and server. In Mercurial, each component
-                            for example revlogs is a data structure which represents all the versions of a file.It is independent of other components like the
-                            dirstate which is also a data structure used to represent what is in the working directory. In these cases, each componenent is
-                            treated as a peer and the tasks are equally distributed and have equal responsibilities.</p>
+                            <p>The pattern chosen is peer-to-peer as in Mercurial each componenent acts a both client and server. In Mercurial, each component for example revlogs
+								is a data structure which represents all the versions of a file.It is independent of other components like the dirstate which is also a data structure used to represent
+								what is in the working directory. In these cases, each componenent is treated as a peer and the tasks are equally distributed and have equal responsibilities.</p>
                             </td>
                         </tr>
                         <tr>
@@ -587,9 +574,11 @@
                         <h1>
                             Shared Datastore</h1>
                         <p>
+
                            <img height="200" src="images/image01.png" width="571" alt="Mecurial repository storage format" /></p>
-                        <p>The Shared Datastore pattern is usually called <i>Shared Repository</i>: to avoid confusion with the term &ldquo;repository&rdquo;
-                        which is used differently in the context of Mercurial the pattern is renamed here.</p>
+                        <p>The Shared Datastore pattern is usually called <i>Shared Repository</i>: to avoid confusion with the term &ldquo;repository&rdquo; which is used
+                         differently in the context of Mercurial the pattern is renamed here.</p>
+
                         <table class="bookstyleborders"><thead>
                             <tr>
                                 <th>
@@ -613,12 +602,12 @@
                                     Problem Context
                                 </td>
                                 <td>
-                                    <p>Mercurial needs to store versioned data efficiently and robustly.  Versioned data includes not just user-data (e.g. source
-                                    code), but also metadata (e.g. commit messages), and the repository tree structure.</p>
+                                    <p>Mercurial needs to store versioned data efficiently and robustly.  Versioned data includes not just user-data (e.g. source code),
+                                        but also metadata (e.g. commit messages), and the repository tree structure.</p>
                                     <p>All data stored in mercurial must be stored efficiently, i.e. with low space and time overhead.  Taking into account the
                                      performance charactistics of hard drives and the typical data storage patterns to optimize access while avoiding data
-                                     corruption in the event of a crash or software bug is complex.  In particular, SCM systems generally add new data but rarely
-                                     (if ever) change existing data; stale data is read less frequently than the newest version; disk seeks are slow yet
+                                     corruption in the event of a crash or software bug is complex.  In particular, SCM systems generally add new data but rarely (if ever)
+                                     change existing data; stale data is read less frequently than the newest version; disk seeks are slow yet
                                      repositories may contain very many revisions with very many files so that the complexity of retrieving
                                      historical data should not depend on the size of the repository.</p>
                                  </td>
@@ -628,13 +617,12 @@
                                     Solution Variant
                                 </td>
                                 <td>
-                                    Mercurial stores most of its data in <i>revlogs</i>.  Each mercurial repository has many such revlogs; most persistant data
-                                    (whether mercurial-internal or user data) is stored and managed centrally in these datastructures.  Each revlog consists of an
-                                    append-only data file and an index file with fixed-size entries (to enable O(1) seeking) storing where a particular version is
-                                    to be found in the data file.  There are three classes of revlogs. Firstly, user data is store in a per-file revlog.  Secondly,
-                                    a directory listing with revision numbers of each file forming a particular version of the directory tree is stored in a manifest
-                                    revlog.  Finally, changeset metadata such as commit messages and the corresponding manifest revision number is stored in a changeset
-                                    revlog.
+                                    Mercurial stores most of its data in <i>revlogs</i>.  Each mercurial repository has many such revlogs; most persistant data (whether
+                                    mercurial-internal or user data) is stored and managed centrally in these datastructures.  Each revlog consists of an append-only data file
+                                    and an index file with fixed-size entries (to enable O(1) seeking) storing where a particular version is to be found in the data file.  There are three
+                                    classes of revlogs. Firstly, user data is store in a per-file revlog.  Secondly, a directory listing with revision numbers of each file forming a
+                                    particular version of the directory tree is stored in a manifest revlog.  Finally, changeset metadata such as commit messages and the corresponding manifest
+                                    revision number is stored in a changeset revlog.
                                 </td>
                             </tr>
                             <tr>
@@ -700,10 +688,11 @@
                                 Solution Variant
                             </td>
                             <td>
-                               The CLIENT-SERVER pattern consists of  two kinds of components: clients and servers. Both of them implement collective tasks: transaction
-                               and system management. The CLIENT-SERVER pattern builds complex system architectures by introducing multiple client-server relationships:
-                               a server can act itself as a client to other servers. The Client tier responsibles for the presentation of data, controlling users’
-                               interface; It can be multiple users browsers. Whole data stores into backend tier Backend tier stores the data .
+                               The CLIENT-SERVER pattern consists of  two kinds of components: clients and servers. Both of them implement collective tasks: transaction and system management.
+								The CLIENT-SERVER pattern builds complex system architectures by introducing
+								multiple client-server relationships: a server can act itself as a client to other servers. The
+								Client tier responsibles for the presentation of data, controlling users’ interface; It can be multiple users browsers. Whole data stores into backend tier
+								Backend tier stores the data .
 
                             </td>
                         </tr>
@@ -728,78 +717,148 @@
                                 Related patterns
                             </td>
                             <td>
-                                Broker
+                                Remote Proxy pattern
                             </td>
                         </tr>
                         </tbody>
                 </table>
                     </section>
                     <section>
+
+
                     <h1>
 					     Proxy pattern</h1>
-					<table class="bookstyleborders">
-						<tbody>
-							<tr>
-								<th>
-					       	         Pattern Section
-					       	     </th>
-					       	     <th>
-					       	         Comments
-					       	     </th>
-					       	</tr>
-					       	<tr>
-					       		<td>
-					                 Name
-					            </td>
-					            <td>
-					                 Proxy pattern	(http://mercurial.selenic.com/wiki/WhatGoesWhere)
-					       	    </td>
-					       	</tr>
-					        <tr>
-					            <td>
-					                 Problem Context
-					            </td>
-					            <td>
+					                 <table class="bookstyleborders">
+					                    <tbody>
+					                        <tr>
+					                            <th>
+					                                Pattern Section
+					                            </th>
+					                            <th>
+					                                Comments
+					                            </th>
+					                        </tr>
+					                        <tr>
+					                            <td>
+					                                Name
+					                            </td>
+					                            <td>
+					                 Remote Proxy pattern	
+					                            </td>
+					                        </tr>
+					                        <tr>
+					                            <td>
+					                 Context
+					                            </td>
+					                            <td>
+					            Client applications should be able to make remote invocations in a transparent manner.
 					        	</td>
 					        </tr>
 					        <tr>
-					        	<td>
-					                 Solution Variant
-					            </td>
-					            <td>
-					                	Mercurial uses proxy objects for remote repositories.
+                    <td>
+					                Problem 	
+					       	    </td>
+					       	    <td>
+					       	    In a mercurial developers have no direct access to the database. Unrestricted and direct access to the database could be inefficient. So there is needed representative control  mechanism, which would solve following forces:
+					       	    <ul>
+                        <li>It should be easy to user to access database;</li>
+                        <li>Accessing the component should be run-time-efficient and cost-effective.</li>
+                      </ul>
+					       	    </td>
+                    </tr>
+					          <tr>
+					                            <td>
+					                                Solution Variant
+					                            </td>
+					                            <td>
+					                The stated problem can be solved using a variant of the Remote Proxy pattern. A remote proxy provides a local representative for an object that resides in a different address space.
 
-					            </td>
-					        </tr>
-					        <tr>
-					            <td>
-					                 Rationale
-					            </td>
-					            <td>
+The client communicates  via representative called proxy, which offers copy of original database
 
-					            </td>
-					        </tr>
-					        <tr>
-					        	<td>
-					                 Consequences
-					            </td>
-					            <td>
+					                            </td>
+					                        </tr>
+					                        <tr>
+					                            <td>
+					                                Rationale
+					                            </td>
+					                            <td>
 
-					            </td>
-					        </tr>
-					        <tr>
-					            <td>
-					                 Related patterns
-					            </td>
-					            <td>
+					                            </td>
+					                        </tr>
+					                        <tr>
+					                            <td>
+					                                Consequences
+					                            </td>
+					                            <td>
+                                     Since the developer can call on proxy objects directly, usability improves.
+					                            </td>
+					                        </tr>
+					                        <tr>
+					                            <td>
+					                                Related patterns
+					                            </td>
+					                            <td>
+                                     Client-server, peer-to-peer
+					                            </td>
+					                        </tr>
+					                    </tbody>
+					                </table>
 
-					            </td>
-					        </tr>
-					   	</tbody>
-					</table>
-				</section>
+                    </section>
+                    <section>
+                      <h1>Interceptor pattern</h1>
+                      <table class="bookstyleborders">
+                      <tr>
+                        <th>Pattern Section</th>
+                        <th>Comments</th>
+                      </tr>
+                      <tr>
+                        <td>Name</td>
+                        <td>Interceptor</td>
+                      </tr>
+                      <tr>
+                        <td>Problem</td>
+                        <td><p>The Mercurial has been designed as a continuous integration system that builds and tests software automatically and regularly</p></td>
+                      </tr>
+                      <tr>
+                        <td>Solution</td>
+                        <td>
+                          <p>The pattern chosen is interceptor for Mercurial. Interceptor defines the signatures of the hook methods. Hook is a code which handles intercepted function calls,
+                            messages and events. They provide a way for version control systems like Mercurial to interact with the outside world. In Mercurial, users can invoke Python hooks by
+                            specifying a Python module and a function name to call from that module.The Mercurial framework facilitates the registration of interceptors through dispatchers.</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Rationale</td>
+                        <td>
+                          <p> The advantages of choosing interceptor pattern is they are associated with a particular set of events. Concrete interceptors specialize interceptor interfaces
+                            and implement the hook methods of Mercurial to handle events in an application-specific manner. In Mercurial, we have four types of hooks, pre-command, post-command,
+                            controlling and miscellaneous. Pre-command and post-command hooks can be trivially defined for any command by specifying a pre-command or post-command key. The controlling and 
+                            miscellaneous hooks have predefined set of events.</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Consequences</td>
+                        <td>
+                          <p>This pattern includes strict seperation of framework and interceptors allows independent variation and evolution of service extensions in Mercurial  </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Related patterns</td>
+                        <td>
+                          <p>Interceptor proxy (Delegator) pattern is a variant of interceptor pattern. This pattern is used on the server-side of a distributed system to intercept 
+                            remote operations.</p>
+                        </td>
+                      </tr>
+                      </table> 
+                    </section>
+                <section>
+                    <h1>
+                        Decomposition, component responsibilities &amp; interfaces</h1>
+                </section>
             </section>
-            <!--------- Evaluation and recommendations chapter --------------------->
+            </section>
+                        <!--####################### Evaluation and recommendations chapter ###################-->
             <section id="section-evaluation">
                 <h1>
                     Evaluation &amp; recommendations <span class="rightbox">(35%)</span></h1>
@@ -817,16 +876,16 @@
 						</tr>
 						<tr>
 							<td>Peer-to-peer</td>
+							<td>+</td>
 							<td></td>
 							<td></td>
-							<td></td>
-							<td></td>
+							<td>+</td>
 							<td></td>
 						</tr>
 						<tr>
 							<td>Shared Datastore</td>
-							<td></td>
-							<td></td>
+							<td>+</td>
+							<td>+</td>
 							<td></td>
 							<td></td>
 							<td></td>
@@ -841,7 +900,7 @@
 						</tr>
 						<tr>
 							<td>Proxy</td>
-							<td></td>
+							<td>+</td>
 							<td></td>
 							<td></td>
 							<td></td>
@@ -881,18 +940,17 @@
                         <a href="http://mercurial.selenic.com/wiki/">The Mercurial Wiki</a></li>
                     <li>Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad.Pattern-Oriented
                         Software Architecture Volume 1: A System of Patterns. 1996.</li>
-                    <li id="mercurial-book-4">Bryan O'Sullivan. <a href="http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004">
-                        Mercurial: The Definitive Guide.</a> 2009</li>
-                    <li id="aosabook">Amy Brown and Greg Wilson.<a href="http://www.aosabook.org/">
-                        The Architecture of Open Source Applications.</a> 2011</li>
+                    <li id="mercurial-book-4">Bryan O'Sullivan. Mercurial: The Definitive Guide. 2009. <a href="http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004">http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004
+                        </a></li>
+                    <li id="aosabook">Amy Brown and Greg Wilson. The Architecture of Open Source Applications. 2011. <a href="http://www.aosabook.org/">http://www.aosabook.org/</a> </li>
                     <li><a href="http://en.wikipedia.org/">Wikipedia</a></li>
-                    <li id="mercurial-arch"><a href="http://mercurial.selenic.com/wiki/WhatGoesWhere">Mercurial Project Architecture</a>
+                    <li id="mercurial-arch">Mercurial Project Architecture. <a href="http://mercurial.selenic.com/wiki/WhatGoesWhere"> http://mercurial.selenic.com/wiki/WhatGoesWhere</a>
                     </li>
                 </ul>
             </aside>
         </article>
     </div>
-</body>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript" src="generateTOC.js"></script>
+</body>
 </html>

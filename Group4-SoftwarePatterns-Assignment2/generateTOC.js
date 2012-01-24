@@ -1,4 +1,4 @@
-
+//by Eamon Nerbonne
 function getSectionScope(jqElement) {
     return jqElement.parents().filter("html, article, section").first();
 }
