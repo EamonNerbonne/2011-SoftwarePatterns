@@ -1,0 +1,50 @@
+Chapter 1:
+- Add to intro: that we are also doing recommendations in chapter 5.
+
+Chapter 2:
+- Add a diagram to system architecture (similar to what we had in assignment 1).
+- If we only have one section in chapter one, remove the subsection number.
+- Were we talk about the OSS community, add in information about the developer (Matt) and
+information about the community (briefly).
+
+Chapter 3:
+Stakeholders:
+- Add in description about the project leader.
+Key drivers:
+- Add comments about the key drivers not having a priority (could be useful for us in the evaluation
+if we need trade-off reasons for choosing one keydriver over another).
+
+Chapter 4:
+Layers:
+- Add a reference to the diagram.
+- Should we maby define it as relaxed layer pattern?
+- Explain what the layers are and where they come from.
+- Do they have an actual layer pattern, where maybe only 2 or 3 are actual layers? Explain.
+- If it is implemented like the diagram, we could suggest they change the layers in recommendations.
+Views:
+- Logical: add diagram.
+- Process: add sequence diagram for the major processes. Maybe the hooks should be in this view as
+processes (if managers)?
+- Explain what the hooks are (they are only listed by names).
+- Development: Diagram with packages, classes and libraries.
+- Physical: Add that it's only used for informative purposes, not used to decompose the system.
+- Candidate patterns: Add a sentence that we followed IDAPO process and that this is step # in the process.
+Patterns:
+- Add sources and diagrams to all.
+- Solution: how it was implemented in Mercurial.
+- Rational: why it was chosen, focus on Key drivers.
+- Consequenses: any QA's ... P2P: performance, reliability, scalability: easy to add extensions.
+- Consequenses: every pier runs the same software
+- Related: only mention those patterns used in Mercurial
+- Check that all templates are the same for the patterns.
+- Proxy solution: Looks generic / not how it actually is in Mercurial. Example: used for different instances in Mercurial.
+
+Chapter 5:
+Evaluation: 
+- give rationale about how it is actually in Mercurial.
+Recommendations:
+- Suggest new pattern/or different variant of existing if maybe one Key driver is not addressed in the existing ones.
+- If many + and - in one pattern, suggest how that can be fixed (new or different variant of pattern).
+- If one subsystem does not have a pattern, suggest a pattern.
+- New features, example MVC for a language module ... if so explain how it would fit into reengineering the system
+and the design of the architecture.
