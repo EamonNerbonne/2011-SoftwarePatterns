@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title><link rel="stylesheet" type="text/css"
@@ -677,9 +677,9 @@
                                 Problem Context
                             </td>
                             <td>
-                               Two independent from each other components need to communicate with each other, even running in different
-                               computers (Mercurial is distributed system). One of the components initiate communication by sending request
-                               to other components. It must cope with multiple process at the same time. Also components which are using
+                               Two components who are independent from each other need to communicate with each other and even run on different
+                               computers (Mercurial is a distributed system). One of the components initiates communication by sending a request
+                               to other components. It must cope with multiple processes at the same time. Also, components which are using
                                same service at one time should deal differently with results.
                             </td>
                         </tr>
@@ -688,11 +688,12 @@
                                 Solution Variant
                             </td>
                             <td>
-                               The CLIENT-SERVER pattern consists of  two kinds of components: clients and servers. Both of them implement collective tasks: transaction and system management.
+                            	The CLIENT-SERVER pattern consists of two kinds of components: clients and servers.
+                            	Both of them implement collective tasks: transaction and system management.
 								The CLIENT-SERVER pattern builds complex system architectures by introducing
-								multiple client-server relationships: a server can act itself as a client to other servers. The
-								Client tier responsibles for the presentation of data, controlling users’ interface; It can be multiple users browsers. Whole data stores into backend tier
-								Backend tier stores the data .
+								multiple client-server relationships:( a server can act itself as a client to other servers.
+								The Client tier responsibles for the presentation of data, controlling users’ interface; It can be multiple users browsers.
+								Whole data stores into backend tier Backend tier stores the data .)
 
                             </td>
                         </tr>
@@ -701,7 +702,8 @@
                                 Rationale
                             </td>
                             <td>
-                               reusability
+                            	Due to the fact the Mercurial is truly distributive and uses Peer-to-peer pattern, it is necessary to have a Client Server pattern.
+                            	Portability is supported since the Client constitues of ... working :)
                             </td>
                         </tr>
                         <tr>
@@ -709,7 +711,7 @@
                                 Consequences
                             </td>
                             <td>
-                                Since multiple clients can do same process at the same time reusability improves
+                                Since multiple clients can do same process at the same time reusability improves.
                             </td>
                         </tr>
                         <tr>
@@ -743,7 +745,7 @@
 					                                Name
 					                            </td>
 					                            <td>
-					                 Remote Proxy pattern	
+					                 Remote Proxy pattern
 					                            </td>
 					                        </tr>
 					                        <tr>
@@ -756,7 +758,7 @@
 					        </tr>
 					        <tr>
                     <td>
-					                Problem 	
+					                Problem
 					       	    </td>
 					       	    <td>
 					       	    In a mercurial developers have no direct access to the database. Unrestricted and direct access to the database could be inefficient. So there is needed representative control  mechanism, which would solve following forces:
@@ -833,7 +835,7 @@ The client communicates  via representative called proxy, which offers copy of o
                         <td>
                           <p> The advantages of choosing interceptor pattern is they are associated with a particular set of events. Concrete interceptors specialize interceptor interfaces
                             and implement the hook methods of Mercurial to handle events in an application-specific manner. In Mercurial, we have four types of hooks, pre-command, post-command,
-                            controlling and miscellaneous. Pre-command and post-command hooks can be trivially defined for any command by specifying a pre-command or post-command key. The controlling and 
+                            controlling and miscellaneous. Pre-command and post-command hooks can be trivially defined for any command by specifying a pre-command or post-command key. The controlling and
                             miscellaneous hooks have predefined set of events.</p>
                         </td>
                       </tr>
@@ -846,11 +848,11 @@ The client communicates  via representative called proxy, which offers copy of o
                       <tr>
                         <td>Related patterns</td>
                         <td>
-                          <p>Interceptor proxy (Delegator) pattern is a variant of interceptor pattern. This pattern is used on the server-side of a distributed system to intercept 
+                          <p>Interceptor proxy (Delegator) pattern is a variant of interceptor pattern. This pattern is used on the server-side of a distributed system to intercept
                             remote operations.</p>
                         </td>
                       </tr>
-                      </table> 
+                      </table>
                     </section>
                 <!--<section>
                     <h1>
@@ -877,31 +879,31 @@ The client communicates  via representative called proxy, which offers copy of o
 						</tr>
 						<tr>
 							<td>Peer-to-peer</td>
-							<td>+</td>
+							<td align="center" bgcolor="#00FF66">+</td>
 							<td></td>
 							<td></td>
-							<td>+</td>
-							<td></td>
+							<td align="center" bgcolor="#00FF66">+</td>
+							<td align="center" bgcolor="#00FF66">+</td>
 						</tr>
 						<tr>
 							<td>Shared Datastore</td>
-							<td>+</td>
-							<td>+</td>
+							<td align="center" bgcolor="#00FF66">+</td>
+							<td align="center" bgcolor="#00FF66">+</td>
 							<td></td>
 							<td></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td>Client server</td>
+							<td align="center" bgcolor="#FF0000">-</td>
 							<td></td>
-							<td></td>
-							<td></td>
+							<td align="center" bgcolor="#00FF66">+</td>
 							<td></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td>Proxy</td>
-							<td>+</td>
+							<td align="center" bgcolor="#00FF66">+</td>
 							<td></td>
 							<td></td>
 							<td></td>
@@ -915,16 +917,28 @@ The client communicates  via representative called proxy, which offers copy of o
 							<td></td>
 							<td></td>
 						</tr>
+						<tr>
+							<td>Relaxed Layers</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
 					</tbody>
 				</table>
 				<p>
                     Rationale of evaluation:</p>
 				<dl>
 	                <dt>Peer-to-peer</dt><dd></dd>
-	                <dt>Shared Datastore</dt><dd></dd>
-	                <dt>Client-Server</dt><dd></dd>
+	                <dt>Shared Datastore</dt><dd><p></p></dd>
+	                <dt>Client-Server</dt>
+	                	<dd></br>Portability is the key driver which is addressed by this pattern.
+	                		</br>Usability gets a minus due to the fact that if you you are using Mercurial on a large project, there
+	                		can be a great hasle to set up and configure you own repository.</dd>
 	                <dt>Proxy</dt><dd></dd>
 	                <dt>Active repository</dt><dd></dd>
+	                <dt>Relaxed Layers</dt><dd></dd>
                 </dl>
                 <p>
                     Emphasize on recommendations on how to improve the system.</p>
