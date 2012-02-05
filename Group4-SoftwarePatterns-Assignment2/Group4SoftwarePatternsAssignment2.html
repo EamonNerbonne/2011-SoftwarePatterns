@@ -667,6 +667,9 @@
                     <section>
                         <h1>
                             Client server</h1>
+                        <div>
+							<img width="606" height="424" src="images/ClientServer.jpg"  alt="Mecurial Client Server diagram" style="max-width: 100%; height:auto; " />
+						</div>
                 <table class="bookstyleborders">
                     <tbody>
                         <tr>
@@ -682,7 +685,7 @@
                                 Name
                             </td>
                             <td>
-                                Client server
+                                Client-Server
                             </td>
                         </tr>
                         <tr>
@@ -701,13 +704,9 @@
                                 Solution Variant
                             </td>
                             <td>
-                            	The CLIENT-SERVER pattern consists of two kinds of components: clients and servers.
-                            	Both of them implement collective tasks: transaction and system management.
-								The CLIENT-SERVER pattern builds complex system architectures by introducing
-								multiple client-server relationships:( a server can act itself as a client to other servers.
-								The Client tier responsibles for the presentation of data, controlling users’ interface; It can be multiple users browsers.
-								Whole data stores into backend tier Backend tier stores the data .)
-
+                            	The Client-Server pattern consists of two kinds of components: clients and servers. In Mercurial the Client consists
+                            	of http component, ssh component or local disk component, depending on how the user decides to set up the repository.
+                            	The Server is a webserver called Hgweb in Mercurial.
                             </td>
                         </tr>
                         <tr>
@@ -715,8 +714,9 @@
                                 Rationale
                             </td>
                             <td>
-                            	Due to the fact the Mercurial is truly distributive and uses Peer-to-peer pattern, it is necessary to have a Client Server pattern.
-                            	Portability is supported since the Client constitues of ... working :)
+                            	Due to the fact the Mercurial is truly distributive and uses Peer-to-peer pattern (see above), it is necessary to have
+                            	a Client Server pattern. Portability is the Key driver supported by this pattern since the Client allows for several
+                            	different communication protocols which can be implemented on most major plattforms.
                             </td>
                         </tr>
                         <tr>
@@ -724,6 +724,8 @@
                                 Consequences
                             </td>
                             <td>
+                            	Usability is affected in a negative way since setting up repositories can be difficult, depending on the approach
+                            	chosen (http://mercurial.selenic.com/wiki/PublishingRepositories).
                                 Since multiple clients can do same process at the same time reusability improves.
                             </td>
                         </tr>
@@ -946,9 +948,11 @@ The client communicates  via representative called proxy, which offers copy of o
 	                <dt>Peer-to-peer</dt><dd></dd>
 	                <dt>Shared Datastore</dt><dd><p></p></dd>
 	                <dt>Client-Server</dt>
-	                	<dd></br>Portability is the key driver which is addressed by this pattern.
-	                		</br>Usability gets a minus due to the fact that if you you are using Mercurial on a large project, there
-	                		can be a great hasle to set up and configure you own repository.</dd>
+	                	<dd></br>Portability is the key driver which is addressed by this pattern. Allowing for several different communication protocols
+	                		to repositories and between computers, as well as supporting those for all major OS's.
+	                		</br>Usability gets a minus due to the fact that it
+	                		can be a great hasle to set up and configure you own repository (http://mercurial.selenic.com/wiki/PublishingRepositories) if
+	                		you choose to do so.</dd>
 	                <dt>Proxy</dt><dd></dd>
 	                <dt>Active repository</dt><dd></dd>
 	                <dt>Relaxed Layers</dt><dd></dd>
