@@ -697,99 +697,120 @@
             <!--####################### Evaluation and recommendations chapter ###################-->
             <section id="section-evaluation">
                 <h1>Evaluation &amp; recommendations <span class="rightbox"></span> </h1>
-                <p>We followed PBAR to evaluate the key drivers based on the patterns detected. If a key driver has
-                	a positive impact on the pattern, it gets a plus with green back-ground, if a key driver has a
-                	negative impact on the pattern, it gets a minus with a red back-ground and finally if the impact
-                	is neutral (no impact) then it is left blank with a white back-ground.</p>
-                <table class="simpleborders">
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td>Usability </td>
-                            <td>Extensibility </td>
-                            <td>Portability </td>
-                            <td>Performance </td>
-                            <td>Reliability </td>
-                        </tr>
-                        <tr>
-                            <td>Peer-to-peer </td>
-                            <td class="positive-impact-cell">+ </td>
-                            <td></td>
-                            <td></td>
-                            <td class="positive-impact-cell">+ </td>
-                            <td class="positive-impact-cell">+ </td>
-                        </tr>
-                        <tr>
-                            <td>Shared Datastore </td>
-                            <td></td>
-                            <td class="positive-impact-cell">+ </td>
-                            <td class="positive-impact-cell">+ </td>
-                            <td class="positive-impact-cell">+ </td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Client server </td>
-                            <td class="negative-impact-cell">- </td>
-                            <td></td>
-                            <td class="positive-impact-cell">+ </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Proxy </td>
-                            <td class="negative-impact-cell">- </td>
-                            <td class="positive-impact-cell">+ </td>
-                            <td></td>
-                            <td class="positive-impact-cell">+ </td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Interceptor </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Relaxed Layers </td>
-                            <td></td>
-                            <td class="positive-impact-cell">+ </td>
-                            <td class="positive-impact-cell">+ </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>Rationale of evaluation: </p>
-                <dl><dt>Peer-to-peer</dt> <dd>
-                    <p>Usability and performance are improved since local changes do not have to be pushed onto a central server and therefore network
-                        problems do not affect your work. </p>
-                    <p>Reliablity is improved because every user has a local copy of the whole repository on his local machine. </p>
-                </dd>
-                    <dt>Shared Datastore</dt> <dd>
-                        <p>The revlog-based shared datastore patterns improves performance by allowing O(1) seek access regardless of the number of
-                            revisions stored. Furthermore, the name-mangling approach to revlog storage improves performance in the face of file system
-                            defragmentation. Also, the mangling ensures revlog names do not depend on platform-sensitive characters, enhancing portability.
-                            Finally, by hiding complex changeset storage implementation details behind a simple, clean API, extensibility is improved
-                            by allowing extension developers to modify the system behavior without being confronted with the complex internals.
-                        </p>
-                    </dd>
-                    <dt>Client-Server</dt> <dd>
-                        <p>Portability is the key driver which is addressed by this pattern. Allowing for several different communication protocols
-                            to repositories and between computers, as well as supporting those for all major OS's. </p>
-                        <p>Usability gets a minus due to the fact that it can be difficult to set up and configure you own repository [<a href="#merc_repositories">Mercurial: Publishing Repositories</a>]
-                            if you choose to do so. </p>
-                    </dd>
-                    <dt>Proxy</dt> <dd>
-                        <p>Usability decrease, since the developer cannot call on proxy objects directly.</p>
-                        <p>We have huge objects it can be very memory consuming to move to those large objects in a network or some other domain. So
-                            rather than moving those large objects we just move the proxy which leads to better performance. </p>
-                    </dd>
-                    <dt>Interceptor</dt> <dd></dd>
-                    <dt>Relaxed Layers</dt> <dd></dd>
-                </dl>
-                <p>Emphasize on recommendations on how to improve the system. </p>
+                <p>------- NEED A FEW WORDS ABOUT THE PBAR PROCESS - EVALUATION AND RECOMMENDATIONS </p>
+                <section>
+					<h1>Evaluation</h1>
+					<p>We followed PBAR to evaluate the key drivers based on the patterns detected. If a key driver has
+						a positive impact on the pattern, it gets a plus with green back-ground, if a key driver has a
+						negative impact on the pattern, it gets a minus with a red back-ground and finally if the impact
+						is neutral (no impact) then it is left blank with a white back-ground.</br>The rationale for the
+						evaluation is depicted below.</p></br>
+					<table class="simpleborders">
+						<tbody>
+							<tr>
+								<td></td>
+								<td>Usability </td>
+								<td>Extensibility </td>
+								<td>Portability </td>
+								<td>Performance </td>
+								<td>Reliability </td>
+							</tr>
+							<tr>
+								<td>Peer-to-peer </td>
+								<td class="positive-impact-cell">+ </td>
+								<td></td>
+								<td></td>
+								<td class="positive-impact-cell">+ </td>
+								<td class="positive-impact-cell">+ </td>
+							</tr>
+							<tr>
+								<td>Shared Datastore </td>
+								<td></td>
+								<td class="positive-impact-cell">+ </td>
+								<td class="positive-impact-cell">+ </td>
+								<td class="positive-impact-cell">+ </td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Client server </td>
+								<td class="negative-impact-cell">- </td>
+								<td></td>
+								<td class="positive-impact-cell">+ </td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Proxy </td>
+								<td class="negative-impact-cell">- </td>
+								<td class="positive-impact-cell">+ </td>
+								<td></td>
+								<td class="positive-impact-cell">+ </td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Interceptor </td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Relaxed Layers </td>
+								<td></td>
+								<td class="positive-impact-cell">+ </td>
+								<td class="positive-impact-cell">+ </td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+					</br>
+					<dl><dt>Peer-to-peer</dt> <dd>
+						<p>Usability and performance are improved since local changes do not have to be pushed onto a central server and therefore network
+							problems do not affect your work. </p>
+						<p>Reliablity is improved because every user has a local copy of the whole repository on his local machine. </p>
+					</dd>
+						<dt>Shared Datastore</dt> <dd>
+							<p>The revlog-based shared datastore patterns improves performance by allowing O(1) seek access regardless of the number of
+								revisions stored. Furthermore, the name-mangling approach to revlog storage improves performance in the face of file system
+								defragmentation. Also, the mangling ensures revlog names do not depend on platform-sensitive characters, enhancing portability.
+								Finally, by hiding complex changeset storage implementation details behind a simple, clean API, extensibility is improved
+								by allowing extension developers to modify the system behavior without being confronted with the complex internals.
+							</p>
+						</dd>
+						<dt>Client-Server</dt> <dd>
+							<p>Portability is the key driver which is addressed by this pattern. Allowing for several different communication protocols
+								to repositories and between computers, as well as supporting those for all major OS's. </p>
+							<p>Usability gets a minus due to the fact that it can be difficult to set up and configure you own repository [<a href="#merc_repositories">Mercurial: Publishing Repositories</a>]
+								if you choose to do so. </p>
+						</dd>
+						<dt>Proxy</dt> <dd>
+							<p>Usability decrease, since the developer cannot call on proxy objects directly.</p>
+							<p>We have huge objects it can be very memory consuming to move to those large objects in a network or some other domain. So
+								rather than moving those large objects we just move the proxy which leads to better performance. </p>
+						</dd>
+						<dt>Interceptor</dt> <dd></dd>
+						<dt>Relaxed Layers</dt> <dd></dd>
+                	</dl>
+                </section>
+                <section>
+					<h1>Recommendations</h1>
+                		<p>Emphasize on recommendations on how to improve the system. </p>
+                		<section>
+							<h1>New features: recommended patterns</h1>
+								<p>Add languages to the UI ... what pattern to use (MVC?) ...how would that affect the existing architecture</p>
+						</section>
+						<section>
+							<h1>Improve existing patterns</h1>
+								<p>Are there any patterns that could be implemented better ...how would that affect the existing architecture</p>
+						</section>
+						<section>
+							<h1>Important key drivers (QA's) not addressed by existing patterns or many + and - in one pattern</h1>
+								<p>Find QA's that are important to this type of system and are not addressed by the patterns we found
+									... what pattern to use / maybe different variant of existing pattern ...how would that affect the existing architecture</p>
+						</section>
+                </section>
             </section>
             <aside class="bibliography">
                 <h1>References </h1>
