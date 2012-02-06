@@ -1,47 +1,46 @@
-
-
 <html>
 <body>
-<h2>Relaxed Layer Pattern</h2>
 
-<table border="1">
+<section>
+<h1>Interceptor pattern</h1>
+<table class="bookstyleborders">
 <tr>
 <th>Pattern Section</th>
 <th>Comments</th>
 </tr>
 <tr>
 <td>Name</td>
-<td>Relaxed Layer</td>
+<td>Relaxed Layers</td>
 </tr>
 <tr>
 <td>Problem</td>
 <td>
-<p>The Mercurial has to be designed with separation of concern, capability to extend, and independency of any major platform </p>
+<p>The Mercurial has to be designed with separation of concerns, capability to extend, and platform independence.</p>
 </td>
 </tr>
 <td>Solution</td>
 <td>
-<p>The pattern chosen as solution is Relaxed layer. The separation of concern and extensibility are resolved by dividing Mercurial system into several modules and grouping them into some layers based on their level of abstraction. </p>
+<p>The pattern chosen as solution is Relaxed Layers. The capability to extend is resolved by dividing the system into components, so the developers can extend only a particular component. The separation of concerns is resolved by grouping components into layers based on their level of abstraction. This also enables to develop components for specific platforms. </p>
 </td>
 </tr>
 <td>Rationale</td>
 <td>
-<p> The advantage of choosing relaxed layer pattern is the separation of components into layers but still maintaining the flexibility among components of different layers, e.g. between top layer with bottom layer, to interact directly. The layers also enables developer or patch/extent developer to extend Mercurial features separately without interfering other components/layers. The separation of modules allows the system to be developed in different platforms. </p>
+<p> The advantage of relaxed layers pattern is the separation of components into layers but still maintaining the flexibility among components of different layer, e.g. between topmost layer with the bottom layer, to interact directly without any intermediate layer. This also enables developers to add patch in order to extend Mercurial features without interfering other components. Developer can also extend component for a specific platform.</p>
 </td>
 </tr>
 <td>Consequences</td>
 <td>
-<p>This pattern allows layers to interact without passing through any intermediate layer. This could make problem when a reference component in bottom layer changed, the developer must examine not only its upper layer but also any layers above which interact directly to it</p>
+<p> Since this pattern allows component to interact accross layers, the relations may become complicated. When a referenced component in bottom layer changes, the developer must ensure that all components not only in upper layer but also in every layers which refer to it work normally.  </p>
 </td>
 </tr>
 <td>Related patterns</td>
 <td>
-<p>Interceptor pattern relates to relaxed layer in regards to the need to integrate the patch into Mercurial using hook mechanism.</p>
+<p>Interceptor pattern. It relates to Relaxed Layers pattern in regards to integrate patch into the system using hook mechanism.</p>
 </td>
 </tr>
-
-
 </table> 
+</section>
+
 </body>
 </html>
 
