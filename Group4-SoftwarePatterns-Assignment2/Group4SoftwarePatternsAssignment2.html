@@ -787,7 +787,7 @@
 					                            </td>
 					                            <td>
 					                <p>The stated problem can be solved using a variant of the Remote Proxy pattern. A remote proxy provides a local representative for an object that resides in a different address space.
-                                    The client communicates  via representative called proxy, which offers copy of original database(instead of the standard Proxy pattern).</p>
+                                     (instead of the standard Proxy pattern).</p>
 
 					                            </td>
 					                        </tr>
@@ -796,7 +796,9 @@
 					                                Solution
 					                            </td>
 					                            <td><p>
-                                                 To avod the problem in Mercurial users can pull changes directly from each other, without going through the central repository.
+                                                 To avod the problem in Mercurial users can pull changes directly from each other, without going through the central repository. The client communicates  via representative called proxy, which offers copy of original database.
+                                                 The proxy allows client to hold data until user is ready to commit, and can limit the amount of times that the communication is called.
+                                                 
                                                  </p>
 					                            </td>
 					                        </tr>
@@ -817,7 +819,8 @@
 					                                Consequences
 					                            </td>
 					                            <td>
-                                                 
+                                                 <p>We have huge objects it can be very memory consuming to move to those large objects in a network or some other domain. So rather than moving those large objects we just move the proxy which leads to better performance.</p>
+					                             <p>Remote Proxy create </p>
 					                            </td>
 					                        </tr>
 					                        <tr>
@@ -1002,7 +1005,10 @@
 	                		</br>Usability gets a minus due to the fact that it
 	                		can be a great hasle to set up and configure you own repository (http://mercurial.selenic.com/wiki/PublishingRepositories) if
 	                		you choose to do so.</dd>
-	                <dt>Proxy</dt><dd></dd>
+	                <dt>Proxy</dt>
+	                     <dd></br>  Usability decrease, since the developer cannot call on proxy objects directly.
+	                     </br> We have huge objects it can be very memory consuming to move to those large objects in a network or some other domain. So rather than moving those large objects we just move the proxy which leads to better performance.
+	                     </dd>
 	                <dt>Active repository</dt><dd></dd>
 	                <dt>Relaxed Layers</dt><dd></dd>
                 </dl>
