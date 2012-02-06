@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title><link rel="stylesheet" type="text/css"
@@ -398,28 +398,13 @@
                         <h1><!--Divya-->
                             Development view</h1>
                         <p>
-                            The development view for the Mercurail deals mainly with the software development
-                            and management. We can also find few bits in C because they are critical to the
-                            performance of the system. A Python module correspoonds to a single file of code.
-                            Modules are the basic organizers for the source code. Mercurial contains a package
-                            known as _init_.py which exposes all modules and packages to the Python importer.
-                            It also has two default packages called the 'mercurial' and 'hgext'. The 'mercurial'package
-                            contains the core code required to run Mercurial whereas 'hgext' contains a lrage
-                            number of extensions. Mercurial can be basically categorized as a Command-line application.
-                            One of the powerful features of Mercurial is the ability to write the extensions.
-                            It is quite simple and easy to extend Mercurial beacuse of Python. other feature
-                            of Mercurial is 'Hooks'which provide a way to the VCS events to interact with the
-                            outside world. There are two variants of hooks one is the traditional hook which
-                            invokes scripts in the shell. The other one is the Python hook which invokes Python
-                            module and a function name to call from that module. In Mercurial, hooks are divided
-                            into four types:
+                            The development view for the Mercurial deals mainly with the software development and management. The files in
+							working directory of Mercurial are .hgignore(local editable), .hgtags(utf-8 editable), .hgsigs(ascii)[gpg], .hg/.
+							The files in the repository directory are 00changelog.i, requires(ascii), branch(utf-8), dirstate, hgrc(local editable) etc.
+							The classes in Mercurial should be derived from 'object'. Class names should be in lower-case(but exception classes are CamelCased)
+                            All the libraries used in Mercurial are found at MERCURIAL_HOME\library.zip files.
                         </p>
-                        <ol>
-                            <li>pre-command</li>
-                            <li>post-command</li>
-                            <li>controlling</li>
-                            <li>miscellaneous</li>
-                        </ol>
+
                     </section>
                     <section>
                         <h1><!--Edy-->
@@ -877,7 +862,7 @@ and implement the hook methods of Mercurial to handle events in an application-s
 </tr>
 <td>Related patterns</td>
 <td>
-<p>Interceptor proxy (Delegator) pattern is a variant of interceptor pattern. This pattern is used on the server-side of a distributed system to intercept 
+<p>Interceptor proxy (Delegator) pattern is a variant of interceptor pattern. This pattern is used on the server-side of a distributed system to intercept
 remote operations.</p>
 </td>
 </tr>
