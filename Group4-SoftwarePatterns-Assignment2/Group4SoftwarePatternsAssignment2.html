@@ -373,10 +373,10 @@
                                 <tr>
                                     <td>Solution Variant </td>
                                     <td>
-                                        <p>In Mercurial each peer can act as both client and server, depending on the setup chosen. In Mercurial, each data structure,
-                                            for example revlogs which represents all the versions of a file, is independent of other components, like the dirstate which
-                                            used to represent what is in the working directory. In these cases, each component is treated as a peer and the tasks are
-                                            equally distributed and have equal responsibilities. </p>
+                                        <p>In Mercurial each peer can act as both client and server, depending on the setup chosen. In Mercurial there is no
+                                        	need for a central repository. Each client clones (makes a full copy) the whole repository he is working on from another client, and is
+                                        	able to pull from that client and push to other clients at any time. While working, you only make changes to your local
+                                        	repository until you push the changes out.</p>
                                     </td>
                                 </tr>
                                 <tr>
