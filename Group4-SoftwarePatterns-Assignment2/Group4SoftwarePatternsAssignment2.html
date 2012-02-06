@@ -135,7 +135,7 @@
                                 <dl>
                                     <dt>Assel</dt><dd>Proxy pattern</dd>
                                     <dt>Divya</dt><dd></dd>
-                                    <dt>Edy</dt><dd></dd>
+                                    <dt>Edy</dt><dd>Refine architectural diagram</dd>
                                     <dt>Sunna</dt><dd>Chapter 5, Client-Server & Peer-to-peer patterns</dd>
                                     <dt>Eamon</dt><dd></dd>
                                 </dl>
@@ -799,7 +799,7 @@
 					                            </td>
 					                            <td>
 					                <p>The stated problem can be solved using a variant of the Remote Proxy pattern. A remote proxy provides a local representative for an object that resides in a different address space.
-                                    The client communicates  via representative called proxy, which offers copy of original database(instead of the standard Proxy pattern).</p>
+                                     (instead of the standard Proxy pattern).</p>
 
 					                            </td>
 					                        </tr>
@@ -808,7 +808,9 @@
 					                                Solution
 					                            </td>
 					                            <td><p>
-                                                 To avod the problem in Mercurial users can pull changes directly from each other, without going through the central repository.
+                                                 To avod the problem in Mercurial users can pull changes directly from each other, without going through the central repository. The client communicates  via representative called proxy, which offers copy of original database.
+                                                 The proxy allows client to hold data until user is ready to commit, and can limit the amount of times that the communication is called.
+                                                 
                                                  </p>
 					                            </td>
 					                        </tr>
@@ -829,7 +831,8 @@
 					                                Consequences
 					                            </td>
 					                            <td>
-
+                                                 <p>We have huge objects it can be very memory consuming to move to those large objects in a network or some other domain. So rather than moving those large objects we just move the proxy which leads to better performance.</p>
+					                             <p>Remote Proxy create </p>
 					                            </td>
 					                        </tr>
 					                        <tr>
@@ -889,6 +892,45 @@
                             remote operations.</p>
                         </td>
                       </tr>
+                      </table>
+                    </section>
+                    <section>
+                      <h1>Relaxed Layer pattern</h1>
+                      <table class="bookstyleborders">
+		      <tr>
+			<th>Pattern Section</th>
+			<th>Comments</th>
+		      </tr>
+		      <tr>
+			<td>Name</td>
+			<td>Relaxed Layer</td>
+		      </tr>
+		      <tr>
+			<td>Problem</td>
+			<td>
+			<p>The Mercurial has to be designed with separation of concern, capability to extend, and independency of any major platform </p>
+			</td>
+		      </tr>
+			<td>Solution</td>
+			<td>
+			<p>The pattern chosen as solution is Relaxed layer. The separation of concern and extensibility are resolved by dividing Mercurial system into several modules and grouping them into some layers based on their level of abstraction. </p>
+			</td>
+		      </tr>
+			<td>Rationale</td>
+			<td>
+			<p> The advantage of choosing relaxed layer pattern is the separation of components into layers but still maintaining the flexibility among components of different layers, e.g. between top layer with bottom layer, to interact directly. The layers also enables developer or patch/extent developer to extend Mercurial features separately without interfering other components/layers. The separation of modules allows the system to be developed in different platforms. </p>
+			</td>
+		      </tr>
+			<td>Consequences</td>
+			<td>
+			<p>This pattern allows layers to interact without passing through any intermediate layer. This could make problem when a reference component in bottom layer changed, the developer must examine not only its upper layer but also any layers above which interact directly to it</p>
+			</td>
+		      </tr>
+			<td>Related patterns</td>
+			<td>
+			<p>Interceptor pattern relates to relaxed layer in regards to the need to integrate the patch into Mercurial using hook mechanism.</p>
+			</td>
+		      </tr>
                       </table>
                     </section>
                 <!--<section>
@@ -957,8 +999,8 @@
 						<tr>
 							<td>Relaxed Layers</td>
 							<td></td>
-							<td></td>
-							<td></td>
+							<td align="center" bgcolor="#00FF66">+</td>
+							<td align="center" bgcolor="#00FF66">+</td>
 							<td></td>
 							<td></td>
 						</tr>
@@ -979,7 +1021,10 @@
 	                		</br>Usability gets a minus due to the fact that it can be difficult to set up and configure you own repository
 	                		(http://mercurial.selenic.com/wiki/PublishingRepositories) if you choose to do so.
 	                	</dd>
-	                <dt>Proxy</dt><dd></dd>
+	                <dt>Proxy</dt>
+	                     <dd></br>  Usability decrease, since the developer cannot call on proxy objects directly.
+	                     </br> We have huge objects it can be very memory consuming to move to those large objects in a network or some other domain. So rather than moving those large objects we just move the proxy which leads to better performance.
+	                     </dd>
 	                <dt>Active repository</dt><dd></dd>
 	                <dt>Relaxed Layers</dt><dd></dd>
                 </dl>
