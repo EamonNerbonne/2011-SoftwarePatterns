@@ -797,8 +797,10 @@
 					                            </td>
 					                            <td><p>
                                                  To avod the problem in Mercurial users can pull changes directly from each other, without going through the central repository. The client communicates  via representative called proxy, which offers copy of original database.
-                                                 The proxy allows client to hold data until user is ready to commit, and can limit the amount of times that the communication is called.
-                                                 
+                                                 The proxy allows client to hold data until user is ready to commit.
+                                                 The proxy receives the request from client and pre-processes it. This pre-processing involves actions such as looking up the address of the original, or checking a local cache to see if the requested information is already available.
+                                                 Proxy consults the original to fulfill the request, it forwards the request to the original using the proper communication protocols and security measures. The original accepts the request and fulfills it. It sends the
+                                                 response back to the proxy. The proxy receives the response. Before transferring it to the client it obtains post-processing actions.
                                                  </p>
 					                            </td>
 					                        </tr>
@@ -820,7 +822,7 @@
 					                            </td>
 					                            <td>
                                                  <p>We have huge objects it can be very memory consuming to move to those large objects in a network or some other domain. So rather than moving those large objects we just move the proxy which leads to better performance.</p>
-					                             <p>Remote Proxy create </p>
+					                             <p> </p>
 					                            </td>
 					                        </tr>
 					                        <tr>
