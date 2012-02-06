@@ -116,7 +116,7 @@
                             </td>
                             <td>
                                 <dl>
-                                    <dt>Assel</dt><dd></dd>
+                                    <dt>Assel</dt><dd>Client-Server pattern</dd>
                                     <dt>Divya</dt><dd></dd>
                                     <dt>Edy</dt><dd>Add architectural diagram, refine views and reference</dd>
                                     <dt>Sunna</dt><dd>Chapter 5, Proxy pattern</dd>
@@ -133,7 +133,7 @@
                             </td>
                             <td>
                                 <dl>
-                                    <dt>Assel</dt><dd></dd>
+                                    <dt>Assel</dt><dd>Proxy pattern</dd>
                                     <dt>Divya</dt><dd></dd>
                                     <dt>Edy</dt><dd></dd>
                                     <dt>Sunna</dt><dd>Chapter 5, Client-Server pattern</dd>
@@ -767,31 +767,37 @@
 					                            <td>
 					                 Context
 					                            </td>
-					                            <td>
-					            Client applications should be able to make remote invocations in a transparent manner.
+					                            <td><p>
+					            Client applications should be able to make remote invocations in a transparent manner.</p>
 					        	</td>
 					        </tr>
 					        <tr>
-                    <td>
+                                <td>
 					                Problem
 					       	    </td>
-					       	    <td>
-					       	    In a mercurial developers have no direct access to the database. Unrestricted and direct access to the database could be inefficient. So there is needed representative control  mechanism, which would solve following forces:
-					       	    <ul>
-                        <li>It should be easy to user to access database;</li>
-                        <li>Accessing the component should be run-time-efficient and cost-effective.</li>
-                      </ul>
+					       	    <td><p>
+					       	    In a Mercurial users start by cloning a copy of the repository. They can pull changes from it whenever they need to, and other developers can push changs simultaneously. 
+					       	    But it might subsequently break everyone else's trees. 
+					       	    </p>
 					       	    </td>
-                    </tr>
-					          <tr>
+                            </tr>
+					        <tr>
 					                            <td>
-					                                Solution Variant
+					                                 Variant
 					                            </td>
 					                            <td>
-					                The stated problem can be solved using a variant of the Remote Proxy pattern. A remote proxy provides a local representative for an object that resides in a different address space.
+					                <p>The stated problem can be solved using a variant of the Remote Proxy pattern. A remote proxy provides a local representative for an object that resides in a different address space.
+                                    The client communicates  via representative called proxy, which offers copy of original database(instead of the standard Proxy pattern).</p>
 
-The client communicates  via representative called proxy, which offers copy of original database
-
+					                            </td>
+					                        </tr>
+					                         <tr>
+					                            <td>
+					                                Solution
+					                            </td>
+					                            <td><p>
+                                                 To avod the problem in Mercurial users can pull changes directly from each other, without going through the central repository.
+                                                 </p>
 					                            </td>
 					                        </tr>
 					                        <tr>
@@ -799,7 +805,11 @@ The client communicates  via representative called proxy, which offers copy of o
 					                                Rationale
 					                            </td>
 					                            <td>
-
+                                                   <li><p>By putting all location information and addressing functionality into a Remote Proxy, users are not affected by migration of servers or 
+                                                   changes in the networking infrastructure. This allows client code to become more stable and reusable.</p></li>
+                                                     <li><p>Usability decrease, since the developer cannot call on proxy objects directly. </p></li>
+                                                  
+					                            
 					                            </td>
 					                        </tr>
 					                        <tr>
@@ -807,7 +817,7 @@ The client communicates  via representative called proxy, which offers copy of o
 					                                Consequences
 					                            </td>
 					                            <td>
-                                     Since the developer can call on proxy objects directly, usability improves.
+                                                 
 					                            </td>
 					                        </tr>
 					                        <tr>
@@ -815,7 +825,7 @@ The client communicates  via representative called proxy, which offers copy of o
 					                                Related patterns
 					                            </td>
 					                            <td>
-                                     Client-server, peer-to-peer
+                                                   Client-server
 					                            </td>
 					                        </tr>
 					                    </tbody>
@@ -918,10 +928,10 @@ The client communicates  via representative called proxy, which offers copy of o
 						</tr>
 						<tr>
 							<td>Proxy</td>
+							<td align="center" bgcolor="#FF0000">-</td>
 							<td align="center" bgcolor="#00FF66">+</td>
 							<td></td>
-							<td></td>
-							<td></td>
+							<td align="center" bgcolor="#00FF66">+</td>
 							<td></td>
 						</tr>
 						<tr>
@@ -977,6 +987,8 @@ The client communicates  via representative called proxy, which offers copy of o
                     <li id="aosabook">Amy Brown and Greg Wilson. The Architecture of Open Source Applications. 2011. <a href="http://www.aosabook.org/">http://www.aosabook.org/</a> </li>
                     <li><a href="http://en.wikipedia.org/">Wikipedia</a></li>
                     <li id="mercurial-arch">Mercurial Project Architecture. <a href="http://mercurial.selenic.com/wiki/WhatGoesWhere"> http://mercurial.selenic.com/wiki/WhatGoesWhere</a>
+                    </li>
+                    <li id="mercurial-arch">Mercurial: The Definitive Guide by Bryan O'Sullivan <a href="http://http://hgbook.red-bean.com/read/collaborating-with-other-people.html"> http://http://hgbook.red-bean.com/read/collaborating-with-other-people.html</a>
                     </li>
                 </ul>
             </aside>
