@@ -136,7 +136,7 @@
                                     <dt>Assel</dt><dd>Proxy pattern</dd>
                                     <dt>Divya</dt><dd></dd>
                                     <dt>Edy</dt><dd></dd>
-                                    <dt>Sunna</dt><dd>Chapter 5, Client-Server pattern</dd>
+                                    <dt>Sunna</dt><dd>Chapter 5, Client-Server & Peer-to-peer patterns</dd>
                                     <dt>Eamon</dt><dd></dd>
                                 </dl>
                             </td>
@@ -516,6 +516,9 @@
                     <section>
                         <h1>
                             Peer-to-peer</h1>
+                        <div>
+							<img width="606" height="424" src="images/Peer-to-peer.jpg"  alt="Mecurial Peer-to-peer diagram" style="max-width: 100%; height:auto; " />
+						</div>
                  <table class="bookstyleborders">
                     <tbody>
                         <tr>
@@ -539,7 +542,8 @@
                                 Problem Context
                             </td>
                             <td>
-                            <p>The Mercurial has been designed to enhance the communication speed between different components and eliminates dependency on a single physical machine.</p>
+                            	<p>Mercurial is designed to enhance the communication speed between different components and eliminates
+                            	dependency on a single physical machine, hence it is truly distributed.</p>
                             </td>
                         </tr>
                         <tr>
@@ -547,9 +551,11 @@
                                 Solution Variant
                             </td>
                             <td>
-                            <p>The pattern chosen is peer-to-peer as in Mercurial each componenent acts a both client and server. In Mercurial, each component for example revlogs
-								is a data structure which represents all the versions of a file.It is independent of other components like the dirstate which is also a data structure used to represent
-								what is in the working directory. In these cases, each componenent is treated as a peer and the tasks are equally distributed and have equal responsibilities.</p>
+                            	<p>In Mercurial each peer can act as both client and server, depending on the setup chosen. In Mercurial,
+                            	each data structure, for example revlogs which represents all the versions of a file, is independent of
+                            	other components, like the dirstate which used to represent what is in the working directory. In these
+                            	cases, each component is treated as a peer and the tasks are equally distributed and have equal
+                            	responsibilities.</p>
                             </td>
                         </tr>
                         <tr>
@@ -557,18 +563,24 @@
                                 Rationale
                             </td>
                             <td>
-                            <p> The advantages of choosing peer-to-peer pattern is it enhances scalability and performance which satisfies our quality attributes.</p>
-                            </td>
+                            	<p>The peer-to-peer pattern allows for excellent reliability, since Mercurial is truly distributive and
+                            	each user stores the whole repository on their local machine and users are not limited by network problems.
+                            	Performance and usability is improved since local commits can be done without pushing remotely to a server.
+								(http://petevidler.com/2010/03/bite-sized-mercurial-intro/)
+								(http://betterexplained.com/articles/intro-to-distributed-version-control-illustrated/)
+								(http://hgbook.red-bean.com/read/how-did-we-get-here.html)</p>
+							</td>
                         </tr>
                         <tr>
                             <td>
                                 Consequences
                             </td>
                             <td>
-                            <p>This pattern eliminates the problem of SOP (Single Point of Failure).
+                            	<p>This pattern eliminates the problem of SOP (Single Point of Failure).
 								As each componenent acts as a peer, time of request and time of response is reduced.
-								This inturn will increase the communication speed and also increases work productivity.</p>
-
+								This inturn will increase the communication speed and also increases work productivity.
+								Peer-to-peer also increases scalability, since it does not limit the amount of users sharing
+								one project.</p>
                             </td>
                         </tr>
                         <tr>
@@ -576,7 +588,7 @@
                                 Related patterns
                             </td>
                             <td>
-                              <p>Explicit Invocation pattern</p>
+                              <p></p>
                             </td>
                         </tr>
                     </tbody>
@@ -776,8 +788,8 @@
 					                Problem
 					       	    </td>
 					       	    <td><p>
-					       	    In a Mercurial users start by cloning a copy of the repository. They can pull changes from it whenever they need to, and other developers can push changs simultaneously. 
-					       	    But it might subsequently break everyone else's trees. 
+					       	    In a Mercurial users start by cloning a copy of the repository. They can pull changes from it whenever they need to, and other developers can push changs simultaneously.
+					       	    But it might subsequently break everyone else's trees.
 					       	    </p>
 					       	    </td>
                             </tr>
@@ -809,11 +821,11 @@
 					                                Rationale
 					                            </td>
 					                            <td>
-                                                   <li><p>By putting all location information and addressing functionality into a Remote Proxy, users are not affected by migration of servers or 
+                                                   <li><p>By putting all location information and addressing functionality into a Remote Proxy, users are not affected by migration of servers or
                                                    changes in the networking infrastructure. This allows client code to become more stable and reusable.</p></li>
                                                      <li><p>Usability decrease, since the developer cannot call on proxy objects directly. </p></li>
-                                                  
-					                            
+
+
 					                            </td>
 					                        </tr>
 					                        <tr>
