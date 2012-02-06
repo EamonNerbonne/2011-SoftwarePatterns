@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
@@ -92,7 +92,7 @@
                                 <dl><dt>Assel</dt> <dd>Proxy pattern</dd>
                                     <dt>Divya</dt> <dd></dd>
                                     <dt>Edy</dt> <dd>Refine architectural diagram</dd>
-                                    <dt>Sunna</dt> <dd>Chapter 5, Client-Server & Peer-to-peer patterns</dd>
+                                    <dt>Sunna</dt> <dd>Chapter 5, Client-Server & Peer-to-peer patterns, diagrams: CS, P2P, system overview</dd>
                                     <dt>Eamon</dt> <dd></dd>
                                 </dl>
                             </td>
@@ -123,13 +123,18 @@
             </section>
             <section id="section-context">
                 <!-- Chapter 2 - System context -->
-                <h1>System context <span class="rightbox">(5%)</span> </h1>
+                <h1>System context <span class="rightbox"></span> </h1>
                 <p>Mercurial<sup> <a href="#merc_links" id="merc_links_ref">[a]</a> </sup>is a distributed revision control system. It aims
                     to help developers manage changes (revisions) made to projects. Managing multiple versions of even a single document by
                     hand is an error-prone, time-consuming task. Mercurial allows a team of developers to manage large numbers of documents
                     with many versions. Although mercurial can maintain a version history for arbitrary files and directories, it is designed
                     in particular to deal well with large numbers of complex text documents such as source code. There are several ways in which
                     mercurial helps address the problems arising from collaborating on such code. </p>
+                        <div>
+                            <img width="606" height="424" src="images/SystemOverview.png" alt="System overview diagram" style="max-width: 100%;
+                                height: auto;" />
+                            <b>Figure: </b>System overview, <a href="#system_overview_diagram_links" id="system_overview_diagram_links_ref">(Introduction to Bite-Sized Mercurial)</a>
+                        </div>
                 <section>
                     <h1>Mercurial’s functionality </h1>
                     <p>Firstly, Mercurial maintains a log: an annotated history of changes. In addition to keeping track of the documents themselves,
@@ -162,7 +167,7 @@
             </section>
             <section id="section-stakeholders">
                 <!-- Chapter 3 - Stakeholders and concerns -->
-                <h1>Stakeholders and concerns <span class="rightbox">(10%)</span> </h1>
+                <h1>Stakeholders and concerns <span class="rightbox"></span> </h1>
                 <section>
                     <h1>Stakeholders and concerns</h1>
                     <p>Stakeholders and their concerns are have been identified by reading the documentation and analyzing the functionality of
@@ -227,8 +232,8 @@
                 </section>
                 <section>
                     <h1>Key drivers</h1>
-                    <p>The key drivers are identified from Mercurial documentation. These key drivers are talked about extensively in several Mercurial
-                        sources. http://mercurial.selenic.com/about/ </p>
+                    <p>The key drivers are identified from Mercurial documentation<sup> <a href="#key_drivers">[*]</a> </sup>. These key drivers are talked about extensively in several Mercurial
+                        sources. </p>
                     <dl><dt>Usability:</dt> <dd>The basic interface of Mercurial is easy to use, easy to learn and hard to break. Mercurial sports
                         a consistent command set and potentially dangerous actions are available via extensions which need to be enabled. </dd>
                         <dt>Extensibility:</dt> <dd>The functionality of Mercurial can be increased with extensions, either by activating the official
@@ -244,9 +249,8 @@
             </section>
             <section id="section-architecture">
                 <!-- Chapter 4 Architecture -->
-                <h1>Architecture <span class="rightbox">(30%)</span> </h1>
-                <p>Show the individual patterns, their variants and how they integrate in the entire architecture; show at most 2 views.
-                </p>
+                <h1>Architecture <span class="rightbox"></span> </h1>
+
                 <p>The general overview of Mercurial architecture is depicted below. </p>
                 <div>
                     <img width="606" height="424" src="images/Mercurial-comp-diag.png" alt="Mecurial component diagram" style="max-width: 100%;
@@ -347,7 +351,7 @@
                     <section>
                         <h1>Peer-to-peer </h1>
                         <div>
-                            <img width="606" height="424" src="images/Peer-to-peer.jpg" alt="Mecurial Peer-to-peer diagram" style="max-width: 100%; height: auto;" />
+                            <img width="606" height="224" src="images/Peer-to-peer.jpg" alt="Mecurial Peer-to-peer diagram" style="max-width: 100%; height: auto;" />
                         </div>
                         <table class="bookstyleborders">
                             <tbody>
@@ -380,8 +384,8 @@
                                     <td>
                                         <p>The peer-to-peer pattern allows for excellent reliability, since Mercurial is truly distributive and each user stores the
                                             whole repository on their local machine and users are not limited by network problems. Performance and usability is improved
-                                            since local commits can be done without pushing remotely to a server. (http://petevidler.com/2010/03/bite-sized-mercurial-intro/)
-                                            (http://betterexplained.com/articles/intro-to-distributed-version-control-illustrated/) (http://hgbook.red-bean.com/read/how-did-we-get-here.html)
+                                            since local commits can be done without pushing remotely to a server. [<a href="#bite_sized_mercurial">Bite sized Mercuial</a>],
+                                            [<a href="#intro_to_DVCS">Intro to distributed version control</a>], [<a href="#merc_links">Mercurial Book</a>]
                                         </p>
                                     </td>
                                 </tr>
@@ -396,7 +400,7 @@
                                 <tr>
                                     <td>Related patterns </td>
                                     <td>
-                                        <p></p>
+                                        <p>Client-Server</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -498,7 +502,7 @@
                                 <tr>
                                     <td>Consequences </td>
                                     <td>Usability is affected in a negative way since setting up repositories can be difficult, depending on the approach chosen
-                                        (http://mercurial.selenic.com/wiki/PublishingRepositories). Since multiple clients can do same process at the same time
+                                        [<a href="#merc_repositories">Mercurial: Publishing Repositories</a>]. Since multiple clients can do same process at the same time
                                         reusability improves. </td>
                                 </tr>
                                 <tr>
@@ -510,6 +514,10 @@
                     </section>
                     <section>
                         <h1>Proxy pattern </h1>
+                        <div>
+                            <img width="606" height="424" src="images/Proxy.jpg" alt="Mecurial Proxy diagram" style="max-width: 100%;
+                                height: auto;" />
+                        </div>
                         <table class="bookstyleborders">
                             <tbody>
                                 <tr>
@@ -580,7 +588,7 @@
                     </section>
                     <section>
                         <h2>Interceptor pattern</h2>
-                        <table border="1">
+                        <table class="bookstyleborders">
                             <tr>
                                 <th>Pattern Section </th>
                                 <th>Comments </th>
@@ -688,8 +696,11 @@
             </section>
             <!--####################### Evaluation and recommendations chapter ###################-->
             <section id="section-evaluation">
-                <h1>Evaluation &amp; recommendations <span class="rightbox">(35%)</span> </h1>
-                <p>Follow PBAR to evaluate the quality attributes based on the patterns. </p>
+                <h1>Evaluation &amp; recommendations <span class="rightbox"></span> </h1>
+                <p>We followed PBAR to evaluate the key drivers based on the patterns detected. If a key driver has
+                	a positive impact on the pattern, it gets a plus with green back-ground, if a key driver has a
+                	negative impact on the pattern, it gets a minus with a red back-ground and finally if the impact
+                	is neutral (no impact) then it is left blank with a white back-ground.</p>
                 <table class="simpleborders">
                     <tbody>
                         <tr>
@@ -767,7 +778,7 @@
                     <dt>Client-Server</dt> <dd>
                         <p>Portability is the key driver which is addressed by this pattern. Allowing for several different communication protocols
                             to repositories and between computers, as well as supporting those for all major OS's. </p>
-                        <p>Usability gets a minus due to the fact that it can be difficult to set up and configure you own repository (http://mercurial.selenic.com/wiki/PublishingRepositories)
+                        <p>Usability gets a minus due to the fact that it can be difficult to set up and configure you own repository [<a href="#merc_repositories">Mercurial: Publishing Repositories</a>]
                             if you choose to do so. </p>
                     </dd>
                     <dt>Proxy</dt> <dd>
@@ -784,8 +795,8 @@
                 <h1>References </h1>
                 <ul>
                     <li id="bib-mercurial">Mackall et al. <a href="http://mercurial.selenic.com/">Mercurial SCM </a>2011. </li>
-                    <li id="merc_links"><a href="http://hgbook.red-bean.com/read/how-did-we-get-here.html">Mercurial book, motivation </a>, <a
-                        href="http://hginit.com/">HgInit</a>—a mercurial tutorial, <a href="http://mercurial.selenic.com/guide/">The Mercurial User's
+                    <li id="merc_links"><a href="http://hgbook.red-bean.com/read/how-did-we-get-here.html">Mercurial book, motivation </a>,
+                    <a href="http://hginit.com/">HgInit</a>—a mercurial tutorial, <a href="http://mercurial.selenic.com/guide/">The Mercurial User's
                             Guide</a>, <a href="http://mercurial.selenic.com/wiki/">The Mercurial Wiki</a> </li>
                     <li>Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad.Pattern-Oriented Software Architecture Volume 1: A System
                         of Patterns. 1996. </li>
@@ -802,6 +813,15 @@
                     </li>
                     <li id="mercurial-dev-process"><a href="http://mercurial.selenic.com/wiki/MercurialDevelopmentProcess">Mercurial Wiki: Mercurial
                         Development Process.</a> </li>
+                    <li id="system_overview_diagram_links"><a href="http://petevidler.com/2010/03/bite-sized-mercurial-intro/">Introduction to Bite-Sized Mercurial</a></li>
+                	<li id="key_drivers"><a href="http://mercurial.selenic.com/about/">About mercurial: advantages of using mercurial</a>
+                    </li>
+                    <li id="bite_sized_mercurial"><a href="http://petevidler.com/2010/03/bite-sized-mercurial-intro/">Bite sized Mercurial introduction</a>
+                    </li>
+                    <li id="intro_to_DVCS"><a href="http://betterexplained.com/articles/intro-to-distributed-version-control-illustrated/">Introduction to distributed version control</a>
+                    </li>
+                    <li id="merc_repositories"><a href="http://mercurial.selenic.com/wiki/PublishingRepositories">Mercurial: Publishing Repositories</a>
+                    </li>
                 </ul>
             </aside>
         </article>
