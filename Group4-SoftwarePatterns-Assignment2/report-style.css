@@ -156,6 +156,9 @@ body {
     margin: 0 auto;
 }
 
+.positive-impact-cell { background: #0f6; text-align:center;}
+.negative-impact-cell { background: #f33; text-align:center;}
+
 .bibliography li { -moz-border-radius: 0.7em; padding:0.1em 0.5em;}
 @media screen {
     

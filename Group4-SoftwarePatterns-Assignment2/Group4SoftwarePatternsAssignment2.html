@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title><link rel="stylesheet" type="text/css"
@@ -600,7 +600,7 @@
                             Shared Datastore</h1>
                         <p>
 
-                           <img height="200" src="images/image01.png" width="571" alt="Mecurial repository storage format" /></p>
+                           <img height="200" src="images/image01.png" width="571" alt="Mecurial repository storage format" style="max-width: 100%; height:auto; " /></p>
                         <p>The Shared Datastore pattern is usually called <i>Shared Repository</i>: to avoid confusion with the term &ldquo;repository&rdquo; which is used
                          differently in the context of Mercurial the pattern is renamed here.</p>
 
@@ -655,7 +655,7 @@
                                     Rationale
                                 </td>
                                 <td>
-                                    Performance, Reliability, Durability, Dependability.  <i class=highlight>TODO: see AOSA mercurial section and ???</i></td>
+                                    Performance, Reliability, Durability, Dependability.  <i class="highlight">TODO: see AOSA mercurial section and ???</i></td>
                             </tr>
                             <tr>
                                 <td>
@@ -819,10 +819,11 @@
 					                                Rationale
 					                            </td>
 					                            <td>
+                                                    <ul>
                                                    <li><p>By putting all location information and addressing functionality into a Remote Proxy, users are not affected by migration of servers or
                                                    changes in the networking infrastructure. This allows client code to become more stable and reusable.</p></li>
                                                      <li><p>Usability decrease, since the developer cannot call on proxy objects directly. </p></li>
-
+                                                     </ul>
 
 					                            </td>
 					                        </tr>
@@ -910,22 +911,22 @@
 			<td>
 			<p>The Mercurial has to be designed with separation of concern, capability to extend, and independency of any major platform </p>
 			</td>
-		      </tr>
+		      </tr><tr>
 			<td>Solution</td>
 			<td>
 			<p>The pattern chosen as solution is Relaxed layer. The separation of concern and extensibility are resolved by dividing Mercurial system into several modules and grouping them into some layers based on their level of abstraction. </p>
 			</td>
-		      </tr>
+		      </tr><tr>
 			<td>Rationale</td>
 			<td>
 			<p> The advantage of choosing relaxed layer pattern is the separation of components into layers but still maintaining the flexibility among components of different layers, e.g. between top layer with bottom layer, to interact directly. The layers also enables developer or patch/extent developer to extend Mercurial features separately without interfering other components/layers. The separation of modules allows the system to be developed in different platforms. </p>
 			</td>
-		      </tr>
+		      </tr><tr>
 			<td>Consequences</td>
 			<td>
 			<p>This pattern allows layers to interact without passing through any intermediate layer. This could make problem when a reference component in bottom layer changed, the developer must examine not only its upper layer but also any layers above which interact directly to it</p>
 			</td>
-		      </tr>
+		      </tr><tr>
 			<td>Related patterns</td>
 			<td>
 			<p>Interceptor pattern relates to relaxed layer in regards to the need to integrate the patch into Mercurial using hook mechanism.</p>
@@ -937,7 +938,6 @@
                     <h1>
                         Decomposition, component responsibilities &amp; interfaces</h1>
                 </section>-->
-            </section>
             </section>
             </section>
                         <!--####################### Evaluation and recommendations chapter ###################-->
@@ -958,34 +958,34 @@
 						</tr>
 						<tr>
 							<td>Peer-to-peer</td>
-							<td align="center" bgcolor="#00FF66">+</td>
+							<td class="positive-impact-cell">+</td>
 							<td></td>
 							<td></td>
-							<td align="center" bgcolor="#00FF66">+</td>
-							<td align="center" bgcolor="#00FF66">+</td>
+							<td class="positive-impact-cell">+</td>
+							<td class="positive-impact-cell">+</td>
 						</tr>
 						<tr>
 							<td>Shared Datastore</td>
-							<td align="center" bgcolor="#00FF66">+</td>
-							<td align="center" bgcolor="#00FF66">+</td>
+							<td class="positive-impact-cell">+</td>
+							<td class="positive-impact-cell">+</td>
 							<td></td>
 							<td></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td>Client server</td>
-							<td align="center" bgcolor="#FF0000">-</td>
+							<td class="negative-impact-cell">-</td>
 							<td></td>
-							<td align="center" bgcolor="#00FF66">+</td>
+							<td class="positive-impact-cell">+</td>
 							<td></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td>Proxy</td>
-							<td align="center" bgcolor="#FF0000">-</td>
-							<td align="center" bgcolor="#00FF66">+</td>
+							<td class="negative-impact-cell">-</td>
+							<td class="positive-impact-cell">+</td>
 							<td></td>
-							<td align="center" bgcolor="#00FF66">+</td>
+							<td class="positive-impact-cell">+</td>
 							<td></td>
 						</tr>
 						<tr>
@@ -999,8 +999,8 @@
 						<tr>
 							<td>Relaxed Layers</td>
 							<td></td>
-							<td align="center" bgcolor="#00FF66">+</td>
-							<td align="center" bgcolor="#00FF66">+</td>
+							<td class="positive-impact-cell">+</td>
+							<td class="positive-impact-cell">+</td>
 							<td></td>
 							<td></td>
 						</tr>
@@ -1010,20 +1010,20 @@
                     Rationale of evaluation:</p>
 				<dl>
 	                <dt>Peer-to-peer</dt>
-	                	<dd></br>Usability and performance are improved since local changes do not have to be pushed onto a central server
-	                	and therefore network problems do not affect your work.
-	                	</br>Reliablity is improved because every user has a local copy of the whole repository on his local machine.
+	                	<dd>Usability and performance are improved since local changes do not have to be pushed onto a central server
+	                	and therefore network problems do not affect your work.<br />
+	                	Reliablity is improved because every user has a local copy of the whole repository on his local machine.
 	                	</dd>
 	                <dt>Shared Datastore</dt><dd><p></p></dd>
 	                <dt>Client-Server</dt>
-	                	<dd></br>Portability is the key driver which is addressed by this pattern. Allowing for several different communication protocols
-	                		to repositories and between computers, as well as supporting those for all major OS's.
-	                		</br>Usability gets a minus due to the fact that it can be difficult to set up and configure you own repository
+	                	<dd>Portability is the key driver which is addressed by this pattern. Allowing for several different communication protocols
+	                		to repositories and between computers, as well as supporting those for all major OS's.<br />
+	                		Usability gets a minus due to the fact that it can be difficult to set up and configure you own repository
 	                		(http://mercurial.selenic.com/wiki/PublishingRepositories) if you choose to do so.
 	                	</dd>
 	                <dt>Proxy</dt>
-	                     <dd></br>  Usability decrease, since the developer cannot call on proxy objects directly.
-	                     </br> We have huge objects it can be very memory consuming to move to those large objects in a network or some other domain. So rather than moving those large objects we just move the proxy which leads to better performance.
+	                     <dd>  Usability decrease, since the developer cannot call on proxy objects directly.<br />
+	                      We have huge objects it can be very memory consuming to move to those large objects in a network or some other domain. So rather than moving those large objects we just move the proxy which leads to better performance.
 	                     </dd>
 	                <dt>Interceptor</dt><dd></dd>
 	                <dt>Relaxed Layers</dt><dd></dd>
@@ -1049,7 +1049,7 @@
                     <li><a href="http://en.wikipedia.org/">Wikipedia</a></li>
                     <li id="mercurial-arch">Mercurial Project Architecture. <a href="http://mercurial.selenic.com/wiki/WhatGoesWhere"> http://mercurial.selenic.com/wiki/WhatGoesWhere</a>
                     </li>
-                    <li id="mercurial-arch">Mercurial: The Definitive Guide by Bryan O'Sullivan <a href="http://http://hgbook.red-bean.com/read/collaborating-with-other-people.html"> http://http://hgbook.red-bean.com/read/collaborating-with-other-people.html</a>
+                    <li id="mercurial-guide">Mercurial: The Definitive Guide by Bryan O'Sullivan <a href="http://http://hgbook.red-bean.com/read/collaborating-with-other-people.html"> http://http://hgbook.red-bean.com/read/collaborating-with-other-people.html</a>
                     </li>
                 </ul>
             </aside>
