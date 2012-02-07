@@ -16,6 +16,8 @@ function createSectionToc(arrChildren) {
         var sectionData = jqSection.data();
         var sectionHeading = getSectionHeading(jqSection);
         var sectionNumber = sectionData.fullpath;
+        if (!sectionHeading || !sectionHeading.length)
+            throw "Cannot process section (no section h1):" + jqSection.text();
         var headingString = sectionHeading[0].textContent;
 
         var numEl = document.createElement("td");
