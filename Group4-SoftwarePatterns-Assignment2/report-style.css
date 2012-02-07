@@ -43,6 +43,9 @@ section h1:before { content: attr(data-fullpath) " "; padding-right:1em; }
 section section h1 { font-size: 14pt; }
 section section section h1 { font-size: 12pt; }
 
+figure > img {max-width:100%; height:auto;}
+figure {margin:0.5em 1em;}
+
 .generateTableOfContents td { vertical-align:top; }
 .generateTableOfContents td:first-child { padding-right: 1em; }
 
@@ -159,7 +162,10 @@ body {
 .positive-impact-cell { background: #0f6; text-align:center;}
 .negative-impact-cell { background: #f33; text-align:center;}
 
-.bibliography li { -moz-border-radius: 0.7em; padding:0.1em 0.5em;}
+.bibliography li { -moz-border-radius: 0.7em; padding:0.1em 0.5em 0.1em 3em; text-indent:-2.5em;}
+.bibliography li[data-citationnumber]:before { content: '[' attr(data-citationnumber) '] '; padding-right:0.1em; }
+.bibliography ul { list-style:none; padding:0;margin:0;}
+
 @media screen {
     
   li:target { background: rgba(255,255,0,0.5); box-shadow: 0 0 0.2em rgba(255,255,0,1.0); 

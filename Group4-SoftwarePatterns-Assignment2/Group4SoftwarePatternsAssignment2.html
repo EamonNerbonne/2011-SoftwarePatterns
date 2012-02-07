@@ -103,37 +103,36 @@
             <section id="section-introduction">
                 <!-- Chapter 1 - Introduction -->
                 <h1>Introduction </h1>
-                <p>The document presents the pattern-based recovery and evaluation of the architecture of an open-source system, <a href="#bib-mercurial">
-                    Mercurial</a>. It is a distributed version control system. This document gives an overview of the patterns that represent
+                <p>The document presents the pattern-based recovery and evaluation of the architecture of an open-source system, <a href="#bib-mercurial">[ref]</a>. It is a distributed version control system. This document gives an overview of the patterns that represent
                     the core of the Mercurial system. We use the IDAPO for identifying the architectural patterns in Open source software. We
                     also discuss about the specific variants of the patterns which we chose. Furthermore we need to evaluate the found patterns
                     using Pattern-Based Architectural Review method. the evaluation of the consequences of patterns is based on the system’s
                     quality attributes. </p>
                 <p>The structure of the document is as follows: </p>
-                <p><a href="#section-context" class="ref">Section [2]</a> describes the system context of Mercurial version control system.
-                    <a href="#section-stakeholders" class="ref">Section [3]</a> deals with identifying the stakeholders and their concerns as
+                <p><a href="#section-context">[ref]</a> describes the system context of Mercurial version control system.
+                    <a href="#section-stakeholders">[ref]</a> deals with identifying the stakeholders and their concerns as
                     well as the key drivers which should drive the development of the system. </p>
-                <p><a href="#section-architecture" class="ref">Section [4]</a> describes the various architectural views for the system and
+                <p><a href="#section-architecture">[ref]</a> describes the various architectural views for the system and
                     also the architectural patterns identified for the Mercurial system using IDAPO. It also discusses how the various patterns
                     are related with each other and the impact of each pattern on the system architecture and also discusses about the variants
                     used. It also includes the decomposition of the patterns, responsibilities of each component in the patterns and also about
                     the interfaces. </p>
-                <p><a href="#section-evaluation" class="ref">Section [5]</a> is mainly focused on the architectural evaluation of the Mercurial
+                <p><a href="#section-evaluation">[ref]</a> is mainly focused on the architectural evaluation of the Mercurial
                     system using PBAR approach. It also shows how each quality attribute identified are addressed. </p>
             </section>
             <section id="section-context">
                 <!-- Chapter 2 - System context -->
                 <h1>System context <span class="rightbox"></span></h1>
-                <p>Mercurial<sup> <a href="#merc_links" id="merc_links_ref">[a]</a> </sup>is a distributed revision control system. It aims
+                <p>Mercurial<sup> <a href="#merc_links" id="merc_links_ref">[ref]</a> </sup>is a distributed revision control system. It aims
                     to help developers manage changes (revisions) made to projects. Managing multiple versions of even a single document by
                     hand is an error-prone, time-consuming task. Mercurial allows a team of developers to manage large numbers of documents
                     with many versions. Although mercurial can maintain a version history for arbitrary files and directories, it is designed
                     in particular to deal well with large numbers of complex text documents such as source code. There are several ways in which
                     mercurial helps address the problems arising from collaborating on such code. </p>
-                <div>
-                    <img width="606" height="424" src="images/SystemOverview.png" alt="System overview diagram" style="max-width: 100%; height: auto;" />
-                    <b>Figure: </b>System overview, <a href="#system_overview_diagram_links" id="system_overview_diagram_links_ref">(Introduction
-                        to Bite-Sized Mercurial)</a> </div>
+                <figure>
+                    <img src="images/SystemOverview.png" alt="System overview diagram" />
+                    <figcaption>
+                    <b>Figure: </b>System overview, <a href="#system_overview_diagram_links" id="system_overview_diagram_links_ref">[ref]</a> </figcaption></figure>
                 <section>
                     <h1>Mercurial’s functionality </h1>
                     <p>Firstly, Mercurial maintains a log: an annotated history of changes. In addition to keeping track of the documents themselves,
@@ -170,12 +169,11 @@
                 <section>
                     <h1>Stakeholders and concerns</h1>
                     <p>Stakeholders and their concerns are have been identified by reading the documentation and analyzing the functionality of
-                        the system. Stakeholders are not specifically defined in Mercurial documentation, but the benefits for end-users are listed<sup>
-                            <a href="#about-mercurial">*</a> </sup>. </p>
+                        the system. Stakeholders are not specifically defined in Mercurial documentation, but the benefits for end-users are listed 
+                            <a href="#about-mercurial">[ref]</a>. </p>
                     <dl><dt>End user</dt> <dd>The end user (software developer) can be a large team of people as well as one person. </dd>
                         <dt>Mercurial project leader</dt> <dd>Matt Mackall is the sole full-time developer working on mercurial and is also the project
-                            leader, serving as a gatekeeper, validating third-party contributions<sup> <a href="#mercurial-dev-process">*</a> </sup>
-                            . </dd>
+                            leader, serving as a gatekeeper, validating third-party contributions <a href="#mercurial-dev-process">[ref]</a>. </dd>
                         <dt>Core mercurial software developers</dt> <dd>Several other software developers regularly contribute to various mercurial
                             components. </dd>
                         <dt>Patch/extension developer</dt> <dd>Mercurial welcomes patches and extensions from any software developer. </dd>
@@ -231,7 +229,7 @@
                 </section>
                 <section>
                     <h1>Key drivers</h1>
-                    <p>The key drivers are identified from Mercurial documentation<sup> <a href="#key_drivers">[*]</a> </sup>. These key drivers
+                    <p>The key drivers are identified from Mercurial documentation<sup> <a href="#key_drivers">[ref]</a> </sup>. These key drivers
                         are talked about extensively in several Mercurial sources. </p>
                     <dl><dt>Usability:</dt> <dd>The basic interface of Mercurial is easy to use, easy to learn and hard to break. Mercurial sports
                         a consistent command set and potentially dangerous actions are available via extensions which need to be enabled. </dd>
@@ -250,10 +248,10 @@
                 <!-- Chapter 4 Architecture -->
                 <h1>Architecture <span class="rightbox"></span></h1>
                 <p>The general overview of Mercurial architecture is depicted below. </p>
-                <div>
-                    <img width="606" height="424" src="images/Mercurial-comp-diag.png" alt="Mecurial component diagram" style="max-width: 100%;
-                        height: auto;" />
-                </div>
+                <figure>
+                    <img src="images/Mercurial-comp-diag.png" alt="Mecurial component diagram"/>
+                    <figcaption></figcaption>
+                </figure>
                 <section>
                     <!--################################### From Views.html ###############-->
                     <h1>Architectural views </h1>
@@ -270,7 +268,7 @@
                             into the files. A build server then tests again each push, because problems may appear (e.g. platform-compatibility, or
                             missing files). When a module is ready, it is pushed into the testing repository. In this repository, the QA tests the modules.
                             Developers may code in this repository (mainly to fix bugs), but they should not add new features to the code. If the test
-                            is successful then the user releases it by pushing it into the stable repository. [<a href="#aosabook">AOSA Book</a>]
+                            is successful then the user releases it by pushing it into the stable repository <a href="#aosabook">[ref]</a>.
                         </p>
                     </section>
                     <section>
@@ -303,7 +301,7 @@
                             of the files from the repository as of a particular changeset. When user updates the working directory to contain a particular
                             changeset, Mercurial looks up the appropriate revision of the manifest to find out which files it was tracking at the time
                             that changeset was committed, and which revision of each file was then current. It then recreates a copy of each of those
-                            files, with the same contents it had when the changeset was committed. [<a href="#mercurial-book-4">Mercurial Book</a>]
+                            files, with the same contents it had when the changeset was committed <a href="#mercurial-book-4">[ref]</a>.
                         </p>
                     </section>
                     <section>
@@ -322,7 +320,7 @@
                             statichttprepository) and the objects from which the repository is constructed (filelog, manifest, changeset, dirstate).
                             The third one, Storage layer contains the basis for version storage, revlog. The fourth one, UI layer provides generic methods
                             for communicating with the user and managing configuration info. The fifth layer, Utility layer includes generic functionality
-                            and platform abstraction. [<a href="#mercurial-arch">Project Architecture</a>] </p>
+                            and platform abstraction <a href="#mercurial-arch">[ref]</a>. </p>
                     </section>
                     <!-- ############################ END From Views.html ########### -->
                 </section>
@@ -348,9 +346,10 @@
                     <h1>Architectural patterns </h1>
                     <section>
                         <h1>Peer-to-peer </h1>
-                        <div>
-                            <img width="606" height="224" src="images/Peer-to-peer.jpg" alt="Mecurial Peer-to-peer diagram" style="max-width: 100%; height: auto;" />
-                        </div>
+                        <figure>
+                            <img src="images/Peer-to-peer.jpg" alt="Mecurial Peer-to-peer diagram"/>
+                            <figcaption></figcaption>
+                        </figure>
                         <table class="bookstyleborders">
                             <tbody>
                                 <tr>
@@ -382,8 +381,8 @@
                                     <td>
                                         <p>The peer-to-peer pattern allows for excellent reliability, since Mercurial is truly distributive and each user stores the
                                             whole repository on their local machine and users are not limited by network problems. Performance and usability is improved
-                                            since local commits can be done without pushing remotely to a server. [<a href="#bite_sized_mercurial">Bite sized Mercuial</a>],
-                                            [<a href="#intro_to_DVCS">Intro to distributed version control</a>], [<a href="#merc_links">Mercurial Book</a>] </p>
+                                            since local commits can be done without pushing remotely to a server (<a href="#bite_sized_mercurial">[ref]</a>,
+                                            <a href="#intro_to_DVCS">[ref]</a>, <a href="#merc_links">[ref]</a>). </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -405,9 +404,10 @@
                     </section>
                     <section>
                         <h1>Shared Datastore </h1>
-                        <p>
+                        <figure>
                             <img height="200" src="images/image01.png" width="571" alt="Mecurial repository storage format" style="max-width: 100%; height: auto;" />
-                        </p>
+                            <figcaption></figcaption>
+                        </figure>
                         <p>The Shared Datastore pattern is usually called <i>Shared Repository</i>: to avoid confusion with the term &ldquo;repository&rdquo;
                             which is used differently in the context of Mercurial the pattern is renamed here. </p>
                         <table class="bookstyleborders">
@@ -463,10 +463,10 @@
                     </section>
                     <section>
                         <h1>Client server </h1>
-                        <div>
-                            <img width="606" height="424" src="images/ClientServer.jpg" alt="Mecurial Client Server diagram" style="max-width: 100%;
-                                height: auto;" />
-                        </div>
+                        <figure>
+                            <img src="images/ClientServer.jpg" alt="Mecurial Client Server diagram" />
+                            <figcaption></figcaption>
+                        </figure>
                         <table class="bookstyleborders">
                             <tbody>
                                 <tr>
@@ -499,7 +499,7 @@
                                 <tr>
                                     <td>Consequences </td>
                                     <td>Usability is affected in a negative way since setting up repositories can be difficult, depending on the approach chosen
-                                        [<a href="#merc_repositories">Mercurial: Publishing Repositories</a>]. Since multiple clients can do same process at the
+                                        <a href="#merc_repositories">[ref]</a>. Since multiple clients can do same process at the
                                         same time reusability improves. </td>
                                 </tr>
                                 <tr>
@@ -511,9 +511,10 @@
                     </section>
                     <section>
                         <h1>Proxy pattern </h1>
-                        <div>
-                            <img width="606" height="424" src="images/Proxy.jpg" alt="Mecurial Proxy diagram" style="max-width: 100%; height: auto;" />
-                        </div>
+                        <figure>
+                            <img src="images/Proxy.jpg" alt="Mecurial Proxy diagram"  />
+                            <figcaption></figcaption>
+                        </figure>
                         <table class="bookstyleborders">
                             <tbody>
                                 <tr>
@@ -776,8 +777,7 @@
                         <dt>Client-Server</dt> <dd>
                             <p>Portability is the key driver which is addressed by this pattern. Allowing for several different communication protocols
                                 to repositories and between computers, as well as supporting those for all major OS's. </p>
-                            <p>Usability gets a minus due to the fact that it can be difficult to set up and configure you own repository [<a href="#merc_repositories">Mercurial:
-                                Publishing Repositories</a>] if you choose to do so. </p>
+                            <p>Usability gets a minus due to the fact that it can be difficult to set up and configure you own repository <a href="#merc_repositories">[ref]</a> if you choose to do so. </p>
                         </dd>
                         <dt>Proxy</dt> <dd>
                             <p>Usability decrease, since the developer cannot call on proxy objects directly.</p>
