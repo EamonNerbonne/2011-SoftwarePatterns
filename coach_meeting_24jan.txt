@@ -1,3 +1,12 @@
+Table of contents:
+- Remove % after each section
+
+Revision history:
+- Eamon + Divya: 4 and 5
+
+Timesheet:
+- all
+
 Chapter 1:
 - Add to intro: that we are also doing recommendations in chapter 5.
 
@@ -9,26 +18,38 @@ information about the community (briefly).
 
 Chapter 3:
 Stakeholders:
-- Add in description about the project leader.
+Project leader: Maintainabiltiy of code and system
+	Distributability - explain
+	Performance
+Developers:
+	Usability - well documented
+	Maintainability - easy to maintain and well documneted
+Patch developer: Adaptability
+	Documentation - well documented
+Adaptability to extensibility
+Match Keydrivers into stakeholders concerns - try to have two instanses of each key driver.
 Key drivers:
 - Add comments about the key drivers not having a priority (could be useful for us in the evaluation
 if we need trade-off reasons for choosing one keydriver over another).
 
 Chapter 4:
-Layers:
+
+Diagrams: http://www.google.nl/search?q=process+view&hl=en&prmd=imvns&tbm=isch&tbo=u&source=univ&sa=X&ei=HfAvT465M8OAhQfZ_M3PCg&ved=0CFAQsAQ&biw=1068&bih=533#hl=en&tbm=isch&sa=1&q=workflow+diagram+mercurial&pbx=1&oq=workflow+diagram+mercurial&aq=f&aqi=&aql=&gs_sm=e&gs_upl=73475l79013l0l79949l28l22l0l1l1l4l109l1340l20.1l21l0&bav=on.2,or.r_gc.r_pw.,cf.osb&fp=af77e95bb5aa65a0&biw=1068&bih=490
+Overview diagram:
 - Add a reference to the diagram.
-- Should we maby define it as relaxed layer pattern?
-- Explain what the layers are and where they come from.
-- Do they have an actual layer pattern, where maybe only 2 or 3 are actual layers? Explain.
+- Explain what the layers are and where they come from. - Link from page and the text from there
 - If it is implemented like the diagram, we could suggest they change the layers in recommendations.
-Views:
+Views:	- Divya and Edy will fix :)
 - Logical: add diagram.
 - Process: add sequence diagram for the major processes. Maybe the hooks should be in this view as
 processes (if managers)?
 - Explain what the hooks are (they are only listed by names).
 - Development: Diagram with packages, classes and libraries.
 - Physical: Add that it's only used for informative purposes, not used to decompose the system.
-- Candidate patterns: Add a sentence that we followed IDAPO process and that this is step # in the process.
+
+
+- Candidate patterns: Add a sentence that we followed IDAPO process and that this is step # in the process. - Eamon
+
 Patterns:
 - Add sources and diagrams to all.
 - Solution: how it was implemented in Mercurial.
