@@ -1,5 +1,6 @@
-Table of contents:
-- Remove % after each section
+Glossary:
+add terms like revlog, O() a.s.o.
+
 
 Revision history:
 - Eamon + Divya: 4 and 5
@@ -54,15 +55,26 @@ Patterns:
 - Add sources and diagrams to all.
 - Solution: how it was implemented in Mercurial.
 - Rational: why it was chosen, focus on Key drivers.
-- Consequenses: any QA's ... P2P: performance, reliability, scalability: easy to add extensions.
+- Consequenses: any QA's.
 - Consequenses: every pier runs the same software
 - Related: only mention those patterns used in Mercurial
 - Check that all templates are the same for the patterns.
 - Proxy solution: Looks generic / not how it actually is in Mercurial. Example: used for different instances in Mercurial.
+- Proxy: add together problem and context, solution and variant
+- Shared datastore: add new diagram
+- Interceptor: fix text -  refrace Rationale (first sentese) - Consequence: make code more maintainable (complicated) and
+affects security.
+- CS: fix solution variant to fit the new diagram
+- Relaxed Layer: fix text in Solution variant and add diagram
 
 Chapter 5:
 Evaluation: 
-- give rationale about how it is actually in Mercurial.
+Shared datastore - performance plus and minus
+Relaxed layers - give rationale about how it is actually in Mercurial.
+Proxy - take out the neg in Usability - take out the text about performance (this way it does not exist) - Keep only 
+Extensibility (with plus)
+P2P - make plus and minus (forget to push/pull)
+
 Recommendations:
 - Suggest new pattern/or different variant of existing if maybe one Key driver is not addressed in the existing ones.
 - If many + and - in one pattern, suggest how that can be fixed (new or different variant of pattern).
