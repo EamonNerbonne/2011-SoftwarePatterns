@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
@@ -250,7 +250,7 @@
                 <p>The general overview of Mercurial architecture is depicted below. </p>
                 <figure>
                     <img src="images/Mercurial-comp-diag.png" alt="Mecurial component diagram"/>
-                    <figcaption align="center">Figure 4.1 Mercurial Architectural Diagram</figcaption>
+                    <figcaption >Figure 4.1 Mercurial Architectural Diagram</figcaption>
                 </figure>
 		<p> Since Mercurial can be seen as peer-to-peer
                     application, each peer has the same structure as the other. Each peer represents a node which contains some layers. In general,
@@ -293,12 +293,12 @@
 			<p> Regarding data model, Mercurial uses a generic structure of historic data, called revlog. There are three types of revlogs: the changelog, manifests, and filelogs. The changelog contains metadata for each revision, with a pointer into the manifest revlog (that is, a node id for one revision in the manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog. In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both concepts <a href="#aosabook">[ref]</a>.
 			<figure>
                     	<img src="images/revlogs.png" alt="Mercurial generic data model, revlog"/>
-                    	<figcaption align="center">Figure 4.2 Mercurial Generic Data Model, Revlog <a href="#aosabook">[ref]</a></figcaption>
+                    	<figcaption >Figure 4.2 Mercurial Generic Data Model, Revlog <a href="#aosabook">[ref]</a></figcaption>
                 	</figure>
 			</p>
 			<p> Mercurial is a command-line application. This means a simple interface, the user calls the hg script with a command. This command (like log, diff or commit) may take a number of options and arguments. There are also some options that are valid for all commands. Next, there are three different things that can happen to the interface: hg will often output something the user asked for or show status messages, hg can ask for further input through command-line prompts, hg may launch an external program (such as an editor for the commit message or a program to help merging code conflicts). The correlations between commands is depicted below.
 			<img src="images/modules.png" alt="Mercurial command correlation" width=600 height=400 />
-                    	<figcaption align="center">Figure 4.3 Mercurial Command Correlation <a href="#aosabook">[ref]</a></figcaption>
+                    	<figcaption >Figure 4.3 Mercurial Command Correlation <a href="#aosabook">[ref]</a></figcaption>
                 	</figure>
 			</p>
                     </section>
@@ -337,7 +337,7 @@
 			<p> According to the process view explained above, Mercurial process view is depicted in sequence diagram below.
 			<figure>
                     	<img src="images/Mercurial-seq-diag.png" alt="Mercurial sequence diagram" />
-                    	<figcaption align="center">Figure 4.4 Mercurial Sequence Diagram for Modify and Commit</figcaption>
+                    	<figcaption >Figure 4.4 Mercurial Sequence Diagram for Modify and Commit</figcaption>
                 	</figure>
 			</p>
                     </section>
