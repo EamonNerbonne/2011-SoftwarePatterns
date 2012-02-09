@@ -678,14 +678,14 @@ and implement the hook methods of Mercurial to handle events in an application-s
                                 <td>Relaxed Layer </td>
                             </tr>
                             <tr>
-                                <td>Problem </td>
+                                <td>Problem Context</td>
                                 <td>
-                                    <p>The Mercurial has to be designed with separation of concern, capability to extend, and independency of any major platform
+                                    <p>Mercurial has to be designed with separation of concern, capability to extend, and independency of any major platform
                                     </p>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Solution </td>
+                                <td>Solution Variant</td>
                                 <td>
                                     <p>The pattern chosen as solution is Relaxed layer. The separation of concern and extensibility are resolved by dividing Mercurial
                                         system into several modules and grouping them into some layers based on their level of abstraction. </p>
@@ -694,24 +694,24 @@ and implement the hook methods of Mercurial to handle events in an application-s
                             <tr>
                                 <td>Rationale </td>
                                 <td>
-                                    <p>The advantage of choosing relaxed layer pattern is the separation of components into layers but still maintaining the flexibility
-                                        among components of different layers, e.g. between top layer with bottom layer, to interact directly. The layers also enables
-                                        developer or patch/extent developer to extend Mercurial features separately without interfering other components/layers.
+                                    <p>The advantage of choosing relaxed layer pattern is the separation of modules into layers but still maintaining the flexibility
+                                        among modules of different layers, e.g. between top layer with bottom layer, to interact directly. The layers also enables
+                                        developer or patch/extent developer to extend Mercurial features separately without interfering with other modules or layers.
                                         The separation of modules allows the system to be developed in different platforms. </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Consequences </td>
                                 <td>
-                                    <p>This pattern allows layers to interact without passing through any intermediate layer. This could make problem when a reference
-                                        component in bottom layer changed, the developer must examine not only its upper layer but also any layers above which interact
+                                    <p>This pattern allows layers to interact without passing through any intermediate layer. This could be a problem when a
+                                        component in a lower layer changes, the developer must examine not only its upper layer but also any layers above which interact
                                         directly to it. This could reduce maintainability.</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Related patterns </td>
                                 <td>
-                                    <p>Interceptor pattern.</p>
+                                    <p></p>
                                 </td>
                             </tr>
                         </table>
@@ -745,7 +745,7 @@ and implement the hook methods of Mercurial to handle events in an application-s
                             </tr>
                             <tr>
                                 <td>Peer-to-peer </td>
-                                <td class="positive-impact-cell">+ </td>
+                                <td >+/-</td>
                                 <td></td>
                                 <td></td>
                                 <td class="positive-impact-cell">+ </td>
@@ -756,7 +756,7 @@ and implement the hook methods of Mercurial to handle events in an application-s
                                 <td></td>
                                 <td class="positive-impact-cell">+ </td>
                                 <td class="positive-impact-cell">+ </td>
-                                <td class="positive-impact-cell">+ </td>
+                                <td>+/- </td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -769,16 +769,16 @@ and implement the hook methods of Mercurial to handle events in an application-s
                             </tr>
                             <tr>
                                 <td>Proxy </td>
-                                <td class="negative-impact-cell">- </td>
+                                <td > </td>
                                 <td class="positive-impact-cell">+ </td>
                                 <td></td>
-                                <td class="positive-impact-cell">+ </td>
+                                <td > </td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td>Interceptor </td>
-                                <td class="positive-impact-cell">+></td>
-                                <td class="positive-impact-cell">+></td>
+                                <td class="positive-impact-cell">+</td>
+                                <td class="positive-impact-cell">+</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
