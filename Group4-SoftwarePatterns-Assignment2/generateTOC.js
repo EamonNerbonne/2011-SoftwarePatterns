@@ -3,6 +3,11 @@ function getSectionScope(jqElement) {
     return jqElement.parents().filter("html, article, section").first();
 }
 
+function getArticleScope(jqElement) {
+    return jqElement.parents().filter("html, article").first();
+}
+
+
 function getSectionHeading(jqSection) {
     return jqSection.find("h1").filter(function () {
         return $(this).parents().filter("html, article, section").first()[0] === jqSection[0];
@@ -16,6 +21,8 @@ function createSectionToc(arrChildren) {
         var sectionData = jqSection.data();
         var sectionHeading = getSectionHeading(jqSection);
         var sectionNumber = sectionData.fullpath;
+        if (!sectionHeading || !sectionHeading.length)
+            throw "Cannot process section (no section h1):" + jqSection.text();
         var headingString = sectionHeading[0].textContent;
 
         var numEl = document.createElement("td");
@@ -71,15 +78,57 @@ $(function () {
         }
     });
 
-    $("a.ref").filter('[href^="#"]').each(function () {
-        var idref = $(this).attr("href").substring(1);
-        var section = $(document.getElementById(idref));
-        var heading = getSectionHeading(section);
-        var headingString = heading[0].textContent;
-        if (!$(this).attr("title")) $(this).attr("title", headingString.trim());
-        var linkContent = $(this).html();
-        var newContent = linkContent.replace(/\[[^]]*\]/g, section.data().fullpath);
-        $(this).html(newContent);
+    $("figure").each(function (index) {
+        var thisFigure = $(this);
+        if (thisFigure.attr("id") === undefined) thisFigure.attr("id", "autoFigNum" + index);
+
+        var parentArticle = getArticleScope(thisFigure);
+        var parentArticleData = parentArticle.data();
+        if (parentArticleData.figureCounter === undefined) parentArticleData.figureCounter = 0;
+        parentArticleData.figureCounter++;
+        thisFigure.children("figcaption").andSelf().each(function () {
+            $(this).attr("data-figureNumber", parentArticleData.figureCounter);
+        });
+    });
+
+    $("aside.bibliography li").each(function (index) {
+        var thisCitation = $(this);
+        if (thisCitation.attr("id") === undefined) thisCitation.attr("id", "autoCiteNum" + index);
+
+        var parentArticle = getArticleScope(thisCitation);
+        var parentArticleData = parentArticle.data();
+        if (parentArticleData.citationCounter === undefined) parentArticleData.citationCounter = 0;
+        parentArticleData.citationCounter++;
+        thisCitation.attr("data-citationNumber", "" + parentArticleData.citationCounter);
+    });
+
+    $("a").filter('[href^="#"]').each(function () {
+        if ($(this).text() == '[ref]') {
+            var idOfRef = $(this).attr("href").substring(1);
+            var referencedElement = $(document.getElementById(idOfRef));
+            //might be a section, figure, equation or bibliography element
+            if (referencedElement.length === 0) {
+                $(this).addClass('ref-error');
+                $(this).attr('data-err-reason', "Invalid reference");
+            } else if (referencedElement[0].nodeName === 'SECTION') {
+                var heading = getSectionHeading(referencedElement);
+                var headingString = heading[0].textContent;
+                if (!$(this).attr("title")) $(this).attr("title", headingString.trim());
+                $(this).text('Section ' + referencedElement.data().fullpath);
+            } else if (referencedElement[0].nodeName === 'LI' && referencedElement.parents().filter("aside.bibliography").length) {
+                $(this).text('[' + referencedElement.attr('data-citationNumber') + ']');
+                //in bib
+            } else if (referencedElement[0].nodeName === 'FIGURE') {
+                //figref
+                $(this).text('Figure ' + referencedElement.attr('data-figureNumber') + '');
+            } else if (referencedElement[0].nodeName === 'SCRIPT') {
+                //in bib
+                throw "Formula cross referencing not yet implemented";
+            } else {
+                $(this).addClass('ref-error');
+                $(this).attr('data-err-reason', "referenced element unrecognized");
+            }
+        }
     });
 
 });
