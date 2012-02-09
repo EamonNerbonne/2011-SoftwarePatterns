@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
@@ -78,7 +78,7 @@
                             <td class="centered">4 </td>
                             <td>
                                 <dl><dt>Assel</dt> <dd>Client-Server pattern</dd>
-                                    <dt>Divya</dt> <dd></dd>
+                                    <dt>Divya</dt> <dd>Interceptor Pattern</dd>
                                     <dt>Edy</dt> <dd>Add architectural diagram, refine views and reference</dd>
                                     <dt>Sunna</dt> <dd>Chapter 5, Proxy pattern</dd>
                                     <dt>Eamon</dt> <dd></dd>
@@ -90,7 +90,7 @@
                             <td class="centered">5 </td>
                             <td>
                                 <dl><dt>Assel</dt> <dd>Proxy pattern</dd>
-                                    <dt>Divya</dt> <dd></dd>
+                                    <dt>Divya</dt> <dd>Logical View, Process View</dd>
                                     <dt>Edy</dt> <dd>Refine architectural diagram</dd>
                                     <dt>Sunna</dt> <dd>Chapter 5, Client-Server & Peer-to-peer patterns, diagrams: CS, P2P, system overview</dd>
                                     <dt>Eamon</dt> <dd></dd>
@@ -169,7 +169,7 @@
                 <section>
                     <h1>Stakeholders and concerns</h1>
                     <p>Stakeholders and their concerns are have been identified by reading the documentation and analyzing the functionality of
-                        the system. Stakeholders are not specifically defined in Mercurial documentation, but the benefits for end-users are listed 
+                        the system. Stakeholders are not specifically defined in Mercurial documentation, but the benefits for end-users are listed
                             <a href="#about-mercurial">[ref]</a>. </p>
                     <dl><dt>End user</dt> <dd>The end user (software developer) can be a large team of people as well as one person. </dd>
                         <dt>Mercurial project leader</dt> <dd>Matt Mackall is the sole full-time developer working on mercurial and is also the project
@@ -273,18 +273,22 @@
                     <h1>Architectural views </h1>
                     <section>
                         <h1>
-                            <!--Divya-->
+
                             Logical view </h1>
-                        <p> The logical view for the Mercurial describes the functionality of the Mercurial system to the end-users. Mercurial is a modern
-                            distributed version control system (DVCS) which is written in Python. The main advantage of distributed VCS is that it allows
-                            developers to push around and intergrate changes as the project requires at each point of time. The logical view of the
-                            Mercurial can be briefly discussed as follows: The Mercurial architecture consists of a large number of modules.Each module
-                            has its own repository. The user can clone the repository to code the module. The end user can use several clones. Modules
-                            have their own unit tests. So code tests have to pass (i.e. yield only successes) before the user repositories to be pushed
-                            into the files. A build server then tests again each push, because problems may appear (e.g. platform-compatibility, or
-                            missing files). When a module is ready, it is pushed into the testing repository. In this repository, the QA tests the modules.
-                            Developers may code in this repository (mainly to fix bugs), but they should not add new features to the code. If the test
-                            is successful then the user releases it by pushing it into the stable repository <a href="#aosabook">[ref]</a>.
+                        <p>
+                            The logical view for the Mercurial describes the functionality of the Mercurial
+                            system to the end-users. Mercurial is a modern distributed version control system (DVCS)
+                            which is written in Python. The architecture of Mercurial is decomposed logically into five layers. It is basically follows a Relaxed Layer pattern.
+                            The bottommost layer is the utility layer which implements handler. The next layer is the User Interface Layer. It implements a
+                            TextBasedMethod. The storage layer consists of a storage component which is used to implement versioning of the system.
+                            The repository layer consists of two components SCMcore and Repository Proxy. The SCMCore implements commands like pull,
+                            update,edit,commit and push.The Hgupdate is used to update the file in the given reoisitory. The Hgedit is used to edit
+                            any file. The Hgcommit is used to commit any changes in the file. The Hgpush is used to push the file into the repository.
+                            The remoting interface is used between SCMcore and RepositoryProxy.The interface layer consists of
+                            two components Hgweb and Command.This layer is basically the layer in which users interact with the system.
+                            Hgweb has web interface and Command component has command-line interface.
+                            The sequence diagram for the Logical view is depicted as follows:
+                            [<a href="#aosabook">AOSA Book</a>] <a href="#aosabook">[ref]</a>.
 			</p>
 			<p> Regarding data model, Mercurial uses a generic structure of historic data, called revlog. There are three types of revlogs: the changelog, manifests, and filelogs. The changelog contains metadata for each revision, with a pointer into the manifest revlog (that is, a node id for one revision in the manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog. In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both concepts <a href="#aosabook">[ref]</a>.
 			<figure>
@@ -298,37 +302,37 @@
                 	</figure>
 			</p>
                     </section>
-                    <section>
-                        <h1>
-                            <!--Divya-->
-                            Development view </h1>
-                        <p>The development view for the Mercurial deals mainly with the software development and management. The files in working directory
-                            of Mercurial are .hgignore(local editable), .hgtags(utf-8 editable), .hgsigs(ascii)[gpg], .hg/. The files in the repository
-                            directory are 00changelog.i, requires(ascii), branch(utf-8), dirstate, hgrc(local editable) etc. The classes in Mercurial
-                            should be derived from 'object'. Class names should be in lower-case(but exception classes are CamelCased) All the libraries
-                            used in Mercurial are found at MERCURIAL_HOME\library.zip files. </p>
-                    </section>
+
                     <section>
                         <h1>
                             <!--Edy-->
                             Process view </h1>
-                        <p>The process view of Mercurial depicts the interaction of processes or objects in runtime. When Mercurial tracks modifications
-                            to a file, it stores the history of that file in a metadata object called a 'filelog'. Mercurial uses a structure called
-                            a 'manifest' to collect together information about the files that it tracks. Each entry in the manifest contains information
-                            about the files present in a single changeset. The changelog contains information about each changeset. Within a changelog,
-                            a manifest, or a filelog, each revision stores a pointer to its immediate parent (or to its two parents, if it's a merge
-                            revision). For every changeset in a repository, there is exactly one revision stored in the changelog. Each revision of
-                            the changelog contains a pointer to a single revision of the manifest. A revision of the manifest stores a pointer to a
-                            single revision of each filelog tracked when that changeset was created. The underpinnings of changelogs, manifests, and
-                            filelogs are provided by a single structure called the revlog. Mercurial only ever appends data to the end of a revlog file.
-                            Mercurial treats every write as part of a transaction that can span a number of files. A transaction is atomic: either the
-                            entire transaction succeeds and its effects are all visible to readers in one go, or the whole thing is undone. This guarantee
-                            of atomicity means that if user is running two copies of Mercurial, where one is reading data and one is writing it, the
-                            reader will never see a partially written result that might confuse it. In the working directory, Mercurial stores a snapshot
-                            of the files from the repository as of a particular changeset. When user updates the working directory to contain a particular
-                            changeset, Mercurial looks up the appropriate revision of the manifest to find out which files it was tracking at the time
-                            that changeset was committed, and which revision of each file was then current. It then recreates a copy of each of those
-                            files, with the same contents it had when the changeset was committed <a href="#mercurial-book-4">[ref]</a>.
+                        <p>The process view of Mercurial depicts the interaction of processes or objects during
+                            runtime. When Mercurial tracks modifications to a file, it stores the history of
+                            that file in a metadata object called a 'filelog'. Mercurial uses a structure called
+                            a 'manifest' to collect together information about the files that it tracks. Each
+                            entry in the manifest contains information about the files present in a single changeset.
+                            The 'changelog' contains information about each changeset. Within a changelog, a manifest,
+                            or a filelog, each revision stores a pointer to its immediate parent (or to its
+                            two parents, if it's a merge revision). For every changeset in a repository, there
+                            is exactly one revision stored in the changelog. Each revision of the changelog
+                            contains a pointer to a single revision of the manifest. A revision of the manifest
+                            stores a pointer to a single revision of each filelog tracked when that changeset
+                            was created. The underpinnings of changelogs, manifests, and filelogs are provided
+                            by a single structure called the revlog. Mercurial only ever appends data to the
+                            end of a revlog file. Mercurial treats every write as part of a transaction that
+                            can span a number of files. A transaction is atomic: either the entire transaction
+                            succeeds and its effects are all visible to readers in one go, or the whole thing
+                            is undone. This guarantee of atomicity means that if user is running two copies
+                            of Mercurial, where one is reading data and one is writing it, the reader will never
+                            see a partially written result that might confuse it. In the working directory,
+                            Mercurial stores a snapshot of the files from the repository as of a particular
+                            changeset. When user updates the working directory to contain a particular changeset,
+                            Mercurial looks up the appropriate revision of the manifest to find out which files
+                            it was tracking at the time that changeset was committed, and which revision of
+                            each file was then current. It then recreates a copy of each of those files, with
+                            the same contents it had when the changeset was committed. [<a href="#mercurial-book-4">Mercurial Book</a>]
+                            [<a href="#aosabook">AOSA Book</a>] <a href="#mercurial-book-4">[ref]</a>.
                         </p>
 			<p> According to the process view explained above, Mercurial process view is depicted in sequence diagram below.
 			<figure>
@@ -616,13 +620,15 @@
                                 <td>Interceptor </td>
                             </tr>
                             <tr>
-                                <td>Problem </td>
+                                <td>Problem</td>
+                                <td>Context</td>
                                 <td>
                                     <p>The Mercurial has been designed as a continuous integration system that builds and tests software automatically and regularly</p>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Solution </td>
+                                <td>Solution</td>
+                                <td>Variant</td>
                                 <td>
                                     <p>The pattern chosen is interceptor for Mercurial. Interceptor defines the signatures of the hook methods. Hook is a code which
                                         handles intercepted function calls, messages and events. They provide a way for version control systems like Mercurial to
@@ -767,8 +773,8 @@
                             </tr>
                             <tr>
                                 <td>Interceptor </td>
-                                <td></td>
-                                <td></td>
+                                <td class="positive-impact-cell">+></td>
+                                <td class="positive-impact-cell">+></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -806,7 +812,9 @@
                             <p>We have huge objects it can be very memory consuming to move to those large objects in a network or some other domain. So
                                 rather than moving those large objects we just move the proxy which leads to better performance. </p>
                         </dd>
-                        <dt>Interceptor</dt> <dd></dd>
+                        <dt>Interceptor</dt> <dd>Usability is the key-driver addressed in this pattern.Concrete interceptors help to handle events in an application
+	                    specific manner therby satisfying usability. Hence usability gets a plus. Extensibility is also a key-driver which
+	                    allows independent variation an evolution of service extensions in Mercurial. Hence extensibility is given a plus.</dd>
                         <dt>Relaxed Layers</dt> <dd></dd>
                     </dl>
                 </section>
@@ -859,6 +867,8 @@
                         to distributed version control</a> </li>
                     <li id="merc_repositories"><a href="http://mercurial.selenic.com/wiki/PublishingRepositories">Mercurial: Publishing Repositories</a>
                     </li>
+                    <li id="POSA2">Douglas Schmidt, Michael Stal, Hans Rohnert and Frank Buschmann Pattern-Oriented Software Architecture, Patterns for Concurrent and Networked Objects, Volume 2</li>
+
                 </ul>
             </aside>
         </article>
