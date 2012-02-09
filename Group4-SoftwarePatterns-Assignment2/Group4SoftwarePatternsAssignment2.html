@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
@@ -105,22 +105,22 @@
             <section id="section-introduction">
                 <!-- Chapter 1 - Introduction -->
                 <h1>Introduction </h1>
-                <p>The document presents the pattern-based recovery and evaluation of the architecture of an open-source system, 
-                    Mercurial <a href="#bib-mercurial">[ref]</a>. 
+                <p>The document presents the pattern-based recovery and evaluation of the architecture of an open-source system,
+                    Mercurial <a href="#bib-mercurial">[ref]</a>.
                     It is a distributed version control system. This document gives an overview of the patterns that represent
-                    the core of the Mercurial system. We used the IDAPO <a href="#bib-idapo">[ref]</a> process for identifying the 
+                    the core of the Mercurial system. We used the IDAPO <a href="#bib-idapo">[ref]</a> process for identifying the
                     architectural patterns in Mercurial. We
                     also discuss the specific variants of the patterns which we found, and evaluate the patterns
-                    using Pattern-Based Architectural Review (PBAR) <a href="#bib-harrison2010pattern">[ref]</a> method.  The evaluation 
+                    using Pattern-Based Architectural Review (PBAR) <a href="#bib-harrison2010pattern">[ref]</a> method.  The evaluation
                     of the patterns is based on the system's
                     quality attributes.</p>
                 <p>The structure of the document is as follows: </p>
                 <p><a href="#section-context">[ref]</a> describes the system context of the Mercurial version control system.
                     <a href="#section-stakeholders">[ref]</a> deals with identifying the stakeholders and their concerns as
                     well as the key drivers which should drive the development of the system. </p>
-                <p><a href="#section-architecture">[ref]</a> describes several architectural views of the system and the architectural 
+                <p><a href="#section-architecture">[ref]</a> describes several architectural views of the system and the architectural
                     patterns identified for the Mercurial system using IDAPO.
-                    The specifics of each pattern's usage, the problem(s) it addresses, its consequences on the system, and other details 
+                    The specifics of each pattern's usage, the problem(s) it addresses, its consequences on the system, and other details
                     are also presented. Finally, we describe the architectural decomposition and the responsibilities of each component. </p>
                 <p><a href="#section-evaluation">[ref]</a> is focused on the architectural evaluation of the Mercurial
                     system using the PBAR approach. It also shows how key drivers are addressed. </p>
@@ -270,7 +270,7 @@
                             for communicating with the user and managing configuration info. The fifth layer, Utility layer includes generic functionality
                             and platform abstraction <a href="#mercurial-arch">[ref]</a>.
                 </p>
-		<p>One interesting point is there are two layers that seem similar, Interface layer and UI (User Interface) layer. Based on investigation in source 
+		<p>One interesting point is there are two layers that seem similar, Interface layer and UI (User Interface) layer. Based on investigation in source
         code, the interface layer deals with commands which the end-user could execute e.g. add, commit and update, while UI layer deals with the message
          which is delivered to end-user regarding to the command execution.
 		</p>
@@ -297,18 +297,18 @@
                             [<a href="#aosabook">AOSA Book</a>] <a href="#aosabook">[ref]</a>.
 			</p>
 			<p> Regarding data model, Mercurial uses a generic structure of historic data, called revlog. There are three types of revlogs: the changelog, manifests,
-             and filelogs. The changelog contains metadata for each revision, with a pointer into the manifest revlog (that is, a node id for one revision in the 
-             manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog. 
-             In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both 
+             and filelogs. The changelog contains metadata for each revision, with a pointer into the manifest revlog (that is, a node id for one revision in the
+             manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog.
+             In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both
              concepts <a href="#aosabook">[ref]</a>.</p>
 			<figure>
                     	<img src="images/revlogs.png" alt="Mercurial generic data model, revlog"/>
                     	<figcaption >Mercurial Generic Data Model, Revlog <a href="#aosabook">[ref]</a></figcaption>
                 	</figure>
-			<p> Mercurial is a command-line application. This means a simple interface, the user calls the hg script with a command. This command (like log, diff or commit) 
+			<p> Mercurial is a command-line application. This means a simple interface, the user calls the hg script with a command. This command (like log, diff or commit)
             may take a number of options and arguments. There are also some options that are valid for all commands. Next, there are three different things that can
              happen to the interface: hg will often output something the user asked for or show status messages, hg can ask for further input through command-line
-              prompts, hg may launch an external program (such as an editor for the commit message or a program to help merging code conflicts). The correlations 
+              prompts, hg may launch an external program (such as an editor for the commit message or a program to help merging code conflicts). The correlations
               between commands is depicted below.
               </p>
 			<figure>
@@ -353,7 +353,7 @@
                     	<img src="images/Mercurial-seq-diag.png" alt="Mercurial sequence diagram" />
                     	<figcaption>Mercurial Sequence Diagram for Modify and Commit</figcaption>
                 	</figure>
-			
+
                     </section>
                     <!--section>
                         <h1>
@@ -622,56 +622,48 @@
                         </table>
                     </section>
                     <section>
-                        <h1>Interceptor pattern</h1>
-                        <table class="bookstyleborders">
-                            <tr>
-                                <th>Pattern Section </th>
-                                <th>Comments </th>
-                            </tr>
-                            <tr>
-                                <td>Name </td>
-                                <td>Interceptor </td>
-                            </tr>
-                            <tr>
-                                <td>Problem Context</td>
-                                <td>
-                                    <p>The Mercurial has been designed as a continuous integration system that builds and tests software automatically and regularly</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Solution Variant</td>
-                                <td>
-                                    <p>The pattern chosen is interceptor for Mercurial. Interceptor defines the signatures of the hook methods. Hook is a code which
-                                        handles intercepted function calls, messages and events. They provide a way for version control systems like Mercurial to
-                                        interact with the outside world.For example if we want to send an email automatically after commit occurs we have Commit
-                                        hook. We can also invoke a hook if we want to send a mail containing all changesets of a push/pull/unbundle.In Mercurial,
-                                        users/developers can invoke Python hooks by specifying a Python module and a function name to call from that module.The
-                                        Mercurial framework facilitates the registration of interceptors through dispatchers. </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Rationale </td>
-                                <td>
-                                    <p>The advantages of choosing interceptor pattern is they are associated with a particular set of events. Concrete interceptors
-                                        specialize interceptor interfaces and implement the hook methods of Mercurial to handle events in an application-specific
-                                        manner. The interceptor pattern helps to achieve usability and extensibility. </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Consequences </td>
-                                <td>
-                                    <p>This pattern includes strict seperation of framework and interceptors allows independent variation and evolution of service
-                                        extensions in Mercurial </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Related patterns </td>
-                                <td>
-                                    <p>Interceptor proxy (Delegator) pattern is a variant of interceptor pattern. This pattern is used on the server-side of a distributed
-                                        system to intercept remote operations. </p>
-                                </td>
-                            </tr>
-                        </table>
+                      <h1>Interceptor pattern</h1>
+<table class="bookstyleborders">
+<tr>
+<th>Pattern Section</th>
+<th>Comments</th>
+</tr>
+<tr>
+<td>Name</td>
+<td>Interceptor</td>
+</tr>
+<tr>
+<td>Problem Context</td>
+<td>
+<p>The Mercurial has been designed as a continuous integration system that builds and tests software automatically and regularly</p>
+</td>
+</tr><tr>
+<td>Solution Variant</td>
+<td>
+<p>The pattern chosen is interceptor for Mercurial. Interceptor defines the signatures of the hook methods. Hook is a code which handles intercepted function calls,
+messages and events. They provide a way for version control systems like Mercurial to interact with the outside world.For example if we want to send an email automatically
+after commit occurs we have Commit hook. We can also invoke a hook if we want to send a mail containing all changesets of a push/pull/unbundle.In Mercurial, users/developers can invoke Python hooks by
+specifying a Python module and a function name to call from that module.The Mercurial framework facilitates the registration of interceptors through dispatchers.</p>
+</td>
+</tr><tr>
+<td>Rationale</td>
+<td>
+<p> The advantages of choosing interceptor pattern is they are associated with a particular set of events. Concrete interceptors specialize interceptor interfaces
+and implement the hook methods of Mercurial to handle events in an application-specific manner. The interceptor pattern helps to achieve usability and extensibility.
+ </p>
+</td>
+</tr><tr>
+<td>Consequences</td>
+<td>
+<p>This pattern includes strict seperation of framework and interceptors allows independent variation and evolution of service extensions in Mercurial  </p>
+</td>
+</tr><tr>
+<td>Related patterns</td>
+<td>
+<p></p>
+</td>
+</tr>
+                      </table>
                     </section>
                     <section>
                         <h1>Relaxed Layer pattern</h1>
