@@ -59,7 +59,7 @@
                             <td>9/1/2012 </td>
                             <td class="centered">2 </td>
                             <td>
-                                <dl><dt>Sunna, Eamon</dt> <dd>Conversion from google docs into HTML on mercurial; minor updates.</dd>
+                                <dl><dt>Sunna, Eamon</dt> <dd>Conversion from google docs into HTML on Mercurial; minor updates.</dd>
                                 </dl>
                             </td>
                         </tr>
@@ -105,23 +105,25 @@
             <section id="section-introduction">
                 <!-- Chapter 1 - Introduction -->
                 <h1>Introduction </h1>
-                <p>The document presents the pattern-based recovery and evaluation of the architecture of an open-source system, Mercurial <a href="#bib-mercurial">[ref]</a>. 
+                <p>The document presents the pattern-based recovery and evaluation of the architecture of an open-source system, 
+                    Mercurial <a href="#bib-mercurial">[ref]</a>. 
                     It is a distributed version control system. This document gives an overview of the patterns that represent
-                    the core of the Mercurial system. We used the IDAPO <a href="#bib-idapo">[ref]</a> process for identifying the architectural patterns in Mercurial. We
+                    the core of the Mercurial system. We used the IDAPO <a href="#bib-idapo">[ref]</a> process for identifying the 
+                    architectural patterns in Mercurial. We
                     also discuss the specific variants of the patterns which we found, and evaluate the patterns
-                    using Pattern-Based Architectural Review (PBAR) <a href="#bib-harrison2010pattern">[ref]</a> method.  The evaluation of the patterns is based on the system's
+                    using Pattern-Based Architectural Review (PBAR) <a href="#bib-harrison2010pattern">[ref]</a> method.  The evaluation 
+                    of the patterns is based on the system's
                     quality attributes.</p>
                 <p>The structure of the document is as follows: </p>
-                <p><a href="#section-context">[ref]</a> describes the system context of Mercurial version control system.
+                <p><a href="#section-context">[ref]</a> describes the system context of the Mercurial version control system.
                     <a href="#section-stakeholders">[ref]</a> deals with identifying the stakeholders and their concerns as
                     well as the key drivers which should drive the development of the system. </p>
-                <p><a href="#section-architecture">[ref]</a> describes the various architectural views for the system and
-                    also the architectural patterns identified for the Mercurial system using IDAPO. It also discusses how the various patterns
-                    are related with each other and the impact of each pattern on the system architecture and also discusses about the variants
-                    used. It also includes the decomposition of the patterns, responsibilities of each component in the patterns and also about
-                    the interfaces. </p>
-                <p><a href="#section-evaluation">[ref]</a> is mainly focused on the architectural evaluation of the Mercurial
-                    system using PBAR approach. It also shows how each quality attribute identified are addressed. </p>
+                <p><a href="#section-architecture">[ref]</a> describes several architectural views of the system and the architectural 
+                    patterns identified for the Mercurial system using IDAPO.
+                    The specifics of each pattern's usage, the problem(s) it addresses, its consequences on the system, and other details 
+                    are also presented. Finally, we describe the architectural decomposition and the responsibilities of each component. </p>
+                <p><a href="#section-evaluation">[ref]</a> is focused on the architectural evaluation of the Mercurial
+                    system using the PBAR approach. It also shows how key drivers are addressed. </p>
             </section>
             <section id="section-context">
                 <!-- Chapter 2 - System context -->
@@ -129,36 +131,36 @@
                 <p>Mercurial<sup> <a href="#merc_links" id="merc_links_ref">[ref]</a> </sup>is a distributed revision control system. It aims
                     to help developers manage changes (revisions) made to projects. Managing multiple versions of even a single document by
                     hand is an error-prone, time-consuming task. Mercurial allows a team of developers to manage large numbers of documents
-                    with many versions. Although mercurial can maintain a version history for arbitrary files and directories, it is designed
+                    with many versions. Although Mercurial can maintain a version history for arbitrary files and directories, it is designed
                     in particular to deal well with large numbers of complex text documents such as source code. There are several ways in which
-                    mercurial helps address the problems arising from collaborating on such code. </p>
+                    Mercurial helps address the problems arising from collaborating on such code. </p>
                 <figure>
                     <img src="images/SystemOverview.png" alt="System overview diagram" />
                     <figcaption>System overview, <a href="#system_overview_diagram_links" id="system_overview_diagram_links_ref">[ref]</a> </figcaption></figure>
                 <section>
                     <h1>Mercurial’s functionality </h1>
                     <p>Firstly, Mercurial maintains a log: an annotated history of changes. In addition to keeping track of the documents themselves,
-                        mercurial allows developers to keep track of which lines were changed, the date the changes were made, the identity of the
+                        Mercurial allows developers to keep track of which lines were changed, the date the changes were made, the identity of the
                         author, and, importantly, the motivation for these changes. This is achieved by splitting changes into cohesive chunks call
                         changesets. When a developer commits a changeset, he adds it to Mercurial’s repository of changesets, and includes a commit
                         message describing what was changed and why. Changesets with commit messages are common in revision control systems; they
                         allow developers to maintain systems that are too large or too old by reducing the need to grasp the entirety of the system
                         at once. </p>
                     <p>Mercurial assists collaboration by allowing concurrent edits. When several people simultaneously change a set of files, their
-                        changes need to be merged into a final version. Revision control systems such as mercurial assist the user by largely automating
+                        changes need to be merged into a final version. Revision control systems such as Mercurial assist the user by largely automating
                         this process: if only one author changes a file, his version simply replaces the old one. When multiple authors change a
-                        file in a format mercurial understands (such as plain text), changes to non-overlapping regions are automatically merged.
+                        file in a format Mercurial understands (such as plain text), changes to non-overlapping regions are automatically merged.
                         Finally, where changes do conflict, they are reported, and the user can systematically compare the changes to resolve the
                         conflict. Automatic merging and conflict detection helps allow multiple developers work on the same project by avoiding
                         the friction of each developer keeping abreast of all changes. </p>
                     <p>Mercurial allows distributed development teams by allowing any developer to pull others’ changes or push his own to an external
                         repository. Crucially, there is no technical need for a central repository nor for “one true” history, allowing for truly
-                        distributed development. In particular, each committed changeset is uniquely identifiable, allowing mercurial to avoid applying
+                        distributed development. In particular, each committed changeset is uniquely identifiable, allowing Mercurial to avoid applying
                         changes it has already seen, even if those changes depend on each other in non-trivial ways. Mercurial’s logged history
                         is conceptually a directed acyclic graph. Thus when two versions are merged that (partially) share the same history, the
                         shared part of the history is not duplicated. </p>
                     <p>These three features enable many useful scenarios. For instance, in a large system, development mistakes are made. Since
-                        it maintains a history of changes and the details of each changes, mercurial can revert a particular change e.g. to correct
+                        it maintains a history of changes and the details of each changes, Mercurial can revert a particular change e.g. to correct
                         a mistake. Unlike a strictly linear process, such a reverted change does not require the user to redo all subsequent changes;
                         instead, the reverted change is itself a new changeset that can be merged anywhere into the version history. </p>
                     <p>Business model: System context, Architectural relevant business parameters. </p>
@@ -174,9 +176,9 @@
                         the system. Stakeholders are not specifically defined in Mercurial documentation, but the benefits for end-users are listed
                             <a href="#about-mercurial">[ref]</a>. </p>
                     <dl><dt>End user</dt> <dd>The end user (software developer) can be a large team of people as well as one person. </dd>
-                        <dt>Mercurial project leader</dt> <dd>Matt Mackall is the sole full-time developer working on mercurial and is also the project
+                        <dt>Mercurial project leader</dt> <dd>Matt Mackall is the sole full-time developer working on Mercurial and is also the project
                             leader, serving as a gatekeeper, validating third-party contributions <a href="#mercurial-dev-process">[ref]</a>. </dd>
-                        <dt>Core mercurial software developers</dt> <dd>Several other software developers regularly contribute to various mercurial
+                        <dt>Core Mercurial software developers</dt> <dd>Several other software developers regularly contribute to various Mercurial
                             components. </dd>
                         <dt>Patch/extension developer</dt> <dd>Mercurial welcomes patches and extensions from any software developer. </dd>
                     </dl>
@@ -371,10 +373,10 @@
                                 Eamon</i> </dd>
                         <dt>Indirection layer</dt> <dd>The revlog storage can be seen as an indirection layer over the filesystem: direct access is
                             problematic due to performance, corruption and locking. <i>Rejected, Shared datastore is a better match</i> </dd>
-                        <dt>Active repository</dt> <dd>Active repository: the mercurial VCS itself can be seen as an active repository in that it provides
+                        <dt>Active repository</dt> <dd>Active repository: the Mercurial VCS itself can be seen as an active repository in that it provides
                             hooks that can actively notify others of changes. Is this more like a feature than a pattern? It's also not major. <i>Accepted,
                                 Divya</i> </dd>
-                        <dt>Client-Server</dt> <dd>A mercurial repository communicates via a client-server protocol when over the network e.g. when
+                        <dt>Client-Server</dt> <dd>A Mercurial repository communicates via a client-server protocol when over the network e.g. when
                             pushing or pulling. <i>Accepted, Assel</i> </dd>
                     </dl>
                 </section>
@@ -463,7 +465,7 @@
                                     <td>
                                         <p>Mercurial needs to store versioned data efficiently and robustly. Versioned data includes not just user-data (e.g. source
                                             code), but also metadata (e.g. commit messages), and the repository tree structure. </p>
-                                        <p>All data stored in mercurial must be stored efficiently, i.e. with low space and time overhead. Taking into account the performance
+                                        <p>All data stored in Mercurial must be stored efficiently, i.e. with low space and time overhead. Taking into account the performance
                                             charactistics of hard drives and the typical data storage patterns to optimize access while avoiding data corruption in
                                             the event of a crash or software bug is complex. In particular, SCM systems generally add new data but rarely (if ever)
                                             change existing data; stale data is read less frequently than the newest version; disk seeks are slow yet repositories may
@@ -473,8 +475,8 @@
                                 </tr>
                                 <tr>
                                     <td>Solution Variant </td>
-                                    <td>Mercurial stores most of its data in <i>revlogs</i>. Each mercurial repository has many such revlogs; most persistant data
-                                        (whether mercurial-internal or user data) is stored and managed centrally in these datastructures. Each revlog consists
+                                    <td>Mercurial stores most of its data in <i>revlogs</i>. Each Mercurial repository has many such revlogs; most persistant data
+                                        (whether Mercurial-internal or user data) is stored and managed centrally in these datastructures. Each revlog consists
                                         of an append-only data file and an index file with fixed-size entries (to enable O(1) seeking) storing where a particular
                                         version is to be found in the data file. There are three classes of revlogs. Firstly, user data is store in a per-file revlog.
                                         Secondly, a directory listing with revision numbers of each file forming a particular version of the directory tree is stored
@@ -483,7 +485,7 @@
                                 </tr>
                                 <tr>
                                     <td>Rationale </td>
-                                    <td>Performance, Reliability, Durability, Dependability. <i class="highlight">TODO: see AOSA mercurial section and ???</i>
+                                    <td>Performance, Reliability, Durability, Dependability. <i class="highlight">TODO: see AOSA Mercurial section and ???</i>
                                     </td>
                                 </tr>
                                 <tr>
@@ -850,7 +852,7 @@
                 <ul>
                     <li id="bib-mercurial">Mackall et al. <a href="http://mercurial.selenic.com/">Mercurial SCM </a>2011. </li>
                     <li id="merc_links"><a href="http://hgbook.red-bean.com/read/how-did-we-get-here.html">Mercurial book, motivation </a>, <a
-                        href="http://hginit.com/">HgInit</a>—a mercurial tutorial, <a href="http://mercurial.selenic.com/guide/">The Mercurial User's
+                        href="http://hginit.com/">HgInit</a>—a Mercurial tutorial, <a href="http://mercurial.selenic.com/guide/">The Mercurial User's
                             Guide</a>, <a href="http://mercurial.selenic.com/wiki/">The Mercurial Wiki</a> </li>
                     <li>Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad.Pattern-Oriented Software Architecture Volume 1: A System
                         of Patterns. 1996. </li>
@@ -863,13 +865,13 @@
                     </li>
                     <li id="mercurial-guide">Mercurial: The Definitive Guide by Bryan O'Sullivan <a href="http://http://hgbook.red-bean.com/read/collaborating-with-other-people.html">
                         http://http://hgbook.red-bean.com/read/collaborating-with-other-people.html</a> </li>
-                    <li id="about-mercurial"><a href="http://mercurial.selenic.com/about/">About mercurial: advantages of using mercurial</a>
+                    <li id="about-mercurial"><a href="http://mercurial.selenic.com/about/">About Mercurial: advantages of using Mercurial</a>
                     </li>
                     <li id="mercurial-dev-process"><a href="http://mercurial.selenic.com/wiki/MercurialDevelopmentProcess">Mercurial Wiki: Mercurial
                         Development Process.</a> </li>
                     <li id="system_overview_diagram_links"><a href="http://petevidler.com/2010/03/bite-sized-mercurial-intro/">Introduction to Bite-Sized
                         Mercurial</a></li>
-                    <li id="key_drivers"><a href="http://mercurial.selenic.com/about/">About mercurial: advantages of using mercurial</a> </li>
+                    <li id="key_drivers"><a href="http://mercurial.selenic.com/about/">About Mercurial: advantages of using Mercurial</a> </li>
                     <li id="bite_sized_mercurial"><a href="http://petevidler.com/2010/03/bite-sized-mercurial-intro/">Bite sized Mercurial introduction</a>
                     </li>
                     <li id="intro_to_DVCS"><a href="http://betterexplained.com/articles/intro-to-distributed-version-control-illustrated/">Introduction
