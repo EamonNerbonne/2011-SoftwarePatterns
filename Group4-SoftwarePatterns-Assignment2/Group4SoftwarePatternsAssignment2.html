@@ -134,9 +134,6 @@
                     with many versions. Although Mercurial can maintain a version history for arbitrary files and directories, it is designed
                     in particular to deal well with large numbers of complex text documents such as source code. There are several ways in which
                     Mercurial helps address the problems arising from collaborating on such code. </p>
-                <figure>
-                    <img src="images/SystemOverview.png" alt="System overview diagram" />
-                    <figcaption>System overview, <a href="#system_overview_diagram_links" id="system_overview_diagram_links_ref">[ref]</a> </figcaption></figure>
                 <section>
                     <h1>Mercurial’s functionality </h1>
                     <p>Firstly, Mercurial maintains a log: an annotated history of changes. In addition to keeping track of the documents themselves,
@@ -153,8 +150,12 @@
                         Finally, where changes do conflict, they are reported, and the user can systematically compare the changes to resolve the
                         conflict. Automatic merging and conflict detection helps allow multiple developers work on the same project by avoiding
                         the friction of each developer keeping abreast of all changes. </p>
+                <figure id="fig-common-hg-setup">
+                    <img src="images/SystemOverview.png" alt="System overview diagram" />
+                    <figcaption>From <a href="#system_overview_diagram_links" id="system_overview_diagram_links_ref">[ref]</a>. A common mercurial workflow; 
+                        Joe &amp; Dan interact with their own repository which contains the entire project history.  Changes are usually exchanged via a central repository.</figcaption></figure>
                     <p>Mercurial allows distributed development teams by allowing any developer to pull others’ changes or push his own to an external
-                        repository. Crucially, there is no technical need for a central repository nor for “one true” history, allowing for truly
+                        repository (see <a href="#fig-common-hg-setup">[ref]</a>). Crucially, there is no technical need for a central repository nor for “one true” history, allowing for truly
                         distributed development. In particular, each committed changeset is uniquely identifiable, allowing Mercurial to avoid applying
                         changes it has already seen, even if those changes depend on each other in non-trivial ways. Mercurial’s logged history
                         is conceptually a directed acyclic graph. Thus when two versions are merged that (partially) share the same history, the
