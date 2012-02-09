@@ -1,6 +1,5 @@
 Glossary:
-add terms like revlog, O() a.s.o.
-
+add terms like revlog, O() a.s.o. - Sunna
 
 Revision history:
 - Eamon + Divya: 4 and 5
@@ -8,56 +7,30 @@ Revision history:
 Timesheet:
 - all
 
-Chapter 1:
-- Add to intro: that we are also doing recommendations in chapter 5.
 
 Chapter 2:
-- Add a diagram to system architecture (similar to what we had in assignment 1).
-- If we only have one section in chapter one, remove the subsection number.
+- If we only have one section in chapter one, remove the subsection number. - Eamon
 - Were we talk about the OSS community, add in information about the developer (Matt) and
-information about the community (briefly).
+information about the community (briefly). - Sunna
 
 Chapter 3:
 Stakeholders:
-Project leader: Maintainabiltiy of code and system
-	Distributability - explain
-	Performance
-Developers:
-	Usability - well documented
-	Maintainability - easy to maintain and well documneted
-Patch developer: Adaptability
-	Documentation - well documented
-Adaptability to extensibility
-Match Keydrivers into stakeholders concerns - try to have two instanses of each key driver.
+Adaptability to extensibility - Eamon
 Key drivers:
 - Add comments about the key drivers not having a priority (could be useful for us in the evaluation
-if we need trade-off reasons for choosing one keydriver over another).
+if we need trade-off reasons for choosing one keydriver over another). - Sunna
 
 Chapter 4:
 
 Diagrams: http://www.google.nl/search?q=process+view&hl=en&prmd=imvns&tbm=isch&tbo=u&source=univ&sa=X&ei=HfAvT465M8OAhQfZ_M3PCg&ved=0CFAQsAQ&biw=1068&bih=533#hl=en&tbm=isch&sa=1&q=workflow+diagram+mercurial&pbx=1&oq=workflow+diagram+mercurial&aq=f&aqi=&aql=&gs_sm=e&gs_upl=73475l79013l0l79949l28l22l0l1l1l4l109l1340l20.1l21l0&bav=on.2,or.r_gc.r_pw.,cf.osb&fp=af77e95bb5aa65a0&biw=1068&bih=490
 Overview diagram:
-- Add a reference to the diagram.
-- Explain what the layers are and where they come from. - Link from page and the text from there
-- If it is implemented like the diagram, we could suggest they change the layers in recommendations.
-Views:	- Divya and Edy will fix :)
-- Logical: add diagram.
-- Process: add sequence diagram for the major processes. Maybe the hooks should be in this view as
-processes (if managers)?
-- Explain what the hooks are (they are only listed by names).
-- Development: Diagram with packages, classes and libraries.
-- Physical: Add that it's only used for informative purposes, not used to decompose the system.
+- Add a reference to the diagram. - Edy
+- Explain what the layers are and where they come from. - Link from page and the text from there - Edy
 
+- Candidate patterns: Add a sentence that we followed IDAPO process and that this is step # in the process. - Sunna
 
-- Candidate patterns: Add a sentence that we followed IDAPO process and that this is step # in the process. - Eamon
-
-Patterns:
+Patterns: -  Pattern based
 - Add sources and diagrams to all.
-- Solution: how it was implemented in Mercurial.
-- Rational: why it was chosen, focus on Key drivers.
-- Consequenses: any QA's.
-- Consequenses: every pier runs the same software
-- Related: only mention those patterns used in Mercurial
 - Check that all templates are the same for the patterns.
 - Proxy solution: Looks generic / not how it actually is in Mercurial. Example: used for different instances in Mercurial.
 - Proxy: add together problem and context, solution and variant
@@ -69,15 +42,16 @@ affects security.
 
 Chapter 5:
 Evaluation: 
-Shared datastore - performance plus and minus
-Relaxed layers - give rationale about how it is actually in Mercurial.
+-add color to plus/minus
+Relaxed layers - give rationale about how it is actually in Mercurial. - Edy
 Proxy - take out the neg in Usability - take out the text about performance (this way it does not exist) - Keep only 
 Extensibility (with plus)
-P2P - make plus and minus (forget to push/pull)
+P2P - make plus and minus (forget to push/pull) - text
 
 Recommendations:
 - Suggest new pattern/or different variant of existing if maybe one Key driver is not addressed in the existing ones.
 - If many + and - in one pattern, suggest how that can be fixed (new or different variant of pattern).
-- If one subsystem does not have a pattern, suggest a pattern.
-- New features, example MVC for a language module ... if so explain how it would fit into reengineering the system
-and the design of the architecture.
+- Something to make persistance, to automatically push/pull - improve reliability - Assel
+- Integrate authentication - improves usability - Divya
+- Shared datastore - change the implementation - Eamon
+- Reorganization of Layer pattern - move UI layer - to make more conventional - Edy
