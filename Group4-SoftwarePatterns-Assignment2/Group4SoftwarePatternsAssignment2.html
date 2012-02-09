@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
@@ -105,22 +105,22 @@
             <section id="section-introduction">
                 <!-- Chapter 1 - Introduction -->
                 <h1>Introduction </h1>
-                <p>The document presents the pattern-based recovery and evaluation of the architecture of an open-source system, 
-                    Mercurial <a href="#bib-mercurial">[ref]</a>. 
+                <p>The document presents the pattern-based recovery and evaluation of the architecture of an open-source system,
+                    Mercurial <a href="#bib-mercurial">[ref]</a>.
                     It is a distributed version control system. This document gives an overview of the patterns that represent
-                    the core of the Mercurial system. We used the IDAPO <a href="#bib-idapo">[ref]</a> process for identifying the 
+                    the core of the Mercurial system. We used the IDAPO <a href="#bib-idapo">[ref]</a> process for identifying the
                     architectural patterns in Mercurial. We
                     also discuss the specific variants of the patterns which we found, and evaluate the patterns
-                    using Pattern-Based Architectural Review (PBAR) <a href="#bib-harrison2010pattern">[ref]</a> method.  The evaluation 
+                    using Pattern-Based Architectural Review (PBAR) <a href="#bib-harrison2010pattern">[ref]</a> method.  The evaluation
                     of the patterns is based on the system's
                     quality attributes.</p>
                 <p>The structure of the document is as follows: </p>
                 <p><a href="#section-context">[ref]</a> describes the system context of the Mercurial version control system.
                     <a href="#section-stakeholders">[ref]</a> deals with identifying the stakeholders and their concerns as
                     well as the key drivers which should drive the development of the system. </p>
-                <p><a href="#section-architecture">[ref]</a> describes several architectural views of the system and the architectural 
+                <p><a href="#section-architecture">[ref]</a> describes several architectural views of the system and the architectural
                     patterns identified for the Mercurial system using IDAPO.
-                    The specifics of each pattern's usage, the problem(s) it addresses, its consequences on the system, and other details 
+                    The specifics of each pattern's usage, the problem(s) it addresses, its consequences on the system, and other details
                     are also presented. Finally, we describe the architectural decomposition and the responsibilities of each component. </p>
                 <p><a href="#section-evaluation">[ref]</a> is focused on the architectural evaluation of the Mercurial
                     system using the PBAR approach. It also shows how key drivers are addressed. </p>
@@ -257,7 +257,7 @@
                     <img src="images/Mercurial-comp-diag.png" alt="Mecurial component diagram"/>
                     <figcaption >Mercurial Architectural Diagram</figcaption>
                 </figure>
-		<p> Since Mercurial can be seen as peer-to-peer
+        <p> Since Mercurial can be seen as peer-to-peer
                     application, each peer has the same structure as the other. Each peer represents a node which contains some layers. In general,
                             no layer should know the details of any layer above it, and no layer should abuse the interface of layers below it. Interface
                             layer is the topmost layer and is the part most directly exposed to the user. It contains commands.py, an implementation
@@ -271,10 +271,10 @@
                             for communicating with the user and managing configuration info. The fifth layer, Utility layer includes generic functionality
                             and platform abstraction <a href="#mercurial-arch">[ref]</a>.
                 </p>
-		<p>One interesting point is there are two layers that seem similar, Interface layer and UI (User Interface) layer. Based on investigation in source 
+		<p>One interesting point is there are two layers that seem similar, Interface layer and UI (User Interface) layer. Based on investigation in source
         code, the interface layer deals with commands which the end-user could execute e.g. add, commit and update, while UI layer deals with the message
          which is delivered to end-user regarding to the command execution.
-		</p>
+        </p>
                 <section>
                     <!--################################### From Views.html ###############-->
                     <h1>Architectural views </h1>
@@ -296,26 +296,26 @@
                             Hgweb has web interface and Command component has command-line interface.
                             The sequence diagram for the Logical view is depicted as follows:
                             [<a href="#aosabook">AOSA Book</a>] <a href="#aosabook">[ref]</a>.
-			</p>
-			<p> Regarding data model, Mercurial uses a generic structure of historic data, called revlog. There are three types of revlogs: the changelog, manifests,
-             and filelogs. The changelog contains metadata for each revision, with a pointer into the manifest revlog (that is, a node id for one revision in the 
-             manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog. 
-             In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both 
+            </p>
+            <p> Regarding data model, Mercurial uses a generic structure of historic data, called revlog. There are three types of revlogs: the changelog, manifests,
+             and filelogs. The changelog contains metadata for each revision, with a pointer into the manifest revlog (that is, a node id for one revision in the
+             manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog.
+             In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both
              concepts <a href="#aosabook">[ref]</a>.</p>
-			<figure>
-                    	<img src="images/revlogs.png" alt="Mercurial generic data model, revlog"/>
-                    	<figcaption >Mercurial Generic Data Model, Revlog <a href="#aosabook">[ref]</a></figcaption>
-                	</figure>
-			<p> Mercurial is a command-line application. This means a simple interface, the user calls the hg script with a command. This command (like log, diff or commit) 
+            <figure>
+                        <img src="images/revlogs.png" alt="Mercurial generic data model, revlog"/>
+                        <figcaption >Mercurial Generic Data Model, Revlog <a href="#aosabook">[ref]</a></figcaption>
+                    </figure>
+			<p> Mercurial is a command-line application. This means a simple interface, the user calls the hg script with a command. This command (like log, diff or commit)
             may take a number of options and arguments. There are also some options that are valid for all commands. Next, there are three different things that can
              happen to the interface: hg will often output something the user asked for or show status messages, hg can ask for further input through command-line
-              prompts, hg may launch an external program (such as an editor for the commit message or a program to help merging code conflicts). The correlations 
-              between commands is depicted below.
+              prompts, hg may launch an external program (such as an editor for the commit message or a program to help merging code conflicts). The correlations
+              between modules is depicted below.
               </p>
-			<figure>
-			<img src="images/modules.png" alt="Mercurial command correlation"/>
-                    	<figcaption >Mercurial Command Correlation <a href="#aosabook">[ref]</a></figcaption>
-                	</figure>
+            <figure>
+            <img src="images/modules.png" alt="Mercurial module dependancies"/>
+                        <figcaption >Mercurial Command Correlation <a href="#aosabook">[ref]</a></figcaption>
+                    </figure>
                     </section>
 
                     <section>
@@ -349,12 +349,12 @@
                             the same contents it had when the changeset was committed. [<a href="#mercurial-book-4">Mercurial Book</a>]
                             [<a href="#aosabook">AOSA Book</a>] <a href="#mercurial-book-4">[ref]</a>.
                         </p>
-			<p> According to the process view explained above, Mercurial process view is depicted in sequence diagram below.</p>
-			<figure>
-                    	<img src="images/Mercurial-seq-diag.png" alt="Mercurial sequence diagram" />
-                    	<figcaption>Mercurial Sequence Diagram for Modify and Commit</figcaption>
-                	</figure>
-			
+            <p> According to the process view explained above, Mercurial process view is depicted in sequence diagram below.</p>
+            <figure>
+                        <img src="images/Mercurial-seq-diag.png" alt="Mercurial sequence diagram" />
+                        <figcaption>Mercurial Sequence Diagram for Modify and Commit</figcaption>
+                    </figure>
+
                     </section>
                     <!--section>
                         <h1>
@@ -402,8 +402,7 @@
                                 <tr>
                                     <td>Problem Context </td>
                                     <td>
-                                        <p>Mercurial is designed to enhance the communication speed between different components and eliminates dependency on a single
-                                            physical machine, hence it is truly distributed. </p>
+                                        <p>Mercurial is designed to allow for a truly distributed workflow, hence it is truly distributed. </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -467,7 +466,7 @@
                                         <p>Mercurial needs to store versioned data efficiently and robustly. Versioned data includes not just user-data (e.g. source
                                             code), but also metadata (e.g. commit messages), and the repository tree structure. </p>
                                         <p>All data stored in Mercurial must be stored efficiently, i.e. with low space and time overhead. Taking into account the performance
-                                            charactistics of hard drives and the typical data storage patterns to optimize access while avoiding data corruption in
+                                            characteristics of hard drives and the typical data storage patterns to optimize access while avoiding data corruption in
                                             the event of a crash or software bug is complex. In particular, SCM systems generally add new data but rarely (if ever)
                                             change existing data; stale data is read less frequently than the newest version; disk seeks are slow yet repositories may
                                             contain very many revisions with very many files so that the complexity of retrieving historical data should not depend
@@ -519,9 +518,10 @@
                                 <tr>
                                     <td>Problem Context </td>
                                     <td>Two components who are independent from each other need to communicate with each other and even run on different computers
-                                        (Mercurial is a distributed system). One of the components initiates communication by sending a request to other components.
-                                        It must cope with multiple processes at the same time. Also, components which are using same service at one time should
-                                        deal differently with results. </td>
+                                        (Mercurial is a distributed system). One of the peers initiates communication by sending a request to other peers.
+                                        The server must cope with multiple requests at the same time from several peers.  Clients wich are
+                                        using the same server may have different local versions.
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Solution Variant </td>
@@ -531,25 +531,25 @@
                                 </tr>
                                 <tr>
                                     <td>Rationale </td>
-                                    <td>Due to the fact the Mercurial is truly distributive and uses Peer-to-peer pattern (see above), it is necessary to have a
-                                        Client Server pattern. Portability is the Key driver supported by this pattern since the Client allows for several different
+                                    <td>Due to the fact the Mercurial is truly distributed and uses Peer-to-peer pattern (see above), it is necessary to have a
+                                        Client Server pattern. Portability is the key driver supported by this pattern since the pattern allows for high level
                                         communication protocols which can be implemented on most major plattforms. </td>
                                 </tr>
                                 <tr>
                                     <td>Consequences </td>
                                     <td>Usability is affected in a negative way since setting up repositories can be difficult, depending on the approach chosen
-                                        <a href="#merc_repositories">[ref]</a>. Since multiple clients can do same process at the
-                                        same time reusability improves. </td>
+                                        <a href="#merc_repositories">[ref]</a>.
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Related patterns </td>
-                                    <td>Remote Proxy pattern </td>
+                                    <td>Peer-to-peer, Remote Proxy </td>
                                 </tr>
                             </tbody>
                         </table>
                     </section>
                     <section>
-                        <h1>Proxy pattern </h1>
+                        <h1>Remote Proxy</h1>
                         <figure>
                             <img src="images/Proxy.jpg" alt="Mecurial Proxy diagram"  />
                             <figcaption></figcaption>
@@ -562,7 +562,7 @@
                                 </tr>
                                 <tr>
                                     <td>Name </td>
-                                    <td>Remote Proxy pattern </td>
+                                    <td>Remote Proxy</td>
                                 </tr>
                                 <tr>
                                     <td>Context </td>
@@ -623,56 +623,49 @@
                         </table>
                     </section>
                     <section>
-                        <h1>Interceptor pattern</h1>
-                        <table class="bookstyleborders">
-                            <tr>
-                                <th>Pattern Section </th>
-                                <th>Comments </th>
-                            </tr>
-                            <tr>
-                                <td>Name </td>
-                                <td>Interceptor </td>
-                            </tr>
-                            <tr>
-                                <td>Problem Context</td>
-                                <td>
-                                    <p>The Mercurial has been designed as a continuous integration system that builds and tests software automatically and regularly</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Solution Variant</td>
-                                <td>
-                                    <p>The pattern chosen is interceptor for Mercurial. Interceptor defines the signatures of the hook methods. Hook is a code which
-                                        handles intercepted function calls, messages and events. They provide a way for version control systems like Mercurial to
-                                        interact with the outside world.For example if we want to send an email automatically after commit occurs we have Commit
-                                        hook. We can also invoke a hook if we want to send a mail containing all changesets of a push/pull/unbundle.In Mercurial,
-                                        users/developers can invoke Python hooks by specifying a Python module and a function name to call from that module.The
-                                        Mercurial framework facilitates the registration of interceptors through dispatchers. </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Rationale </td>
-                                <td>
-                                    <p>The advantages of choosing interceptor pattern is they are associated with a particular set of events. Concrete interceptors
-                                        specialize interceptor interfaces and implement the hook methods of Mercurial to handle events in an application-specific
-                                        manner. The interceptor pattern helps to achieve usability and extensibility. </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Consequences </td>
-                                <td>
-                                    <p>This pattern includes strict seperation of framework and interceptors allows independent variation and evolution of service
-                                        extensions in Mercurial </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Related patterns </td>
-                                <td>
-                                    <p>Interceptor proxy (Delegator) pattern is a variant of interceptor pattern. This pattern is used on the server-side of a distributed
-                                        system to intercept remote operations. </p>
-                                </td>
-                            </tr>
-                        </table>
+                      <h1>Interceptor pattern</h1>
+<table class="bookstyleborders">
+<tr>
+<th>Pattern Section</th>
+<th>Comments</th>
+</tr>
+<tr>
+<td>Name</td>
+<td>Interceptor</td>
+</tr>
+<tr>
+<td>Problem Context</td>
+<td>
+                                    <p>Mercurial has been designed to be part of a continuous integration system that builds and tests software automatically and regularly</p>
+</td>
+</tr><tr>
+<td>Solution Variant</td>
+<td>
+<p>The pattern chosen is interceptor for Mercurial. Interceptor defines the signatures of the hook methods. Hook is a code which handles intercepted function calls,
+messages and events. They provide a way for version control systems like Mercurial to interact with the outside world.For example if we want to send an email automatically
+                                        interact with the outside world. For example if we want to send an email automatically after commit occurs we have Commit
+after commit occurs we have Commit hook. We can also invoke a hook if we want to send a mail containing all changesets of a push/pull/unbundle.In Mercurial, users/developers can invoke Python hooks by
+specifying a Python module and a function name to call from that module.The Mercurial framework facilitates the registration of interceptors through dispatchers.</p>
+</td>
+</tr><tr>
+<td>Rationale</td>
+<td>
+<p> The advantages of choosing interceptor pattern is they are associated with a particular set of events. Concrete interceptors specialize interceptor interfaces
+and implement the hook methods of Mercurial to handle events in an application-specific manner. The interceptor pattern helps to achieve usability and extensibility.
+ </p>
+</td>
+</tr><tr>
+<td>Consequences</td>
+<td>
+<p>This pattern includes strict seperation of framework and interceptors allows independent variation and evolution of service extensions in Mercurial  </p>
+</td>
+</tr><tr>
+<td>Related patterns</td>
+<td>
+<p></p>
+</td>
+</tr>
+                      </table>
                     </section>
                     <section>
                         <h1>Relaxed Layer pattern</h1>
@@ -686,14 +679,14 @@
                                 <td>Relaxed Layer </td>
                             </tr>
                             <tr>
-                                <td>Problem </td>
+                                <td>Problem Context</td>
                                 <td>
-                                    <p>The Mercurial has to be designed with separation of concern, capability to extend, and independency of any major platform
+                                    <p>Mercurial has to be designed with separation of concern, capability to extend, and independency of any major platform
                                     </p>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Solution </td>
+                                <td>Solution Variant</td>
                                 <td>
                                     <p>The pattern chosen as solution is Relaxed layer. The separation of concern and extensibility are resolved by dividing Mercurial
                                         system into several modules and grouping them into some layers based on their level of abstraction. </p>
@@ -702,24 +695,24 @@
                             <tr>
                                 <td>Rationale </td>
                                 <td>
-                                    <p>The advantage of choosing relaxed layer pattern is the separation of components into layers but still maintaining the flexibility
-                                        among components of different layers, e.g. between top layer with bottom layer, to interact directly. The layers also enables
-                                        developer or patch/extent developer to extend Mercurial features separately without interfering other components/layers.
+                                    <p>The advantage of choosing relaxed layer pattern is the separation of modules into layers but still maintaining the flexibility
+                                        among modules of different layers, e.g. between top layer with bottom layer, to interact directly. The layers also enables
+                                        developer or patch/extent developer to extend Mercurial features separately without interfering with other modules or layers.
                                         The separation of modules allows the system to be developed in different platforms. </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Consequences </td>
                                 <td>
-                                    <p>This pattern allows layers to interact without passing through any intermediate layer. This could make problem when a reference
-                                        component in bottom layer changed, the developer must examine not only its upper layer but also any layers above which interact
+                                    <p>This pattern allows layers to interact without passing through any intermediate layer. This could be a problem when a
+                                        component in a lower layer changes, the developer must examine not only its upper layer but also any layers above which interact
                                         directly to it. This could reduce maintainability.</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Related patterns </td>
                                 <td>
-                                    <p>Interceptor pattern.</p>
+                                    <p></p>
                                 </td>
                             </tr>
                         </table>
@@ -753,7 +746,7 @@
                             </tr>
                             <tr>
                                 <td>Peer-to-peer </td>
-                                <td class="positive-impact-cell">+ </td>
+                                <td >+/-</td>
                                 <td></td>
                                 <td></td>
                                 <td class="positive-impact-cell">+ </td>
@@ -764,7 +757,7 @@
                                 <td></td>
                                 <td class="positive-impact-cell">+ </td>
                                 <td class="positive-impact-cell">+ </td>
-                                <td class="positive-impact-cell">+ </td>
+                                <td>+/- </td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -777,16 +770,16 @@
                             </tr>
                             <tr>
                                 <td>Proxy </td>
-                                <td class="negative-impact-cell">- </td>
+                                <td > </td>
                                 <td class="positive-impact-cell">+ </td>
                                 <td></td>
-                                <td class="positive-impact-cell">+ </td>
+                                <td > </td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td>Interceptor </td>
-                                <td class="positive-impact-cell">+></td>
-                                <td class="positive-impact-cell">+></td>
+                                <td class="positive-impact-cell">+</td>
+                                <td class="positive-impact-cell">+</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -825,8 +818,8 @@
                                 rather than moving those large objects we just move the proxy which leads to better performance. </p>
                         </dd>
                         <dt>Interceptor</dt> <dd>Usability is the key-driver addressed in this pattern.Concrete interceptors help to handle events in an application
-	                    specific manner therby satisfying usability. Hence usability gets a plus. Extensibility is also a key-driver which
-	                    allows independent variation an evolution of service extensions in Mercurial. Hence extensibility is given a plus.</dd>
+                        specific manner therby satisfying usability. Hence usability gets a plus. Extensibility is also a key-driver which
+                        allows independent variation an evolution of service extensions in Mercurial. Hence extensibility is given a plus.</dd>
                         <dt>Relaxed Layers</dt> <dd></dd>
                     </dl>
                 </section>
