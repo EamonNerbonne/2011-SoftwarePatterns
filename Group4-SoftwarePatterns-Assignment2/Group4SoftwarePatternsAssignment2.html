@@ -266,7 +266,9 @@
                             for communicating with the user and managing configuration info. The fifth layer, Utility layer includes generic functionality
                             and platform abstraction <a href="#mercurial-arch">[ref]</a>.
                 </p>
-		<p>One interesting point is there are two layers that seem similar, Interface layer and UI (User Interface) layer. Based on investigation in source code, the interface layer deals with commands which the end-user could execute e.g. add, commit and update, while UI layer deals with the message which is delivered to end-user regarding to the command execution.
+		<p>One interesting point is there are two layers that seem similar, Interface layer and UI (User Interface) layer. Based on investigation in source 
+        code, the interface layer deals with commands which the end-user could execute e.g. add, commit and update, while UI layer deals with the message
+         which is delivered to end-user regarding to the command execution.
 		</p>
                 <section>
                     <!--################################### From Views.html ###############-->
@@ -290,17 +292,25 @@
                             The sequence diagram for the Logical view is depicted as follows:
                             [<a href="#aosabook">AOSA Book</a>] <a href="#aosabook">[ref]</a>.
 			</p>
-			<p> Regarding data model, Mercurial uses a generic structure of historic data, called revlog. There are three types of revlogs: the changelog, manifests, and filelogs. The changelog contains metadata for each revision, with a pointer into the manifest revlog (that is, a node id for one revision in the manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog. In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both concepts <a href="#aosabook">[ref]</a>.
+			<p> Regarding data model, Mercurial uses a generic structure of historic data, called revlog. There are three types of revlogs: the changelog, manifests,
+             and filelogs. The changelog contains metadata for each revision, with a pointer into the manifest revlog (that is, a node id for one revision in the 
+             manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog. 
+             In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both 
+             concepts <a href="#aosabook">[ref]</a>.</p>
 			<figure>
                     	<img src="images/revlogs.png" alt="Mercurial generic data model, revlog"/>
                     	<figcaption >Figure 4.2 Mercurial Generic Data Model, Revlog <a href="#aosabook">[ref]</a></figcaption>
                 	</figure>
-			</p>
-			<p> Mercurial is a command-line application. This means a simple interface, the user calls the hg script with a command. This command (like log, diff or commit) may take a number of options and arguments. There are also some options that are valid for all commands. Next, there are three different things that can happen to the interface: hg will often output something the user asked for or show status messages, hg can ask for further input through command-line prompts, hg may launch an external program (such as an editor for the commit message or a program to help merging code conflicts). The correlations between commands is depicted below.
-			<img src="images/modules.png" alt="Mercurial command correlation" width=600 height=400 />
+			<p> Mercurial is a command-line application. This means a simple interface, the user calls the hg script with a command. This command (like log, diff or commit) 
+            may take a number of options and arguments. There are also some options that are valid for all commands. Next, there are three different things that can
+             happen to the interface: hg will often output something the user asked for or show status messages, hg can ask for further input through command-line
+              prompts, hg may launch an external program (such as an editor for the commit message or a program to help merging code conflicts). The correlations 
+              between commands is depicted below.
+              </p>
+			<figure>
+			<img src="images/modules.png" alt="Mercurial command correlation"/>
                     	<figcaption >Figure 4.3 Mercurial Command Correlation <a href="#aosabook">[ref]</a></figcaption>
                 	</figure>
-			</p>
                     </section>
 
                     <section>
@@ -334,16 +344,15 @@
                             the same contents it had when the changeset was committed. [<a href="#mercurial-book-4">Mercurial Book</a>]
                             [<a href="#aosabook">AOSA Book</a>] <a href="#mercurial-book-4">[ref]</a>.
                         </p>
-			<p> According to the process view explained above, Mercurial process view is depicted in sequence diagram below.
+			<p> According to the process view explained above, Mercurial process view is depicted in sequence diagram below.</p>
 			<figure>
                     	<img src="images/Mercurial-seq-diag.png" alt="Mercurial sequence diagram" />
                     	<figcaption >Figure 4.4 Mercurial Sequence Diagram for Modify and Commit</figcaption>
                 	</figure>
-			</p>
+			
                     </section>
                     <!--section>
                         <h1>
-                            <!--Edy->
                             Physical view </h1>
                         <p>The physical view depicts the system concerned with the topology of software components.  </p>
                     </section-->
@@ -620,15 +629,13 @@
                                 <td>Interceptor </td>
                             </tr>
                             <tr>
-                                <td>Problem</td>
-                                <td>Context</td>
+                                <td>Problem Context</td>
                                 <td>
                                     <p>The Mercurial has been designed as a continuous integration system that builds and tests software automatically and regularly</p>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Solution</td>
-                                <td>Variant</td>
+                                <td>Solution Variant</td>
                                 <td>
                                     <p>The pattern chosen is interceptor for Mercurial. Interceptor defines the signatures of the hook methods. Hook is a code which
                                         handles intercepted function calls, messages and events. They provide a way for version control systems like Mercurial to
