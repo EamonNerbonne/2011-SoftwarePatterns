@@ -574,7 +574,7 @@
                                 </tr>
                                 <tr>
                                     <td>Name </td>
-                                    <td>Remote Proxy</td>
+                                    <td>Remote Proxy <a href="#mercurial-arch">[ref]</a></td>
                                 </tr>
                                 <tr>
                                     <td>Problem Context</td>
@@ -586,10 +586,13 @@
                                 <tr>
                                     <td>Solution Variant</td>
                                     <td>
-                                        <p>To avoid the problem in Mercurial users can pull changes directly from each other, without going through the central repository. The client communicates via representative called proxy, which offers copy of original database. 
-                                        It is implemented in a client side and contacts with server (http/https, ssh, local disk, etc. ). The remote proxy allows client to hold data until user is ready to commit (instead of the standard PROXY pattern). 
-                                        It receives the request from client and processes it. Then Proxy consults the to fulfill the request, it forwards the request using the proper communication protocols and security measures. The repository accepts the request and fulfills it. 
-                                        It sends the response back to the proxy. The proxy transfers to a client.</p>
+                                        <p>To avoid the problem in Mercurial users can pull changes directly from each other, without going through the central repository. 
+                                        The client communicates via representative called proxy, which offers copy of original database. 
+                                        It is implemented in a client side and contacts with server (http/https, ssh, local disk, etc. ). A proxy is a surrogate or placeholder for another object that controls access to it. 
+                                        A remote proxy provides local representation for an object in a different address space. <a href="#remote_proxy">[ref]</a>
+                                        It allows  client to hold data until user is ready to commit (instead of the standard PROXY pattern). It receives the request from client and processes it. 
+                                        Then Proxy consults the to fulfill the request, it forwards the request using the proper communication protocols and security measures. 
+                                        The repository accepts the request and fulfills it. It sends the response back to the proxy. The proxy transfers to a client.</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -1046,6 +1049,8 @@ and implement the hook methods of Mercurial to handle events in an application-s
                     <li id="intro_to_DVCS"><a href="http://betterexplained.com/articles/intro-to-distributed-version-control-illustrated/">Introduction
                         to distributed version control</a> </li>
                     <li id="merc_repositories"><a href="http://mercurial.selenic.com/wiki/PublishingRepositories">Mercurial: Publishing Repositories</a>
+                    </li>
+                    <li id="remote_proxy"><a href="http://www.cs.ucsb.edu/~cappello/50/resources/patterns/RemoteProxy.shtml">Remote proxy</a>
                     </li>
                     <li id="POSA2">Douglas Schmidt, Michael Stal, Hans Rohnert and Frank Buschmann Pattern-Oriented Software Architecture, Patterns for Concurrent and Networked Objects, Volume 2</li>
                     <li id="bib-idapo">Stol, K.J. and Avgeriou, P. and Ali Babar, M. Design and evaluation of a process for identifying architecture patterns in open source software.
