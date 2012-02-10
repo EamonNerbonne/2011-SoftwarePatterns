@@ -537,9 +537,9 @@
                                 </tr>
                                 <tr>
                                     <td>Solution Variant </td>
-                                    <td>The Client-Server pattern consists of two kinds of components: clients and servers. In Mercurial the Client consists of
-                                        http component, ssh component or local disk component, depending on how the user decides to set up the repository. The Server
-                                        is a webserver called Hgweb in Mercurial. </td>
+                                    <td>The Client-Server pattern consists of two kinds of components: clients and servers. In Mercurial the server consists of
+                                        http component, ssh component or local disk component, depending on how the user decides to set up the repository. The client
+                                        communicates to the server components depending on the users choise. </td>
                                 </tr>
                                 <tr>
                                     <td>Rationale </td>
@@ -586,12 +586,12 @@
                                 <tr>
                                     <td>Solution Variant</td>
                                     <td>
-                                        <p>To avoid the problem in Mercurial users can pull changes directly from each other, without going through the central repository. 
-                                        The client communicates via representative called proxy, which offers copy of original database. 
-                                        It is implemented in a client side and contacts with server (http/https, ssh, local disk, etc. ) (It is shown in a figure 9). A proxy is a surrogate or placeholder for another object that controls access to it. 
+                                        <p>To avoid the problem in Mercurial users can pull changes directly from each other, without going through the central repository.
+                                        The client communicates via representative called proxy, which offers copy of original database.
+                                        It is implemented in a client side and contacts with server (http/https, ssh, local disk, etc. ) (It is shown in a figure 9). A proxy is a surrogate or placeholder for another object that controls access to it.
                                         A remote proxy provides local representation for an object in a different address space. <a href="#remote_proxy">[ref]</a>
-                                        It allows  client to hold data until user is ready to commit (instead of the standard PROXY pattern). It receives the request from client and processes it. 
-                                        Then Proxy consults the to fulfill the request, it forwards the request using the proper communication protocols (pipelined request/response protocol) and security measures. 
+                                        It allows  client to hold data until user is ready to commit (instead of the standard PROXY pattern). It receives the request from client and processes it.
+                                        Then Proxy consults the to fulfill the request, it forwards the request using the proper communication protocols (pipelined request/response protocol) and security measures.
                                         The repository accepts the request and fulfills it. It sends the response back to the proxy. The proxy transfers to a client.</p>
                                     </td>
                                 </tr>
@@ -606,7 +606,7 @@
                                     <td>Consequences </td>
                                     <td>
                                         <p>One of the benefites of choosing proxy is it hides the fact that an object resides in a different address space.
-                                        The remote proxy is responsible for all the network hassle, so it could influence in usability in a good way. 
+                                        The remote proxy is responsible for all the network hassle, so it could influence in usability in a good way.
                                         The proxy hides the fact that a service is provided remotely, and makes the remote service as easy to use as a local service. </p>
                                     </td>
                                 </tr>
@@ -617,7 +617,7 @@
                             </tbody>
                         </table>
                     </section>
-                    <section>
+                    <section id="interceptor">
                       <h1>Interceptor pattern</h1>
                       <table class="bookstyleborders">
                           <tr>
@@ -818,7 +818,7 @@
                         <dt>Proxy</dt> <dd>
                             <p>The main reason to pick remote proxy is it increases extensibility, it creates for each client local representative of a central repository and increases the number of classes and objects
                                          that resides in a different address space.</p>
-                            <p>The remote proxy is responsible for all the network hassle, so it could influence in usability in a good way. 
+                            <p>The remote proxy is responsible for all the network hassle, so it could influence in usability in a good way.
                                         The proxy hides the fact that a service is provided remotely, and makes the remote service as easy to use as a local service. </p>
                         </dd>
                         <dt>Interceptor</dt> <dd>Usability is the key-driver addressed in this pattern.Concrete interceptors help to handle events in an application
@@ -853,25 +853,25 @@
                             <th>changelog</th>
                             <td>The changelog is part of a Mercurial repository. It contains all changesets of a repository and
                                 is stored in revlog format. For each changeset of the repository, there is exactly one file
-                                revision in the revlog file.</td>
+                                revision in the revlog file. <a href="#changelog">[ref]</a></td>
                         </tr>
                             <th>changeset</th>
                             <td>An atomic collection of changes to files in a repository. I contains all recorde local
-                                modification that lead to a new revision of the repository. </td>
+                                modification that lead to a new revision of the repository. <a href="#changeset">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>cloning</th>
-                            <td>To clone a repository is to make a copy of it at a point in time. The new repository is self-contained.</td>
+                            <td>To clone a repository is to make a copy of it at a point in time. The new repository is self-contained. <a href="#cloning">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>commit</th>
-                            <td>The creation of a new changeset in a repository, based on the state of the working directory.</td>
+                            <td>The creation of a new changeset in a repository, based on the state of the working directory. <a href="#commit">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>conflict</th>
                             <td>A conflict occurs when two independent changesets modify overlapping sections of a file in
                                 different ways. During a merge, Mercurial may require the assistance of the user through a
-                                merge program which can be used to resolve those conflicts</td>
+                                merge program which can be used to resolve those conflicts. <a href="#conflict">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>diff</th>
@@ -879,28 +879,32 @@
                                 •   The term originally referred to the diff program, which generates a text file that describes
                                 the differences between two files or source trees.<br>
                                 •   These days, the term is typically used to describe one of its output files, as a synonym for
-                                patch file.
+                                patch file. <a href="#diff">[ref]</a>
                             </td>
                         </tr>
                         <tr>
                             <th>dirstate</th>
-                            <td>Mercurial tracks various information about the working directory (the dirstate):
-                                •   what revision(s) are currently checked out
-                                •   what files have been copied or renamed
-                                •   what files are controlled by Mercurial
+                            <td>Mercurial tracks various information about the working directory (the dirstate):<br>
+                                •   what revision(s) are currently checked out<br>
+                                •   what files have been copied or renamed<br>
+                                •   what files are controlled by Mercurial <a href="#dirstate">[ref]</a>
                             </td>
                         <tr>
                         </tr>
                             <th>DVCS</th>
+                            <td>Distributed Version Control System</td>
+                        </tr>
+                        </tr>
+                            <th>filelog</th>
                             <td>When Mercurial tracks modifications to a file, it stores the history of that file in a metadata
                                 object called a filelog. Each entry in the filelog contains enough information to reconstruct one
                                 revision of the file that is being tracked. A filelog contains two kinds of information: revision
-                                data, and an index to help Mercurial to find a revision efficiently.</td>
+                                data, and an index to help Mercurial to find a revision efficiently. <a href="#filelog">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>head</th>
                             <td>A head is a changeset with no child changesets. The tip is the most recently changed head.
-                                Other heads are recent pulls into a repository that have not yet been merged.</td>
+                                Other heads are recent pulls into a repository that have not yet been merged. <a href="#head">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>hg</th>
@@ -910,11 +914,11 @@
                         <tr>
                             <th>hook</th>
                             <td>A code which handles intercepted function calls, messages and events which are
-                                implemented as either external programs or internal python calls. </td>
+                                implemented as either external programs or internal python calls. <a href="#interceptor">[ref]</a><a href="#hook">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>IDAPO</th>
-                            <td>A Process for Identifying Architecture Patterns in OSS</td>
+                            <td>A Process for Identifying Architecture Patterns in OSS <a href="#bib-idapo">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>log</th>
@@ -926,13 +930,13 @@
                                 changeset ID. It primarily contains a list of file names and revisions of those files
                                 that are present. The manifest ID identifies the version of the manifest that goes with
                                 a particular changeset. The manifest ID is a nodeid. Multiple changesets may refer to
-                                the same manifest revision.</td>
+                                the same manifest revision. <a href="#manifest">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>merge</th>
                             <td>A merge combines two separate changesets in a repository into a merge changeset that
                                 describes how they combine. Merging is the process of joining points on two branches
-                                into one, usually at their current heads.  </td>
+                                into one, usually at their current heads. <a href="#merge">[ref]</a> </td>
                         </tr>
                         <tr>
                             <th>O(1)</th>
@@ -948,11 +952,11 @@
                             <td>A parent revision serves as a baseline for defining a set of changes.
                                 Such a set of changes can either be a changeset in the repository or the local modifications
                                 in the working directory. The parent revision(s) of the working directory will naturally be
-                                used as the parent revision(s) of the changeset created by committing the local modifications.</td>
+                                used as the parent revision(s) of the changeset created by committing the local modifications. <a href="#parent">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>PBAR</th>
-                            <td>Pattern-Based Architectural Review</td>
+                            <td>Pattern-Based Architectural Review <a href="#bib-harrison2010pattern">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>pull</th>
@@ -960,19 +964,18 @@
                                 (the destination). The source (or "remote") repository may be located on the same or on a different
                                 computer. In the latter case, the changes are pulled over the network using the protocol specified
                                 by the provided URL of the remote repository. Pull transfers only changesets which are missing in
-                                the destination repository.</td>
+                                the destination repository. <a href="#pull">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>push</th>
-                            <td>A push propagates changes from a local repository to a remote one.</td>
+                            <td>A push propagates changes from a local repository to a remote one. <a href="#push">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>repository</th>
                             <td>In Mercurial the repository contains the history of your project. Strictly speaking, the term repository
                                 in Mercurial refers to the directory named .hg (dot hg) in the repository root directory. The repository
                                 root directory is the parent directory of the .hg directory. Mercurial stores its internal data structures
-                                – the metadata
-                                – inside that .hg directory. </td>
+                                – the metadata – inside that .hg directory. <a href="#repository">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>revision</th>
@@ -984,7 +987,7 @@
                                 the repository (conceptually referring to "a revision of a file").<br>
                                 This dual-use of the term "revision" naturally follows from the fact that Mercurial uses the same
                                 technical method for storing changeset information and for storing file versions in the repository,
-                                namely the revlog format.</td>
+                                namely the revlog format. <a href="#revision">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>revlog</th>
@@ -992,23 +995,23 @@
                                 of a file in a repository. Each version is stored compressed in its entirety or stored as a compressed binary
                                 delta (difference) relative to the preceeding version in the revlog. Whether to store a full version is decided
                                 by how much data would beneeded to reconstruct the file. This system ensures that Mercurial does not need huge
-                                amounts of data to reconstruct any version of a file, no matter how many versions are stored.  </td>
+                                amounts of data to reconstruct any version of a file, no matter how many versions are stored. <a href="#revlog">[ref]</a> </td>
                         </tr>
                         <tr>
                             <th>SCM</th>
                             <td>Abbreviations: "software configuration management" or "software configuration manager".
                                 The automated management of the components of a software project as it evolves. There are two kinds of SCM:
-                                CentralisedSCM and DistributedSCM. Mercurial is a distributed SCM.</td>
+                                CentralisedSCM and DistributedSCM. Mercurial is a distributed SCM. <a href="#scm">[ref]</a></td>
                         </tr>
                         <tr>
                             <th>tip</th>
                             <td>The tip revision (usually just called the tip) is the most recent changeset in the repository. The tip is
-                                the most recently changed head.  </td>
+                                the most recently changed head. <a href="#tip">[ref]</a> </td>
                         </tr>
                         <tr>
                             <th>update</th>
                             <td>Update the repository's working directory (the "working copy") to the specified revision of the repository
-                                or to the tip revision of the current (named) branch if no revision is specified.  </td>
+                                or to the tip revision of the current (named) branch if no revision is specified. <a href="#update">[ref]</a> </td>
                         </tr>
                         <tr>
                             <th>user-data</th>
@@ -1019,7 +1022,7 @@
                             <td>In Mercurial the working directory contains a snapshot of your project at a particular point in history.
                                 It is the top-level directory in a repository, in which the plain versions of files are available to read,
                                 edit and build. Files in the working directory are usually from the tip, but may be from older revisions,
-                                or modified and not yet committed. It is sometimes called the “working copy”. </td>
+                                or modified and not yet committed. It is sometimes called the “working copy”. <a href="#workingdirectory">[ref]</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1061,6 +1064,28 @@
                     <li id="bib-idapo">Stol, K.J. and Avgeriou, P. and Ali Babar, M. Design and evaluation of a process for identifying architecture patterns in open source software.
                      In <i>Software Architecture</i>, pages 147&ndash;163. Springer, 2011</li>
                      <li id="bib-harrison2010pattern">Harrison, N. and Avgeriou, P. Pattern-based architecture reviews. In <i>IEEE Software</i>. IEEE, 2010</li>
+                    <li id="changelog"><a href="http://mercurial.selenic.com/wiki/Changelog">Mercurial changelog</a></li>
+                    <li id="changeset"><a href="http://mercurial.selenic.com/wiki/ChangeSet">Mercurial changeset</a></li>
+                    <li id="cloning"><a href="http://mercurial.selenic.com/wiki/Clone">Mercurial cloning</a></li>
+                    <li id="commit"><a href="http://mercurial.selenic.com/wiki/Commit">Mercurial commit</a></li>
+                    <li id="conflict"><a href="http://mercurial.selenic.com/wiki/Conflict">Mercurial conflict</a></li>
+                    <li id="diff"><a href="http://mercurial.selenic.com/wiki/Diff">Mercurial diff</a></li>
+                    <li id="dirstate"><a href="http://mercurial.selenic.com/wiki/DirState">Mercurial dirstate</a></li>
+                    <li id="filelog"><a href="http://hgbook.red-bean.com/read/behind-the-scenes.html">Mercurial filelog</a></li>
+                    <li id="head"><a href="http://mercurial.selenic.com/wiki/Head">Mercurial head</a></li>
+                    <li id="hook"><a href="http://mercurial.selenic.com/wiki/Hook">Mercurial hook</a></li>
+                    <li id="manifest"><a href="http://mercurial.selenic.com/wiki/Manifest">Mercurial manifest</a></li>
+                    <li id="merge"><a href="http://mercurial.selenic.com/wiki/Merge">Mercurial merge</a></li>
+                    <li id="parent"><a href="http://mercurial.selenic.com/wiki/Parent">Mercurial parent</a></li>
+                    <li id="pull"><a href="http://mercurial.selenic.com/wiki/Pull">Mercurial pull</a></li>
+                    <li id="push"><a href="http://mercurial.selenic.com/wiki/Push">Mercurial push</a></li>
+                    <li id="repository"><a href="http://mercurial.selenic.com/wiki/Repository">Mercurial repository</a></li>
+                    <li id="revision"><a href="http://mercurial.selenic.com/wiki/Revision">Mercurial revision</a></li>
+                    <li id="revlog"><a href="http://mercurial.selenic.com/wiki/Revlog">Mercurial revlog</a></li>
+                    <li id="scm"><a href="http://mercurial.selenic.com/wiki/SCM">Mercurial SCM</a></li>
+                    <li id="tip"><a href="http://mercurial.selenic.com/wiki/Tip">Mercurial tip</a></li>
+                    <li id="update"><a href="http://mercurial.selenic.com/wiki/Update">Mercurial update</a></li>
+                    <li id="workingdirectory"><a href="http://mercurial.selenic.com/wiki/WorkingDirectory">Mercurial working directory</a></li>
                 </ul>
             </aside>
         </article>

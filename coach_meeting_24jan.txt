@@ -1,12 +1,9 @@
-Glossary:
-add terms like revlog, O() a.s.o. - Sunna
-
 Revision history:
 - Eamon + Divya: 4 and 5
+- all
 
 Timesheet:
 - all
-
 
 Chapter 2:
 - If we only have one section in chapter one, remove the subsection number. - Eamon
@@ -37,7 +34,6 @@ Patterns: -  Pattern based
 - Shared datastore: add new diagram
 - Interceptor: fix text -  refrace Rationale (first sentese) - Consequence: make code more maintainable (complicated) and
 affects security.
-- CS: fix solution variant to fit the new diagram
 - Relaxed Layer: fix text in Solution variant and add diagram
 
 Chapter 5:
