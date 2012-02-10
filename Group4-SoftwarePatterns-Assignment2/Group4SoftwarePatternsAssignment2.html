@@ -94,7 +94,7 @@
                                 <dl><dt>Assel</dt> <dd>Proxy pattern</dd>
                                     <dt>Divya</dt> <dd>Logical View, Process View</dd>
                                     <dt>Edy</dt> <dd>Refine architectural diagram</dd>
-                                    <dt>Sunna</dt> <dd>Chapter 5, Client-Server & Peer-to-peer patterns, diagrams: CS, P2P, system overview</dd>
+                                    <dt>Sunna</dt> <dd>Chapter 5, Client-Server & Peer-to-peer patterns, diagrams: CS, P2P and system overview, Glossary</dd>
                                     <dt>Eamon</dt> <dd></dd>
                                 </dl>
                             </td>
@@ -138,7 +138,7 @@
                     <h1>Mercurial’s functionality </h1>
                     <p>Firstly, Mercurial maintains a log: an annotated history of changes. In addition to keeping track of the documents themselves,
                         Mercurial allows developers to keep track of which lines were changed, the date the changes were made, the identity of the
-                        author, and, importantly, the motivation for these changes. This is achieved by splitting changes into cohesive chunks call
+                        author, and, importantly, the motivation for these changes. This is achieved by splitting changes into cohesive chunks called
                         changesets. When a developer commits a changeset, he adds it to Mercurial’s repository of changesets, and includes a commit
                         message describing what was changed and why. Changesets with commit messages are common in revision control systems; they
                         allow developers to maintain systems that are too large or too old by reducing the need to grasp the entirety of the system
@@ -152,7 +152,7 @@
                         the friction of each developer keeping abreast of all changes. </p>
                 <figure id="fig-common-hg-setup">
                     <img src="images/SystemOverview.png" alt="System overview diagram" />
-                    <figcaption>From <a href="#system_overview_diagram_links" id="system_overview_diagram_links_ref">[ref]</a>. A common mercurial workflow; 
+                    <figcaption>From <a href="#system_overview_diagram_links" id="system_overview_diagram_links_ref">[ref]</a>. A common mercurial workflow;
                         Joe &amp; Dan interact with their own repository which contains the entire project history.  Changes are usually exchanged via a central repository.</figcaption></figure>
                     <p>Mercurial allows distributed development teams by allowing any developer to pull others’ changes or push his own to an external
                         repository (see <a href="#fig-common-hg-setup">[ref]</a>). Crucially, there is no technical need for a central repository nor for “one true” history, allowing for truly
@@ -173,7 +173,7 @@
                 <h1>Stakeholders and concerns <span class="rightbox"></span></h1>
                 <section>
                     <h1>Stakeholders and concerns</h1>
-                    <p>Stakeholders and their concerns are have been identified by reading the documentation and analyzing the functionality of
+                    <p>Stakeholders and their concerns have been identified by reading the documentation and analyzing the functionality of
                         the system. Stakeholders are not specifically defined in Mercurial documentation, but the benefits for end-users are listed
                             <a href="#about-mercurial">[ref]</a>. </p>
                     <dl><dt>End user</dt> <dd>The end user (software developer) can be a large team of people as well as one person. </dd>
@@ -271,7 +271,7 @@
                             for communicating with the user and managing configuration info. The fifth layer, Utility layer includes generic functionality
                             and platform abstraction <a href="#mercurial-arch">[ref]</a>.
                 </p>
-		<p>One interesting point is there are two layers that seem similar, Interface layer and UI (User Interface) layer. Based on investigation in source
+        <p>One interesting point is there are two layers that seem similar, Interface layer and UI (User Interface) layer. Based on investigation in source
         code, the interface layer deals with commands which the end-user could execute e.g. add, commit and update, while UI layer deals with the message
          which is delivered to end-user regarding to the command execution.
         </p>
@@ -306,7 +306,7 @@
                         <img src="images/revlogs.png" alt="Mercurial generic data model, revlog"/>
                         <figcaption >Mercurial Generic Data Model, Revlog <a href="#aosabook">[ref]</a></figcaption>
                     </figure>
-			<p> Mercurial is a command-line application. This means a simple interface, the user calls the hg script with a command. This command (like log, diff or commit)
+            <p> Mercurial is a command-line application. This means a simple interface, the user calls the hg script with a command. This command (like log, diff or commit)
             may take a number of options and arguments. There are also some options that are valid for all commands. Next, there are three different things that can
              happen to the interface: hg will often output something the user asked for or show status messages, hg can ask for further input through command-line
               prompts, hg may launch an external program (such as an editor for the commit message or a program to help merging code conflicts). The correlations
@@ -478,7 +478,7 @@
                                     <td>Mercurial stores most of its data in <i>revlogs</i>. Each Mercurial repository has many such revlogs; most persistant data
                                         (whether Mercurial-internal or user data) is stored and managed centrally in these datastructures. Each revlog consists
                                         of an append-only data file and an index file with fixed-size entries (to enable O(1) seeking) storing where a particular
-                                        version is to be found in the data file. There are three classes of revlogs. Firstly, user data is store in a per-file revlog.
+                                        version is to be found in the data file. There are three classes of revlogs. Firstly, user data is stored in a per-file revlog.
                                         Secondly, a directory listing with revision numbers of each file forming a particular version of the directory tree is stored
                                         in a manifest revlog. Finally, changeset metadata such as commit messages and the corresponding manifest revision number
                                         is stored in a changeset revlog. </td>
@@ -841,6 +841,185 @@ and implement the hook methods of Mercurial to handle events in an application-s
                     </section>
                 </section>
             </section>
+            <aside class="glossary">
+            <h1>Glossary</h1>
+                <table class="simplebordersGloss">
+                    <tbody>
+                        <tr>
+                            <th>changelog</th>
+                            <td>The changelog is part of a Mercurial repository. It contains all changesets of a repository and
+                                is stored in revlog format. For each changeset of the repository, there is exactly one file
+                                revision in the revlog file.</td>
+                        </tr>
+                            <th>changeset</th>
+                            <td>An atomic collection of changes to files in a repository. I contains all recorde local
+                                modification that lead to a new revision of the repository. </td>
+                        </tr>
+                        <tr>
+                            <th>cloning</th>
+                            <td>To clone a repository is to make a copy of it at a point in time. The new repository is self-contained.</td>
+                        </tr>
+                        <tr>
+                            <th>commit</th>
+                            <td>The creation of a new changeset in a repository, based on the state of the working directory.</td>
+                        </tr>
+                        <tr>
+                            <th>conflict</th>
+                            <td>A conflict occurs when two independent changesets modify overlapping sections of a file in
+                                different ways. During a merge, Mercurial may require the assistance of the user through a
+                                merge program which can be used to resolve those conflicts</td>
+                        </tr>
+                        <tr>
+                            <th>diff</th>
+                            <td>The term diff can mean one of two things:<br>
+                                •   The term originally referred to the diff program, which generates a text file that describes
+                                the differences between two files or source trees.<br>
+                                •   These days, the term is typically used to describe one of its output files, as a synonym for
+                                patch file.
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>dirstate</th>
+                            <td>Mercurial tracks various information about the working directory (the dirstate):
+                                •   what revision(s) are currently checked out
+                                •   what files have been copied or renamed
+                                •   what files are controlled by Mercurial
+                            </td>
+                        <tr>
+                        </tr>
+                            <th>DVCS</th>
+                            <td>When Mercurial tracks modifications to a file, it stores the history of that file in a metadata
+                                object called a filelog. Each entry in the filelog contains enough information to reconstruct one
+                                revision of the file that is being tracked. A filelog contains two kinds of information: revision
+                                data, and an index to help Mercurial to find a revision efficiently.</td>
+                        </tr>
+                        <tr>
+                            <th>head</th>
+                            <td>A head is a changeset with no child changesets. The tip is the most recently changed head.
+                                Other heads are recent pulls into a repository that have not yet been merged.</td>
+                        </tr>
+                        <tr>
+                            <th>hg</th>
+                            <td>The hg command (hg and then e.g. help, pull, push) provides a command line interface to
+                                the Mercurial system.</td>
+                        </tr>
+                        <tr>
+                            <th>hook</th>
+                            <td>A code which handles intercepted function calls, messages and events which are
+                                implemented as either external programs or internal python calls. </td>
+                        </tr>
+                        <tr>
+                            <th>IDAPO</th>
+                            <td>A Process for Identifying Architecture Patterns in OSS</td>
+                        </tr>
+                        <tr>
+                            <th>log</th>
+                            <td>An annotated history of changes</td>
+                        </tr>
+                        <tr>
+                            <th>manifest</th>
+                            <td>The manifest is the file that describes the contents of the repository at a particular
+                                changeset ID. It primarily contains a list of file names and revisions of those files
+                                that are present. The manifest ID identifies the version of the manifest that goes with
+                                a particular changeset. The manifest ID is a nodeid. Multiple changesets may refer to
+                                the same manifest revision.</td>
+                        </tr>
+                        <tr>
+                            <th>merge</th>
+                            <td>A merge combines two separate changesets in a repository into a merge changeset that
+                                describes how they combine. Merging is the process of joining points on two branches
+                                into one, usually at their current heads.  </td>
+                        </tr>
+                        <tr>
+                            <th>O(1)</th>
+                            <td>A kernel scheduling design that can schedule processes within a constant amount of time,
+                                regardless of how many processes are running on the operating system.</td>
+                        </tr>
+                        <tr>
+                            <th>OS</th>
+                            <td>Operating System</td>
+                        </tr>
+                        <tr>
+                            <th>parent</th>
+                            <td>A parent revision serves as a baseline for defining a set of changes.
+                                Such a set of changes can either be a changeset in the repository or the local modifications
+                                in the working directory. The parent revision(s) of the working directory will naturally be
+                                used as the parent revision(s) of the changeset created by committing the local modifications.</td>
+                        </tr>
+                        <tr>
+                            <th>PBAR</th>
+                            <td>Pattern-Based Architectural Review</td>
+                        </tr>
+                        <tr>
+                            <th>pull</th>
+                            <td>A pull propagates changesets from a "remote" repository (the source) into a local repository
+                                (the destination). The source (or "remote") repository may be located on the same or on a different
+                                computer. In the latter case, the changes are pulled over the network using the protocol specified
+                                by the provided URL of the remote repository. Pull transfers only changesets which are missing in
+                                the destination repository.</td>
+                        </tr>
+                        <tr>
+                            <th>push</th>
+                            <td>A push propagates changes from a local repository to a remote one.</td>
+                        </tr>
+                        <tr>
+                            <th>repository</th>
+                            <td>In Mercurial the repository contains the history of your project. Strictly speaking, the term repository
+                                in Mercurial refers to the directory named .hg (dot hg) in the repository root directory. The repository
+                                root directory is the parent directory of the .hg directory. Mercurial stores its internal data structures
+                                – the metadata
+                                – inside that .hg directory. </td>
+                        </tr>
+                        <tr>
+                            <th>revision</th>
+                            <td>In Mercurial, the term revision can have two different meanings, depending on context.
+                                Most often, "revision" refers to a distinct changeset in a repository, for example by specifying a
+                                repository-localrevision number for the --rev option of the hg update or the hg merge command
+                                (conceptually referring to "a revision of the repository"). The term "revision" is also used as the
+                                short form for the longer term "file revision", which refers to a certain version of a file stored in
+                                the repository (conceptually referring to "a revision of a file").<br>
+                                This dual-use of the term "revision" naturally follows from the fact that Mercurial uses the same
+                                technical method for storing changeset information and for storing file versions in the repository,
+                                namely the revlog format.</td>
+                        </tr>
+                        <tr>
+                            <th>revlog</th>
+                            <td>A revlog, for example .hg/data/somefile.d, is the most important data structure and represents all versions
+                                of a file in a repository. Each version is stored compressed in its entirety or stored as a compressed binary
+                                delta (difference) relative to the preceeding version in the revlog. Whether to store a full version is decided
+                                by how much data would beneeded to reconstruct the file. This system ensures that Mercurial does not need huge
+                                amounts of data to reconstruct any version of a file, no matter how many versions are stored.  </td>
+                        </tr>
+                        <tr>
+                            <th>SCM</th>
+                            <td>Abbreviations: "software configuration management" or "software configuration manager".
+                                The automated management of the components of a software project as it evolves. There are two kinds of SCM:
+                                CentralisedSCM and DistributedSCM. Mercurial is a distributed SCM.</td>
+                        </tr>
+                        <tr>
+                            <th>tip</th>
+                            <td>The tip revision (usually just called the tip) is the most recent changeset in the repository. The tip is
+                                the most recently changed head.  </td>
+                        </tr>
+                        <tr>
+                            <th>update</th>
+                            <td>Update the repository's working directory (the "working copy") to the specified revision of the repository
+                                or to the tip revision of the current (named) branch if no revision is specified.  </td>
+                        </tr>
+                        <tr>
+                            <th>user-data</th>
+                            <td>In Mercurial it is usually source code</td>
+                        </tr>
+                        <tr>
+                            <th>working directory</th>
+                            <td>In Mercurial the working directory contains a snapshot of your project at a particular point in history.
+                                It is the top-level directory in a repository, in which the plain versions of files are available to read,
+                                edit and build. Files in the working directory are usually from the tip, but may be from older revisions,
+                                or modified and not yet committed. It is sometimes called the “working copy”. </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </aside>
             <aside class="bibliography">
                 <h1>References </h1>
                 <ul>
