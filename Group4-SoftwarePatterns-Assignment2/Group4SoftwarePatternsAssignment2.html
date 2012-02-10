@@ -588,31 +588,24 @@
                                     <td>
                                         <p>To avoid the problem in Mercurial users can pull changes directly from each other, without going through the central repository. 
                                         The client communicates via representative called proxy, which offers copy of original database. 
-                                        It is implemented in a client side and contacts with server (http/https, ssh, local disk, etc. ). A proxy is a surrogate or placeholder for another object that controls access to it. 
+                                        It is implemented in a client side and contacts with server (http/https, ssh, local disk, etc. ) (It is shown in a figure 9). A proxy is a surrogate or placeholder for another object that controls access to it. 
                                         A remote proxy provides local representation for an object in a different address space. <a href="#remote_proxy">[ref]</a>
                                         It allows  client to hold data until user is ready to commit (instead of the standard PROXY pattern). It receives the request from client and processes it. 
-                                        Then Proxy consults the to fulfill the request, it forwards the request using the proper communication protocols and security measures. 
+                                        Then Proxy consults the to fulfill the request, it forwards the request using the proper communication protocols (pipelined request/response protocol) and security measures. 
                                         The repository accepts the request and fulfills it. It sends the response back to the proxy. The proxy transfers to a client.</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Rationale </td>
                                     <td>
-                                        <ul>
-                                            <li>
-                                                <p></p>
-                                            </li>
-                                            <li>
-                                                <p></p>
-                                            </li>
-                                        </ul>
+                                        The main reason to pick remote proxy is it increases extensibility, it creates for each client local representative of a central repository  that resides in a different address space.
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Consequences </td>
                                     <td>
-                                        <p></p>
-                                        <p> </p>
+                                        <p>One of the benefites of choosing proxy is it hides the fact that an object resides in a different address space.
+                                        The remote proxy is responsible for all the network hassle, so it could influence in usability in a good way </p>
                                     </td>
                                 </tr>
                                 <tr>
