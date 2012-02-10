@@ -565,31 +565,20 @@
                                     <td>Remote Proxy</td>
                                 </tr>
                                 <tr>
-                                    <td>Context </td>
+                                    <td>Problem Context</td>
                                     <td>
-                                        <p>Client applications should be able to make remote invocations in a transparent manner. </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Problem </td>
-                                    <td>
-                                        <p>In a Mercurial users start by cloning a copy of the repository. They can pull changes from it whenever they need to, and
+                                        <p>Client applications should be able to make remote invocations in a transparent manner. In a Mercurial users start by cloning a copy of the repository. They can pull changes from it whenever they need to, and
                                             other developers can push changs simultaneously. But it might subsequently break everyone else's trees. </p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Variant </td>
+                                    <td>Solution Variant</td>
                                     <td>
-                                        <p>The stated problem can be solved using a variant of the Remote Proxy pattern. A remote proxy provides a local representative
-                                            for an object that resides in a different address space. (instead of the standard Proxy pattern). </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Solution </td>
-                                    <td>
-                                        <p>To avod the problem in Mercurial users can pull changes directly from each other, without going through the central repository.
-                                     (instead of the standard Proxy pattern).</p>
-                                            to hold data until user is ready to commit, and can limit the amount of times that the communication is called. </p>
+                                        <p>To avod the problem in Mercurial users can pull changes directly from each other, without going through the central repository. The client communicates via representative called proxy, which offers copy of original database.
+                                           The remote proxy allows client to hold data until user is ready to commit. It receives the request from client and processes it. Then Proxy consults the  to fulfill the request, it forwards the request using the proper 
+                                           communication protocols and security measures. The repository accepts the request and fulfills it. It sends the response back to the proxy. The proxy transfers to a client.
+                                            </p>
+                                            
                                     </td>
                                 </tr>
                                 <tr>
@@ -597,16 +586,12 @@
                                     <td>
                                         <ul>
                                             <li>
-                                                <p>By putting all location information and addressing functionality into a Remote Proxy, users are not affected by migration
-                                                 To avod the problem in Mercurial users can pull changes directly from each other, without going through the central repository. The client communicates  via representative called proxy, which offers copy of original database.
-                                                 The proxy allows client to hold data until user is ready to commit.
-                                                 The proxy receives the request from client and pre-processes it. This pre-processing involves actions such as looking up the address of the original, or checking a local cache to see if the requested information is already available.
-                                                 Proxy consults the original to fulfill the request, it forwards the request to the original using the proper communication protocols and security measures. The original accepts the request and fulfills it. It sends the
-                                                 response back to the proxy. The proxy receives the response. Before transferring it to the client it obtains post-processing actions.
+                                                <p>
+                                                 
                                                 </p>
                                             </li>
                                             <li>
-                                                <p>Usability decrease, since the developer cannot call on proxy objects directly. </p>
+                                                <p></p>
                                             </li>
                                         </ul>
                                     </td>
@@ -614,14 +599,13 @@
                                 <tr>
                                     <td>Consequences </td>
                                     <td>
-                                        <p>We have huge objects it can be very memory consuming to move to those large objects in a network or some other domain. So
-                                            rather than moving those large objects we just move the proxy which leads to better performance.</p>
-                                        <p>Remote Proxy create </p>
+                                        <p></p>
+                                        <p> </p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Related patterns </td>
-                                    <td>Client-server </td>
+                                    <td>Client-server, peer-to-peer </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -813,9 +797,8 @@ and implement the hook methods of Mercurial to handle events in an application-s
                             <p>Usability gets a minus due to the fact that it can be difficult to set up and configure you own repository <a href="#merc_repositories">[ref]</a> if you choose to do so. </p>
                         </dd>
                         <dt>Proxy</dt> <dd>
-                            <p>Usability decrease, since the developer cannot call on proxy objects directly.</p>
-                            <p>We have huge objects it can be very memory consuming to move to those large objects in a network or some other domain. So
-                                rather than moving those large objects we just move the proxy which leads to better performance. </p>
+                            <p></p>
+                            <p></p>
                         </dd>
                         <dt>Interceptor</dt> <dd>Usability is the key-driver addressed in this pattern.Concrete interceptors help to handle events in an application
                         specific manner therby satisfying usability. Hence usability gets a plus. Extensibility is also a key-driver which
