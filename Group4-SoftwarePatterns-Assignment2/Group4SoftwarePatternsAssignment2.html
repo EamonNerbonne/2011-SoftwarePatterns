@@ -101,7 +101,7 @@
                         </tr>
                         <tr>
                             <td>12/02/2012 </td>
-                            <td class="centered">5 </td>
+                            <td class="centered">6 </td>
                             <td>
                                 <dl><dt>Assel</dt> <dd></dd>
                                     <dt>Divya</dt> <dd></dd>
@@ -586,10 +586,10 @@
                                 <tr>
                                     <td>Solution Variant</td>
                                     <td>
-                                        <p>To avod the problem in Mercurial users can pull changes directly from each other, without going through the central repository. The client communicates via representative called proxy, which offers copy of original database.
-                                           The remote proxy allows client to hold data until user is ready to commit. It receives the request from client and processes it. Then Proxy consults the  to fulfill the request, it forwards the request using the proper 
-                                           communication protocols and security measures. The repository accepts the request and fulfills it. It sends the response back to the proxy. The proxy transfers to a client.
-                                            </p>
+                                        <p>To avoid the problem in Mercurial users can pull changes directly from each other, without going through the central repository. The client communicates via representative called proxy, which offers copy of original database. 
+                                        It is implemented in a client side and contacts with server (http/https, ssh, local disk, etc. ). The remote proxy allows client to hold data until user is ready to commit (instead of the standard PROXY pattern). 
+                                        It receives the request from client and processes it. Then Proxy consults the to fulfill the request, it forwards the request using the proper communication protocols and security measures. The repository accepts the request and fulfills it. 
+                                        It sends the response back to the proxy. The proxy transfers to a client.</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -597,16 +597,10 @@
                                     <td>
                                         <ul>
                                             <li>
-                                                <p>By putting all location information and addressing functionality into a Remote Proxy, users are not affected by migration
-                                                    of servers or changes in the networking infrastructure. This allows client code to become more stable and reusable.
-                                                 The proxy allows client to hold data until user is ready to commit.
-                                                 The proxy receives the request from client and pre-processes it. This pre-processing involves actions such as looking up the address of the original, or checking a local cache to see if the requested information is already available.
-                                                 Proxy consults the original to fulfill the request, it forwards the request to the original using the proper communication protocols and security measures. The original accepts the request and fulfills it. It sends the
-                                                 response back to the proxy. The proxy receives the response. Before transferring it to the client it obtains post-processing actions.
-                                                </p>
+                                                <p></p>
                                             </li>
                                             <li>
-                                                <p>Usability decrease, since the developer cannot call on proxy objects directly. </p>
+                                                <p></p>
                                             </li>
                                         </ul>
                                     </td>
