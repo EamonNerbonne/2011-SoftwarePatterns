@@ -98,6 +98,27 @@ table.simpleborders td {
     font-weight: bold;
 }
 
+table.simplebordersGloss {
+    border-style: solid;
+    border-spacing: 0;
+    border-width: 0px 0px 1px 1px;
+}
+
+table.simplebordersGloss th {
+    border-style: solid;
+    border-width: 1px 1px 0px 0px;
+    margin: 0;
+    padding: 4px;
+    font-weight: bold;
+}
+
+table.simplebordersGloss td {
+    border-style: solid;
+    border-width: 1px 1px 0px 0px;
+    margin: 0;
+    padding: 4px;
+}
+
 /* Basic Table layouts */
 table {
     hyphens: manual;
