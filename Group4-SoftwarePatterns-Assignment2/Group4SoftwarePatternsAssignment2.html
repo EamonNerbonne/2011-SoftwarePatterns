@@ -249,9 +249,11 @@
                 <section>
                     <h1>Key drivers</h1>
                     <p>The key drivers are identified from Mercurial documentation<sup> <a href="#key_drivers">[ref]</a> </sup>. These key drivers
-                        are talked about extensively in several Mercurial sources. </p>
-                    <dl><dt>Usability:</dt> <dd>The basic interface of Mercurial is easy to use, easy to learn and hard to break. Mercurial sports
-                        a consistent command set and potentially dangerous actions are available via extensions which need to be enabled. </dd>
+                        are talked about extensively in several Mercurial sources. They not prioritized in the documents and therefore
+                        are they listed in random order below.</p>
+                    <dl>
+                        <dt>Usability:</dt> <dd>The basic interface of Mercurial is easy to use, easy to learn and hard to break. Mercurial sports
+                            a consistent command set and potentially dangerous actions are available via extensions which need to be enabled. </dd>
                         <dt>Extensibility:</dt> <dd>The functionality of Mercurial can be increased with extensions, either by activating the official
                             ones which are shipped with Mercurial or downloading some from the wiki or by writing our own. </dd>
                         <dt>Portability:</dt> <dd>Mercurial is written with platform independence in mind. Binary releases are available on all major
@@ -379,20 +381,23 @@
                 </section>
                 <section>
                     <h1>Candidate Architectural Patterns </h1>
-                    <dl><dt>Proxy</dt> <dd>For accessing remote repositories from a local client. <i>Accepted, Sunna</i> </dd>
-                        <dt>Layers</dt> <dd>The levels of abstraction. <i>Rejected, not important enough to be considered architectural</i> </dd>
+                    <p>The IDAPO process is followed in the making of this report. In step 4 candidate patterns are
+                        identified and listed. In steps 5-7 the documentation and source code is studied in detail
+                        to assert that the candidate patterns are actually present. Below is the list of candidate
+                        patterns and conclusions of their existance.</p>
+                    <dl><dt>Proxy</dt> <dd>For accessing remote repositories from a local client. <i>Accepted</i> </dd>
+                        <dt>Layers</dt> <dd>The levels of abstraction. <i>Rejected</i> </dd>
+                        <dt>Relaxed Layers</dt> <dd>The levels of abstraction are more suitable as relaxed layers. <i>Accepted</i> </dd>
                         <dt>Peer-to-peer</dt> <dd>Mercurial itself implements such a system between repositories - but is this a real architectural
-                            pattern or just the way its set up? <i>Accepted, Sunna</i> </dd>
+                            pattern or just the way its set up? <i>Accepted</i> </dd>
                         <dt>Shared Datastore</dt> <dd>aka Shared Repository; renamed to avoid confusion with the term repository to meaning a Mercurial
-                            SCM repository. The disk revlogs are shared between various other components and could be seen as a shared repository. <i>Accepted,
-                                Eamon</i> </dd>
+                            SCM repository. The disk revlogs are shared between various other components and could be seen as a shared repository. <i>Accepted</i> </dd>
                         <dt>Indirection layer</dt> <dd>The revlog storage can be seen as an indirection layer over the filesystem: direct access is
-                            problematic due to performance, corruption and locking. <i>Rejected, Shared datastore is a better match</i> </dd>
+                            problematic due to performance, corruption and locking. <i>Accepted</i> </dd>
                         <dt>Active repository</dt> <dd>Active repository: the Mercurial VCS itself can be seen as an active repository in that it provides
-                            hooks that can actively notify others of changes. Is this more like a feature than a pattern? It's also not major. <i>Accepted,
-                                Divya</i> </dd>
+                            hooks that can actively notify others of changes. Is this more like a feature than a pattern? <i>Accepted</i> </dd>
                         <dt>Client-Server</dt> <dd>A Mercurial repository communicates via a client-server protocol when over the network e.g. when
-                            pushing or pulling. <i>Accepted, Assel</i> </dd>
+                            pushing or pulling. <i>Accepted</i> </dd>
                     </dl>
                 </section>
                 <section>
@@ -401,7 +406,7 @@
                         <h1>Peer-to-peer </h1>
                         <figure>
                             <img src="images/Peer-to-peer.jpg" alt="Mecurial Peer-to-peer diagram"/>
-                            <figcaption></figcaption>
+                            <figcaption>Mercurials Peer-to-peer diagram</figcaption>
                         </figure>
                         <table class="bookstyleborders">
                             <tbody>
@@ -517,7 +522,7 @@
                         <h1>Client server </h1>
                         <figure>
                             <img src="images/ClientServer.jpg" alt="Mecurial Client Server diagram" />
-                            <figcaption></figcaption>
+                            <figcaption>Mercurials Client server diagram</figcaption>
                         </figure>
                         <table class="bookstyleborders">
                             <tbody>
@@ -566,7 +571,7 @@
                         <h1>Remote Proxy</h1>
                         <figure>
                             <img src="images/Proxy.jpg" alt="Mecurial Proxy diagram"  />
-                            <figcaption></figcaption>
+                            <figcaption>Mercurials Proxy diagram</figcaption>
                         </figure>
                         <table class="bookstyleborders">
                             <tbody>

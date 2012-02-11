@@ -7,8 +7,6 @@ Timesheet:
 
 Chapter 2:
 - If we only have one section in chapter one, remove the subsection number. - Eamon
-- Were we talk about the OSS community, add in information about the developer (Matt) and
-information about the community (briefly). - Sunna
 
 Chapter 3:
 Stakeholders:
