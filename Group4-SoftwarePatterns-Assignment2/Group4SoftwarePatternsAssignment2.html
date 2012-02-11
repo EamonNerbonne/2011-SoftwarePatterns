@@ -614,7 +614,9 @@
                                     <td>
                                         <p>One of the benefites of choosing proxy is it hides the fact that an object resides in a different address space.
                                         The remote proxy is responsible for all the network hassle, so it could influence in usability in a good way.
-                                        The proxy hides the fact that a service is provided remotely, and makes the remote service as easy to use as a local service. </p>
+                                        The proxy hides the fact that a service is provided remotely, and makes the remote service as easy to use as a local service. 
+                                        By putting all location information and addressing functionality into a Remote Proxy variant, clients are not affected by migration of servers or
+                                        changes in the networking infrastructure. This allows client code to become more stable and reusable.</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -849,6 +851,12 @@
                     <section>
                         <h1>Improve existing patterns</h1>
                         <p>Are there any patterns that could be implemented better ...how would that affect the existing architecture</p>
+                        <p>One of the “Achilles heel” of Mercurial system is in simultaneous  clients/users access. To be more precisely when multiple clients are trying push their changes at the same time, 
+                        they face problem with conflicting files and few heads in tree structure. To solve the fixed issue we recommend to use mixed proxy pattern, i.e. group together  Remote and Synchronization 
+                         variants of proxy pattern. One part  is the Remote, it gets the same duties as held, provides a local representative for an object that resides in a different address space. 
+                         The other part of the combined proxy ia a Synchronization proxy will control multiple simultaneous client accesses, i.e. only one client can access the original files at a time,
+                          the proxy can implement mutual exclusion via semaphores. Semaphore mechanism will be implemented in such way that could hold clients to access the original documents while other
+                           user is using it. Remote proxy increases extensibility, but with Synchronization proxy it will improve reliability as well. </p>
                     </section>
                     <section>
                         <h1>Important key drivers (QA's) not addressed by existing patterns or many + and - in one pattern</h1>
