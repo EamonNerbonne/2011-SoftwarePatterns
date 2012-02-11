@@ -843,8 +843,11 @@
                     </section>
                     <section>
                         <h1>Important key drivers (QA's) not addressed by existing patterns or many + and - in one pattern</h1>
-                        <p>Find QA's that are important to this type of system and are not addressed by the patterns we found ... what pattern to use
-                            / maybe different variant of existing pattern ...how would that affect the existing architecture</p>
+                        <p>In the document, we mentioned usability as a key-driver, but it has not been addressed by most of the detected patterns.
+                        We recommend Integration Reverse Proxy which provides a homogenous view of collection of servers, without
+                        leaking the physical distribution of individual machines to end users. This will also provide security to the data
+                        from the end users. This will increase usability as per the user/developer perspective. We can implement this in our system
+                        by configuring a back-end for Hgweb server.[<a href="#security">Security patterns Book</a>] </p>
                     </section>
                 </section>
             </section>
@@ -883,6 +886,9 @@
                     <li id="bib-idapo">Stol, K.J. and Avgeriou, P. and Ali Babar, M. Design and evaluation of a process for identifying architecture patterns in open source software.
                      In <i>Software Architecture</i>, pages 147&ndash;163. Springer, 2011</li>
                      <li id="bib-harrison2010pattern">Harrison, N. and Avgeriou, P. Pattern-based architecture reviews. In <i>IEEE Software</i>. IEEE, 2010</li>
+                     <li id="security">Markus Schumacher, Eduardo Fernandez, Duane Hybertson, and Frank Buschmann.
+                     Security Patterns: Integrating Security and Systems Engineering. John Wiley & Sons, 2005</li>
+
                 </ul>
             </aside>
         </article>
