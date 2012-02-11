@@ -18,7 +18,7 @@ Key drivers:
 if we need trade-off reasons for choosing one keydriver over another). - Sunna
 
 Chapter 4:
-
+- Add text under diagrams
 Diagrams: http://www.google.nl/search?q=process+view&hl=en&prmd=imvns&tbm=isch&tbo=u&source=univ&sa=X&ei=HfAvT465M8OAhQfZ_M3PCg&ved=0CFAQsAQ&biw=1068&bih=533#hl=en&tbm=isch&sa=1&q=workflow+diagram+mercurial&pbx=1&oq=workflow+diagram+mercurial&aq=f&aqi=&aql=&gs_sm=e&gs_upl=73475l79013l0l79949l28l22l0l1l1l4l109l1340l20.1l21l0&bav=on.2,or.r_gc.r_pw.,cf.osb&fp=af77e95bb5aa65a0&biw=1068&bih=490
 Overview diagram:
 - Add a reference to the diagram. - Edy
