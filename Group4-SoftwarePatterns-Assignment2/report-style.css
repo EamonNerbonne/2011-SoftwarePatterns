@@ -5,9 +5,9 @@ body {
 
 body, p {
     text-align: justify;
-    hyphens: auto;
-    -moz-hyphens: auto;
     -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
 }
 
 .titlepage {
@@ -84,46 +84,18 @@ table.bookstyleborders td {
     padding: 0.6em 0.5em;
 }
 
-table.simpleborders {
-    border-style: solid;
-    border-spacing: 0;
-    border-width: 0px 0px 1px 1px;
+table.simpleborders {margin: 1em 0;}
+table.simpleborders, table.simpleborders td, table.simpleborders th {
+    border: 1px solid black;
+    border-collapse:collapse;
 }
-
-table.simpleborders td {
-    border-style: solid;
-    border-width: 1px 1px 0px 0px;
-    margin: 0;
-    padding: 4px;
-    font-weight: bold;
-}
-
-table.simplebordersGloss {
-    border-style: solid;
-    border-spacing: 0;
-    border-width: 0px 0px 1px 1px;
-}
-
-table.simplebordersGloss th {
-    border-style: solid;
-    border-width: 1px 1px 0px 0px;
-    margin: 0;
-    padding: 4px;
-    font-weight: bold;
-}
-
-table.simplebordersGloss td {
-    border-style: solid;
-    border-width: 1px 1px 0px 0px;
-    margin: 0;
-    padding: 4px;
-}
+table.simpleborders td, table.simpleborders th { padding:4px;}
 
 /* Basic Table layouts */
 table {
-    hyphens: manual;
-    -moz-hyphens: manual;
     -webkit-hyphens: manual;
+    -moz-hyphens: manual;
+    hyphens: manual;
     text-align: left;
 }
 th {
@@ -150,6 +122,8 @@ dd:before {
 dd:after {
     content: "\A";
     white-space: pre;
+    display: block;
+    width:0;height: 0;
 }
 
 figcaption[data-figurenumber]:before {font-weight:bold; content: 'Figure ' attr(data-figurenumber) ': ';}
@@ -157,8 +131,12 @@ figcaption[data-figurenumber]:before {font-weight:bold; content: 'Figure ' attr(
 /* Basic Paragraph styling */
 p {
     margin: 0.5em 0;
-    clear: left;
 }
+
+p:first-child {
+    margin:0 0 0.5em 0;
+}
+
 h1 {
     clear: left;
 }

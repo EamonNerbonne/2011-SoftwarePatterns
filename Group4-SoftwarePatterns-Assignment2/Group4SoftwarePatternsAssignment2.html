@@ -479,13 +479,13 @@
                                 </tr>
                                 <tr>
                                     <td>Solution Variant </td>
-                                    <td>Mercurial stores most of its data in <i>revlogs</i>. Each Mercurial repository has many such revlogs; most persistant data
+                                    <td><p>Mercurial stores most of its data in <i>revlogs</i>. Each Mercurial repository has many such revlogs; most persistant data
                                         (whether Mercurial-internal or user data) is stored and managed centrally in these datastructures. Each revlog consists
                                         of an append-only data file and an index file with fixed-size entries (to enable O(1) seeking) storing where a particular
                                         version is to be found in the data file. There are three classes of revlogs. Firstly, user data is stored in a per-file revlog.
                                         Secondly, a directory listing with revision numbers of each file forming a particular version of the directory tree is stored
                                         in a manifest revlog. Finally, changeset metadata such as commit messages and the corresponding manifest revision number
-                                        is stored in a changeset revlog. </td>
+                                        is stored in a changeset revlog. </p></td>
                                 </tr>
                                 <tr>
                                     <td>Rationale </td>
@@ -521,28 +521,28 @@
                                 </tr>
                                 <tr>
                                     <td>Problem Context </td>
-                                    <td>Two components who are independent from each other need to communicate with each other and even run on different computers
+                                    <td><p>Two components who are independent from each other need to communicate with each other and even run on different computers
                                         (Mercurial is a distributed system). One of the peers initiates communication by sending a request to other peers.
                                         The server must cope with multiple requests at the same time from several peers.  Clients wich are
-                                        using the same server may have different local versions.
+                                        using the same server may have different local versions.</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Solution Variant </td>
-                                    <td>The Client-Server pattern consists of two kinds of components: clients and servers. In Mercurial the server consists of
+                                    <td><p>The Client-Server pattern consists of two kinds of components: clients and servers. In Mercurial the server consists of
                                         http component, ssh component or local disk component, depending on how the user decides to set up the repository. The client
-                                        communicates to the server components depending on the users choise. </td>
+                                        communicates to the server components depending on the users choise. </p></td>
                                 </tr>
                                 <tr>
                                     <td>Rationale </td>
-                                    <td>Due to the fact the Mercurial is truly distributed and uses Peer-to-peer pattern (see above), it is necessary to have a
+                                    <td><p>Due to the fact the Mercurial is truly distributed and uses Peer-to-peer pattern (see above), it is necessary to have a
                                         Client Server pattern. Portability is the key driver supported by this pattern since the pattern allows for high level
-                                        communication protocols which can be implemented on most major plattforms. </td>
+                                        communication protocols which can be implemented on most major plattforms. </p></td>
                                 </tr>
                                 <tr>
                                     <td>Consequences </td>
-                                    <td>Usability is affected in a negative way since setting up repositories can be difficult, depending on the approach chosen
-                                        <a href="#merc_repositories">[ref]</a>.
+                                    <td><p>Usability is affected in a negative way since setting up repositories can be difficult, depending on the approach chosen
+                                        <a href="#merc_repositories">[ref]</a>.</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -589,9 +589,9 @@
                                 </tr>
                                 <tr>
                                     <td>Rationale </td>
-                                    <td>
+                                    <td><p>
                                         The main reason to pick remote proxy is it increases extensibility, it creates for each client local representative of a central repository and increases the number of classes and objects
-                                         that resides in a different address space.
+                                         that resides in a different address space.</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -737,15 +737,15 @@
                     <table class="simpleborders">
                         <tbody>
                             <tr>
-                                <td></td>
-                                <td>Usability </td>
-                                <td>Extensibility </td>
-                                <td>Portability </td>
-                                <td>Performance </td>
-                                <td>Reliability </td>
+                                <th></th>
+                                <th>Usability </th>
+                                <th>Extensibility </th>
+                                <th>Portability </th>
+                                <th>Performance </th>
+                                <th>Reliability </th>
                             </tr>
                             <tr>
-                                <td>Peer-to-peer </td>
+                                <th>Peer-to-peer </th>
                                 <td class="posneg-impact-cell">+/-</td>
                                 <td></td>
                                 <td></td>
@@ -753,7 +753,7 @@
                                 <td class="positive-impact-cell">+ </td>
                             </tr>
                             <tr>
-                                <td>Shared Datastore </td>
+                                <th>Shared Datastore </th>
                                 <td></td>
                                 <td class="positive-impact-cell">+ </td>
                                 <td class="positive-impact-cell">+ </td>
@@ -761,7 +761,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>Client server </td>
+                                <th>Client server </th>
                                 <td class="negative-impact-cell">- </td>
                                 <td></td>
                                 <td class="positive-impact-cell">+ </td>
@@ -769,7 +769,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>Proxy </td>
+                                <th>Proxy </th>
                                 <td class="positive-impact-cell">+ </td>
                                 <td class="positive-impact-cell">+ </td>
                                 <td></td>
@@ -777,7 +777,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>Interceptor </td>
+                                <th>Interceptor </th>
                                 <td class="positive-impact-cell">+</td>
                                 <td class="positive-impact-cell">+</td>
                                 <td></td>
@@ -785,7 +785,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>Relaxed Layers </td>
+                                <th>Relaxed Layers </th>
                                 <td></td>
                                 <td class="positive-impact-cell">+ </td>
                                 <td class="positive-impact-cell">+ </td>
@@ -826,8 +826,8 @@
                         allows independent variation an evolution of service extensions in Mercurial. Hence extensibility is given a plus.</p></dd>
                         <dt>Relaxed Layers</dt> 
 			<dd>
-			<p>Since Mercurial was developed in layers and modules, its functionality can be extended by module-based development inside certain layer. It is flexible to add new modules as new requirement might appear. Thus, extensibility increases. </p>
-			Mercurial has repository layer which contains proxy object. This layer enables developer to implement platform independent module especially in term of remote repository.
+			<p>Since Mercurial was developed in layers and modules, its functionality can be extended by module-based development inside certain layer. It is flexible to add new modules as new requirement might appear. Thus, extensibility increases. </p><p>
+			Mercurial has repository layer which contains proxy object. This layer enables developer to implement platform independent module especially in term of remote repository.</p>
 			</dd>
                     </dl>
                 </section>
@@ -861,7 +861,7 @@
             </section>
             <aside class="glossary">
             <h1>Glossary</h1>
-                <table class="simplebordersGloss">
+                <table class="simpleborders">
                     <tbody>
                         <tr>
                             <th>changelog</th>
