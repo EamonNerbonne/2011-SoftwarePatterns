@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
@@ -261,7 +261,7 @@
             <section id="section-architecture">
                 <!-- Chapter 4 Architecture -->
                 <h1>Architecture <span class="rightbox"></span></h1>
-                <p>According to its available document on website <a href="#mercurial-arch">[ref]</a>, the general overview of Mercurial architecture can be depicted below. 		</p>
+                <p>According to its available document on website <a href="#mercurial-arch">[ref]</a>, the general overview of Mercurial architecture can be depicted below.        </p>
                 <figure>
                     <img src="images/Mercurial-comp-diag.png" alt="Mecurial component diagram"/>
                     <figcaption >Mercurial Architectural Diagram based on <a href="#mercurial-arch">[ref]</a></figcaption>
@@ -306,7 +306,7 @@
                 and filelogs. The changelog contains metadata for each revision, with a pointer into the manifest revlog (that is, a node id for one revision in the
                 manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog.
                 In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both
-                concepts <a href="#aosabook">[ref]</a>.	</p>
+                concepts <a href="#aosabook">[ref]</a>. </p>
             <figure id="fig-hg-revlog-model">
                 <img src="images/revlogs.png" alt="Mercurial generic data model, revlog"/>
                 <figcaption >Mercurial Generic Data Model, Revlog <a href="#aosabook">[ref]</a></figcaption>
@@ -375,16 +375,16 @@
                     <dl><dt>Remote Proxy</dt> <dd>For accessing remote repositories from a local client. <i>Accepted</i> </dd>
                         <dt>Layers</dt> <dd>The levels of abstraction. <i>Rejected, as some layers are bypassed</i> </dd>
                         <dt>Relaxed Layers</dt> <dd>The levels of abstraction are more suitable as relaxed layers. <i>Accepted</i> </dd>
-                        <dt>Peer-to-peer</dt> <dd>Mercurial itself implements such a system between repositories - it&#39;s arguable that it&#39;s a 
+                        <dt>Peer-to-peer</dt> <dd>Mercurial itself implements such a system between repositories - it&#39;s arguable that it&#39;s a
                         property of the system not within the system; but it&#39;s important to the architecture regardless. <i>Accepted</i> </dd>
                         <dt>Shared Datastore</dt> <dd>aka Shared Repository; renamed to avoid confusion with the term repository to meaning a Mercurial
                             SCM repository. The disk revlogs are shared between various other components and could be seen as a shared repository. <i>Accepted</i> </dd>
                         <dt>Indirection layer</dt> <dd>The revlog storage can be seen as an indirection layer over the filesystem: direct access is
                             problematic due to performance, corruption and locking. <i>Rejected; shared repository is a better match</i> </dd>
                         <dt>Active repository</dt> <dd>Active repository: the Mercurial VCS itself can be seen as an active repository in that it provides
-                            hooks that can actively notify others of changes. Is this more like a feature than a pattern? <i>Rejected; 
+                            hooks that can actively notify others of changes. Is this more like a feature than a pattern? <i>Rejected;
                         implementation looks more like the Interceptor pattern.</i> </dd>
-                        <dt>Interceptor</dt><dd>Mercurial allows for configurable external code to be executed at predefined points to allow for 
+                        <dt>Interceptor</dt><dd>Mercurial allows for configurable external code to be executed at predefined points to allow for
                         repository hooks and extension functionality. <i>Accepted</i> </dd>
                         <dt>Client-Server</dt> <dd>A Mercurial repository communicates via a client-server protocol when over the network e.g. when
                             pushing or pulling. <i>Accepted</i> </dd>
@@ -574,18 +574,18 @@
                                 <tr>
                                     <td>Problem Context</td>
                                     <td>
-                                        <p>Client applications should be able to access remote and local repositories in a transparent manner. In a Mercurial users start by cloning a copy of 
+                                        <p>Client applications should be able to access remote and local repositories in a transparent manner. In a Mercurial users start by cloning a copy of
                                             a repository. They can synchronize changesets with it (or another repository) whenever they need to, and
-                                             other developers can do so concurrently. However, there are many different ways of communicating with a remote 
+                                             other developers can do so concurrently. However, there are many different ways of communicating with a remote
                                             repository depending on its type.</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Solution Variant</td>
                                     <td>
-                                        <p>To avoid the complexity, a Mercurial repository communicates via an internal representation called a proxy, which 
+                                        <p>To avoid the complexity, a Mercurial repository communicates via an internal representation called a proxy, which
                                             presents an abstract API covering the details of access to the remote repository.
-                                        It is implemented in the client and contacts any server type such as http, https, ssh, a different directory on the local disk, 
+                                        It is implemented in the client and contacts any server type such as http, https, ssh, a different directory on the local disk,
                                             or even an extension-provided implentation such as for Git or Subversion interoperability (see <a href="#fig-remote-proxy">[ref]</a>).  The proxy object is a surrogate or placeholder for the other repository and controls access to it <a href="#remote_proxy">[ref]</a>.  The client mercurial module makes a request to the proxy.                                      The Proxy forwards the request using the proper communication protocols (pipelined request/response protocol) and security measures.
                                         The remote repository accepts the request and attempts to fulfill it. It sends the response back to the proxy.  The proxy interprets the response, and translates it into a canonical representation which is returned to the client.</p>
                                     </td>
@@ -593,7 +593,7 @@
                                 <tr>
                                     <td>Rationale </td>
                                     <td><p>
-                                        Encapsulating complexity within a proxy object simplifies the internal API, improving extensibility by simplifying 
+                                        Encapsulating complexity within a proxy object simplifies the internal API, improving extensibility by simplifying
                                         development and/or configuration of extensions.</p>
                                     </td>
                                 </tr>
@@ -601,7 +601,7 @@
                                     <td>Consequences </td>
                                     <td>
                                         <p>&nbsp;One of the benefits of using a proxy object is that it hides the fact that an object resides elsewhere.
-                                        The proxy object is responsible for all the networking complications, which could improve usability (by simplifying 
+                                        The proxy object is responsible for all the networking complications, which could improve usability (by simplifying
                                             configuration), maintainability, and modifiability.
                                         The proxy hides the fact that a service is provided remotely, and makes the remote service as easy to use as a local service.
                                         By putting all location information and addressing functionality into a Remote Proxy variant, clients are less affected by migration of servers or
@@ -618,9 +618,9 @@
                     <section id="interceptor">
                       <h1>Interceptor</h1>
                       <figure id="fig-mercurial-interceptor">
-					         <img src="images/Interceptor.png" alt="Mecurial Interceptor diagram"  />
-					         <figcaption>Mercurial Interceptor diagram</figcaption>
-					  </figure>
+                             <img src="images/Interceptor.png" alt="Mecurial Interceptor diagram"  />
+                             <figcaption>Mercurial Interceptor diagram</figcaption>
+                      </figure>
 
                       <table class="bookstyleborders">
                           <tr>
@@ -675,10 +675,10 @@
                     </section>
                     <section>
                         <h1>Relaxed Layers</h1>
-                 	<figure>
-		         <img src="images/Mercurial-relaxedlayer.png" alt="Mecurial Relaxed Layers  diagram" />
-		         <figcaption>Mercurial Relaxed Layers diagram</figcaption>
-			</figure>
+                    <figure>
+                 <img src="images/Mercurial-relaxedlayer.png" alt="Mecurial Relaxed Layers  diagram" />
+                 <figcaption>Mercurial Relaxed Layers diagram</figcaption>
+            </figure>
 
                         <table class="bookstyleborders">
                             <tr>
@@ -838,10 +838,10 @@
                         specific manner therby satisfying usability. Hence usability gets a plus. Extensibility is also a key-driver which
                         allows independent variation an evolution of service extensions in Mercurial. Hence extensibility is given a plus.</p></dd>
                         <dt>Relaxed Layers</dt>
-			<dd>
-			<p>Since Mercurial was developed in layers and modules, its functionality can be extended by module-based development inside certain layer. It is flexible to add new modules as new requirement might appear. Developing new module can be done without interfering other modules. Thus, extensibility increases. </p>
-			<p>Mercurial has repository layer which contains proxy object. This layer enables developer to implement specific platform-based module especially in term of remote repository. This mechanism allows Mercurial to be more platform independent, so it increases portability.</p>
-			</dd>
+            <dd>
+            <p>Since Mercurial was developed in layers and modules, its functionality can be extended by module-based development inside certain layer. It is flexible to add new modules as new requirement might appear. Developing new module can be done without interfering other modules. Thus, extensibility increases. </p>
+            <p>Mercurial has repository layer which contains proxy object. This layer enables developer to implement specific platform-based module especially in term of remote repository. This mechanism allows Mercurial to be more platform independent, so it increases portability.</p>
+            </dd>
                     </dl>
                 </section>
                 <section>
@@ -861,7 +861,7 @@
                           the proxy can implement mutual exclusion via semaphores. Semaphore mechanism will be implemented in such way that could hold clients to access the original documents while other
                            user is using it. Remote proxy increases extensibility, but with Synchronization proxy it will improve reliability as well. <a href="#POSA2">[ref]</a></p>
 			<p>The employment of relaxed layers pattern by Mercurial is proper enough. However, the naming of interface layer and UI layer seems ambiguous. It would more make sense if UI layer is renamed as User Message Manager, for instance, since it deals with messaging. Otherwise, the layers should be reorganized to meet common relaxed layers, from interface layer go deeper into core layer. Although relaxed layers pattern could decrease maintainability<a href="#posabook">[ref]</a>, this is acceptable since maintainability is not key-driver; also, as the interaction between the lower layers is minimal, the maintainability is unlikely to decrease in practice.
-			</p>
+            </p>
                     </section>
                     <section>
                         <h1>Important key drivers (QA's) not addressed by existing patterns or many + and - in one pattern</h1>
@@ -1101,33 +1101,33 @@
                      <li id="security">Markus Schumacher, Eduardo Fernandez, Duane Hybertson, and Frank Buschmann.
                      Security Patterns: Integrating Security and Systems Engineering. John Wiley & Sons, 2005</li>
 
-                    <li id="changelog"><a href="http://mercurial.selenic.com/wiki/Changelog">Mercurial changelog</a></li>
-                    <li id="changeset"><a href="http://mercurial.selenic.com/wiki/ChangeSet">Mercurial changeset</a></li>
-                    <li id="cloning"><a href="http://mercurial.selenic.com/wiki/Clone">Mercurial cloning</a></li>
+                    <li id="changelog"><a href="http://mercurial.selenic.com/wiki/Changelog">Mercurial changelog</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
+                    <li id="changeset"><a href="http://mercurial.selenic.com/wiki/ChangeSet">Mercurial changeset</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-11-04.</li>
+                    <li id="cloning"><a href="http://mercurial.selenic.com/wiki/Clone">Mercurial cloning</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
 
-                    <li id="commit"><a href="http://mercurial.selenic.com/wiki/Commit">Mercurial commit</a></li>
-                    <li id="conflict"><a href="http://mercurial.selenic.com/wiki/Conflict">Mercurial conflict</a></li>
-                    <li id="diff"><a href="http://mercurial.selenic.com/wiki/Diff">Mercurial diff</a></li>
-                    <li id="dirstate"><a href="http://mercurial.selenic.com/wiki/DirState">Mercurial dirstate</a></li>
+                    <li id="commit"><a href="http://mercurial.selenic.com/wiki/Commit">Mercurial commit</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
+                    <li id="conflict"><a href="http://mercurial.selenic.com/wiki/Conflict">Mercurial conflict</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2009-05-19.</li>
+                    <li id="diff"><a href="http://mercurial.selenic.com/wiki/Diff">Mercurial diff</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
+                    <li id="dirstate"><a href="http://mercurial.selenic.com/wiki/DirState">Mercurial dirstate</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2010-10-26.</li>
                     <li id="filelog"><a href="http://hgbook.red-bean.com/read/behind-the-scenes.html">Mercurial filelog</a></li>
-                    <li id="head"><a href="http://mercurial.selenic.com/wiki/Head">Mercurial head</a></li>
-                    <li id="hook"><a href="http://mercurial.selenic.com/wiki/Hook">Mercurial hook</a></li>
-                    <li id="manifest"><a href="http://mercurial.selenic.com/wiki/Manifest">Mercurial manifest</a></li>
-                    <li id="merge"><a href="http://mercurial.selenic.com/wiki/Merge">Mercurial merge</a></li>
-                    <li id="parent"><a href="http://mercurial.selenic.com/wiki/Parent">Mercurial parent</a></li>
-                    <li id="pull"><a href="http://mercurial.selenic.com/wiki/Pull">Mercurial pull</a></li>
-                    <li id="push"><a href="http://mercurial.selenic.com/wiki/Push">Mercurial push</a></li>
-                    <li id="repository"><a href="http://mercurial.selenic.com/wiki/Repository">Mercurial repository</a></li>
-                    <li id="revision"><a href="http://mercurial.selenic.com/wiki/Revision">Mercurial revision</a></li>
+                    <li id="head"><a href="http://mercurial.selenic.com/wiki/Head">Mercurial head</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
+                    <li id="hook"><a href="http://mercurial.selenic.com/wiki/Hook">Mercurial hook</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-07-29.</li>
+                    <li id="manifest"><a href="http://mercurial.selenic.com/wiki/Manifest">Mercurial manifest</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
+                    <li id="merge"><a href="http://mercurial.selenic.com/wiki/Merge">Mercurial merge</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
+                    <li id="parent"><a href="http://mercurial.selenic.com/wiki/Parent">Mercurial parent</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
+                    <li id="pull"><a href="http://mercurial.selenic.com/wiki/Pull">Mercurial pull</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
+                    <li id="push"><a href="http://mercurial.selenic.com/wiki/Push">Mercurial push</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
+                    <li id="repository"><a href="http://mercurial.selenic.com/wiki/Repository">Mercurial repository</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
+                    <li id="revision"><a href="http://mercurial.selenic.com/wiki/Revision">Mercurial revision</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
                     <li id="bib-hg-wiki-revlog">Buehlmann, A. et al. <a href="http://mercurial.selenic.com/wiki/Revlog">Revlog</a>. In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
-                    <li id="scm"><a href="http://mercurial.selenic.com/wiki/SCM">Mercurial SCM</a></li>
-                    <li id="tip"><a href="http://mercurial.selenic.com/wiki/Tip">Mercurial tip</a></li>
-                    <li id="update"><a href="http://mercurial.selenic.com/wiki/Update">Mercurial update</a></li>
-                    <li id="workingdirectory"><a href="http://mercurial.selenic.com/wiki/WorkingDirectory">Mercurial working directory</a></li>
-                    <li id="matt_mackall"><a href="http://mercurial.selenic.com/wiki/mpm">Matt Mackall</a></li>
-                    <li id="community"><a href="http://mercurial.selenic.com/wiki/DeveloperInfo#Working_with_the_community">Mercurial community</a></li>
-                    <li id="mailinglist"><a href="http://mercurial.selenic.com/wiki/MailingLists">Mercurial mailinglists</a></li>
-                    <li id="irc"><a href="http://mercurial.selenic.com/wiki/IRC">Mercurial IRC</a></li>
+                    <li id="scm"><a href="http://mercurial.selenic.com/wiki/SCM">Mercurial SCM</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-05-19.</li>
+                    <li id="tip"><a href="http://mercurial.selenic.com/wiki/Tip">Mercurial tip</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
+                    <li id="update"><a href="http://mercurial.selenic.com/wiki/Update">Mercurial update</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
+                    <li id="workingdirectory"><a href="http://mercurial.selenic.com/wiki/WorkingDirectory">Mercurial working directory</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2009-10-30.</li>
+                    <li id="matt_mackall"><a href="http://mercurial.selenic.com/wiki/mpm">Matt Mackall</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-10-18.</li>
+                    <li id="community"><a href="http://mercurial.selenic.com/wiki/DeveloperInfo#Working_with_the_community">Mercurial community</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-12-27.</li>
+                    <li id="mailinglist"><a href="http://mercurial.selenic.com/wiki/MailingLists">Mercurial mailinglists</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2012-01-30.</li>
+                    <li id="irc"><a href="http://mercurial.selenic.com/wiki/IRC">Mercurial IRC</a> In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-11-07.</li>
                     <li id="bib-hg-lkml-announcement">Mackall, M. <a href="http://lkml.indiana.edu/hypermail/linux/kernel/0504.2/0670.html">Mercurial v0.1 - a minimal scalable distributed SCM</a>. On the <i>Linux Kernel Mailing List</i>, April 19, 2005</li>
                     <li id="bib-mackall2006betterscm">Mackall, M. <a href="http://mercurial.selenic.com/wiki/Presentations?action=AttachFile&do=get&target=ols-mercurial-paper.pdf">Towards a Better SCM: Revlog and Mercurial</a>. 2006</li>
                 </ul>
