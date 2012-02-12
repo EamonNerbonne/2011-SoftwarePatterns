@@ -93,7 +93,7 @@
                             <td>
                                 <dl><dt>Assel</dt> <dd>Proxy pattern, evaluation and recomendation sections</dd>
                                     <dt>Divya</dt> <dd>Views, Interceptor pattern diagram, recommendations for Reverse Proxy pattern</dd>
-                                    <dt>Edy</dt> <dd>Refine architectural diagram, sequence diagram, relaxed layer pattern</dd>
+                                    <dt>Edy</dt> <dd>Refine architectural views and diagrams, relaxed layer pattern evaluation and recommendation</dd>
                                     <dt>Sunna</dt> <dd>Chapter 5, Client-Server & Peer-to-peer patterns, diagrams: CS, P2P and system overview, Glossary, final additions chapter 2,3,4,5</dd>
                                     <dt>Eamon</dt> <dd>merge document, layout, bibliography, HTM validation, Sections 2+3+4; shared datastore, proxy, add figure numbering</dd>
                                 </dl>
@@ -860,7 +860,7 @@
                          The other part of the combined proxy ia a Synchronization proxy will control multiple simultaneous client accesses, i.e. only one client can access the original files at a time,
                           the proxy can implement mutual exclusion via semaphores. Semaphore mechanism will be implemented in such way that could hold clients to access the original documents while other
                            user is using it. Remote proxy increases extensibility, but with Synchronization proxy it will improve reliability as well. <a href="#POSA2">[ref]</a></p>
-			<p>The employment of relaxed layers pattern by Mercurial is proper enough. However, the naming of interface layer and UI layer seems ambiguous. It would more make sense if UI layer is renamed as User Message Manager, for instance, since it deals with messaging. Otherwise, the layers should be reorganized to meet common relaxed layers, from interface layer go deeper into core layer. Although relaxed layers pattern could decrease maintainability<a href="#posabook">[ref]</a>, this is acceptable since maintainability is not key-driver: also, as the interaction between the lower layers is minimal, the maintainability is unlikely to decrease in practice.
+			<p>The employment of relaxed layers pattern by Mercurial is proper enough. However, the naming of interface layer and UI layer seems ambiguous. It would more make sense if UI layer is renamed as User Message Manager, for instance, since it deals with messaging. Otherwise, the layers should be reorganized to meet common relaxed layers, from interface layer go deeper into core layer. Although relaxed layers pattern could decrease maintainability<a href="#posabook">[ref]</a>, this is acceptable since maintainability is not key-driver; also, as the interaction between the lower layers is minimal, the maintainability is unlikely to decrease in practice.
 			</p>
                     </section>
                     <section>
