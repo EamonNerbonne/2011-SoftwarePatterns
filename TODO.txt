@@ -23,10 +23,10 @@ Overview diagram:
 - Add a reference to the diagram. - Edy
 - Explain what the layers are and where they come from. - Link from page and the text from there - Edy
 
-- Candidate patterns: Add a sentence that we followed IDAPO process and that this is step # in the process. - Sunna
+- DONE: Candidate patterns: Add a sentence that we followed IDAPO process and that this is step # in the process. - Sunna
 
 Patterns: -  Pattern based
-- Add sources and diagrams to all.
+- DONE: Add sources and diagrams to all.
 - Check that all templates are the same for the patterns.
 - Proxy solution: Looks generic / not how it actually is in Mercurial. Example: used for different instances in Mercurial.
 - Proxy: add together problem and context, solution and variant
@@ -37,11 +37,11 @@ affects security.
 
 Chapter 5:
 Evaluation: 
--add color to plus/minus
+-  DONE: add color to plus/minus
 Relaxed layers - give rationale about how it is actually in Mercurial. - Edy
 Proxy - take out the neg in Usability - take out the text about performance (this way it does not exist) - Keep only 
 Extensibility (with plus)
-P2P - make plus and minus (forget to push/pull) - text
+ DONE: P2P - make plus and minus (forget to push/pull) - text
 
 Recommendations:
 - Suggest new pattern/or different variant of existing if maybe one Key driver is not addressed in the existing ones.
@@ -49,4 +49,4 @@ Recommendations:
 - Something to make persistance, to automatically push/pull - improve reliability - Assel
 - Integrate authentication - improves usability - Divya
 - Shared datastore - change the implementation - Eamon
-- Reorganization of Layer pattern - move UI layer - to make more conventional - Edy
+- DONE: Reorganization of Layer pattern - move UI layer - to make more conventional - Edy
