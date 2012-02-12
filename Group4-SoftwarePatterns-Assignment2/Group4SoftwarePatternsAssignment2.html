@@ -561,7 +561,7 @@
                     </section>
                     <section>
                         <h1>Remote Proxy</h1>
-                        <figure>
+                        <figure id="fig-remote-proxy">
                             <img src="images/Proxy.jpg" alt="Mecurial Proxy diagram"  />
                             <figcaption>Mercurials Proxy diagram</figcaption>
                         </figure>
@@ -578,48 +578,49 @@
                                 <tr>
                                     <td>Problem Context</td>
                                     <td>
-                                        <p>Client applications should be able to make remote invocations in a transparent manner. In a Mercurial users start by cloning a copy of the repository. They can pull changes from it whenever they need to, and
-                                             other developers can push changs simultaneously. But it might subsequently break everyone else's trees. </p>
+                                        <p>Client applications should be able to access remote and local repositories in a transparent manner. In a Mercurial users start by cloning a copy of 
+                                            a repository. They can synchronize changesets with it (or another repository) whenever they need to, and
+                                             other developers can do so concurrently. However, there are many different ways of communicating with a remote 
+                                            repository depending on its type.</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Solution Variant</td>
                                     <td>
-                                        <p>To avoid the problem in Mercurial users can pull changes directly from each other, without going through the central repository.
-                                        The client communicates via representative called proxy, which offers copy of original database.
-                                        It is implemented in a client side and contacts with server (http/https, ssh, local disk, etc. ) (It is shown in a figure 9). A proxy is a surrogate or placeholder for another object that controls access to it.
-                                        A remote proxy provides local representation for an object in a different address space. <a href="#remote_proxy">[ref]</a>
-                                        It allows  client to hold data until user is ready to commit (instead of the standard PROXY pattern). It receives the request from client and processes it.
-                                        Then Proxy consults the to fulfill the request, it forwards the request using the proper communication protocols (pipelined request/response protocol) and security measures.
-                                        The repository accepts the request and fulfills it. It sends the response back to the proxy. The proxy transfers to a client.</p>
+                                        <p>To avoid the complexity, a Mercurial repository communicates via an internal representation called a proxy, which 
+                                            presents an abstract API covering the details of access to the remote repository.
+                                        It is implemented in the client and contacts any server type such as http, https, ssh, a different directory on the local disk, 
+                                            or even an extension-provided implentation such as for Git or Subversion interoperability (see <a href="#fig-remote-proxy">[ref]</a>).  The proxy object is a surrogate or placeholder for the other repository and controls access to it <a href="#remote_proxy">[ref]</a>.  The client mercurial module makes a request to the proxy.                                      The Proxy forwards the request using the proper communication protocols (pipelined request/response protocol) and security measures.
+                                        The remote repository accepts the request and attempts to fulfill it. It sends the response back to the proxy.  The proxy interprets the response, and translates it into a canonical representation which is returned to the client.</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Rationale </td>
                                     <td><p>
-                                        The main reason to pick remote proxy is it increases extensibility, it creates for each client local representative of a central repository and increases the number of classes and objects
-                                         that resides in a different address space.</p>
+                                        Encapsulating complexity within a proxy object simplifies the internal API, improving extensibility by simplifying 
+                                        development and/or configuration of extensions.</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Consequences </td>
                                     <td>
-                                        <p>One of the benefites of choosing proxy is it hides the fact that an object resides in a different address space.
-                                        The remote proxy is responsible for all the network hassle, so it could influence in usability in a good way.
+                                        <p>&nbsp;One of the benefits of using a proxy object is that it hides the fact that an object resides elsewhere.
+                                        The proxy object is responsible for all the networking complications, which could improve usability (by simplifying 
+                                            configuration), maintainability, and modifiability.
                                         The proxy hides the fact that a service is provided remotely, and makes the remote service as easy to use as a local service.
-                                        By putting all location information and addressing functionality into a Remote Proxy variant, clients are not affected by migration of servers or
+                                        By putting all location information and addressing functionality into a Remote Proxy variant, clients are less affected by migration of servers or
                                         changes in the networking infrastructure. This allows client code to become more stable and reusable.</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Related patterns </td>
-                                    <td>Client-server, peer-to-peer </td>
+                                    <td>Client-server, peer-to-peer</td>
                                 </tr>
                             </tbody>
                         </table>
                     </section>
                     <section id="interceptor">
-                      <h1>Interceptor pattern</h1>
+                      <h1>Interceptor</h1>
                       <figure id="fig-mercurial-interceptor">
 					         <img src="images/Interceptor.png" alt="Mecurial Interceptor diagram"  />
 					         <figcaption>Mercurial Interceptor diagram</figcaption>
