@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
@@ -847,23 +847,19 @@
                 <section>
                     <h1>Recommendations</h1>
                     <section>
-                        <h1>New features: recommended patterns</h1>
-                        <p></p>
+                        <h1>Publish Subscribe</h1>
+                        <p>One problem of the Mercurial system is in concurrent clients/users access. More precisely, when multiple 
+                            users commit and exchange their changesets concurrently, they will often encounter multiple heads (multiple new versions) whose changes need to be 
+                            merged (which again might be committed concurrently, possibly causing more heads again).  Though some level of merging is unavoidable, the current process imposes needless friction, hampering usability: one "cycle" of editing involves many steps.  A user must manually pull and update (to check if new versions were made and apply their changes locally); then he can create and commit a new version.  Then he must again pull (to check for new heads to merge with, involving a network wait).  The user may need to merge the new head with his own and then commit that merge, and then must push the changes (again involving a network wait).  Assuming there are new remote changes, this implies (at least) 6 or 7 explicit invocations in addition to those necessary for the user to query Mercurial about the state of the system and the changes themselves.  Also, 3 of the invocations involve the user waiting for the network.  In many cases, however, only one or two of these actions are actually meaningful to the user (namely the initial commit, and possibly the merge, if non-trivial).</p>
+                            <p>We propose to use the <em>Publish-Subscribe</em> pattern to replace the Client-Server pattern for communication between peers.  This pattern could maintain a connection between peers and perform much of the bookkeeping automatically.  Furthermore, the (slow) networking steps could be initiated in the background when a new version is available, well before the user actively checks for such changes.  This pattern would improve usability both by reducing the number of steps required in common workflows, and allowing simplified workflows which complete elide the behind-the-scenes pulling and pushing from novice users.  It could also improve performance by starting expensive operations in the background before the user requests their results.  Finally, when the network is unstable, this could improve reliability by executing network operations whenever the network is available without requiring user interaction.  A downside would be that this would mean a significant change in the mercurial's design since it would required a constant background process to be active, whereas the current design simply performs one action then terminates.</p>
                     </section>
                     <section>
-                        <h1>Improve existing patterns</h1>
-                        <p>Are there any patterns that could be implemented better ...how would that affect the existing architecture</p>
-                        <p>One problem of the Mercurial system is in concurrent clients/users access. More precisely, when multiple clients are trying push their changes at the same time,
-                        they will often encounter multiple heads (multiple new versions) whose changes need to be resolved. To solve the issue we recommend to use mixed proxy pattern, i.e. group together Remote and Synchronization
-                         variants of proxy pattern. One part is the Remote, it gets the same duties as held, provides a local representative for an object that resides in a different address space.
-                         The other part of the combined proxy ia a Synchronization proxy will control multiple simultaneous client accesses, i.e. only one client can access the original files at a time,
-                          the proxy can implement mutual exclusion via semaphores. Semaphore mechanism will be implemented in such way that could hold clients to access the original documents while other
-                           user is using it. Remote proxy increases extensibility, but with Synchronization proxy it will improve reliability as well. <a href="#POSA2">[ref]</a></p>
-                        <p>The employment of relaxed layers pattern by Mercurial is proper enough. However, the naming of interface layer and UI layer seems ambiguous. It would more make sense if UI layer is renamed as User Message Manager, for instance, since it deals with messaging. Otherwise, the layers should be reorganized to meet common relaxed layers, from interface layer go deeper into core layer. Although relaxed layers pattern could decrease maintainability<a href="#posabook">[ref]</a>, this is acceptable since maintainability is not key-driver; also, as the interaction between the lower layers is minimal, the maintainability is unlikely to decrease in practice.
+                        <h1>Relaxed Layers (modification)</h1>
+                        <p>The employment of relaxed layers pattern by Mercurial is proper enough. However, the naming of interface layer and UI layer seems ambiguous. It would more make sense if UI layer is renamed as User Message Manager, for instance, since it deals with messaging. Otherwise, the layers should be reorganized to be more idiomatically layered, i.e. with a top interface layer and deeper core layers. Although the relaxed layers pattern can decrease maintainability<a href="#posabook">[ref]</a>, this is acceptable since maintainability is not key-driver; also, as the interaction between the lower layers is minimal, the maintainability is unlikely to decrease in practice since decreased maintainability stems from greater number of dependencies in a relaxed layered pattern compared to a strictly layered pattern.
                         </p>
                     </section>
-                    <section>
-                        <h1>Important key drivers (QA's) not addressed by existing patterns or many + and - in one pattern</h1>
+                <section>
+                        <h1>Integration Reverse Proxy</h1>
                         <p>In the document, we mentioned usability as a key-driver, but it has not been addressed by most of the detected patterns.
                         We recommend Integration Reverse Proxy which provides a homogenous view of collection of servers, without
                         leaking the physical distribution of individual machines to end users. This will also provide security to the data
@@ -871,6 +867,7 @@
                         by configuring a back-end for Hgweb server<a href="#security">[ref]</a>. </p>
                         <p></p>
                     </section>
+                </section>
                 </section>
             </section>
             <aside class="glossary">
