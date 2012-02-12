@@ -308,12 +308,11 @@
                 and filelogs. The changelog contains metadata for each revision, with a pointer into the manifest revlog (that is, a node id for one revision in the
                 manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog.
                 In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both
-                concepts <a href="#aosabook">[ref]</a>.
+                concepts <a href="#aosabook">[ref]</a>.	</p>
             <figure>
                 <img src="images/revlogs.png" alt="Mercurial generic data model, revlog"/>
                 <figcaption >Mercurial Generic Data Model, Revlog <a href="#aosabook">[ref]</a></figcaption>
             </figure>
-	</p>
             <p>Mercurial is a command-line application. This means a simple interface, the user calls the hg script with a command. This command (like log, diff or commit)
                 may take a number of options and arguments. There are also some options that are valid for all commands. Next, there are three different things that can
                 happen to the interface: hg will often output something the user asked for or show status messages, hg can ask for further input through command-line
@@ -677,7 +676,7 @@
                     <section>
                         <h1>Relaxed Layers</h1>
                  	<figure>
-		         <img src="images/Mercurial-relaxedlayer.png" alt="Mecurial Relaxed Layers  diagram" width=300 length=400 />
+		         <img src="images/Mercurial-relaxedlayer.png" alt="Mecurial Relaxed Layers  diagram" />
 		         <figcaption>Mercurial Relaxed Layers diagram</figcaption>
 			</figure>
 
