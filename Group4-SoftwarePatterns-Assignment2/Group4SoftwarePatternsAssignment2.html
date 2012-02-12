@@ -486,9 +486,9 @@
                                 </tr>
                                 <tr>
                                     <td>Solution Variant </td>
-                                    <td><p>Mercurial stores most of its data in <i>revlogs</i>. Each Mercurial repository has many such revlogs; most persistant data
+                                    <td><p>Mercurial stores most of its data in <i>revlogs</i> <a href="#bib-hg-wiki-revlog">[ref]</a>. Each Mercurial repository has many such revlogs; most persistant data
                                         (whether Mercurial-internal or user data) is stored and managed centrally in these datastructures. Each revlog consists
-                                        of an append-only data file and an index file with fixed-size entries (to enable O(1) seeking) storing where a particular
+                                        of an append-only data file and an index file with fixed-size entries (to enable O(1) seeking <a href="#bib-mackall2006betterscm">[ref]</a>) storing where a particular
                                         version is to be found in the data file. There are three classes of revlogs. Firstly, user data is stored in a per-file revlog.
                                         Secondly, a directory listing with revision numbers of each file forming a particular version of the directory tree is stored
                                         in a manifest revlog. Finally, changeset metadata such as commit messages and the corresponding manifest revision number
@@ -496,16 +496,18 @@
                                 </tr>
                                 <tr>
                                     <td>Rationale </td>
-                                    <td>Performance, Reliability, Durability, Dependability. <i class="highlight">TODO: see AOSA Mercurial section and ???</i>
+                                    <td><p>Standardizing the data storage method using revlogs primarily supports the system's performance by ensuring versioned information can be accessed quickly regardless of the amount of revisions stored.  Additionally, the shared datastore simplifies extensibility partially by providing a uniform abstraction for many different types of data stored by mercurial.  Also, the shared datastore accounts for platform differences such as file system case-sensitivity and illegal characters, so that a repository can be copied between platforms without corruption simply by copying the repository's directory, which improves portability.</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Consequences </td>
-                                    <td>? </td>
+                                    <td><p>The revlog's simplicity improves durability:  Adding data to a shared datastore can be performed simply by appending data to the revlog and its index.  In addition to using OS locking to ensure atomic write access, the new revlog contents are appended before the new revlog index contents are so that if a write fails, it does not corrupt the repository <a href="#aosabook">[ref]</a>: failure during the content append never touches previous revisions and the corrupted data can simply be ignored.  Failure during the index append can either be recovered by a truncation (thus atomically failing the write without corruption), or by recomputation since the contents are already completely written.  In a similar fashion, dependencies between different revlogs are ordered so that any failure is can be rolled back and never affects previously stored revisions.</p><p>
+                                    Furthermore, the typically append-only access pattern somewhat improves the usability goal of making it hard to make mistakes that result in data loss: access through Mercurial's API or user interface is almost always safe by virtue of the philosophy of never altering previously committed data.
+                                    </p><p>Finally, the simplicity of the revlog format clearly improves modifiability of mercurial itself (a stated goal of mercurial's maintainer).</p></td>
                                 </tr>
                                 <tr>
                                     <td>Related patterns </td>
-                                    <td>? </td>
+                                    <td>None of the identified patterns </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -727,7 +729,7 @@
                             <tr>
                                 <td>Related patterns </td>
                                 <td>
-                                    <p>None of identified patterns</p>
+                                    <p>None of the identified patterns</p>
                                 </td>
                             </tr>
                         </table>
@@ -1032,7 +1034,7 @@
                                 of a file in a repository. Each version is stored compressed in its entirety or stored as a compressed binary
                                 delta (difference) relative to the preceeding version in the revlog. Whether to store a full version is decided
                                 by how much data would beneeded to reconstruct the file. This system ensures that Mercurial does not need huge
-                                amounts of data to reconstruct any version of a file, no matter how many versions are stored. <a href="#revlog">[ref]</a> </td>
+                                amounts of data to reconstruct any version of a file, no matter how many versions are stored. <a href="#bib-hg-wiki-revlog">[ref]</a> </td>
                         </tr>
                         <tr>
                             <th>SCM</th>
@@ -1124,7 +1126,7 @@
                     <li id="push"><a href="http://mercurial.selenic.com/wiki/Push">Mercurial push</a></li>
                     <li id="repository"><a href="http://mercurial.selenic.com/wiki/Repository">Mercurial repository</a></li>
                     <li id="revision"><a href="http://mercurial.selenic.com/wiki/Revision">Mercurial revision</a></li>
-                    <li id="revlog"><a href="http://mercurial.selenic.com/wiki/Revlog">Mercurial revlog</a></li>
+                    <li id="bib-hg-wiki-revlog">Buehlmann, A. et al. <a href="http://mercurial.selenic.com/wiki/Revlog">Revlog</a>. In <i><a href="http://mercurial.selenic.com/wiki/Mercurial">Mercurial wiki</a></i>, Last update 2011-02-25.</li>
                     <li id="scm"><a href="http://mercurial.selenic.com/wiki/SCM">Mercurial SCM</a></li>
                     <li id="tip"><a href="http://mercurial.selenic.com/wiki/Tip">Mercurial tip</a></li>
                     <li id="update"><a href="http://mercurial.selenic.com/wiki/Update">Mercurial update</a></li>
@@ -1134,6 +1136,7 @@
                     <li id="mailinglist"><a href="http://mercurial.selenic.com/wiki/MailingLists">Mercurial mailinglists</a></li>
                     <li id="irc"><a href="http://mercurial.selenic.com/wiki/IRC">Mercurial IRC</a></li>
                     <li id="bib-hg-lkml-announcement">Mackall, M. <a href="http://lkml.indiana.edu/hypermail/linux/kernel/0504.2/0670.html">Mercurial v0.1 - a minimal scalable distributed SCM</a>. On the <i>Linux Kernel Mailing List</i>, April 19, 2005</li>
+                    <li id="bib-mackall2006betterscm">Mackall, M. <a href="http://mercurial.selenic.com/wiki/Presentations?action=AttachFile&do=get&target=ols-mercurial-paper.pdf">Towards a Better SCM: Revlog and Mercurial</a>. 2006</li>
                 </ul>
             </aside>
         </article>
