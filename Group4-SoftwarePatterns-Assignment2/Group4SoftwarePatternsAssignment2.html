@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
@@ -257,13 +257,12 @@
             <section id="section-architecture">
                 <!-- Chapter 4 Architecture -->
                 <h1>Architecture <span class="rightbox"></span></h1>
-                <p>According to its available document on website <a href="#mercurial-arch">[ref]</a>, the general overview of Mercurial architecture can be depicted below. 
+                <p>According to its available document on website <a href="#mercurial-arch">[ref]</a>, the general overview of Mercurial architecture can be depicted below. 		</p>
                 <figure>
                     <img src="images/Mercurial-comp-diag.png" alt="Mecurial component diagram"/>
                     <figcaption >Mercurial Architectural Diagram based on <a href="#mercurial-arch">[ref]</a></figcaption>
                 </figure>
-		</p>
-        <p> Since Mercurial can be seen as peer-to-peer application, each peer has the same structure as the other. Each peer represents a node which contains five layers basically. Seen from bottom-up view, the layers for each peer are Utility, UI, Storage, Repository, and Interface. In general, no layer should know the details of any layer above it, and no layer should abuse the interface of layers below it <a href="#mercurial-arch">[ref]</a>. However, the layers are not truly strict since a certain layer can access the bottom layer directly.
+                <p> Since Mercurial can be seen as peer-to-peer application, each peer has the same structure as the other. Each peer represents a node which contains five layers basically. Seen from bottom-up view, the layers for each peer are Utility, UI, Storage, Repository, and Interface. In general, no layer should know the details of any layer above it, and no layer should abuse the interface of layers below it <a href="#mercurial-arch">[ref]</a>. However, the layers are not truly strict since a certain layer can access the bottom layer directly.</p>
 <!-- Interface
                             layer is the topmost layer and is the part most directly exposed to the user. It contains commands.py, an implementation
                             of the command line interface which contains most of the code that deals with converting commands into simple repository
@@ -275,11 +274,9 @@
                             The third one, Storage layer contains the basis for version storage, revlog. The fourth one, UI layer provides generic methods
                             for communicating with the user and managing configuration info. The fifth layer, Utility layer includes generic functionality
                             and platform abstraction <a href="#mercurial-arch">[ref]</a>. -->
-                </p>
-        <p>One interesting point is there are two layers that seem similar, Interface layer and UI (User Interface) layer. Based on investigation in source
-        code, the interface layer deals with commands which the end-user could execute e.g. add, commit and update, while UI layer deals with the message
-         which is delivered to end-user regarding to the command execution.
-        </p>
+                <p>One interesting point is there are two layers that seem similar, Interface layer and UI (User Interface) layer. Based on investigation in source
+                    code, the interface layer deals with commands which the end-user could execute e.g. add, commit and update, while UI layer deals with the message
+                    which is delivered to end-user regarding to the command execution.</p>
                 <section>
                     <!--################################### From Views.html ###############-->
                     <h1>Architectural views </h1>
@@ -304,25 +301,23 @@
                             
             </p>
             <p>Regarding data model, Mercurial uses a generic structure of historic data, called revlog. There are three types of revlogs: the changelog, manifests,
-             and filelogs. The changelog contains metadata for each revision, with a pointer into the manifest revlog (that is, a node id for one revision in the
-             manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog.
-             In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both
-             concepts <a href="#aosabook">[ref]</a>.
+                and filelogs. The changelog contains metadata for each revision, with a pointer into the manifest revlog (that is, a node id for one revision in the
+                manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog.
+                In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both
+                concepts <a href="#aosabook">[ref]</a>.</p>
             <figure>
-                        <img src="images/revlogs.png" alt="Mercurial generic data model, revlog"/>
-                        <figcaption >Mercurial Generic Data Model, Revlog <a href="#aosabook">[ref]</a></figcaption>
-                    </figure>
-		</p>
+                <img src="images/revlogs.png" alt="Mercurial generic data model, revlog"/>
+                <figcaption >Mercurial Generic Data Model, Revlog <a href="#aosabook">[ref]</a></figcaption>
+            </figure>
             <p>Mercurial is a command-line application. This means a simple interface, the user calls the hg script with a command. This command (like log, diff or commit)
-            may take a number of options and arguments. There are also some options that are valid for all commands. Next, there are three different things that can
-             happen to the interface: hg will often output something the user asked for or show status messages, hg can ask for further input through command-line
-              prompts, hg may launch an external program (such as an editor for the commit message or a program to help merging code conflicts). The correlations
-              between modules is depicted below.
-              </p>
+                may take a number of options and arguments. There are also some options that are valid for all commands. Next, there are three different things that can
+                happen to the interface: hg will often output something the user asked for or show status messages, hg can ask for further input through command-line
+                prompts, hg may launch an external program (such as an editor for the commit message or a program to help merging code conflicts). The correlations
+                between modules is depicted below.</p>
             <figure>
-            <img src="images/modules.png" alt="Mercurial module dependancies"/>
-                        <figcaption >Mercurial Modules Correlation <a href="#aosabook">[ref]</a></figcaption>
-                    </figure>
+                <img src="images/modules.png" alt="Mercurial module dependancies"/>
+                <figcaption >Mercurial Modules Correlation <a href="#aosabook">[ref]</a></figcaption>
+            </figure>
                     </section>
 
                     <section>
@@ -873,7 +868,7 @@
                             <td>The changelog is part of a Mercurial repository. It contains all changesets of a repository and
                                 is stored in revlog format. For each changeset of the repository, there is exactly one file
                                 revision in the revlog file. <a href="#changelog">[ref]</a></td>
-                        </tr>
+                        </tr><tr>
                             <th>changeset</th>
                             <td>An atomic collection of changes to files in a repository. I contains all recorde local
                                 modification that lead to a new revision of the repository. <a href="#changeset">[ref]</a></td>
@@ -1089,8 +1084,6 @@
                     <li id="changelog"><a href="http://mercurial.selenic.com/wiki/Changelog">Mercurial changelog</a></li>
                     <li id="changeset"><a href="http://mercurial.selenic.com/wiki/ChangeSet">Mercurial changeset</a></li>
                     <li id="cloning"><a href="http://mercurial.selenic.com/wiki/Clone">Mercurial cloning</a></li>
-                     <li id="security">Markus Schumacher, Eduardo Fernandez, Duane Hybertson, and Frank Buschmann.
-                     Security Patterns: Integrating Security and Systems Engineering. John Wiley & Sons, 2005</li>
 
                     <li id="commit"><a href="http://mercurial.selenic.com/wiki/Commit">Mercurial commit</a></li>
                     <li id="conflict"><a href="http://mercurial.selenic.com/wiki/Conflict">Mercurial conflict</a></li>
