@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <title>Group 4 - Software Patterns - Assignment 2</title>
@@ -241,9 +241,9 @@
                 </section>
                 <section>
                     <h1>Key drivers</h1>
-                    <p>The key drivers are identified from Mercurial documentation<sup> <a href="#key_drivers">[ref]</a> </sup>. These key drivers
+                    <p>The key drivers are identified in Mercurial's documentation <a href="#key_drivers">[ref]</a>. These key drivers
                         are talked about extensively in several Mercurial sources. They not prioritized in the documents and therefore
-                        are they listed in random order below.</p>
+                        are listed in arbitrary order below.</p>
                     <dl>
                         <dt>Usability:</dt> <dd>The basic interface of Mercurial is easy to use, easy to learn and hard to break. Mercurial sports
                             a consistent command set and potentially dangerous actions are available via extensions which need to be enabled. </dd>
@@ -374,17 +374,20 @@
                         identified and listed. In steps 5-7 the documentation and source code is studied in detail
                         to assert that the candidate patterns are actually present. Below is the list of candidate
                         patterns and conclusions of their existance.</p>
-                    <dl><dt>Proxy</dt> <dd>For accessing remote repositories from a local client. <i>Accepted</i> </dd>
-                        <dt>Layers</dt> <dd>The levels of abstraction. <i>Rejected</i> </dd>
+                    <dl><dt>Remote Proxy</dt> <dd>For accessing remote repositories from a local client. <i>Accepted</i> </dd>
+                        <dt>Layers</dt> <dd>The levels of abstraction. <i>Rejected, as some layers are bypassed</i> </dd>
                         <dt>Relaxed Layers</dt> <dd>The levels of abstraction are more suitable as relaxed layers. <i>Accepted</i> </dd>
-                        <dt>Peer-to-peer</dt> <dd>Mercurial itself implements such a system between repositories - but is this a real architectural
-                            pattern or just the way its set up? <i>Accepted</i> </dd>
+                        <dt>Peer-to-peer</dt> <dd>Mercurial itself implements such a system between repositories - it&#39;s arguable that it&#39;s a 
+                        property of the system not within the system; but it&#39;s important to the architecture regardless. <i>Accepted</i> </dd>
                         <dt>Shared Datastore</dt> <dd>aka Shared Repository; renamed to avoid confusion with the term repository to meaning a Mercurial
                             SCM repository. The disk revlogs are shared between various other components and could be seen as a shared repository. <i>Accepted</i> </dd>
                         <dt>Indirection layer</dt> <dd>The revlog storage can be seen as an indirection layer over the filesystem: direct access is
-                            problematic due to performance, corruption and locking. <i>Accepted</i> </dd>
+                            problematic due to performance, corruption and locking. <i>Rejected; shared repository is a better match</i> </dd>
                         <dt>Active repository</dt> <dd>Active repository: the Mercurial VCS itself can be seen as an active repository in that it provides
-                            hooks that can actively notify others of changes. Is this more like a feature than a pattern? <i>Accepted</i> </dd>
+                            hooks that can actively notify others of changes. Is this more like a feature than a pattern? <i>Rejected; 
+                        implementation looks more like the Interceptor pattern.</i> </dd>
+                        <dt>Interceptor</dt><dd>Mercurial allows for configurable external code to be executed at predefined points to allow for 
+                        repository hooks and extension functionality. <i>Accepted</i> </dd>
                         <dt>Client-Server</dt> <dd>A Mercurial repository communicates via a client-server protocol when over the network e.g. when
                             pushing or pulling. <i>Accepted</i> </dd>
                     </dl>
