@@ -167,7 +167,7 @@
                         instead, the reverted change is itself a new changeset that can be merged anywhere into the version history. </p>
                     <section>
                         <h1>Project history and community</h1>
-                        <p>Matt Mackall is the creator of Mercurial and has been working on the system as the main developer since 2005 <a href="#matt_mackall">[ref]</a>.  Mercurial's creation was a response to the Linux kernel's search for an alternative to BitKeeper.  Although the kernel ended up using Git, a similarly new SCM by Linus Torvalds, Mercurial was subsequently adopted by several other OSS projects. The origins in the linux kernel development community motivated two of Mercurial's key requirements: the ability to scale up to a large repositories with many revisions, and the need to support a truly distributed development style.</p>
+                        <p>Matt Mackall is the creator of Mercurial and has been working on the system as the main developer since 2005 <a href="#matt_mackall">[ref]</a>.  Mercurial's creation was a response to the Linux kernel's search for an alternative to BitKeeper <a href="#aosabook">[ref]</a>.  Although the kernel ended up using Git, a similarly new SCM by Linus Torvalds, Mercurial was subsequently adopted by several other OSS projects. The origins in the linux kernel development community motivated two of Mercurial's key requirements: the ability to scale up to a large repositories with many revisions, and the need to support a truly distributed development style.</p>
                         <p>Mercurial has an active community<a href="#community">[ref]</a>, that can be reached via various mailing lists, depending on your needs. <a href="#mailinglist">[ref]</a>
                             For a fast response to your questions you can reach Mercurial developers on IRC, where they even provide a
                             timetable when various developers are likely to be using the IRC. <a href="#irc">[ref]</a></p>
@@ -184,7 +184,7 @@
                             <a href="#about-mercurial">[ref]</a>. </p>
                     <dl><dt>End user</dt> <dd>The end user (software developer) can be a large team of people as well as one person. </dd>
                         <dt>Mercurial project leader</dt> <dd>Matt Mackall is the sole full-time developer working on Mercurial and is also the project
-                            leader, serving as a gatekeeper, validating third-party contributions <a href="#mercurial-dev-process">[ref]</a>. </dd>
+                            leader, serving as a gatekeeper, validating third-party contributions <a href="#mercurial-dev-process">[ref]</a>.  His stated aims in creating Mercurial were to create a simple, scalable, efficient, and distributed SCM <a href="#bib-hg-lkml-announcement">[ref]</a>.</dd>
                         <dt>Core Mercurial software developers</dt> <dd>Several other software developers regularly contribute to various Mercurial
                             components. </dd>
                         <dt>Patch/extension developer</dt> <dd>Mercurial welcomes patches and extensions from any software developer. </dd>
@@ -213,16 +213,17 @@
                             <tr>
                                 <td>Mercurial project leader </td>
                                 <td>
-                                    <dl><dt>Changeability: </dt><dd>The application server should be easy changeable to adapt to the specific needs for the application
-                                        which is run on top of it. </dd>
-                                        <dt>Adaptability:</dt> <dd>The system should easily integrate in various environments </dd>
+                                    <dl><dt>Modifiability: </dt><dd>The system should be simple enough to be easily changed. </dd>
+                                        <dt>Scalability:</dt><dd>The system should scale to large projects such as the Linux Kernel or Mozilla Firefox.</dd>
+                                        <dt>Efficiency:</dt><dd >The system should use minimal memory, disk I/O and bandwidth</dd>
+                                        <dt>Distributed:</dt><dd>The system should allow a distributed development style without requiring centralized control.</dd>
                                     </dl>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Mercurial software developer </td>
                                 <td>
-                                    <dl><dt>Usability:</dt> <dd>The code should be well documented </dd>
+                                    <dl><dt>Modifiability:</dt><dd>The code should be well documented and easy to change </dd>
                                         <dt>Efficiency:</dt> <dd>For effective work of the system WAN bandwidth and disk seek rate should be optimized for the system.
                                         </dd>
                                     </dl>
@@ -231,7 +232,7 @@
                             <tr>
                                 <td>Patch/ extension developers </td>
                                 <td>
-                                    <dl><dt>Usability:</dt> <dd>The code should be well documented </dd>
+                                    <dl><dt>Extensibility:</dt> <dd>The system should be flexible enough to accommodate diverse needs as easily as possible.</dd>
                                     </dl>
                                 </td>
                             </tr>
@@ -1121,6 +1122,7 @@
                     <li id="community"><a href="http://mercurial.selenic.com/wiki/DeveloperInfo#Working_with_the_community">Mercurial community</a></li>
                     <li id="mailinglist"><a href="http://mercurial.selenic.com/wiki/MailingLists">Mercurial mailinglists</a></li>
                     <li id="irc"><a href="http://mercurial.selenic.com/wiki/IRC">Mercurial IRC</a></li>
+                    <li id="bib-hg-lkml-announcement">Mackall, M. <a href="http://lkml.indiana.edu/hypermail/linux/kernel/0504.2/0670.html">Mercurial v0.1 - a minimal scalable distributed SCM</a>. On the <i>Linux Kernel Mailing List</i>, April 19, 2005</li>
                 </ul>
             </aside>
         </article>

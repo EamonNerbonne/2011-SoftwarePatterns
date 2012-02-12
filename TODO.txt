@@ -6,7 +6,7 @@ Timesheet:
 - all
 
 Chapter 2:
-- If we only have one section in chapter one, remove the subsection number. - Eamon
+- DONE: If we only have one section in chapter one, remove the subsection number. - Eamon
 
 Chapter 3:
 Stakeholders:
