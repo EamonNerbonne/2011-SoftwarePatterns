@@ -95,7 +95,7 @@
                                     <dt>Divya</dt> <dd>Views, Interceptor pattern diagram, recommendations for Reverse Proxy pattern</dd>
                                     <dt>Edy</dt> <dd>Refine architectural views and diagrams, relaxed layer pattern evaluation and recommendation</dd>
                                     <dt>Sunna</dt> <dd>Chapter 5, Client-Server & Peer-to-peer patterns, diagrams: CS, P2P and system overview, Glossary, final additions chapter 2,3,4,5</dd>
-                                    <dt>Eamon</dt> <dd>merge document, layout, bibliography, HTM validation, Sections 2+3+4; shared datastore, proxy, add figure numbering</dd>
+                                    <dt>Eamon</dt> <dd>merge document, layout, bibliography, HTM validation, Sections 2+3+4; shared datastore, proxy, publish-subscribe, figure numbering</dd>
                                 </dl>
                             </td>
                         </tr>
@@ -821,6 +821,8 @@
                                 defragmentation. Also, the mangling ensures revlog names do not depend on platform-sensitive characters, enhancing portability.
                                 Finally, by hiding complex changeset storage implementation details behind a simple, clean API, extensibility is improved
                                 by allowing extension developers to modify the system behavior without being confronted with the complex internals.
+                            </p><p>
+                            However, the shared datastore solution also has a performance downside since it is strongly coupled to the file structure: this means that file renames require a new revlog corresponding to the new name; this new revlog has no previous version to diff to, so it needs to store a complete copy of the data, causing unnecessary overhead.  This is particularly problematic as the remote proxy object exports this limitation too; so after a rename a subsequent pull from your repository or push by your repository causes the file to be sent over the network in its entirety again.
                             </p>
                         </dd>
                         <dt>Client-Server</dt> <dd>
@@ -893,17 +895,26 @@
                             layered pattern compared to a strictly layered pattern. </p>
                     </section>
                     <section>
-                        <h1>Integration Reverse Proxy</h1>
+                        <h1>Integration Reverse Proxy (or related)</h1>
                         <p>In the document, usability is listed as a key-driver. In the evaluation usability
                             has many pluses and minuses and therefore we would like to recommend an improvement
-                            of this. We recommend Integration Reverse Proxy which provides a homogenous view
+                            of this.  All mercurial installations include a built-in server hgserve.  However it is rarely used since mercurial itself does not handle authentication; using it means allowing anyone that can connect access.  This is a usuability and portability problem since setting up a server is complex and highly platform-dependent.</p>
+                            <p>
+                            We recommend Integration Reverse Proxy which provides a homogenous view
                             of collection of servers, without leaking the physical distribution of individual
                             machines to end users. This will also provide security to the data from the end
                             users. This patterns will improve usability as per the user/developer perspective.
                             We can implement this in our system by configuring a back-end for Hgweb server<a
-                                href="#security">[ref]</a>. </p>
-                        <p></p>
+                                href="#security">[ref]</a>. Configuring a mercurial repository as a server would thus be simpler, 
+                                since authentication could be handled by the Integration Reverse Proxy.
+                                 </p>
+                                 <p>On the downside, the Integration Reverse Proxy is itself a centralised service, conflicting with Mercurial's peer-to-peer nature.  A distributed authentication provider would
+                                 be better; we did not find such a pattern.
+                                 </p>
                     </section>
+<!--                    <section>
+                        <h1>Brokered Authentication</h1>
+                    </section>-->
                 </section>
             </section>
             <aside class="glossary">
