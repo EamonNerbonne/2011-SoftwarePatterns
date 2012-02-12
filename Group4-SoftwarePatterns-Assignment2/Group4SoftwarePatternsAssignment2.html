@@ -88,30 +88,18 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>30/01/2012 </td>
+                            <td>12/02/2012 </td>
                             <td class="centered">5 </td>
                             <td>
                                 <dl><dt>Assel</dt> <dd>Proxy pattern, evaluation and recomendation sections</dd>
                                     <dt>Divya</dt> <dd>Logical View, Process View</dd>
-                                    <dt>Edy</dt> <dd>Refine architectural diagram, sequence diagram</dd>
-                                    <dt>Sunna</dt> <dd>Chapter 5, Client-Server & Peer-to-peer patterns, diagrams: CS, P2P and system overview, Glossary</dd>
+                                    <dt>Edy</dt> <dd>Refine architectural diagram</dd>
+                                    <dt>Sunna</dt> <dd>Chapter 5, Client-Server & Peer-to-peer patterns, diagrams: CS, P2P and system overview, Glossary, final additions chapter 2,3,4,5</dd>
                                     <dt>Eamon</dt> <dd></dd>
                                 </dl>
                             </td>
                         </tr>
-                        <tr>
-                            <td>12/02/2012 </td>
-                            <td class="centered">6 </td>
-                            <td>
-                                <dl><dt>Assel</dt> <dd></dd>
-                                    <dt>Divya</dt> <dd></dd>
-                                    <dt>Edy</dt> <dd></dd>
-                                    <dt>Sunna</dt> <dd></dd>
-                                    <dt>Eamon</dt> <dd></dd>
-                                </dl>
-                            </td>
-                        </tr>
-                    </tbody>
+                       </tbody>
                 </table>
             </aside>
             <section id="section-introduction">
@@ -268,14 +256,14 @@
             <section id="section-architecture">
                 <!-- Chapter 4 Architecture -->
                 <h1>Architecture <span class="rightbox"></span></h1>
-                <p>According to its available document on website <a href="#mercurial-arch">[ref]</a>, the general overview of Mercurial architecture can be depicted below. 
+                <p>The general overview of Mercurial architecture is depicted below. </p>
                 <figure>
                     <img src="images/Mercurial-comp-diag.png" alt="Mecurial component diagram"/>
-                    <figcaption >Mercurial Architectural Diagram based on <a href="#mercurial-arch">[ref]</a></figcaption>
+                    <figcaption >Mercurial Architectural Diagram</figcaption>
                 </figure>
-		</p>
-        <p> Since Mercurial can be seen as peer-to-peer application, each peer has the same structure as the other. Each peer represents a node which contains five layers basically. Seen from bottom-up view, the layers for each peer are Utility, UI, Storage, Repository, and Interface. In general, no layer should know the details of any layer above it, and no layer should abuse the interface of layers below it <a href="#mercurial-arch">[ref]</a>. However, the layers are not truly strict since a certain layer can access the bottom layer directly.
-<!-- Interface
+        <p> Since Mercurial can be seen as peer-to-peer
+                    application, each peer has the same structure as the other. Each peer represents a node which contains some layers. In general,
+                            no layer should know the details of any layer above it, and no layer should abuse the interface of layers below it. Interface
                             layer is the topmost layer and is the part most directly exposed to the user. It contains commands.py, an implementation
                             of the command line interface which contains most of the code that deals with converting commands into simple repository
                             operations as well as the stdio push/pull interface, and hgweb.py, an implementation of the web interface which contains
@@ -285,7 +273,7 @@
                             statichttprepository) and the objects from which the repository is constructed (filelog, manifest, changeset, dirstate).
                             The third one, Storage layer contains the basis for version storage, revlog. The fourth one, UI layer provides generic methods
                             for communicating with the user and managing configuration info. The fifth layer, Utility layer includes generic functionality
-                            and platform abstraction <a href="#mercurial-arch">[ref]</a>. -->
+                            and platform abstraction <a href="#mercurial-arch">[ref]</a>.
                 </p>
         <p>One interesting point is there are two layers that seem similar, Interface layer and UI (User Interface) layer. Based on investigation in source
         code, the interface layer deals with commands which the end-user could execute e.g. add, commit and update, while UI layer deals with the message
@@ -298,33 +286,31 @@
                         <h1>
 
                             Logical view </h1>
-                        <p>The logical view for the Mercurial describes the functionality of the Mercurial
+                        <p>
+                            The logical view for the Mercurial describes the functionality of the Mercurial
                             system to the end-users. Mercurial is a modern distributed version control system (DVCS)
                             which is written in Python. The architecture of Mercurial is decomposed logically into five layers. It is basically follows a Relaxed Layer pattern.
-                            The bottommost layer is the utility layer which implements handler. It includes generic functionality
-                            and platform abstraction. The next layer is the User Interface Layer. It implements a
-                            TextBasedMethod and provides generic methods for communicating with the user and managing configuration info. The storage layer consists of a storage component which is used to implement versioning of the system. It contains the basis for version storage, revlog. 
-                            The repository layer consists of two components SCMcore and Repository Proxy. The SCMCore implements core primitives such as commands like pull,
-                            update, add, commit and push. The Hg update is used to update the file in the given repository. The Hg add is used to add
-                            any file. The Hg commit is used to commit any changes in the file. The Hg push is used to push the file into the repository.
-                            The remoting interface (push or pull) is used between SCMcore and RepositoryProxy. There are proxy objects for remote repositories (remoterepository, sshrepository, httprepository, httpsrepository,
-                            statichttprepository) inside RepositoryProxy. The interface layer consists of
-                            two components, Hgweb and Command. This layer is basically the layer in which users interact with the system.
-                            Hgweb has web interface and Command component has command-line interface <a href="#mercurial-arch">[ref]</a>.
-                            <!-- The sequence diagram for the Logical view is depicted as follows: -->
-                            
+                            The bottommost layer is the utility layer which implements handler. The next layer is the User Interface Layer. It implements a
+                            TextBasedMethod. The storage layer consists of a storage component which is used to implement versioning of the system.
+                            The repository layer consists of two components SCMcore and Repository Proxy. The SCMCore implements commands like pull,
+                            update,edit,commit and push.The Hgupdate is used to update the file in the given reoisitory. The Hgedit is used to edit
+                            any file. The Hgcommit is used to commit any changes in the file. The Hgpush is used to push the file into the repository.
+                            The remoting interface is used between SCMcore and RepositoryProxy.The interface layer consists of
+                            two components Hgweb and Command.This layer is basically the layer in which users interact with the system.
+                            Hgweb has web interface and Command component has command-line interface.
+                            The sequence diagram for the Logical view is depicted as follows:
+                            [<a href="#aosabook">AOSA Book</a>] <a href="#aosabook">[ref]</a>.
             </p>
-            <p>Regarding data model, Mercurial uses a generic structure of historic data, called revlog. There are three types of revlogs: the changelog, manifests,
+            <p> Regarding data model, Mercurial uses a generic structure of historic data, called revlog. There are three types of revlogs: the changelog, manifests,
              and filelogs. The changelog contains metadata for each revision, with a pointer into the manifest revlog (that is, a node id for one revision in the
              manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog.
              In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both
-             concepts <a href="#aosabook">[ref]</a>.
+             concepts <a href="#aosabook">[ref]</a>.</p>
             <figure>
                         <img src="images/revlogs.png" alt="Mercurial generic data model, revlog"/>
                         <figcaption >Mercurial Generic Data Model, Revlog <a href="#aosabook">[ref]</a></figcaption>
                     </figure>
-		</p>
-            <p>Mercurial is a command-line application. This means a simple interface, the user calls the hg script with a command. This command (like log, diff or commit)
+            <p> Mercurial is a command-line application. This means a simple interface, the user calls the hg script with a command. This command (like log, diff or commit)
             may take a number of options and arguments. There are also some options that are valid for all commands. Next, there are three different things that can
              happen to the interface: hg will often output something the user asked for or show status messages, hg can ask for further input through command-line
               prompts, hg may launch an external program (such as an editor for the commit message or a program to help merging code conflicts). The correlations
@@ -332,7 +318,7 @@
               </p>
             <figure>
             <img src="images/modules.png" alt="Mercurial module dependancies"/>
-                        <figcaption >Mercurial Modules Correlation <a href="#aosabook">[ref]</a></figcaption>
+                        <figcaption >Mercurial Command Correlation <a href="#aosabook">[ref]</a></figcaption>
                     </figure>
                     </section>
 
@@ -364,7 +350,8 @@
                             Mercurial looks up the appropriate revision of the manifest to find out which files
                             it was tracking at the time that changeset was committed, and which revision of
                             each file was then current. It then recreates a copy of each of those files, with
-                            the same contents it had when the changeset was committed <a href="#mercurial-book-4">[ref]</a>.
+                            the same contents it had when the changeset was committed. [<a href="#mercurial-book-4">Mercurial Book</a>]
+                            [<a href="#aosabook">AOSA Book</a>] <a href="#mercurial-book-4">[ref]</a>.
                         </p>
             <p> According to the process view explained above, Mercurial process view is depicted in sequence diagram below.</p>
             <figure>
@@ -681,7 +668,7 @@
                       </table>
                     </section>
                     <section>
-                        <h1>Relaxed Layers</h1>
+                        <h1>Relaxed Layer pattern</h1>
                         <table class="bookstyleborders">
                             <tr>
                                 <th>Pattern Section </th>
@@ -689,20 +676,20 @@
                             </tr>
                             <tr>
                                 <td>Name </td>
-                                <td>Relaxed Layers </td>
+                                <td>Relaxed Layer </td>
                             </tr>
                             <tr>
                                 <td>Problem Context</td>
                                 <td>
-                                    <p>Mercurial has to be designed with separation of concern, capability to extend, and platform independence
+                                    <p>Mercurial has to be designed with separation of concern, capability to extend, and independency of any major platform
                                     </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Solution Variant</td>
                                 <td>
-                                    <p>The separation of concern and extensibility are resolved by dividing Mercurial
-                                        system into several modules and grouping them into some layers based on their level of abstraction.  Platform dependency can also be avoided by providing particular module </p>
+                                    <p>The pattern chosen as solution is Relaxed layer. The separation of concern and extensibility are resolved by dividing Mercurial
+                                        system into several modules and grouping them into some layers based on their level of abstraction. </p>
                                 </td>
                             </tr>
                             <tr>
@@ -725,7 +712,7 @@
                             <tr>
                                 <td>Related patterns </td>
                                 <td>
-                                    <p>None of identified patterns</p>
+                                    <p></p>
                                 </td>
                             </tr>
                         </table>
@@ -836,15 +823,10 @@
                             <p>The remote proxy is responsible for all the network hassle, so it could influence in usability in a good way.
                                         The proxy hides the fact that a service is provided remotely, and makes the remote service as easy to use as a local service. </p>
                         </dd>
-                        <dt>Interceptor</dt> 
-<dd><p>Usability is the key-driver addressed in this pattern.Concrete interceptors help to handle events in an application
+                        <dt>Interceptor</dt> <dd>Usability is the key-driver addressed in this pattern.Concrete interceptors help to handle events in an application
                         specific manner therby satisfying usability. Hence usability gets a plus. Extensibility is also a key-driver which
-                        allows independent variation an evolution of service extensions in Mercurial. Hence extensibility is given a plus.</p></dd>
-                        <dt>Relaxed Layers</dt> 
-			<dd>
-			<p>Since Mercurial was developed in layers and modules, its functionality can be extended by module-based development inside certain layer. It is flexible to add new modules as new requirement might appear. Thus, extensibility increases. </p>
-			Mercurial has repository layer which contains proxy object. This layer enables developer to implement platform independent module especially in term of remote repository.
-			</dd>
+                        allows independent variation an evolution of service extensions in Mercurial. Hence extensibility is given a plus.</dd>
+                        <dt>Relaxed Layers</dt> <dd></dd>
                     </dl>
                 </section>
                 <section>
@@ -858,7 +840,7 @@
                         <h1>Improve existing patterns</h1>
                         <p>Are there any patterns that could be implemented better ...how would that affect the existing architecture</p>
                         <p>One of the “Achilles heel” of Mercurial system is in simultaneous  clients/users access. To be more precisely when multiple clients are trying push their changes at the same time, 
-                        they face problem with conflicting files and few heads in tree structure. To solve the fixed issue we recommend to use mixed proxy pattern, i.e. group together  Remote and Synchronization 
+                        they face problem with conflicting files and few heads in tree structure. To solve the vexed issue we recommend to use mixed proxy pattern, i.e. group together  Remote and Synchronization 
                          variants of proxy pattern. One part  is the Remote, it gets the same duties as held, provides a local representative for an object that resides in a different address space. 
                          The other part of the combined proxy ia a Synchronization proxy will control multiple simultaneous client accesses, i.e. only one client can access the original files at a time,
                           the proxy can implement mutual exclusion via semaphores. Semaphore mechanism will be implemented in such way that could hold clients to access the original documents while other
