@@ -11,10 +11,7 @@ Chapter 2:
 Chapter 3:
 Stakeholders:
  - DONE: Adaptability to extensibility - Eamon
-Key drivers:
-
 - DONE: Add comments about the key drivers not having a priority (could be useful for us in the evaluation
-if we need trade-off reasons for choosing one keydriver over another). - Sunna
 
 Chapter 4:
 - Add text under diagrams
@@ -22,8 +19,6 @@ Diagrams: http://www.google.nl/search?q=process+view&hl=en&prmd=imvns&tbm=isch&t
 Overview diagram:
 - Add a reference to the diagram. - Edy
 - Explain what the layers are and where they come from. - Link from page and the text from there - Edy
-
-- DONE: Candidate patterns: Add a sentence that we followed IDAPO process and that this is step # in the process. - Sunna
 
 Patterns: -  Pattern based
 - DONE: Add sources and diagrams to all.
@@ -37,11 +32,9 @@ affects security.
 
 Chapter 5:
 Evaluation: 
--  DONE: add color to plus/minus
 Relaxed layers - give rationale about how it is actually in Mercurial. - Edy
 Proxy - take out the neg in Usability - take out the text about performance (this way it does not exist) - Keep only 
 Extensibility (with plus)
- DONE: P2P - make plus and minus (forget to push/pull) - text
 
 Recommendations:
 - Suggest new pattern/or different variant of existing if maybe one Key driver is not addressed in the existing ones.
