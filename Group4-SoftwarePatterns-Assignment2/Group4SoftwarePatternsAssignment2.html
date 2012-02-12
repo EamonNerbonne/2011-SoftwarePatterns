@@ -284,10 +284,8 @@
                 <section>
                     <!--################################### From Views.html ###############-->
                     <h1>Architectural views </h1>
-                    <section>
-                        <h1>
-
-                            Logical view </h1>
+                    <section id="section-logical-view">
+                        <h1>Logical view </h1>
                         <p>The logical view for the Mercurial describes the functionality of the Mercurial
                             system to the end-users. Mercurial is a modern distributed version control system (DVCS)
                             which is written in Python. The architecture of Mercurial is decomposed logically into five layers. It is basically follows a Relaxed Layer pattern.
@@ -309,7 +307,7 @@
                 manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog.
                 In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both
                 concepts <a href="#aosabook">[ref]</a>.	</p>
-            <figure>
+            <figure id="fig-hg-revlog-model">
                 <img src="images/revlogs.png" alt="Mercurial generic data model, revlog"/>
                 <figcaption >Mercurial Generic Data Model, Revlog <a href="#aosabook">[ref]</a></figcaption>
             </figure>
@@ -453,12 +451,8 @@
                     </section>
                     <section>
                         <h1>Shared Datastore </h1>
-                        <figure>
-                            <img height="200" src="images/image01.png" width="571" alt="Mecurial repository storage format" style="max-width: 100%; height: auto;" />
-                            <figcaption></figcaption>
-                        </figure>
                         <p>The Shared Datastore pattern is usually called <i>Shared Repository</i>: to avoid confusion with the term &ldquo;repository&rdquo;
-                            which is used differently in the context of Mercurial the pattern is renamed here. </p>
+                            which is used differently in the context of Mercurial the pattern is renamed here. <a href="#fig-hg-revlog-model">[ref]</a> (section <a href="#section-logical-view">[ref]</a>) shows the setup of the backend mercurial datastore.</p>
                         <table class="bookstyleborders">
                             <thead>
                                 <tr>

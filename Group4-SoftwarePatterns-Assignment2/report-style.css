@@ -85,6 +85,8 @@ table.bookstyleborders td {
 }
 
 table.simpleborders {margin: 1em 0;}
+table.bookstyleborders {margin: 1em 0;}
+
 table.simpleborders, table.simpleborders td, table.simpleborders th {
     border: 1px solid black;
     border-collapse:collapse;
