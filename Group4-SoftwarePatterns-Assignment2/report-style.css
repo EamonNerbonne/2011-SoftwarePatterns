@@ -192,6 +192,7 @@ body {
 
 .positive-impact-cell { background: #0f6; text-align:center;}
 .negative-impact-cell { background: #f33; text-align:center;}
+.posneg-impact-cell { background: #ff3; text-align:center;}
 
 .bibliography li { -moz-border-radius: 0.7em; padding:0.1em 0.5em 0.1em 3em; text-indent:-2.5em;}
 .bibliography li[data-citationnumber]:before { content: '[' attr(data-citationnumber) '] '; padding-right:0.1em; }

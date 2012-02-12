@@ -88,30 +88,18 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>30/01/2012 </td>
+                            <td>12/02/2012 </td>
                             <td class="centered">5 </td>
                             <td>
-                                <dl><dt>Assel</dt> <dd>Proxy pattern</dd>
+                                <dl><dt>Assel</dt> <dd>Proxy pattern, evaluation and recomendation sections</dd>
                                     <dt>Divya</dt> <dd>Logical View, Process View</dd>
                                     <dt>Edy</dt> <dd>Refine architectural diagram, sequence diagram</dd>
-                                    <dt>Sunna</dt> <dd>Chapter 5, Client-Server & Peer-to-peer patterns, diagrams: CS, P2P and system overview, Glossary</dd>
+                                    <dt>Sunna</dt> <dd>Chapter 5, Client-Server & Peer-to-peer patterns, diagrams: CS, P2P and system overview, Glossary, final additions chapter 2,3,4,5</dd>
                                     <dt>Eamon</dt> <dd></dd>
                                 </dl>
                             </td>
                         </tr>
-                        <tr>
-                            <td>12/02/2012 </td>
-                            <td class="centered">6 </td>
-                            <td>
-                                <dl><dt>Assel</dt> <dd></dd>
-                                    <dt>Divya</dt> <dd></dd>
-                                    <dt>Edy</dt> <dd></dd>
-                                    <dt>Sunna</dt> <dd></dd>
-                                    <dt>Eamon</dt> <dd></dd>
-                                </dl>
-                            </td>
-                        </tr>
-                    </tbody>
+                       </tbody>
                 </table>
             </aside>
             <section id="section-introduction">
@@ -176,8 +164,10 @@
                         it maintains a history of changes and the details of each changes, Mercurial can revert a particular change e.g. to correct
                         a mistake. Unlike a strictly linear process, such a reverted change does not require the user to redo all subsequent changes;
                         instead, the reverted change is itself a new changeset that can be merged anywhere into the version history. </p>
-                    <p>Business model: System context, Architectural relevant business parameters. </p>
-                    <p>Show system context and OSS community. </p>
+                    <p>Matt Mackall is the creator of Mercurial and has been working on the system as the main developer since 2005. <a href="#matt_mackall">[ref]</a>
+                        Mercurial has an active community<a href="#community">[ref]</a>, that can be reached via various mailing lists, depending on your needs. <a href="#mailinglist">[ref]</a>
+                        For a fast response to your questions you can reach Mercurial developers on IRC, where they even provide a
+                        timetable when various developers are likely to be using the IRC. <a href="#irc">[ref]</a></p>
                 </section>
             </section>
             <section id="section-stakeholders">
@@ -247,9 +237,11 @@
                 <section>
                     <h1>Key drivers</h1>
                     <p>The key drivers are identified from Mercurial documentation<sup> <a href="#key_drivers">[ref]</a> </sup>. These key drivers
-                        are talked about extensively in several Mercurial sources. </p>
-                    <dl><dt>Usability:</dt> <dd>The basic interface of Mercurial is easy to use, easy to learn and hard to break. Mercurial sports
-                        a consistent command set and potentially dangerous actions are available via extensions which need to be enabled. </dd>
+                        are talked about extensively in several Mercurial sources. They not prioritized in the documents and therefore
+                        are they listed in random order below.</p>
+                    <dl>
+                        <dt>Usability:</dt> <dd>The basic interface of Mercurial is easy to use, easy to learn and hard to break. Mercurial sports
+                            a consistent command set and potentially dangerous actions are available via extensions which need to be enabled. </dd>
                         <dt>Extensibility:</dt> <dd>The functionality of Mercurial can be increased with extensions, either by activating the official
                             ones which are shipped with Mercurial or downloading some from the wiki or by writing our own. </dd>
                         <dt>Portability:</dt> <dd>Mercurial is written with platform independence in mind. Binary releases are available on all major
@@ -378,20 +370,23 @@
                 </section>
                 <section>
                     <h1>Candidate Architectural Patterns </h1>
-                    <dl><dt>Proxy</dt> <dd>For accessing remote repositories from a local client. <i>Accepted, Sunna</i> </dd>
-                        <dt>Layers</dt> <dd>The levels of abstraction. <i>Rejected, not important enough to be considered architectural</i> </dd>
+                    <p>The IDAPO process <a href="#bib-idapo">[ref]</a> is followed in the making of this report. In step 4 candidate patterns are
+                        identified and listed. In steps 5-7 the documentation and source code is studied in detail
+                        to assert that the candidate patterns are actually present. Below is the list of candidate
+                        patterns and conclusions of their existance.</p>
+                    <dl><dt>Proxy</dt> <dd>For accessing remote repositories from a local client. <i>Accepted</i> </dd>
+                        <dt>Layers</dt> <dd>The levels of abstraction. <i>Rejected</i> </dd>
+                        <dt>Relaxed Layers</dt> <dd>The levels of abstraction are more suitable as relaxed layers. <i>Accepted</i> </dd>
                         <dt>Peer-to-peer</dt> <dd>Mercurial itself implements such a system between repositories - but is this a real architectural
-                            pattern or just the way its set up? <i>Accepted, Sunna</i> </dd>
+                            pattern or just the way its set up? <i>Accepted</i> </dd>
                         <dt>Shared Datastore</dt> <dd>aka Shared Repository; renamed to avoid confusion with the term repository to meaning a Mercurial
-                            SCM repository. The disk revlogs are shared between various other components and could be seen as a shared repository. <i>Accepted,
-                                Eamon</i> </dd>
+                            SCM repository. The disk revlogs are shared between various other components and could be seen as a shared repository. <i>Accepted</i> </dd>
                         <dt>Indirection layer</dt> <dd>The revlog storage can be seen as an indirection layer over the filesystem: direct access is
-                            problematic due to performance, corruption and locking. <i>Rejected, Shared datastore is a better match</i> </dd>
+                            problematic due to performance, corruption and locking. <i>Accepted</i> </dd>
                         <dt>Active repository</dt> <dd>Active repository: the Mercurial VCS itself can be seen as an active repository in that it provides
-                            hooks that can actively notify others of changes. Is this more like a feature than a pattern? It's also not major. <i>Accepted,
-                                Divya</i> </dd>
+                            hooks that can actively notify others of changes. Is this more like a feature than a pattern? <i>Accepted</i> </dd>
                         <dt>Client-Server</dt> <dd>A Mercurial repository communicates via a client-server protocol when over the network e.g. when
-                            pushing or pulling. <i>Accepted, Assel</i> </dd>
+                            pushing or pulling. <i>Accepted</i> </dd>
                     </dl>
                 </section>
                 <section>
@@ -400,7 +395,7 @@
                         <h1>Peer-to-peer </h1>
                         <figure>
                             <img src="images/Peer-to-peer.jpg" alt="Mecurial Peer-to-peer diagram"/>
-                            <figcaption></figcaption>
+                            <figcaption>Mercurials Peer-to-peer diagram</figcaption>
                         </figure>
                         <table class="bookstyleborders">
                             <tbody>
@@ -516,7 +511,7 @@
                         <h1>Client server </h1>
                         <figure>
                             <img src="images/ClientServer.jpg" alt="Mecurial Client Server diagram" />
-                            <figcaption></figcaption>
+                            <figcaption>Mercurials Client server diagram</figcaption>
                         </figure>
                         <table class="bookstyleborders">
                             <tbody>
@@ -565,7 +560,7 @@
                         <h1>Remote Proxy</h1>
                         <figure>
                             <img src="images/Proxy.jpg" alt="Mecurial Proxy diagram"  />
-                            <figcaption></figcaption>
+                            <figcaption>Mercurials Proxy diagram</figcaption>
                         </figure>
                         <table class="bookstyleborders">
                             <tbody>
@@ -608,7 +603,9 @@
                                     <td>
                                         <p>One of the benefites of choosing proxy is it hides the fact that an object resides in a different address space.
                                         The remote proxy is responsible for all the network hassle, so it could influence in usability in a good way.
-                                        The proxy hides the fact that a service is provided remotely, and makes the remote service as easy to use as a local service. </p>
+                                        The proxy hides the fact that a service is provided remotely, and makes the remote service as easy to use as a local service. 
+                                        By putting all location information and addressing functionality into a Remote Proxy variant, clients are not affected by migration of servers or
+                                        changes in the networking infrastructure. This allows client code to become more stable and reusable.</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -730,13 +727,16 @@
             <!--####################### Evaluation and recommendations chapter ###################-->
             <section id="section-evaluation">
                 <h1>Evaluation &amp; recommendations <span class="rightbox"></span></h1>
-                <p>------- NEED A FEW WORDS ABOUT THE PBAR PROCESS - EVALUATION AND RECOMMENDATIONS </p>
+                <p>PBAR <a href="#bib-harrison2010pattern">[ref]</a> has been followed and in this section we evaluate the identified patterns based on the key-drivers.
+                    In recommendations issues are identified and given suggestions to solutions, as well as future recommendations. </p>
                 <section>
                     <h1>Evaluation</h1>
                     <p>We followed PBAR to evaluate the key drivers based on the patterns detected. If a key driver has
-                        a positive impact on the pattern, it gets a plus with green back-ground, if a key driver has a
-                        negative impact on the pattern, it gets a minus with a red back-ground and finally if the impact
-                        is neutral (no impact) then it is left blank with a white back-ground.The rationale for the
+                        a positive impact on the pattern, it gets a plus with green background, if a key driver has a
+                        negative impact on the pattern, it gets a minus with a red background, if a key driver has both a
+                        positive and a negative impact (two different situations) on the pattern, it gets a plus slash minus
+                        with a yellow background and finally if the impact
+                        is neutral (no impact) then it is left blank with a white background.The rationale for the
                         evaluation is depicted below.</p>
                     <table class="simpleborders">
                         <tbody>
@@ -750,7 +750,7 @@
                             </tr>
                             <tr>
                                 <td>Peer-to-peer </td>
-                                <td >+/-</td>
+                                <td class="posneg-impact-cell">+/-</td>
                                 <td></td>
                                 <td></td>
                                 <td class="positive-impact-cell">+ </td>
@@ -761,7 +761,7 @@
                                 <td></td>
                                 <td class="positive-impact-cell">+ </td>
                                 <td class="positive-impact-cell">+ </td>
-                                <td>+/- </td>
+                                <td class="posneg-impact-cell">+/- </td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -774,7 +774,7 @@
                             </tr>
                             <tr>
                                 <td>Proxy </td>
-                                <td > </td>
+                                <td class="positive-impact-cell">+ </td>
                                 <td class="positive-impact-cell">+ </td>
                                 <td></td>
                                 <td > </td>
@@ -798,11 +798,13 @@
                             </tr>
                         </tbody>
                     </table>
-                    <dl><dt>Peer-to-peer</dt> <dd>
-                        <p>Usability and performance are improved since local changes do not have to be pushed onto a central server and therefore network
-                            problems do not affect your work. </p>
-                        <p>Reliablity is improved because every user has a local copy of the whole repository on his local machine. </p>
-                    </dd>
+                    <dl>
+                        <dt>Peer-to-peer</dt> <dd>
+                            <p>Usability and performance are improved since local changes do not have to be pushed onto a central server and therefore network
+                                problems do not affect your work. Usability alos gets a minus because when users are not actively pushing and pulling
+                                changes it can cause a difficult merge wich can take some time to work out.</p>
+                            <p>Reliablity is improved because every user has a local copy of the whole repository on his local machine. </p>
+                        </dd>
                         <dt>Shared Datastore</dt> <dd>
                             <p>The revlog-based shared datastore patterns improves performance by allowing O(1) seek access regardless of the number of
                                 revisions stored. Furthermore, the name-mangling approach to revlog storage improves performance in the face of file system
@@ -843,6 +845,12 @@
                     <section>
                         <h1>Improve existing patterns</h1>
                         <p>Are there any patterns that could be implemented better ...how would that affect the existing architecture</p>
+                        <p>One of the “Achilles heel” of Mercurial system is in simultaneous  clients/users access. To be more precisely when multiple clients are trying push their changes at the same time, 
+                        they face problem with conflicting files and few heads in tree structure. To solve the fixed issue we recommend to use mixed proxy pattern, i.e. group together  Remote and Synchronization 
+                         variants of proxy pattern. One part  is the Remote, it gets the same duties as held, provides a local representative for an object that resides in a different address space. 
+                         The other part of the combined proxy ia a Synchronization proxy will control multiple simultaneous client accesses, i.e. only one client can access the original files at a time,
+                          the proxy can implement mutual exclusion via semaphores. Semaphore mechanism will be implemented in such way that could hold clients to access the original documents while other
+                           user is using it. Remote proxy increases extensibility, but with Synchronization proxy it will improve reliability as well. </p>
                     </section>
                     <section>
                         <h1>Important key drivers (QA's) not addressed by existing patterns or many + and - in one pattern</h1>
@@ -1092,6 +1100,10 @@
                     <li id="tip"><a href="http://mercurial.selenic.com/wiki/Tip">Mercurial tip</a></li>
                     <li id="update"><a href="http://mercurial.selenic.com/wiki/Update">Mercurial update</a></li>
                     <li id="workingdirectory"><a href="http://mercurial.selenic.com/wiki/WorkingDirectory">Mercurial working directory</a></li>
+                    <li id="matt_mackall"><a href="http://mercurial.selenic.com/wiki/mpm">Matt Mackall</a></li>
+                    <li id="community"><a href="http://mercurial.selenic.com/wiki/DeveloperInfo#Working_with_the_community">Mercurial community</a></li>
+                    <li id="mailinglist"><a href="http://mercurial.selenic.com/wiki/MailingLists">Mercurial mailinglists</a></li>
+                    <li id="irc"><a href="http://mercurial.selenic.com/wiki/IRC">Mercurial IRC</a></li>
                 </ul>
             </aside>
         </article>
