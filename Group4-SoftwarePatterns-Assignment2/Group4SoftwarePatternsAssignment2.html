@@ -811,7 +811,7 @@
                     <dl>
                         <dt>Peer-to-peer</dt> <dd>
                             <p>Usability and performance are improved since local changes do not have to be pushed onto a central server and therefore network
-                                problems do not affect your work. Usability alos gets a minus because when users are not actively pushing and pulling
+                                problems do not affect your work. Usability also gets a minus because when users are not actively pushing and pulling
                                 changes it can cause a difficult merge wich can take some time to work out.</p>
                             <p>Reliablity is improved because every user has a local copy of the whole repository on his local machine. </p>
                         </dd>
@@ -857,11 +857,11 @@
                         <p>Are there any patterns that could be implemented better ...how would that affect the existing architecture</p>
                         <p>One problem of the Mercurial system is in concurrent clients/users access. More precisely, when multiple clients are trying push their changes at the same time,
                         they will often encounter multiple heads (multiple new versions) whose changes need to be resolved. To solve the issue we recommend to use mixed proxy pattern, i.e. group together Remote and Synchronization
-                         variants of proxy pattern. One part  is the Remote, it gets the same duties as held, provides a local representative for an object that resides in a different address space.
+                         variants of proxy pattern. One part is the Remote, it gets the same duties as held, provides a local representative for an object that resides in a different address space.
                          The other part of the combined proxy ia a Synchronization proxy will control multiple simultaneous client accesses, i.e. only one client can access the original files at a time,
                           the proxy can implement mutual exclusion via semaphores. Semaphore mechanism will be implemented in such way that could hold clients to access the original documents while other
                            user is using it. Remote proxy increases extensibility, but with Synchronization proxy it will improve reliability as well. <a href="#POSA2">[ref]</a></p>
-			<p>The employment of relaxed layers pattern by Mercurial is proper enough. However, the naming of interface layer and UI layer seems ambiguous. It would more make sense if UI layer is renamed as User Message Manager, for instance, since it deals with messaging. Otherwise, the layers should be reorganized to meet common relaxed layers, from interface layer go deeper into core layer. Although relaxed layers pattern could decrease maintainability<a href="#posabook">[ref]</a>, it is still excepted since maintainability is not key-driver.
+			<p>The employment of relaxed layers pattern by Mercurial is proper enough. However, the naming of interface layer and UI layer seems ambiguous. It would more make sense if UI layer is renamed as User Message Manager, for instance, since it deals with messaging. Otherwise, the layers should be reorganized to meet common relaxed layers, from interface layer go deeper into core layer. Although relaxed layers pattern could decrease maintainability<a href="#posabook">[ref]</a>, this is acceptable since maintainability is not key-driver: also, as the interaction between the lower layers is minimal, the maintainability is unlikely to decrease in practice.
 			</p>
                     </section>
                     <section>
