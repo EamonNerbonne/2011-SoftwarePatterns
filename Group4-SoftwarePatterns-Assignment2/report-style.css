@@ -113,6 +113,8 @@ dt, dd {
     margin: 0;
     display: inline;
 }
+dl.block-descriptions > dt, dl.block-descriptions > dd {    display: block;}
+
 dt {
     margin-left: -1em;
     font-weight: bold;
@@ -124,9 +126,8 @@ dd:before {
 dd:after {
     content: "\A";
     white-space: pre;
-    display: block;
-    width:0;height: 0;
 }
+dl.block-descriptions > dd:after{display:none;}
 
 figcaption[data-figurenumber]:before {font-weight:bold; content: 'Figure ' attr(data-figurenumber) ': ';}
  
@@ -195,4 +196,5 @@ body {
         box-shadow: none;
     }
     .generateTableOfContents a {color:black;}
+    a {color:Blue;}
 }
