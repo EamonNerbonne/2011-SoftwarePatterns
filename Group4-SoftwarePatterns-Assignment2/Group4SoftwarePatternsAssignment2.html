@@ -848,25 +848,62 @@
                     <h1>Recommendations</h1>
                     <section>
                         <h1>Publish Subscribe</h1>
-                        <p>One problem of the Mercurial system is in concurrent clients/users access. More precisely, when multiple 
-                            users commit and exchange their changesets concurrently, they will often encounter multiple heads (multiple new versions) whose changes need to be 
-                            merged (which again might be committed concurrently, possibly causing more heads again).  Though some level of merging is unavoidable, the current process imposes needless friction, hampering usability: one "cycle" of editing involves many steps.  A user must manually pull and update (to check if new versions were made and apply their changes locally); then he can create and commit a new version.  Then he must again pull (to check for new heads to merge with, involving a network wait).  The user may need to merge the new head with his own and then commit that merge, and then must push the changes (again involving a network wait).  Assuming there are new remote changes, this implies (at least) 6 or 7 explicit invocations in addition to those necessary for the user to query Mercurial about the state of the system and the changes themselves.  Also, 3 of the invocations involve the user waiting for the network.  In many cases, however, only one or two of these actions are actually meaningful to the user (namely the initial commit, and possibly the merge, if non-trivial).</p>
-                            <p>We propose to use the <em>Publish-Subscribe</em> pattern to replace the Client-Server pattern for communication between peers.  This pattern could maintain a connection between peers and perform much of the bookkeeping automatically.  Furthermore, the (slow) networking steps could be initiated in the background when a new version is available, well before the user actively checks for such changes.  This pattern would improve usability both by reducing the number of steps required in common workflows, and allowing simplified workflows which complete elide the behind-the-scenes pulling and pushing from novice users.  It could also improve performance by starting expensive operations in the background before the user requests their results.  Finally, when the network is unstable, this could improve reliability by executing network operations whenever the network is available without requiring user interaction.  A downside would be that this would mean a significant change in the mercurial's design since it would required a constant background process to be active, whereas the current design simply performs one action then terminates.</p>
-                        <h1>Relaxed Layers (modification)</h1>
-                        <p>The employment of relaxed layers pattern by Mercurial is proper enough. However, the naming of interface layer and UI layer seems ambiguous. It would more make sense if UI layer is renamed as User Message Manager, for instance, since it deals with messaging. Otherwise, the layers should be reorganized to be more idiomatically layered, i.e. with a top interface layer and deeper core layers. Although the relaxed layers pattern can decrease maintainability<a href="#posabook">[ref]</a>, this is acceptable since maintainability is not key-driver; also, as the interaction between the lower layers is minimal, the maintainability is unlikely to decrease in practice since decreased maintainability stems from greater number of dependencies in a relaxed layered pattern compared to a strictly layered pattern.
-                        </p>
+                        <p>One problem of the Mercurial system is in concurrent clients/users access. More precisely,
+                            when multiple users commit and exchange their changesets concurrently, they will
+                            often encounter multiple heads (multiple new versions) whose changes need to be
+                            merged (which again might be committed concurrently, possibly causing more heads
+                            again). Though some level of merging is unavoidable, the current process imposes
+                            needless friction, hampering usability: one "cycle" of editing involves many steps.
+                            A user must manually pull and update (to check if new versions were made and apply
+                            their changes locally); then he can create and commit a new version. Then he must
+                            again pull (to check for new heads to merge with, involving a network wait). The
+                            user may need to merge the new head with his own and then commit that merge, and
+                            then must push the changes (again involving a network wait). Assuming there are
+                            new remote changes, this implies (at least) 6 or 7 explicit invocations in addition
+                            to those necessary for the user to query Mercurial about the state of the system
+                            and the changes themselves. Also, 3 of the invocations involve the user waiting
+                            for the network. In many cases, however, only one or two of these actions are actually
+                            meaningful to the user (namely the initial commit, and possibly the merge, if non-trivial).</p>
+                        <p>We propose to use the <em>Publish-Subscribe</em> pattern to replace the Client-Server
+                            pattern for communication between peers. This pattern could maintain a connection
+                            between peers and perform much of the bookkeeping automatically. Furthermore, the
+                            (slow) networking steps could be initiated in the background when a new version
+                            is available, well before the user actively checks for such changes. This pattern
+                            would improve usability both by reducing the number of steps required in common
+                            workflows, and allowing simplified workflows which complete elide the behind-the-scenes
+                            pulling and pushing from novice users. It could also improve performance by starting
+                            expensive operations in the background before the user requests their results. Finally,
+                            when the network is unstable, this could improve reliability by executing network
+                            operations whenever the network is available without requiring user interaction.
+                            A downside would be that this would mean a significant change in the mercurial's
+                            design since it would required a constant background process to be active, whereas
+                            the current design simply performs one action then terminates.</p>
                     </section>
-                <section>
+                    <section>
+                        <h1>Relaxed Layers (modification)</h1>
+                        <p>The employment of relaxed layers pattern by Mercurial is proper enough. However,
+                            the naming of interface layer and UI layer seems ambiguous. It would more make sense
+                            if UI layer is renamed as User Message Manager, for instance, since it deals with
+                            messaging. Otherwise, the layers should be reorganized to be more idiomatically
+                            layered, i.e. with a top interface layer and deeper core layers. Although the relaxed
+                            layers pattern can decrease maintainability<a href="#posabook">[ref]</a>, this is
+                            acceptable since maintainability is not key-driver; also, as the interaction between
+                            the lower layers is minimal, the maintainability is unlikely to decrease in practice
+                            since decreased maintainability stems from greater number of dependencies in a relaxed
+                            layered pattern compared to a strictly layered pattern. </p>
+                    </section>
+                    <section>
                         <h1>Integration Reverse Proxy</h1>
-                        <p>In the document, usability is listed as a key-driver. In the evaluation usability has many pluses and minuses and therefore
-                        we would like to recommend an improvement of this.
-                        We recommend Integration Reverse Proxy which provides a homogenous view of collection of servers, without
-                        leaking the physical distribution of individual machines to end users. This will also provide security to the data
-                        from the end users. This patterns will improve usability as per the user/developer perspective. We can implement this in our system
-                        by configuring a back-end for Hgweb server<a href="#security">[ref]</a>. </p>
+                        <p>In the document, usability is listed as a key-driver. In the evaluation usability
+                            has many pluses and minuses and therefore we would like to recommend an improvement
+                            of this. We recommend Integration Reverse Proxy which provides a homogenous view
+                            of collection of servers, without leaking the physical distribution of individual
+                            machines to end users. This will also provide security to the data from the end
+                            users. This patterns will improve usability as per the user/developer perspective.
+                            We can implement this in our system by configuring a back-end for Hgweb server<a
+                                href="#security">[ref]</a>. </p>
                         <p></p>
                     </section>
-                </section>
                 </section>
             </section>
             <aside class="glossary">
