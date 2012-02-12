@@ -93,7 +93,7 @@
                             <td>
                                 <dl><dt>Assel</dt> <dd>Proxy pattern, evaluation and recomendation sections</dd>
                                     <dt>Divya</dt> <dd>Logical View, Process View</dd>
-                                    <dt>Edy</dt> <dd>Refine architectural diagram, sequence diagram</dd>
+                                    <dt>Edy</dt> <dd>Refine architectural diagram, sequence diagram, relaxed layer pattern</dd>
                                     <dt>Sunna</dt> <dd>Chapter 5, Client-Server & Peer-to-peer patterns, diagrams: CS, P2P and system overview, Glossary, final additions chapter 2,3,4,5</dd>
                                     <dt>Eamon</dt> <dd></dd>
                                 </dl>
@@ -308,11 +308,12 @@
                 and filelogs. The changelog contains metadata for each revision, with a pointer into the manifest revlog (that is, a node id for one revision in the
                 manifest revlog). In turn, the manifest is a file that has a list of filenames plus the node id for each file, pointing to a revision in that file's filelog.
                 In the code, there are classes for changelog, manifest, and filelog that are subclasses of the generic revlog class, providing a clean layering of both
-                concepts <a href="#aosabook">[ref]</a>.</p>
+                concepts <a href="#aosabook">[ref]</a>.
             <figure>
                 <img src="images/revlogs.png" alt="Mercurial generic data model, revlog"/>
                 <figcaption >Mercurial Generic Data Model, Revlog <a href="#aosabook">[ref]</a></figcaption>
             </figure>
+	</p>
             <p>Mercurial is a command-line application. This means a simple interface, the user calls the hg script with a command. This command (like log, diff or commit)
                 may take a number of options and arguments. There are also some options that are valid for all commands. Next, there are three different things that can
                 happen to the interface: hg will often output something the user asked for or show status messages, hg can ask for further input through command-line
@@ -675,6 +676,11 @@
                     </section>
                     <section>
                         <h1>Relaxed Layers</h1>
+                 	<figure>
+		         <img src="images/Mercurial-relaxedlayer.png" alt="Mecurial Relaxed Layers  diagram" width=300 length=400 />
+		         <figcaption>Mercurial Relaxed Layers diagram</figcaption>
+			</figure>
+
                         <table class="bookstyleborders">
                             <tr>
                                 <th>Pattern Section </th>
@@ -682,7 +688,7 @@
                             </tr>
                             <tr>
                                 <td>Name </td>
-                                <td>Relaxed Layers </td>
+                                <td>Relaxed Layers <a href="#posabook">[ref]</a></td>
                             </tr>
                             <tr>
                                 <td>Problem Context</td>
@@ -695,7 +701,7 @@
                                 <td>Solution Variant</td>
                                 <td>
                                     <p>The separation of concern and extensibility are resolved by dividing Mercurial
-                                        system into several modules and grouping them into some layers based on their level of abstraction.  Platform dependency can also be avoided by providing particular module </p>
+                                        system into several modules and grouping them into some layers based on their level of abstraction.  Platform dependency can also be avoided by providing particular module. </p>
                                 </td>
                             </tr>
                             <tr>
@@ -835,8 +841,8 @@
                         allows independent variation an evolution of service extensions in Mercurial. Hence extensibility is given a plus.</p></dd>
                         <dt>Relaxed Layers</dt>
 			<dd>
-			<p>Since Mercurial was developed in layers and modules, its functionality can be extended by module-based development inside certain layer. It is flexible to add new modules as new requirement might appear. Thus, extensibility increases. </p><p>
-			Mercurial has repository layer which contains proxy object. This layer enables developer to implement platform independent module especially in term of remote repository.</p>
+			<p>Since Mercurial was developed in layers and modules, its functionality can be extended by module-based development inside certain layer. It is flexible to add new modules as new requirement might appear. Developing new module can be done without interfering other modules. Thus, extensibility increases. </p>
+			<p>Mercurial has repository layer which contains proxy object. This layer enables developer to implement specific platform-based module especially in term of remote repository. This mechanism allows Mercurial to be more platform independent, so it increases portability.</p>
 			</dd>
                     </dl>
                 </section>
@@ -856,6 +862,8 @@
                          The other part of the combined proxy ia a Synchronization proxy will control multiple simultaneous client accesses, i.e. only one client can access the original files at a time,
                           the proxy can implement mutual exclusion via semaphores. Semaphore mechanism will be implemented in such way that could hold clients to access the original documents while other
                            user is using it. Remote proxy increases extensibility, but with Synchronization proxy it will improve reliability as well. <a href="#POSA2">[ref]</a></p>
+			<p>The employment of relaxed layers pattern by Mercurial is proper enough. However, the naming of interface layer and UI layer seems ambiguous. It would more make sense if UI layer is renamed as User Message Manager, for instance, since it deals with messaging. Otherwise, the layers should be reorganized to meet common relaxed layers, from interface layer go deeper into core layer. Although relaxed layers pattern could decrease maintainability<a href="#posabook">[ref]</a>, it is still excepted since maintainability is not key-driver.
+			</p>
                     </section>
                     <section>
                         <h1>Important key drivers (QA's) not addressed by existing patterns or many + and - in one pattern</h1>
@@ -1060,7 +1068,7 @@
                     <li id="merc_links"><a href="http://hgbook.red-bean.com/read/how-did-we-get-here.html">Mercurial book, motivation </a>, <a
                         href="http://hginit.com/">HgInit</a>—a Mercurial tutorial, <a href="http://mercurial.selenic.com/guide/">The Mercurial User's
                             Guide</a>, <a href="http://mercurial.selenic.com/wiki/">The Mercurial Wiki</a> </li>
-                    <li>Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad.Pattern-Oriented Software Architecture Volume 1: A System
+                    <li id="posabook">Frank Buschmann, Regine Meunier, Hans Rohnert, and Peter Sommerlad.Pattern-Oriented Software Architecture Volume 1: A System
                         of Patterns. 1996. </li>
                     <li id="mercurial-book-4">Bryan O'Sullivan. Mercurial: The Definitive Guide. 2009. <a href="http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004">
                         http://hgbook.red-bean.com/read/behind-the-scenes.html#x8-640004 </a></li>
