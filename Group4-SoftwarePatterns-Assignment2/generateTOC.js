@@ -1,35 +1,38 @@
+"use strict";
+
 //by Eamon Nerbonne
-function getSectionScope(jqElement) {
-    return jqElement.parents().filter("html, article, section").first();
+function getSectionScope(htmlElement) {
+    return htmlElement.parentNode.closest("html, article, section");
 }
 
-function getArticleScope(jqElement) {
-    return jqElement.parents().filter("html, article").first();
+function getArticleScope(htmlElement) {
+    return htmlElement.closest("html, article");
 }
 
-
-function getSectionHeading(jqSection) {
-    return jqSection.find("h1").filter(function () {
-        return $(this).parents().filter("html, article, section").first()[0] === jqSection[0];
-    }).first();
+function getSectionHeading(htmlSection) {
+    return Array.from(htmlSection.querySelectorAll("h1")).filter(header => getSectionScope(header) === htmlSection)[0];
 }
+
+const data = Symbol("my-data");
+const getData = node => node[data] || (node[data] = {});
+
 
 function createSectionToc(arrChildren) {
     var tableEl = document.createElement("table");
     for (var i = 0; i < arrChildren.length; ++i) {
-        var jqSection = arrChildren[i];
-        var sectionData = jqSection.data();
-        var sectionHeading = getSectionHeading(jqSection);
+        var thisSection = arrChildren[i];
+		var sectionData = getData(thisSection);
+        var sectionHeading = getSectionHeading(thisSection);
         var sectionNumber = sectionData.fullpath;
-        if (!sectionHeading || !sectionHeading.length)
-            throw "Cannot process section (no section h1):" + jqSection.text();
-        var headingString = sectionHeading[0].textContent;
+        if (!sectionHeading || !sectionHeading)
+            throw "Cannot process section (no section h1):" + thisSection.textContent;
+        var headingString = sectionHeading.textContent;
 
         var numEl = document.createElement("td");
         numEl.appendChild(document.createTextNode(sectionNumber));
 
         var linkEl = document.createElement("a");
-        linkEl.setAttribute("href", "#" + jqSection.attr("id"));
+        linkEl.setAttribute("href", "#" + thisSection.getAttribute("id"));
         linkEl.appendChild(document.createTextNode(headingString));
         var contentEl = document.createElement("td");
         contentEl.appendChild(linkEl);
@@ -46,90 +49,94 @@ function createSectionToc(arrChildren) {
 
     return tableEl;
 }
+let sectionIdx =0;
+for(const thisSection of document.querySelectorAll("section")) {
+	var thisSectionData = getData(thisSection);
+	if (thisSection.getAttribute("id") === null) thisSection.setAttribute("id", "autoSecNum" + sectionIdx);
 
-$(function () {
+	var parentSection = getSectionScope(thisSection);
+	var parentSectionData = getData(parentSection);
+	
+	if (parentSectionData.childSections === undefined) parentSectionData.childSections = [];
 
-    $("section").each(function (index) {
-        var thisSection = $(this);
-        var thisSectionData = thisSection.data();
-        if (thisSection.attr("id") === undefined) thisSection.attr("id", "autoSecNum" + index);
+	parentSectionData.childSections.push(thisSection);
+	thisSectionData.sectionNumber = parentSectionData.childSections.length;
+	thisSectionData.parentSection = parent;
 
-        var parentSection = getSectionScope(thisSection);
-        var parentSectionData = parentSection.data();
-        if (parentSectionData.childSections === undefined) parentSectionData.childSections = [];
+	thisSectionData.fullpath = (parentSectionData.fullpath ? parentSectionData.fullpath + "." : "") + thisSectionData.sectionNumber;
+	var sectionHeader = getSectionHeading(thisSection);
 
-        parentSectionData.childSections.push(thisSection);
-        thisSectionData.sectionNumber = parentSectionData.childSections.length;
-        thisSectionData.parentSection = parent;
+	sectionHeader.setAttribute("data-fullpath", thisSectionData.fullpath);
+	sectionIdx++;
+}
 
-        thisSectionData.fullpath = (parentSectionData.fullpath ? parentSectionData.fullpath + "." : "") + thisSectionData.sectionNumber;
-        var sectionHeader = getSectionHeading(thisSection);
+for(const el of document.querySelectorAll(".generateTableOfContents")) {
+	var scope = getSectionScope(el);
+	var scopeData = getData(scope);
 
-        sectionHeader.attr("data-fullpath", thisSectionData.fullpath);
-    });
+	var arrChildren = scopeData.childSections;
+	if (arrChildren && arrChildren.length > 0) {
+		el.appendChild(createSectionToc(arrChildren));
+	}
+}
 
-    $("div.generateTableOfContents").each(function () {
-        var scope = getSectionScope($(this));
+let figIdx = 0;
+for(const thisFigure of document.querySelectorAll("figure")) {
+	if (thisFigure.getAttribute("id") === null) thisFigure.setAttribute("id", "autoFigNum" + figIdx);
 
-        var scopeData = scope.data();
-        var arrChildren = scopeData.childSections;
-        if (arrChildren && arrChildren.length > 0) {
-            $(this).append(createSectionToc(arrChildren));
-        }
-    });
+	var parentArticle = getArticleScope(thisFigure);
+	var parentArticleData = getData(parentArticle);
 
-    $("figure").each(function (index) {
-        var thisFigure = $(this);
-        if (thisFigure.attr("id") === undefined) thisFigure.attr("id", "autoFigNum" + index);
+	if (parentArticleData.figureCounter === undefined) parentArticleData.figureCounter = 0;
+	parentArticleData.figureCounter++;
+    thisFigure.setAttribute("data-figureNumber", parentArticleData.figureCounter);
+	for(const caption of thisFigure.querySelectorAll("figcaption")) {
+        caption.setAttribute("data-figureNumber", parentArticleData.figureCounter);
+	}
+	figIdx++;
+}
 
-        var parentArticle = getArticleScope(thisFigure);
-        var parentArticleData = parentArticle.data();
-        if (parentArticleData.figureCounter === undefined) parentArticleData.figureCounter = 0;
-        parentArticleData.figureCounter++;
-        thisFigure.children("figcaption").andSelf().each(function () {
-            $(this).attr("data-figureNumber", parentArticleData.figureCounter);
-        });
-    });
+let citationIdx = 0;
+for(const thisCitation of document.querySelectorAll("aside.bibliography li")) {
+	if (thisCitation.getAttribute("id") === null) thisCitation.setAttribute("id", "autoCiteNum" + citationIdx);
 
-    $("aside.bibliography li").each(function (index) {
-        var thisCitation = $(this);
-        if (thisCitation.attr("id") === undefined) thisCitation.attr("id", "autoCiteNum" + index);
+	var parentArticle = getArticleScope(thisCitation);
+	var parentArticleData = parentArticle.dataset;
+	if (parentArticleData.citationCounter === undefined) parentArticleData.citationCounter = 0;
+	parentArticleData.citationCounter++;
+	thisCitation.setAttribute("data-citationNumber", "" + parentArticleData.citationCounter);
+	citationIdx++;
+}
 
-        var parentArticle = getArticleScope(thisCitation);
-        var parentArticleData = parentArticle.data();
-        if (parentArticleData.citationCounter === undefined) parentArticleData.citationCounter = 0;
-        parentArticleData.citationCounter++;
-        thisCitation.attr("data-citationNumber", "" + parentArticleData.citationCounter);
-    });
 
-    $("a").filter('[href^="#"]').each(function () {
-        if ($(this).text() == '[ref]') {
-            var idOfRef = $(this).attr("href").substring(1);
-            var referencedElement = $(document.getElementById(idOfRef));
-            //might be a section, figure, equation or bibliography element
-            if (referencedElement.length === 0) {
-                $(this).addClass('ref-error');
-                $(this).attr('data-err-reason', "Invalid reference");
-            } else if (referencedElement[0].nodeName === 'SECTION') {
-                var heading = getSectionHeading(referencedElement);
-                var headingString = heading[0].textContent;
-                if (!$(this).attr("title")) $(this).attr("title", headingString.trim());
-                $(this).text('Section ' + referencedElement.data().fullpath);
-            } else if (referencedElement[0].nodeName === 'LI' && referencedElement.parents().filter("aside.bibliography").length) {
-                $(this).text('[' + referencedElement.attr('data-citationNumber') + ']');
-                //in bib
-            } else if (referencedElement[0].nodeName === 'FIGURE') {
-                //figref
-                $(this).text('Figure ' + referencedElement.attr('data-figureNumber') + '');
-            } else if (referencedElement[0].nodeName === 'SCRIPT') {
-                //in bib
-                throw "Formula cross referencing not yet implemented";
-            } else {
-                $(this).addClass('ref-error');
-                $(this).attr('data-err-reason', "referenced element unrecognized");
-            }
-        }
-    });
+for(const thisInnerLink of document.querySelectorAll("a[href^='#']")) {
+	if (thisInnerLink.textContent == '[ref]') {
+		var idOfRef = thisInnerLink.getAttribute("href").substring(1);
+		var referencedElement = document.getElementById(idOfRef);
+		//might be a section, figure, equation or bibliography element
+		if (referencedElement == null) {
+			thisInnerLink.addClass('ref-error');
+			thisInnerLink.setAttribute('data-err-reason', "Invalid reference");
+		} else if (referencedElement.nodeName === 'SECTION') {
+			var heading = getSectionHeading(referencedElement);
+			var headingString = heading.textContent;
+			if (!thisInnerLink.getAttribute("title")) thisInnerLink.setAttribute("title", headingString.trim());
+			thisInnerLink.textContent = 'Section ' + referencedElement.dataset.fullpath;
+		} else if (referencedElement.nodeName === 'LI' && referencedElement.closest("aside.bibliography")) {
+			thisInnerLink.textContent = '[' + referencedElement.getAttribute('data-citationNumber') + ']';
+			//in bib
+		} else if (referencedElement.nodeName === 'FIGURE') {
+			//figref
+			thisInnerLink.textContent = 'Figure ' + referencedElement.getAttribute('data-figureNumber') + '';
+		} else if (referencedElement.nodeName === 'SCRIPT') {
+			//in bib
+			throw "Formula cross referencing not yet implemented";
+		} else {
+			thisInnerLink.addClass('ref-error');
+			thisInnerLink.setAttribute('data-err-reason', "referenced element unrecognized");
+		}
+	}
+}
 
-});
+
       
